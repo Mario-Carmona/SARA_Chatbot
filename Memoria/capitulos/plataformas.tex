@@ -236,14 +236,23 @@ Tal y como se indica en su página oficial (referencia a https://rasa.com), un c
 \begin{table}[h]
 \centering
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{|l|l|l|}
+\begin{tabular}{|c|l|l|}
 \hline
-                    & \multicolumn{1}{c|}{\textbf{PROS}} & \multicolumn{1}{c|}{\textbf{CONTRAS}}                           \\ \hline
-\textbf{AIML}       &                                    & - Alto gasto de tiempo en la creación del agente conversacional \\ \hline
-\textbf{IBM Watson} &                                    &                                                                 \\ \hline
-\textbf{Dialogflow} &                                    &                                                                 \\ \hline
-\textbf{Rasa Stack} &                                    &                                                                 \\ \hline
-\textbf{Flow XO}    &                                    &                                                                 \\ \hline
+\multicolumn{1}{|l|}{} &
+  \multicolumn{1}{c|}{\textbf{PROS}} &
+  \multicolumn{1}{c|}{\textbf{CONTRAS}} \\ \hline
+\textbf{AIML} &
+  \begin{tabular}[c]{@{}l@{}}- Multilenguaje\\ - El chatbot no es un caja negra\\ - Lenguaje de programación simple\\ - Posibilidad de conexión con APIs propias\\ - Muchas funcionalidades de forma gratuita\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}- Alto gasto de tiempo en la creación del agente conversacional\\ - Necesidad de una cuenta de pago usando servicios web\\ - No es una plataforma en la nube\end{tabular} \\ \hline
+\textbf{IBM Watson} &
+  \begin{tabular}[c]{@{}l@{}}- Posibilidad de crear chatbots muy complejos\\ - Gran cantidad de conexiones con APIs de mucha calidad\\ - Editor de arratrar y soltar\\ - Facilidad de desplegar el chatbot en muchos canales importantes\\ - Es una plataforma en la nube\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}- Necesidad de una cuenta de pago para crear chatbot complejos\\ - Enfocado para el mundo empresarial\\ - El chatbot es una caja negra\end{tabular} \\ \hline
+\textbf{Dialogflow} &
+  \begin{tabular}[c]{@{}l@{}}- Posibilidad de crear chatbots muy complejos sin necesidad de pago\\ - Posibilidad de conexión con un servidor web de forma gratuita\\ - Facilidad de desplegar el chatbot en muchos canales importantes\\ - Creación de chatbots usando sólo frases y entidades\\ - Es una plataforma en la nube\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}- Para hacer agentes muy complejos es necesario gastar tiempo en la creación del servidor\\ - Se necesita tener cierto conocimiento de la plataforma para sacar todo su potencial\\ - Calidad regular en la documentación\\ - Parte del chatbot es una caja negra\end{tabular} \\ \hline
+\textbf{Rasa Stack} &
+  \begin{tabular}[c]{@{}l@{}}- Documentación de calidad\\ - El chatbot no es un caja negra\\ - Facilidad de desplegar el chatbot en muchos canales importantes\\ - Posibilidad de crear chatbots muy complejos\end{tabular} &
+  \begin{tabular}[c]{@{}l@{}}- Necesidad de alto nivel técnico\\ - Plataforma en desarrollo\\ - Necesidad de mucho tiempo para la creación del chatbot\\ - No es una plataforma en la nube\end{tabular} \\ \hline
 \end{tabular}%
 }
 \caption{Comparativa de las plataformas de desarrollo}
