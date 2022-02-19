@@ -8,6 +8,7 @@ Repositorio que contiene mi Trabajo Fin de Grado realizado en la UGR durante el 
 
 1. [Resumen](#resumen)
 1. [Requisitos](#requisitos)
+1. [Instalación servidor local](#instalaci)
 
 ## Resumen
 
@@ -16,4 +17,7 @@ Repositorio que contiene mi Trabajo Fin de Grado realizado en la UGR durante el 
 ## Requisitos
 
 
+- Instalación npm
 
+
+## Instalación servidor local
