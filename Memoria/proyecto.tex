@@ -27,6 +27,8 @@
 
 \usepackage[pdfborder={000}]{hyperref} %referencia
 
+\usepackage{natbib} % Paquete para la gestión de la bibliografía
+
 % ********************************************************************
 % Re-usable information
 % ********************************************************************
@@ -175,12 +177,16 @@ pdfproducer = {pdflatex}
 \input{portada/portada}
 \input{prefacios/prefacio}
 %\frontmatter
-%\tableofcontents
-%\listoffigures
-%\listoftables
+\tableofcontents
+\listoffigures
+\listoftables
 %
 %\mainmatter
 %\setlength{\parskip}{5pt}
+
+\input{capitulos/metodologia}
+
+\input{capitulos/plataformas}
 
 %\input{capitulos/01_Introduccion}
 %
@@ -202,8 +208,8 @@ pdfproducer = {pdflatex}
 %
 %
 %%\nocite{*}
-%\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
-%\bibliographystyle{miunsrturl}
+\bibliographystyle{plainnat}
+\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
 %
 %\appendix
 %\input{apendices/manual_usuario/manual_usuario}
