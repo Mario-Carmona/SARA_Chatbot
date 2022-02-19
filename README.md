@@ -8,7 +8,7 @@ Repositorio que contiene mi Trabajo Fin de Grado realizado en la UGR durante el 
 
 1. [Resumen](#resumen)
 1. [Requisitos](#requisitos)
-1. [Instalación servidor local](#instalaci)
+1. [Instalación servidor local](#instalación-servidor-local)
 
 ## Resumen
 
@@ -17,7 +17,11 @@ Repositorio que contiene mi Trabajo Fin de Grado realizado en la UGR durante el 
 ## Requisitos
 
 
-- Instalación npm
+- ![Logo npm](./image_readme/logo_npm.png)](https://www.npmjs.com/)
 
 
 ## Instalación servidor local
+
+Para instalar el servidor local son necesarios los siguientes pasos:
+
+1. 
