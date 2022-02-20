@@ -17,7 +17,7 @@ Repositorio que contiene mi Trabajo Fin de Grado realizado en la UGR durante el 
 ## Requisitos
 
 
-- [![Logo_npm](./image_readme/logo_npm.png)](https://www.npmjs.com/)
+- [<img src="./image_readme/logo_npm.png" alt="Logo npm" width="60" height="20"/>](https://www.npmjs.com/)
 
 
 ## Instalación servidor local
