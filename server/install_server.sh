@@ -1,9 +1,14 @@
 #!/bin/bash
 
-echo "→ Realizando instalación de 'npm'"
+echo -e "\e[32m→ Realizando instalación de 'npm' \e[0m"
 sudo apt install npm
-echo "→ Instalación de 'npm' finalizada"
+echo -e "\e[32m→ Instalación de 'npm' finalizada \e[0m"
 
-echo "→ Realizando instalación de 'express' mediante npm"
+echo -e "\e[32m→ Realizando instalación de 'express' mediante npm \e[0m"
 npm i express
-echo "→ Instalación de 'express' finalizada"
+echo -e "\e[32m→ Instalación de 'express' finalizada \e[0m"
+
+echo -e "\e[32m→ Realizando instalación de 'ngrok for VSCode' mediante VSCode \e[0m"
+code --install-extension philnash.ngrok-for-vscode
+echo -e "\e[32m→ Instalación de 'ngrok for VSCode' finalizada \e[0m"
+
