@@ -41,6 +41,4 @@ def webhook():
 
 @app.route("/") 
 def home(): 
-  return "Servidor que ejecuta el modelo de GPT-J"
-
-app.run()
+  return "<h1>Bienvenido al servidor</h1>"

@@ -1,1 +1,1 @@
-web: gunicorn prueba:app
+web: gunicorn wsgi:app
