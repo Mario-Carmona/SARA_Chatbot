@@ -37,7 +37,7 @@ def webhook():
     fulfillmentText = query_result.get('queryText')
   """
 
-  url = "http://4416-35-184-60-16.ngrok.io/inferencia"
+  url = "http://c476-34-69-136-80.ngrok.io/inferencia"
   question = query_result.get('queryText')
   usuario = {
       "question": question,
