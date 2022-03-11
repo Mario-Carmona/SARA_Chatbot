@@ -35,7 +35,7 @@ def webhook():
     """
     fulfillmentText = "Dentro"
   else:
-    fulfillmentText = "Fuera"
+    fulfillmentText = query_result.get('queryText')
 
   return {
     "fulfillmentText": fulfillmentText,
