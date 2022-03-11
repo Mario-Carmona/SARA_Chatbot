@@ -35,7 +35,7 @@ def webhook():
     """
     fulfillmentText = "Dentro"
   else:
-    fulfillmentText = "Dentro"
+    fulfillmentText = "Fuera"
 
   return {
     "fulfillmentText": fulfillmentText,
