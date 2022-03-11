@@ -25,19 +25,22 @@ def webhook():
   req = request.get_json(silent=True, force=True)
   query_result = req.get('queryResult')
   if query_result.get('displayName') == 'Prueba':
+    """
     url = "http://4416-35-184-60-16.ngrok.io/inferencia"
     question = query_result.get('queryText')
     usuario = {
         "question": question,
     }
     fulfillmentText = requests.post(url, json=usuario)
+    """
+    fulfillmentText = "Dentro"
+  else:
+    fulfillmentText = "Dentro"
 
   return {
     "fulfillmentText": fulfillmentText,
     "source": "webhookdata"
   }
-
-  # return response 
 
 @app.route("/") 
 def home(): 
