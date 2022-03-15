@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Controller CI/CD
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  docker:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -27,3 +27,19 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run:     
         docker push "$DOCKER_USERNAME"/sara-chatbot
+  heroku:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Save Heroku credentials
+      env:
+        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: 
+        echo -e "machine api.heroku.com\n  login "$HEROKU_EMAIL"\n  password "$HEROKU_APY_KEY"\nmachine git.heroku.com\n  login "$HEROKU_EMAIL"\n  password "$HEROKU_APY_KEY"" >> ~/.netrc
+    - name: Login DockerHub
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: 
+        cat ~/.netrc
