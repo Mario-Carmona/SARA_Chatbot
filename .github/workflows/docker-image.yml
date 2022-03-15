@@ -8,6 +8,7 @@ on:
 
 jobs:
   docker:
+    concurrency: building_controller
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -30,6 +31,7 @@ jobs:
       run:     
         docker push "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller
   heroku:
+    concurrency: building_controller
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
