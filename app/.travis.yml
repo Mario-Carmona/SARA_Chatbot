@@ -1,0 +1,23 @@
+sudo: required
+
+language: python
+python:
+  - "3.9"
+
+services:
+  - docker
+
+before_install:
+  # Logearnos en DockerHub
+  - docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
+
+script:
+  # Contruir la imagen del servidor
+  - docker build -t macarse/sara-chatbot .
+
+deploy:
+  provider: script
+  script:
+    # Subir imagen a DockerHub
+    docker push macarse/sara-chatbot;
+  branch: master
