@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build_controller:
+  docker:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -23,32 +23,20 @@ jobs:
         DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
       run:     
         docker build -t "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller ./app
-    - name: Deploy the Docker image
+    - name: Push the Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
       run:     
         docker push "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller
-    - name: Login registry of Heroku
-      env:
-        HEROKU_USERNAME: ${{ secrets.HEROKU_USERNAME }}
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: 
-        docker login --username "$HEROKU_USERNAME" --password "$HEROKU_API_KEY" registry.heroku.com
-    - name: Change tag of Docker image
-      env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      run: 
-        docker tag "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller registry.heroku.com/"$HEROKU_APP_NAME"/web
-    - name: Push Heroku image
-      env:
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      run: 
-        docker push registry.heroku.com/"$HEROKU_APP_NAME"/web
-    - name: Push Heroku image
-      env:
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      run: 
-        heroku container:release web --app "$HEROKU_APP_NAME"
+  heroku:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Deploy app on Heroku
+    - uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        heroku_email: ${{ secrets.HEROKU_EMAIL }}
+        usedocker: true
