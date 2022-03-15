@@ -1,0 +1,5 @@
+build:
+  docker:
+    web: app/Dockerfile
+run:
+  web: python app/__init__.py
