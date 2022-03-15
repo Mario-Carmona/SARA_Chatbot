@@ -21,11 +21,9 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run:     
-        docker build -t "$DOCKER_USERNAME"/sara-chatbot:$(date +%s) ./app
-    - name: Build the Docker image
+        docker build -t "$DOCKER_USERNAME"/sara-chatbot ./app
+    - name: Deploy the Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       run:     
         docker push "$DOCKER_USERNAME"/sara-chatbot
-
-    
