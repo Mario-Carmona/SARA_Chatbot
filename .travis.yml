@@ -13,7 +13,7 @@ before_install:
 
 script:
   # Contruir la imagen del servidor
-  - docker build -t macarse/sara-chatbot .
+  - docker build -t macarse/sara-chatbot ./app
 
 deploy:
   provider: script
