@@ -20,15 +20,15 @@ jobs:
     - name: Build the Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
+        DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
       run:     
-        docker build -t "$DOCKER_USERNAME"/"$DOCKER_USERNAME"-Controller ./app
+        docker build -t "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller ./app
     - name: Deploy the Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
+        DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
       run:     
-        docker push "$DOCKER_USERNAME"/"$DOCKER_USERNAME"-Controller
+        docker push "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller
   heroku:
     runs-on: ubuntu-latest
     steps:
@@ -42,10 +42,10 @@ jobs:
     - name: Change tag of Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
+        DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: 
-        docker tag "$DOCKER_USERNAME"/"$DOCKER_USERNAME"-Controller registry.heroku.com/"$HEROKU_APP_NAME"/web
+        docker tag "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller registry.heroku.com/"$HEROKU_APP_NAME"/web
     - name: Push Heroku image
       env:
         HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
