@@ -7,8 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  docker:
-    concurrency: building_controller
+  build_controller:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -30,11 +29,6 @@ jobs:
         DOCKER_IMAGE_NAME: ${{ secrets.DOCKER_IMAGE_NAME }}
       run:     
         docker push "$DOCKER_USERNAME"/"$DOCKER_IMAGE_NAME"-controller
-  heroku:
-    concurrency: building_controller
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
     - name: Login registry of Heroku
       env:
         HEROKU_USERNAME: ${{ secrets.HEROKU_USERNAME }}
