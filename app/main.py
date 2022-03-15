@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from __init__ import app
 import requests
-from flask import request, render_template
+from flask import Flask, request, send_file
 
+
+app = Flask(__name__)
 
 @app.route("/") 
 def home(): 
@@ -12,7 +13,7 @@ def home():
 
 @app.route("/interface", methods=["GET", "POST"])
 def interface():
-    return render_template('template/interface.html')
+    return send_file('./templates/interface.html')
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
@@ -35,3 +36,6 @@ def webhook():
     "fulfillmentText": fulfillmentText,
     "source": "webhookdata"
   }
+
+if __name__ == "__main__":
+    app.run()
