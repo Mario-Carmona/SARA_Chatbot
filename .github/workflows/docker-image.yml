@@ -7,8 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
+  runs-on: ubuntu-latest
   login:
-    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Login DockerHub
