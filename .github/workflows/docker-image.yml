@@ -20,26 +20,39 @@ jobs:
     - name: Build the Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
       run:     
-        docker build -t "$DOCKER_USERNAME"/sara-chatbot ./app
+        docker build -t "$DOCKER_USERNAME"/"$DOCKER_USERNAME"-Controller ./app
     - name: Deploy the Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
       run:     
-        docker push "$DOCKER_USERNAME"/sara-chatbot
+        docker push "$DOCKER_USERNAME"/"$DOCKER_USERNAME"-Controller
   heroku:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Save Heroku credentials
+    - name: Login registry of Heroku
       env:
-        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+        HEROKU_USERNAME: ${{ secrets.HEROKU_USERNAME }}
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: 
-        echo -e "machine api.heroku.com\n  login "$HEROKU_EMAIL"\n  password "$HEROKU_APY_KEY"\nmachine git.heroku.com\n  login "$HEROKU_EMAIL"\n  password "$HEROKU_APY_KEY"" >> ~/.netrc
-    - name: Login DockerHub
+        docker login --username "$HEROKU_USERNAME" --password "$HEROKU_API_KEY" registry.heroku.com
+    - name: Change tag of Docker image
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        REPOSITORY_NAME: ${{ secrets.REPOSITORY_NAME }}
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
       run: 
-        cat ~/.netrc
+        docker tag "$DOCKER_USERNAME"/"$DOCKER_USERNAME"-Controller registry.heroku.com/"$HEROKU_APP_NAME"/web
+    - name: Push Heroku image
+      env:
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      run: 
+        docker push registry.heroku.com/"$HEROKU_APP_NAME"/web
+    - name: Push Heroku image
+      env:
+        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+      run: 
+        heroku container:release web --app "$HEROKU_APP_NAME"
