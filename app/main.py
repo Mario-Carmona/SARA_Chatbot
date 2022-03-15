@@ -12,6 +12,10 @@ app = Flask(__name__)
 def home(): 
   return "<h1>Bienvenido al servidor</h1>"
 
+@app.route("/wakeup", methods=["GET"])
+def wakeup():
+    return "Server ON"
+
 @app.route("/interface", methods=["GET", "POST"])
 def interface():
     return send_file('./templates/interface.html')
