@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import json
 import requests
 import os
 from flask import Flask, request, send_file
@@ -41,7 +42,7 @@ class Server:
         intent = query_result.get("intent").get("displayName")
 
         if intent == "Prueba":
-            url = os.environ["INFERENCE_URL"]
+            url = config["inference_url"]
             question = query_result.get("queryText")
             usuario = {
                 "question": question,
@@ -57,9 +58,12 @@ class Server:
 
 if __name__ == "__main__":
 
-    host = os.environ["HOST"]
-    port = int(os.environ["PORT"])
-    debug = bool(os.environ["DEBUG"])
+    with open("config.json") as file:
+        config = json.load(file)
+
+    host = config["host"]
+    port = int(config["port"])
+    debug = bool(config["debug"])
 
     server = Server(host, port, debug)
 
