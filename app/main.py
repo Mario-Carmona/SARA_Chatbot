@@ -54,9 +54,9 @@ class Server:
 
 if __name__ == "__main__":
 
-    host = "0.0.0.0"
-    port = os.environ.get("PORT", 5000)
-    debug = False
+    host = os.environ["HOST"]
+    port = int(os.environ["PORT"])
+    debug = bool(os.environ["DEBUG"])
 
     server = Server(host, port, debug)
 
