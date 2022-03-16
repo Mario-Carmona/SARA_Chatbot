@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - 'app/**'
+      - 'heroku.yml'
   pull_request:
     branches: 
       - 'main'
