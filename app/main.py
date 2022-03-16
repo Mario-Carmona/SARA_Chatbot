@@ -16,7 +16,7 @@ class Server:
         self.debug = debug
 
     def run(self):
-        Server.app.run(debug=self.debug, host=self.host, port=self.port)
+        Server.app.run(debug=self.debug, port=self.port)
 
     @app.route("/") 
     def home(): 
@@ -139,9 +139,15 @@ if __name__ == "__main__":
     with open("config.json") as file:
         config = json.load(file)
 
+    '''
     host = config["host"]
     port = eval(config["port"])
     debug = eval(config["debug"])
+    '''
+
+    host = "0.0.0.0"
+    port = 5000
+    debug = False
 
     server = Server(host, port, debug)
 
