@@ -38,7 +38,7 @@ class Server:
         intent = query_result.get("intent").get("displayName")
 
         if intent == "Prueba":
-            url = "http://4416-35-184-60-16.ngrok.io/inferencia"
+            url = os.environ["INFERENCE_URL"]
             question = query_result.get("queryText")
             usuario = {
                 "question": question,
@@ -48,8 +48,8 @@ class Server:
             fulfillmentText = "Sin respuesta"
 
         return {
-        "fulfillmentText": fulfillmentText,
-        "source": "webhookdata"
+            "fulfillmentText": fulfillmentText,
+            "source": "webhookdata"
         }
 
 if __name__ == "__main__":
