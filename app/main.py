@@ -114,9 +114,12 @@ if __name__ == "__main__":
     with open("./config.json") as file:
         config = json.load(file)
 
-    host = config["host"]
-    port = eval(config["port"])
-    debug = eval(config["debug"])
+    host = os.environ.get("HOST", config["host"])
+    print(type(os.environ.get("HOST")))
+    port = eval(os.environ.get("PORT", config["port"]))
+    print(type(os.environ.get("PORT")))
+    debug = eval(os.environ.get("DEBUG", config["debug"]))
+    print(type(os.environ.get("DEBUG")))
 
     server = Server(host, port, debug)
 
