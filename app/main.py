@@ -44,17 +44,71 @@ class Server:
         if intent == "Prueba":
             url = config["inference_url"]
             question = query_result.get("queryText")
-            usuario = {
+            query_json = {
                 "question": question,
             }
-            fulfillmentText = requests.post(url, json=usuario)
-        else:
-            fulfillmentText = "Sin respuesta"
+            answer = requests.post(url, json=query_json)
 
-        return {
-            "fulfillmentText": fulfillmentText,
-            "source": "webhookdata"
-        }
+            webhookResponse = {
+                "fulfillmentMessages": [
+                    {
+                        "text": {
+                            "text": [
+                                answer
+                            ]
+                        }
+                    }
+                ],
+                "outputContexts": [
+                    {
+                        "name": "projects/project-id/agent/sessions/session-id/contexts/context-name",
+                        "lifespanCount": 5,
+                        "parameters": {
+                            "param-name": "param-value"
+                        }
+                    }
+                ]
+            }
+        elif intent == "Default Welcome Intent":
+            outputContexts = query_result.get("outputContexts")
+            name = outputContexts.get("name")
+            session_id = req.get("responseId")
+            
+            webhookResponse = {
+                "outputContexts": [
+                    {
+                        "name": name,
+                        "lifespanCount": 5,
+                        "parameters": {
+                            "session_id": session_id
+                        }
+                    }
+                ]
+            }
+        else:
+            webhookResponse = {
+                "fulfillmentMessages": [
+                    {
+                        "text": {
+                            "text": [
+                                "Sin respuesta"
+                            ]
+                        }
+                    }
+                ],
+                "outputContexts": [
+                    {
+                        "name": "projects/project-id/agent/sessions/session-id/contexts/context-name",
+                        "lifespanCount": 5,
+                        "parameters": {
+                            "param-name": "param-value"
+                        }
+                    }
+                ]
+            }
+
+
+        return webhookResponse
 
 if __name__ == "__main__":
 
