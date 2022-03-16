@@ -84,7 +84,7 @@ class Server:
                         }
                     }
                 ]
-            }
+            } 
         else:
             webhookResponse = {
                 "fulfillmentMessages": [
