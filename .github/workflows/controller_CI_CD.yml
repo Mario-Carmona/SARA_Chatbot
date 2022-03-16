@@ -5,7 +5,7 @@ on:
     branches: 
       - 'main'
     paths:
-      - '**app/**'
+      - 'app/**'
   pull_request:
     branches: 
       - 'main'
