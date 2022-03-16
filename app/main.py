@@ -116,8 +116,8 @@ if __name__ == "__main__":
         config = json.load(file)
 
     host = config["host"]
-    port = int(config["port"])
-    debug = bool(config["debug"])
+    port = eval(config["port"])
+    debug = eval(config["debug"])
 
     server = Server(host, port, debug)
 
