@@ -16,7 +16,7 @@ class Server:
         self.debug = debug
 
     def run(self):
-        Server.app.run(debug=self.debug, port=self.port)
+        Server.app.run(debug=self.debug, host=self.host, port=self.port)
 
     @app.route("/") 
     def home(): 
@@ -40,8 +40,6 @@ class Server:
         
         query_result = req.get("queryResult")
         intent = query_result.get("intent").get("displayName")
-
-        '''
 
         if intent == "Prueba":
             url = config["inference_url"]
@@ -109,45 +107,16 @@ class Server:
                 ]
             }
 
-        '''
-
-        webhookResponse = {
-            "fulfillmentMessages": [
-                {
-                    "text": {
-                        "text": [
-                            "Sin respuesta"
-                        ]
-                    }
-                }
-            ],
-            "outputContexts": [
-                {
-                    "name": "projects/project-id/agent/sessions/session-id/contexts/context-name",
-                    "lifespanCount": 5,
-                    "parameters": {
-                        "param-name": "param-value"
-                    }
-                }
-            ]
-        }
-
         return webhookResponse
 
 if __name__ == "__main__":
 
-    with open("config.json") as file:
+    with open("./config.json") as file:
         config = json.load(file)
 
-    '''
     host = config["host"]
     port = eval(config["port"])
     debug = eval(config["debug"])
-    '''
-
-    host = "0.0.0.0"
-    port = 5000
-    debug = False
 
     server = Server(host, port, debug)
 
