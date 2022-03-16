@@ -41,6 +41,8 @@ class Server:
         query_result = req.get("queryResult")
         intent = query_result.get("intent").get("displayName")
 
+        '''
+
         if intent == "Prueba":
             url = config["inference_url"]
             question = query_result.get("queryText")
@@ -107,6 +109,28 @@ class Server:
                 ]
             }
 
+        '''
+
+        webhookResponse = {
+            "fulfillmentMessages": [
+                {
+                    "text": {
+                        "text": [
+                            "Sin respuesta"
+                        ]
+                    }
+                }
+            ],
+            "outputContexts": [
+                {
+                    "name": "projects/project-id/agent/sessions/session-id/contexts/context-name",
+                    "lifespanCount": 5,
+                    "parameters": {
+                        "param-name": "param-value"
+                    }
+                }
+            ]
+        }
 
         return webhookResponse
 
