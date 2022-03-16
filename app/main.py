@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from distutils.log import debug
 import requests
 import os
 from flask import Flask, request, send_file
@@ -24,6 +23,10 @@ class Server:
 
     @app.route("/wakeup", methods=["GET"])
     def wakeup():
+        return "Server ON"
+
+    @app.route("/set_url_server_gpu", methods=["POST"])
+    def set_url_server_gpu():
         return "Server ON"
 
     @app.route("/interface", methods=["GET", "POST"])
