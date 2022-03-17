@@ -71,7 +71,7 @@ class Server:
             }
         elif intent == "Default Welcome Intent":
             outputContexts = query_result.get("outputContexts")
-            name = outputContexts.get("name")
+            name = outputContexts[0].get("name")
             session_id = req.get("responseId")
             
             webhookResponse = {
