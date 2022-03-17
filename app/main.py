@@ -61,6 +61,8 @@ class Server:
             }
             answer = requests.post(url, json=query_json)
 
+            outputContexts = query_result.get("outputContexts")
+
             webhookResponse = {
                 "fulfillmentMessages": [
                     {
@@ -71,15 +73,7 @@ class Server:
                         }
                     }
                 ],
-                "outputContexts": [
-                    {
-                        "name": "projects/project-id/agent/sessions/session-id/contexts/context-name",
-                        "lifespanCount": 5,
-                        "parameters": {
-                            "param-name": "param-value"
-                        }
-                    }
-                ]
+                "outputContexts": outputContexts
             }
         elif intent == "Goodbye":
             # Implementar guardado del historial
