@@ -26,10 +26,6 @@ class Server:
     def wakeup():
         return "Server ON"
 
-    @app.route("/set_url_server_gpu", methods=["POST"])
-    def set_url_server_gpu():
-        return "Server ON"
-
     @app.route("/interface", methods=["GET", "POST"])
     def interface():
         return send_file('./templates/interface.html')
@@ -41,7 +37,23 @@ class Server:
         query_result = req.get("queryResult")
         intent = query_result.get("intent").get("displayName")
 
-        if intent == "Prueba":
+        if intent == "Welcome":
+            outputContexts = query_result.get("outputContexts")
+            name = outputContexts[0].get("name")
+            session_id = req.get("responseId")
+            
+            webhookResponse = {
+                "outputContexts": [
+                    {
+                        "name": name,
+                        "lifespanCount": 5,
+                        "parameters": {
+                            "session_id": session_id
+                        }
+                    }
+                ]
+            }
+        elif intent == "Talk":
             url = config["inference_url"]
             question = query_result.get("queryText")
             query_json = {
@@ -69,22 +81,9 @@ class Server:
                     }
                 ]
             }
-        elif intent == "Default Welcome Intent":
-            outputContexts = query_result.get("outputContexts")
-            name = outputContexts[0].get("name")
-            session_id = req.get("responseId")
-            
-            webhookResponse = {
-                "outputContexts": [
-                    {
-                        "name": name,
-                        "lifespanCount": 5,
-                        "parameters": {
-                            "session_id": session_id
-                        }
-                    }
-                ]
-            }
+        elif intent == "Goodbye":
+            # Implementar guardado del historial
+            pass
         else:
             webhookResponse = {
                 "fulfillmentMessages": [
@@ -93,15 +92,6 @@ class Server:
                             "text": [
                                 "Sin respuesta"
                             ]
-                        }
-                    }
-                ],
-                "outputContexts": [
-                    {
-                        "name": "projects/project-id/agent/sessions/session-id/contexts/context-name",
-                        "lifespanCount": 5,
-                        "parameters": {
-                            "param-name": "param-value"
                         }
                     }
                 ]
@@ -116,7 +106,7 @@ if __name__ == "__main__":
 
     host = os.environ.get("HOST", config["host"])
     port = eval(os.environ.get("PORT", config["port"]))
-    debug = eval(os.environ.get("DEBUG", config["debug"]))
+    debug = eval(config["debug"])
 
     server = Server(host, port, debug)
 
