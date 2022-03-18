@@ -1,0 +1,25 @@
+- Conectar al servidor
+
+	- Guardar contraseña
+	
+ssh-copy-id -i ~/.ssh/id_rsa.pub mcarmona@ngpu.ugr.es
+
+	- Login con ssh
+	
+ssh mcarmona@ngpu.ugr.es
+
+- Crear carpeta personal
+
+mkdir /mnt/homeGPU/mcarmona
+
+- Acceder a la carpeta personal
+
+cd /mnt/homeGPU/mcarmona/
+
+- Crear entorno conda
+
+conda create --prefix mcarmona python=3.9
+
+- Activar entorno
+
+conda activate /mnt/homeGPU/mcarmona/mcarmona
