@@ -6,6 +6,7 @@
     --gray2: #f7d9d990;
     --black1: #1A1B1F;
     --black2: #30553B;
+    --white: #fff;
     --shadow: 0 8px 8px;
     --color_shadow: #00000033;
     --start_gradient_header: #30353B;
@@ -17,94 +18,217 @@
     --link: #fff;
     --link__active: var(--gold1);
     /* Tamaños */
-    --header_height: 70px;
+    --header_height: 8vh;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
 }
 
 body {
     font-family: 'Fredoka', sans-serif;
 }
 
+@media screen and (max-width: 1920px) {
+    /* Nombre del logo de la barra de navegación */
+    .logo__name {
+        /* Tamaño de fuente relativo al tamaño general */
+        font-size: 150%;
+    }
+    .header__title {
+        font-size: 350%;
+        font-weight: 300;
+        color: var(--white);
+    }
+    .header__subtitle {
+        font-size: 150%;
+        color: var(--gray);
+        text-shadow: var(--shadow) var(--color_shadow);
+        margin: 3% 0;
+    }
+    .servicios__title {
+        font-size: 263%;
+    }
+    .servicios__subtitle {
+        color: var(--black2);
+        font-size: 138%;
+        line-height: 32px;
+        margin-bottom: 5%;
+    }
+    .card__title {
+        font-size: 250%;
+        color: #fff;
+        margin-bottom: 4.5%;
+    }
+    .card__descrip {
+        color: var(--gray2);
+        margin-bottom: 9%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    /* Nombre del logo de la barra de navegación */
+    .logo__name {
+        /* Tamaño de fuente relativo al tamaño general */
+        font-size: 110%;
+    }
+    .header__title {
+        font-size: 250%;
+        font-weight: 300;
+        color: var(--white);
+    }
+    .header__subtitle {
+        font-size: 120%;
+        color: var(--gray);
+        text-shadow: var(--shadow) var(--color_shadow);
+        margin: 4% 0 4%;
+    }
+    .servicios__title {
+        font-size: 200%;
+    }
+    .servicios__subtitle {
+        color: var(--black2);
+        font-size: 100%;
+        line-height: 32px;
+        margin-bottom: 5%;
+    }
+    .card__title {
+        font-size: 150%;
+        color: #fff;
+        margin-bottom: 4.5%;
+    }
+    .card__descrip {
+        color: var(--gray2);
+        margin-bottom: 9%;
+    }
+}
+
+
+/* Contenedor de cada sección de la página web */
+
 .container {
+    /* Ancho relativo a la pantalla */
     width: 90%;
+    /* Ancho máximo del contenedor */
     max-width: 1200px;
+    /* Se eliminan los márgenes en el top */
     margin: 0 auto;
+    /* Se oculta el contenido que se sale del contenedor */
     overflow: hidden;
-    padding: 100px 0;
+    /* Se deja un padding-top relativo a la pantalla */
+    padding: 7% 0;
+    /* No se fija la altura */
     height: auto;
 }
 
+
+/* Encabezado de la página web */
+
 .header {
+    /* El ancho del header es igual al ancho de la pantalla */
     width: 100%;
+    /* Se fija que el alto del header sea igual al alto de la ventana */
     min-height: 100vh;
+    height: auto;
+    /* Fondo del encabezado */
     background: linear-gradient(180deg, var(--start_gradient_header) 0%, var(--finish_gradient_header) 100%);
 }
 
+
+/* Barra de navegación del encabezado */
+
 .nav__header {
+    /* Color del texto */
     color: var(--header_letter);
+    /* Altura de la barra */
     height: var(--header_height);
+    /* Borde inferior de la barra */
     border-bottom: 1px solid var(--header_border);
 }
 
+
+/* Contenedor de la barra de navegación */
+
 .nav__container {
+    /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
     display: flex;
+    /* Centra verticalmente los elementos del contenedor */
     align-items: center;
+    /* El espacio entre los elementos se iguala para todos */
     justify-content: space-between;
+    /* Hereda la altura del padre, es decir, de la barra de navegación del encabezado */
     height: inherit;
+    /* Se elimina el padding-top del contenedor de sección */
     padding: 0;
 }
 
-.logo__name {
-    font-size: 24px;
+
+/* Siglas del logo */
+
+.siglas {
+    /* Tamaño de fuente igual al del logo */
+    font-size: 100%;
+    color: var(--gold1);
 }
+
+
+/* Links de la barra de navegación */
 
 .link {
+    /* Convierte al elemento en un bloque y lo alinea con el resto de elementos */
     display: inline-block;
+    /* Color del texto */
     color: var(--link);
+    /* Elimina el aspecto de enlace */
     text-decoration: none;
+    /* Peso de la fuente de texto */
     font-weight: 300;
-    padding: 10px;
+    /* Se fija un padding alrededor del link */
+    padding: 1vh;
 }
 
+
+/* Último link de la barra de navegación */
+
 .link__active {
+    /* Color del texto */
     color: var(--link__active);
+    /* Elimina el aspecto de enlace */
     text-decoration: none;
+    /* Peso de la fuente de texto */
     font-weight: 700;
 }
 
+
+/* Contenido principal del encabezado */
+
 .header__main {
+    /* Se asigna la altura restante del encabezado */
     height: calc(100vh - var(--header_height));
+    /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
     display: flex;
+    /* Centra verticalmente los elementos del contenedor */
     align-items: center;
+    /* El espacio entre los elementos se iguala para todos */
+    justify-content: space-between;
+    /* Se elimina el padding-top del contenedor de sección */
     padding: 0;
 }
 
 .mockup {
-    object-fit: cover;
+    object-fit: contain;
     height: calc(100vh - var(--header_height));
-}
-
-.header__title {
-    font-size: 56px;
-    font-weight: 300;
-    color: #fff;
-}
-
-.header__subtitle {
-    font-size: 24px;
-    color: var(--gray);
-    text-shadow: var(--shadow) var(--color_shadow);
-    margin: 15px 0;
+    width: 55%;
 }
 
 .class_to_action {
-    padding: 20px 30px;
+    padding-top: 4%;
+    padding-bottom: 4%;
+    padding-left: 6%;
+    padding-right: 6%;
     display: inline-block;
     background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
     text-decoration: none;
@@ -121,40 +245,29 @@ body {
     background: #fafafa;
 }
 
-.servicios__title {
-    font-size: 42px;
-}
-
-.servicios__subtitle {
-    color: var(--black2);
-    font-size: 22px;
-    line-height: 32px;
-    margin-bottom: 60px;
-}
-
 .container__cards {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-around;
+    align-items: left;
     flex-wrap: wrap;
 }
 
 .card {
     width: 30%;
-    padding: 30px 0;
+    padding: 2.5% 0;
     overflow: hidden;
     background: linear-gradient(180deg, var(--start_gradient_header) 0%, var(--finish_gradient_header) 100%);
     border-radius: 10px;
     position: relative;
     text-align: right;
-    margin-bottom: 60px;
+    margin-bottom: 5%;
     box-shadow: 0 0 6px var(--color_shadow);
 }
 
 .card__img {
     width: 95%;
-    height: 200px;
-    object-fit: cover;
+    height: 50%;
+    object-fit: fill;
     border-radius: 10px 0 0 10px;
 }
 
@@ -162,17 +275,6 @@ body {
     text-align: left;
     width: 90%;
     margin: 0 auto;
-}
-
-.card__title {
-    font-size: 40px;
-    color: #fff;
-    margin-bottom: 8px;
-}
-
-.card__descrip {
-    color: var(--gray2);
-    margin-bottom: 16px;
 }
 
 .card__button {
@@ -184,5 +286,6 @@ body {
     color: var(--black1);
     font-weight: 700;
     text-align: center;
-    padding: 12px 0;
+    padding-top: 4%;
+    padding-bottom: 4%;
 }
