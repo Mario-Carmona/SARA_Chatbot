@@ -20,7 +20,7 @@ class Server:
 
     @app.route("/") 
     def home(): 
-        return "<h1>Bienvenido al servidor</h1>"
+        return send_file('./templates/home.html')
 
     @app.route("/wakeup", methods=["GET"])
     def wakeup():
