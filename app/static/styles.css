@@ -1,23 +1,31 @@
 :root {
     /* Colores */
+    /*      Generales */
     --gold1: #F4BD76;
-    --gold2: #F6CD8F;
-    --gray: #ffffff80;
-    --gray2: #f7d9d990;
-    --black1: #1A1B1F;
-    --black2: #30553B;
-    --white: #fff;
-    --shadow: 0 8px 8px;
-    --color_shadow: #00000033;
-    --start_gradient_header: #30353B;
-    --finish_gradient_header: #1A1B1F;
     --start_gradient_button: #F7CE90;
     --finish_gradient_button: #F48D76;
-    --header_letter: #fff;
-    --header_border: rgba(255, 255, 255, 0.1);
-    --link: #fff;
-    --link__active: var(--gold1);
+    /*      Modo claro */
+    --black1: #000;
+    --black2: #1A1B1F;
+    --black3: #050505;
+    --gray1_claro: #00000080;
+    --gray2_claro: #08262690;
+    --color_shadow_claro: #ffffff33;
+    --start_gradient_header_claro: #ffffff;
+    --finish_gradient_header_claro: #6db1e9;
+    --header_border_claro: #0000008c;
+    /*      Modo oscuro */
+    --white1: #fff;
+    --white2: #e5e4e0;
+    --white3: #fafafa;
+    --gray1_oscuro: #ffffff80;
+    --gray2_ocsuro: #f7d9d990;
+    --color_shadow_oscuro: #00000033;
+    --start_gradient_header_oscuro: #30353B;
+    --finish_gradient_header_oscuro: #1A1B1F;
+    --header_border_oscuro: #ffffff1a;
     /* Tamaños */
+    --shadow: 0 8px 8px;
     --header_height: 8vh;
 }
 
@@ -40,13 +48,13 @@ body {
     }
     .header__title {
         font-size: 350%;
-        font-weight: 300;
-        color: var(--white);
+        font-weight: 500;
+        color: var(--black1);
     }
     .header__subtitle {
         font-size: 150%;
-        color: var(--gray);
-        text-shadow: var(--shadow) var(--color_shadow);
+        color: var(--gray1_claro);
+        text-shadow: var(--shadow) var(--color_shadow_claro);
         margin: 3% 0;
     }
     .servicios__title {
@@ -60,11 +68,11 @@ body {
     }
     .card__title {
         font-size: 250%;
-        color: #fff;
+        color: var(--black1);
         margin-bottom: 4.5%;
     }
     .card__descrip {
-        color: var(--gray2);
+        color: var(--gray2_claro);
         margin-bottom: 9%;
     }
 }
@@ -77,13 +85,13 @@ body {
     }
     .header__title {
         font-size: 250%;
-        font-weight: 300;
-        color: var(--white);
+        font-weight: 500;
+        color: var(--black1);
     }
     .header__subtitle {
         font-size: 120%;
-        color: var(--gray);
-        text-shadow: var(--shadow) var(--color_shadow);
+        color: var(--gray1_claro);
+        text-shadow: var(--shadow) var(--color_shadow_claro);
         margin: 4% 0 4%;
     }
     .servicios__title {
@@ -97,11 +105,11 @@ body {
     }
     .card__title {
         font-size: 150%;
-        color: #fff;
+        color: var(--black1);
         margin-bottom: 4.5%;
     }
     .card__descrip {
-        color: var(--gray2);
+        color: var(--gray2_claro);
         margin-bottom: 9%;
     }
 }
@@ -134,7 +142,7 @@ body {
     min-height: 100vh;
     height: auto;
     /* Fondo del encabezado */
-    background: linear-gradient(180deg, var(--start_gradient_header) 0%, var(--finish_gradient_header) 100%);
+    background: linear-gradient(180deg, var(--start_gradient_header_claro) 0%, var(--finish_gradient_header_claro) 100%);
 }
 
 
@@ -142,11 +150,11 @@ body {
 
 .nav__header {
     /* Color del texto */
-    color: var(--header_letter);
+    color: var(--black1);
     /* Altura de la barra */
     height: var(--header_height);
     /* Borde inferior de la barra */
-    border-bottom: 1px solid var(--header_border);
+    border-bottom: 1px solid var(--header_border_claro);
 }
 
 
@@ -181,7 +189,7 @@ body {
     /* Convierte al elemento en un bloque y lo alinea con el resto de elementos */
     display: inline-block;
     /* Color del texto */
-    color: var(--link);
+    color: var(--black1);
     /* Elimina el aspecto de enlace */
     text-decoration: none;
     /* Peso de la fuente de texto */
@@ -195,7 +203,7 @@ body {
 
 .link__active {
     /* Color del texto */
-    color: var(--link__active);
+    color: var(--gold1);
     /* Elimina el aspecto de enlace */
     text-decoration: none;
     /* Peso de la fuente de texto */
@@ -242,7 +250,7 @@ body {
 /* Servicios */
 
 .servicios {
-    background: #fafafa;
+    background: var(--white3);
 }
 
 .container__cards {
@@ -256,12 +264,13 @@ body {
     width: 30%;
     padding: 2.5% 0;
     overflow: hidden;
-    background: linear-gradient(180deg, var(--start_gradient_header) 0%, var(--finish_gradient_header) 100%);
+    background: linear-gradient(180deg, var(--start_gradient_header_claro) 0%, var(--finish_gradient_header_claro) 100%);
     border-radius: 10px;
     position: relative;
     text-align: right;
     margin-bottom: 5%;
-    box-shadow: 0 0 6px var(--color_shadow);
+    box-shadow: 0 0 6px var(--color_shadow_claro);
+    border: 1px solid var(--black1);
 }
 
 .card__img {
@@ -269,6 +278,7 @@ body {
     height: 50%;
     object-fit: fill;
     border-radius: 10px 0 0 10px;
+    border: 1px solid var(--black1);
 }
 
 .cards__text {
@@ -283,7 +293,7 @@ body {
     border-radius: 6px;
     text-decoration: none;
     width: 100%;
-    color: var(--black1);
+    color: var(--black2);
     font-weight: 700;
     text-align: center;
     padding-top: 4%;
