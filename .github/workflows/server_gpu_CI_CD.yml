@@ -26,5 +26,5 @@ jobs:
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       run: 
-        sshpass -p '"$SSH_PASSWORD"' scp ./server_gpu "$SSH_USERNAME"@ngpu.ugr.es:/mnt/homeGPU/"$SSH_USERNAME"
+        sshpass -p 'xxmcarmonaxx' scp ./server_gpu "$SSH_USERNAME"@ngpu.ugr.es:/mnt/homeGPU/"$SSH_USERNAME"
 
