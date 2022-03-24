@@ -279,6 +279,13 @@ body {
         box-shadow: 0 0 6px var(--color_shadow_claro);
         border: 1px solid var(--black1);
     }
+    .sidebar.deploy {
+        display: block;
+        border: 1px solid black;
+        width: 30%;
+        height: auto;
+        background: white;
+    }
     .show_links {
         display: none;
     }
@@ -359,6 +366,13 @@ body {
         box-shadow: 0 0 6px var(--color_shadow_claro);
         border: 1px solid var(--black1);
         display: block;
+    }
+    .sidebar.deploy {
+        display: block;
+        border: 1px solid black;
+        width: 50%;
+        height: auto;
+        background: white;
     }
     .show_links {
         display: none;
@@ -611,14 +625,6 @@ body.dark_mode .card__img {
     display: none;
     border: none;
     text-align: left;
-}
-
-.sidebar.deploy {
-    display: block;
-    border: 1px solid black;
-    width: 50%;
-    height: auto;
-    background: white;
 }
 
 .link_lateral {
