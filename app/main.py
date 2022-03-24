@@ -30,6 +30,10 @@ class Server:
     def interface():
         return send_file('./templates/interface.html')
 
+    @app.route("/chatbot", methods=["GET", "POST"])
+    def interface():
+        return send_file('./templates/chatbot.html')
+
     @app.route("/webhook", methods=["POST"])
     def webhook():
         req = request.get_json(silent=True, force=True)
