@@ -20,7 +20,7 @@ jobs:
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       run: 
-        sshpass -p '"$SSH_PASSWORD"' ssh "$SSH_USERNAME"@ngpu.ugr.es rm -r /mnt/homeGPU/"$SSH_USERNAME"/server_gpu
+        sshpass -p 'xxmcarmonaxx' ssh "$SSH_USERNAME"@ngpu.ugr.es rm -r /mnt/homeGPU/"$SSH_USERNAME"/server_gpu
     - name: Copy content
       env:
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
