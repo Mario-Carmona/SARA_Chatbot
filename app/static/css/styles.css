@@ -52,25 +52,15 @@ body {
         font-weight: 500;
         color: var(--black1);
     }
-    body.dark_mode .header__title {
-        color: var(--white1);
-    }
     .header__subtitle {
         font-size: 150%;
         color: var(--gray1_claro);
         text-shadow: var(--shadow) var(--color_shadow_claro);
         margin: 3% 0;
     }
-    body.dark_mode .header__subtitle {
-        color: var(--gray1_oscuro);
-        text-shadow: var(--shadow) var(--color_shadow_oscuro);
-    }
     .servicios__title {
         font-size: 263%;
         color: var(--black1);
-    }
-    body.dark_mode .servicios__title {
-        color: var(--white1);
     }
     .servicios__subtitle {
         color: var(--black2);
@@ -78,39 +68,20 @@ body {
         line-height: 32px;
         margin-bottom: 5%;
     }
-    body.dark_mode .servicios__subtitle {
-        color: var(--white2);
-    }
     .card__title {
         font-size: 250%;
         color: var(--black1);
         margin-bottom: 4.5%;
     }
-    body.dark_mode .card__title {
-        color: var(--white1);
-    }
     .card__descrip {
         color: var(--gray2_claro);
         margin-bottom: 9%;
-    }
-    body.dark_mode .card__descrip {
-        color: var(--gray2_oscuro);
     }
     .show_links {
         display: inline-block;
     }
     .show_sidebar {
         display: none;
-    }
-    .sidebar.deploy {
-        width: 0;
-        height: 0;
-        top: var(--header_height);
-        right: 0;
-        position: absolute;
-        display: none;
-        border: none;
-        text-align: left;
     }
 }
 
@@ -125,25 +96,15 @@ body {
         font-weight: 500;
         color: var(--black1);
     }
-    body.dark_mode .header__title {
-        color: var(--white1);
-    }
     .header__subtitle {
         font-size: 120%;
         color: var(--gray1_claro);
         text-shadow: var(--shadow) var(--color_shadow_claro);
         margin: 4% 0 4%;
     }
-    body.dark_mode .header__subtitle {
-        color: var(--gray1_oscuro);
-        text-shadow: var(--shadow) var(--color_shadow_oscuro);
-    }
     .servicios__title {
         font-size: 200%;
         color: var(--black1);
-    }
-    body.dark_mode .servicios__title {
-        color: var(--white1);
     }
     .servicios__subtitle {
         color: var(--black2);
@@ -151,23 +112,14 @@ body {
         line-height: 32px;
         margin-bottom: 5%;
     }
-    body.dark_mode .servicios__subtitle {
-        color: var(--white2);
-    }
     .card__title {
         font-size: 150%;
         color: var(--black1);
         margin-bottom: 4.5%;
     }
-    body.dark_mode .card__title {
-        color: var(--white1);
-    }
     .card__descrip {
         color: var(--gray2_claro);
         margin-bottom: 9%;
-    }
-    body.dark_mode .card__descrip {
-        color: var(--gray2_oscuro);
     }
     .show_links {
         display: inline-block;
@@ -188,25 +140,15 @@ body {
         font-weight: 500;
         color: var(--black1);
     }
-    body.dark_mode .header__title {
-        color: var(--white1);
-    }
     .header__subtitle {
         font-size: 120%;
         color: var(--gray1_claro);
         text-shadow: var(--shadow) var(--color_shadow_claro);
         margin: 4% 0 4%;
     }
-    body.dark_mode .header__subtitle {
-        color: var(--gray1_oscuro);
-        text-shadow: var(--shadow) var(--color_shadow_oscuro);
-    }
     .servicios__title {
         font-size: 200%;
         color: var(--black1);
-    }
-    body.dark_mode .servicios__title {
-        color: var(--white1);
     }
     .servicios__subtitle {
         color: var(--black2);
@@ -214,23 +156,14 @@ body {
         line-height: 32px;
         margin-bottom: 5%;
     }
-    body.dark_mode .servicios__subtitle {
-        color: var(--white2);
-    }
     .card__title {
         font-size: 150%;
         color: var(--black1);
         margin-bottom: 4.5%;
     }
-    body.dark_mode .card__title {
-        color: var(--white1);
-    }
     .card__descrip {
         color: var(--gray2_claro);
         margin-bottom: 9%;
-    }
-    body.dark_mode .card__descrip {
-        color: var(--gray2_oscuro);
     }
     .show_links {
         display: none;
@@ -238,6 +171,31 @@ body {
     .show_sidebar {
         display: inline-block;
     }
+}
+
+body.dark_mode .header__title {
+    color: var(--white1);
+}
+
+body.dark_mode .header__subtitle {
+    color: var(--gray1_oscuro);
+    text-shadow: var(--shadow) var(--color_shadow_oscuro);
+}
+
+body.dark_mode .servicios__title {
+    color: var(--white1);
+}
+
+body.dark_mode .servicios__subtitle {
+    color: var(--white2);
+}
+
+body.dark_mode .card__title {
+    color: var(--white1);
+}
+
+body.dark_mode .card__descrip {
+    color: var(--gray2_oscuro);
 }
 
 
