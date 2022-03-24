@@ -616,7 +616,7 @@ body.dark_mode .card__img {
 .sidebar.deploy {
     display: block;
     border: 1px solid black;
-    width: 30%;
+    width: 50%;
     height: auto;
     background: white;
 }
