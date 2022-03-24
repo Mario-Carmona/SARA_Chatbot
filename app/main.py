@@ -31,7 +31,7 @@ class Server:
         return send_file('./templates/interface.html')
 
     @app.route("/chatbot", methods=["GET", "POST"])
-    def interface():
+    def chatbot():
         return send_file('./templates/chatbot.html')
 
     @app.route("/webhook", methods=["POST"])
