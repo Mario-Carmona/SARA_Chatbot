@@ -21,10 +21,8 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         user: ${{ secrets.SSH_USERNAME }}
         pass: ${{ secrets.SSH_PASSWORD }}
-      env:
-        SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       run: 
-        rm -r /mnt/homeGPU/"$SSH_USERNAME"/server_gpu
+        rm -r /mnt/homeGPU/${{ secrets.SSH_USERNAME }}/server_gpu
     - name: Copy content
       uses: appleboy/scp-action@master
       with:
