@@ -15,19 +15,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install sshpass
-      run: 
-        sudo apt install sshpass
     - name: Delete remote content
       env:
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       run: 
-        sshpass -p "$SSH_PASSWORD" ssh "$SSH_USERNAME"@ngpu.ugr.es rm -r /mnt/homeGPU/"$SSH_USERNAME"/server_gpu
+        sshpass -p '"$SSH_PASSWORD"' ssh "$SSH_USERNAME"@ngpu.ugr.es rm -r /mnt/homeGPU/"$SSH_USERNAME"/server_gpu
     - name: Copy content
       env:
         SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
         SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
       run: 
-        sshpass -p "$SSH_PASSWORD" ssh "$SSH_USERNAME"@ngpu.ugr.es cp -r ./server_gpu /mnt/homeGPU/"$SSH_USERNAME"/
+        sshpass -p '"$SSH_PASSWORD"' scp ./server_gpu "$SSH_USERNAME"@ngpu.ugr.es:/mnt/homeGPU/"$SSH_USERNAME"
 
