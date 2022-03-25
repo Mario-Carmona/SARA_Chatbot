@@ -4,6 +4,8 @@ import deepspeed
 import os
 import torch
 
+os.environ["TORCH_EXTENSIONS_DIR"] = "/mnt/homeGPU/mcarmona/torch_extensions"
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parallelism in tokenizers
 
 # distributed setup
@@ -67,7 +69,7 @@ with torch.no_grad():
 # If you use only one GPU, then you will have only rank 0.
 rank = torch.distributed.get_rank()
 if rank == 0:
-    text_in = "Is this review positive or negative? Review: this is the best cast iron skillet you will ever buy"
+    text_in = "Un perro es un"
 elif rank == 1:
     text_in = "Is this review positive or negative? Review: this is the worst restaurant ever"
 
