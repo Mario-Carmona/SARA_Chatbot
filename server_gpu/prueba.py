@@ -14,67 +14,12 @@ deepspeed.init_distributed()
 
 model_name = "../EleutherAI/gpt-j-6B"
 
-config = AutoConfig.from_pretrained(model_name)
-model_hidden_size = config.d_model
-
-# batch size has to be divisible by world_size, but can be bigger than world_size
-train_batch_size = 1 * world_size
-
-# ds_config notes
-#
-# - enable bf16 if you use Ampere or higher GPU - this will run in mixed precision and will be
-# faster.
-#
-# - for older GPUs you can enable fp16, but it'll only work for non-bf16 pretrained models - e.g.
-# all official t5 models are bf16-pretrained
-#
-# - set offload_param.device to "none" or completely remove the `offload_param` section if you don't
-# - want CPU offload
-#
-# - if using `offload_param` you can manually finetune stage3_param_persistence_threshold to control
-# - which params should remain on gpus - the larger the value the smaller the offload size
-#
-# For indepth info on Deepspeed config see
-# https://huggingface.co/docs/transformers/master/main_classes/deepspeed
-
-# keeping the same format as json for consistency, except it uses lower case for true/false
-# fmt: off
-ds_config = {
-    "fp16": {
-        "enabled": True
-    },
-    "bf16": {
-        "enabled": False
-    },
-    "zero_optimization": {
-        "stage": 3,
-        "overlap_comm": True,
-        "contiguous_gradients": True,
-        "reduce_bucket_size": model_hidden_size * model_hidden_size,
-        "stage3_prefetch_bucket_size": 0.9 * model_hidden_size * model_hidden_size,
-        "stage3_param_persistence_threshold": 10 * model_hidden_size
-    },
-    "steps_per_print": 2000,
-    "train_batch_size": train_batch_size,
-    "train_micro_batch_size_per_gpu": 1,
-    "wall_clock_breakdown": False
-}
-# fmt: on
-
-# next line instructs transformers to partition the model directly over multiple gpus using
-# deepspeed.zero.Init when model's `from_pretrained` method is called.
-#
-# **it has to be run before loading the model AutoModelForSeq2SeqLM.from_pretrained(model_name)**
-#
-# otherwise the model will first be loaded normally and only partitioned at forward time which is
-# less efficient and when there is little CPU RAM may fail
-dschf = HfDeepSpeedConfig(ds_config)  # keep this object alive
 
 # now a model can be loaded.
 model = GPTJForCausalLM.from_pretrained(model_name)
 
 # initialise Deepspeed ZeRO and store only the engine object
-ds_engine = deepspeed.initialize(model=model, config_params=ds_config)[0]
+ds_engine = deepspeed.initialize(model=model)[0]
 ds_engine.module.eval()  # inference
 
 # Deepspeed ZeRO can process unrelated inputs on each GPU. So for 2 gpus you process 2 inputs at once.
