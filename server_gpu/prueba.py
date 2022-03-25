@@ -80,7 +80,7 @@ import time
 inicio = time.time()
 inputs = tokenizer.encode(text_in, return_tensors="pt").to(device=local_rank)
 with torch.no_grad():
-    outputs = ds_engine.module.generate(inputs, max_length = 100, min_length=100, synced_gpus=True)
+    outputs = ds_engine.module.generate(inputs, do_sample = True, max_new_tokens = 100, synced_gpus=True)
 text_out = tokenizer.decode(outputs[0], skip_special_tokens=True)
 fin = time.time()
 
