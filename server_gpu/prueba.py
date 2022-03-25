@@ -36,21 +36,24 @@ train_batch_size = 1 * world_size
 # keeping the same format as json for consistency, except it uses lower case for true/false
 # fmt: off
 ds_config = {
-  "zero_optimization": {
-     "stage": 2,
-     "offload_optimizer": {
-         "device": "cpu",
-         "pin_memory": True
-     },
-     "allgather_partitions": True,
-     "allgather_bucket_size": 2e8,
-     "reduce_scatter": True,
-     "reduce_bucket_size": 2e8,
-     "overlap_comm": True,
-     "contiguous_gradients": True
-  },
-  "train_batch_size": train_batch_size,
-  "train_micro_batch_size_per_gpu": 1
+    "fp16": {
+        "enabled": True
+    },
+    "zero_optimization": {
+        "stage": 2,
+        "offload_optimizer": {
+            "device": "cpu",
+            "pin_memory": True
+        },
+        "allgather_partitions": True,
+        "allgather_bucket_size": 2e8,
+        "reduce_scatter": True,
+        "reduce_bucket_size": 2e8,
+        "overlap_comm": True,
+        "contiguous_gradients": True
+    },
+    "train_batch_size": train_batch_size,
+    "train_micro_batch_size_per_gpu": 1
 }
 # fmt: on
 
@@ -64,7 +67,7 @@ ds_config = {
 dschf = HfDeepSpeedConfig(ds_config)  # keep this object alive
 
 # now a model can be loaded.
-model = GPTJForCausalLM.from_pretrained(model_name)
+model = GPTJForCausalLM.from_pretrained(model_name, revision=torch.float16, low_cpu_mem_usage=True)
 
 with torch.no_grad():
     # initialise Deepspeed ZeRO and store only the engine object
