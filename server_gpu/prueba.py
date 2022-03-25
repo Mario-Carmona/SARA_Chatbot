@@ -12,7 +12,7 @@ world_size = int(os.getenv("WORLD_SIZE", "1"))
 torch.cuda.set_device(local_rank)
 deepspeed.init_distributed()
 
-model_name = "../hivemind/gpt-j-6B-8bit"
+model_name = "../EleutherAI/gpt-j-6B"
 
 config = AutoConfig.from_pretrained(model_name)
 model_hidden_size = config.d_model
@@ -87,7 +87,7 @@ if rank == 0:
 elif rank == 1:
     text_in = "Is this review positive or negative? Review: this is the worst restaurant ever"
 
-tokenizer = AutoTokenizer.from_pretrained("../EleutherAI/gpt-j-6B")
+tokenizer = AutoTokenizer.from_pretrained(model_name)
 inputs = tokenizer.encode(text_in, return_tensors="pt").to(device=local_rank)
 with torch.no_grad():
     outputs = ds_engine.module.generate(inputs, synced_gpus=True)
