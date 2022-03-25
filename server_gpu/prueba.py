@@ -74,8 +74,15 @@ elif rank == 1:
     text_in = "Is this review positive or negative? Review: this is the worst restaurant ever"
 
 tokenizer = AutoTokenizer.from_pretrained(model_name)
+
+import time
+
+inicio = time.time()
 inputs = tokenizer.encode(text_in, return_tensors="pt").to(device=local_rank)
 with torch.no_grad():
-    outputs = ds_engine.module.generate(inputs, synced_gpus=True)
+    outputs = ds_engine.module.generate(inputs, min_lenght=100, synced_gpus=True)
 text_out = tokenizer.decode(outputs[0], skip_special_tokens=True)
+fin = time.time()
+
 print(f"rank{rank}:\n   in={text_in}\n  out={text_out}")
+print(fin-inicio)

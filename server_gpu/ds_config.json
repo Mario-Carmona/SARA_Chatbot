@@ -1,0 +1,7 @@
+{
+    "fp16": {
+        "enabled": "True"
+    },
+    "train_batch_size": 1,
+    "train_micro_batch_size_per_gpu": 1
+}
