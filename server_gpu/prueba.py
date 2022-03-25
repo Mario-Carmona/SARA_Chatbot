@@ -39,19 +39,6 @@ ds_config = {
     "fp16": {
         "enabled": True
     },
-    "zero_optimization": {
-        "stage": 2,
-        "offload_optimizer": {
-            "device": "cpu",
-            "pin_memory": True
-        },
-        "allgather_partitions": True,
-        "allgather_bucket_size": 2e8,
-        "reduce_scatter": True,
-        "reduce_bucket_size": 2e8,
-        "overlap_comm": True,
-        "contiguous_gradients": True
-    },
     "train_batch_size": train_batch_size,
     "train_micro_batch_size_per_gpu": 1
 }
