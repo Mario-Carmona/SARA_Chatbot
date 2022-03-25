@@ -1,4 +1,4 @@
-from transformers import AutoTokenizer, AutoConfig, GPTJForCausalLM
+from transformers import AutoTokenizer, AutoConfig, GPTJForCausalLM, pipeline
 from transformers.deepspeed import HfDeepSpeedConfig
 import deepspeed
 import os
