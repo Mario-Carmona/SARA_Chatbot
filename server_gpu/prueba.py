@@ -14,12 +14,59 @@ deepspeed.init_distributed()
 
 model_name = "../EleutherAI/gpt-j-6B"
 
+config = AutoConfig.from_pretrained(model_name)
+
+
+# ds_config notes
+#
+# - enable bf16 if you use Ampere or higher GPU - this will run in mixed precision and will be
+# faster.
+#
+# - for older GPUs you can enable fp16, but it'll only work for non-bf16 pretrained models - e.g.
+# all official t5 models are bf16-pretrained
+#
+# - set offload_param.device to "none" or completely remove the `offload_param` section if you don't
+# - want CPU offload
+#
+# - if using `offload_param` you can manually finetune stage3_param_persistence_threshold to control
+# - which params should remain on gpus - the larger the value the smaller the offload size
+#
+# For indepth info on Deepspeed config see
+# https://huggingface.co/docs/transformers/master/main_classes/deepspeed
+
+# keeping the same format as json for consistency, except it uses lower case for true/false
+# fmt: off
+ds_config = {
+  "zero_optimization": {
+     "stage": 2,
+     "offload_optimizer": {
+         "device": "cpu",
+         "pin_memory": True
+     },
+     "allgather_partitions": True,
+     "allgather_bucket_size": 2e8,
+     "reduce_scatter": True,
+     "reduce_bucket_size": 2e8,
+     "overlap_comm": True,
+     "contiguous_gradients": True
+  }
+}
+# fmt: on
+
+# next line instructs transformers to partition the model directly over multiple gpus using
+# deepspeed.zero.Init when model's `from_pretrained` method is called.
+#
+# **it has to be run before loading the model AutoModelForSeq2SeqLM.from_pretrained(model_name)**
+#
+# otherwise the model will first be loaded normally and only partitioned at forward time which is
+# less efficient and when there is little CPU RAM may fail
+dschf = HfDeepSpeedConfig(ds_config)  # keep this object alive
 
 # now a model can be loaded.
 model = GPTJForCausalLM.from_pretrained(model_name)
 
 # initialise Deepspeed ZeRO and store only the engine object
-ds_engine = deepspeed.initialize(model=model)[0]
+ds_engine = deepspeed.initialize(model=model, config_params=ds_config)[0]
 ds_engine.module.eval()  # inference
 
 # Deepspeed ZeRO can process unrelated inputs on each GPU. So for 2 gpus you process 2 inputs at once.
