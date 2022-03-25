@@ -14,8 +14,7 @@ deepspeed.init_distributed()
 
 model_name = "../EleutherAI/gpt-j-6B"
 
-config = AutoConfig.from_pretrained(model_name)
-
+train_batch_size = 1 * world_size
 
 # ds_config notes
 #
@@ -49,7 +48,9 @@ ds_config = {
      "reduce_bucket_size": 2e8,
      "overlap_comm": True,
      "contiguous_gradients": True
-  }
+  },
+  "train_batch_size": train_batch_size,
+  "train_micro_batch_size_per_gpu": 1
 }
 # fmt: on
 
@@ -62,12 +63,11 @@ ds_config = {
 # less efficient and when there is little CPU RAM may fail
 dschf = HfDeepSpeedConfig(ds_config)  # keep this object alive
 
-# now a model can be loaded.
-model = GPTJForCausalLM.from_pretrained(model_name)
-
 # initialise Deepspeed ZeRO and store only the engine object
-ds_engine = deepspeed.initialize(model=model, config_params=ds_config)[0]
-ds_engine.module.eval()  # inference
+ds_engine = deepspeed.initialize(model=model_name, config_params=ds_config)[0]
+
+with torch.no_grad():
+    ds_engine.module.eval()  # inference
 
 # Deepspeed ZeRO can process unrelated inputs on each GPU. So for 2 gpus you process 2 inputs at once.
 # If you use more GPUs adjust for more.
