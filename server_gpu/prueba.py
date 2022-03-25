@@ -63,10 +63,12 @@ ds_config = {
 # less efficient and when there is little CPU RAM may fail
 dschf = HfDeepSpeedConfig(ds_config)  # keep this object alive
 
-# initialise Deepspeed ZeRO and store only the engine object
-ds_engine = deepspeed.initialize(model=model_name, config_params=ds_config)[0]
+# now a model can be loaded.
+model = GPTJForCausalLM.from_pretrained(model_name)
 
 with torch.no_grad():
+    # initialise Deepspeed ZeRO and store only the engine object
+    ds_engine = deepspeed.initialize(model=model, config_params=ds_config)[0]
     ds_engine.module.eval()  # inference
 
 # Deepspeed ZeRO can process unrelated inputs on each GPU. So for 2 gpus you process 2 inputs at once.
