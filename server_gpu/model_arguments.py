@@ -2,6 +2,7 @@
 from dataclasses import dataclass, field
 from typing import Optional
 
+
 @dataclass
 class ModelArguments:
     """
@@ -33,5 +34,18 @@ class ModelArguments:
         metadata={
             "help": "Will use the token generated when running `transformers-cli login` (necessary to use this script "
             "with private models)."
-        },
+        }
     )
+    task_specific_params: dict = field(
+        default={
+            "question-answering": {
+                "do_sample": True,
+                "max_length": 50,
+                "temperature": 1.0
+            }
+        },
+        metadata={
+            "help": ""
+        }
+    )
+
