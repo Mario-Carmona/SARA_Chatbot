@@ -1,4 +1,8 @@
 import os
+
+os.environ["TORCH_EXTENSIONS_DIR"] = "/mnt/homeGPU/mcarmona/torch_extensions"
+
+
 os.environ['MASTER_ADDR'] = 'localhost'
 os.environ['MASTER_PORT'] = '9994'
 os.environ['RANK'] = "0"
@@ -14,8 +18,8 @@ torch.manual_seed(0)
 tokenizer = AutoTokenizer.from_pretrained("/mnt/homeGPU/mcarmona/EleutherAI/gpt-j-6B", bos_token='<|startoftext|>', eos_token='<|endoftext|>', pad_token='<|pad|>')
 training_args = TrainingArguments(output_dir='./results', num_train_epochs=1, logging_steps=100, save_strategy=IntervalStrategy.NO,
                                   per_device_train_batch_size=15, per_device_eval_batch_size=15, warmup_steps=100,
-                                  weight_decay=0.01, logging_dir='./logs', fp16=True, deepspeed='./ds_config_gpt_fine_tuning.json')
-model = AutoModelForCausalLM.from_pretrained("/mnt/homeGPU/mcarmona/EleutherAI/gpt-j-6B", revision=torch.float16, low_cpu_mem_usage=True).cuda()
+                                  weight_decay=0.01, logging_dir='./logs', fp16=True, deepspeed='./ds_config_fine_tuning.json')
+model = AutoModelForCausalLM.from_pretrained("/mnt/homeGPU/mcarmona/EleutherAI/gpt-j-6B", revision=torch.float16).cuda()
 model.resize_token_embeddings(len(tokenizer))
 descriptions = pd.read_csv('./netflix_titles.csv')['description']
 max_length = max([len(tokenizer.encode(description)) for description in descriptions])
