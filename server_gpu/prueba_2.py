@@ -36,6 +36,7 @@ inicio = time.time()
 
 with torch.no_grad():
     string = generator("DeepSpeed is", do_sample=True, max_length = 100, min_length=100)
+    os.system("nvidia-smi")
 
 fin = time.time()
 
