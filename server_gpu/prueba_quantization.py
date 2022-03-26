@@ -22,7 +22,12 @@ generator = pipeline('text-generation', model=model_name, revision=torch.float16
                      tokenizer=model_name, device=local_rank)
 
 with torch.no_grad():
-    generator.model = deepspeed.init_inference(generator.model,
+    generator.model = deepspeed.initialize(
+                                            model = generator.model,
+                                            config = "./ds_config_quantization.json"
+                                        )
+
+    generator.model, _, _, _ = deepspeed.init_inference(generator.model,
                                         mp_size=world_size,
                                         dtype=torch.int8,
                                         replace_method='auto',
