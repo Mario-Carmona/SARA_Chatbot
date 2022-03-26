@@ -43,12 +43,14 @@ def main():
     else:
         model_args, training_args = parser.parse_args_into_dataclasses()
 
+    WORKDIR = model_args.workdir
+
     with open(WORKDIR + model_args.generate_args_path) as file:
         generate_args = json.load(file)
 
 
 
-    WORKDIR = model_args.workdir
+    
 
 
     # Ruta donde instalar las extensiones de Pytorch
