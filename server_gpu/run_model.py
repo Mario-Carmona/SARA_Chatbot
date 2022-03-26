@@ -1,4 +1,5 @@
 import os
+import json
 import sys
 
 import torch
@@ -16,18 +17,6 @@ from transformers import AutoTokenizer, GPTJConfig, GPTJForQuestionAnswering, Qu
 
 
 def main():
-
-    # Ruta donde instalar las extensiones de Pytorch
-    os.environ["TORCH_EXTENSIONS_DIR"] = "/mnt/homeGPU/mcarmona/torch_extensions"
-
-
-    # distributed setup
-    local_rank = int(os.getenv("LOCAL_RANK", "0"))
-    world_size = int(os.getenv("WORLD_SIZE", "1"))
-
-
-
-
     # See all possible arguments in src/transformers/training_args.py
     # or by passing the --help flag to this script.
     # We now keep distinct sets of args, for a cleaner separation of concerns.
@@ -43,6 +32,9 @@ def main():
         model_args, data_args, training_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
     else:
         model_args, data_args, training_args = parser.parse_args_into_dataclasses()
+    
+    with open(WORKDIR + model_args.generate_args_path) as file:
+        generate_args = json.load(file)
     '''
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
         # If we pass only one argument to the script and it's the path to a json file,
@@ -50,6 +42,24 @@ def main():
         model_args, training_args = parser.parse_json_file(json_file=os.path.abspath(sys.argv[1]))
     else:
         model_args, training_args = parser.parse_args_into_dataclasses()
+
+    with open(WORKDIR + model_args.generate_args_path) as file:
+        generate_args = json.load(file)
+
+
+
+    WORKDIR = model_args.workdir
+
+
+    # Ruta donde instalar las extensiones de Pytorch
+    os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
+
+
+    # distributed setup
+    local_rank = int(os.getenv("LOCAL_RANK", "0"))
+    world_size = int(os.getenv("WORLD_SIZE", "1"))
+
+
 
     '''
     if (
@@ -101,16 +111,16 @@ def main():
     # The .from_pretrained methods guarantee that only one local process can concurrently
     # download model & vocab.
     config = GPTJConfig.from_pretrained(
-        model_args.model_config_name if model_args.model_config_name else model_args.model_name_or_path,
+        WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
         revision=model_args.model_revision,
         torch_dtype=model_args.torch_dtype,
-        task_specific_params=model_args.task_specific_params
+        task_specific_params=generate_args
     )
 
 
     tokenizer = AutoTokenizer.from_pretrained(
-        model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
-        config=model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
+        WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
+        config=WORKDIR + model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
         use_fast=True,
         revision=model_args.model_revision,
     )

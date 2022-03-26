@@ -1,18 +1,11 @@
 {
-    "model_name_or_path": "/mnt/homeGPU/mcarmona/EleutherAI/gpt-j-6B",
-    "model_config_name": "/mnt/homeGPU/mcarmona/EleutherAI/gpt-j-6B/config.json",
-    "tokenizer_name": "/mnt/homeGPU/mcarmona/EleutherAI/gpt-j-6B",
-    "tokenizer_config_name": "/mnt/homeGPU/mcarmona/EleutherAI/gpt-j-6B/tokenizer_config.json",
+    "workdir": "/mnt/homeGPU/mcarmona/",
+    "model_name_or_path": "EleutherAI/gpt-j-6B",
+    "model_config_name": "EleutherAI/gpt-j-6B/config.json",
+    "tokenizer_name": "EleutherAI/gpt-j-6B",
+    "tokenizer_config_name": "EleutherAI/gpt-j-6B/tokenizer_config.json",
     "model_revision": "float16",
     "torch_dtype": "torch.float16",
-    "task_specific_params": {
-        "question-answering": {
-            "do_sample": true,
-            "temperature": "0.0",
-            "top-p": "1.0",
-            "max_new_tokens": "64",
-            "decoder_start_token_id": ["\nB: "],
-            "stopping_criteria": ["\nA:"]
-        }
-    }
+    "generate_args_path": "server_gpu/generate_config.json",
+    "output_dir": "./"
 }

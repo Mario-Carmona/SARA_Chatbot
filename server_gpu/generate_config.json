@@ -1,0 +1,10 @@
+{
+    "question-answering": {
+        "do_sample": true,
+        "temperature": 0.0,
+        "top-p": 1.0,
+        "max_new_tokens": 64,
+        "decoder_start_token_id": ["\nB: "],
+        "stopping_criteria": ["\nA:"]
+    }
+}
