@@ -28,5 +28,7 @@
             "schedule_offset": 0
         },
         "quantize_groups": 8
-    }
+    },
+    "train_batch_size": 1,
+    "train_micro_batch_size_per_gpu": 1
 }
