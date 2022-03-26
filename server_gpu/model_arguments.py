@@ -37,7 +37,7 @@ class ModelArguments:
         }
     )
     task_specific_params: dict = field(
-        default={
+        default_factory={
             "question-answering": {
                 "do_sample": True,
                 "max_length": 50,
