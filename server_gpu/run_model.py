@@ -87,6 +87,11 @@ def main():
         model_args.model_config_name if model_args.model_config_name else model_args.model_name_or_path,
         revision=model_args.model_revision,
     )
+
+    print(config)
+
+    '''
+
     tokenizer = AutoTokenizer.from_pretrained(
         model_args.tokenizer_name if model_args.tokenizer_name else model_args.model_name_or_path,
         config=model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
@@ -103,7 +108,7 @@ def main():
 
 
 
-    print(config)
+    
 
 
 
@@ -116,3 +121,4 @@ def main():
         tokenizer=tokenizer,
         framework="pt"
     )
+    '''
