@@ -36,7 +36,14 @@ class ModelArguments:
             "with private models)."
         }
     )
+    torch_dtype: str = field(
+        default="torch.float16",
+        metadata={
+            "help": ""
+        }
+    )
     task_specific_params: dict = field(
+        # Default_factory porque dict es un tipo mutable
         default_factory={
             "question-answering": {
                 "do_sample": True,
