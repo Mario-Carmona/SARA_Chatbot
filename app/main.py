@@ -15,15 +15,11 @@ from pathlib import Path
 app = FastAPI()
 
 BASE_PATH = Path(__file__).resolve().parent
-app.mount("/static/css", StaticFiles(directory=str(BASE_PATH/"static/css")), name="css")
-app.mount("/static/img", StaticFiles(directory=str(BASE_PATH/"static/img")), name="img")
-app.mount("/static/js", StaticFiles(directory=str(BASE_PATH/"static/js")), name="js")
-
 templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
 
 @app.get("/", response_class=HTMLResponse) 
 async def home(request: Request):
-    return templates.TemplateResponse("home.html", {"request": request})
+    return templates.TemplateResponse("home.html")
 
     """
     @app.route("/wakeup", methods=["GET"])
