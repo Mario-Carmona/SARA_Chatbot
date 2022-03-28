@@ -1,23 +1,36 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from concurrent.futures import process
 import json
+from time import process_time, time
+from urllib import response
 import requests
 import os
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 import uvicorn
 #from flask import Flask, request, send_file
 from pathlib import Path
-import pandas as pd
 
 app = FastAPI()
 
 BASE_PATH = Path(__file__).resolve().parent
 app.mount("/static", StaticFiles(directory=str(BASE_PATH/"static")))
 templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
+
+app.add_middleware(HTTPSRedirectMiddleware)
+
+@app.middleware("https")
+async def add_process_time_header(request: Request, call_next):
+    start_time = time()
+    response = await call_next(request)
+    process_time = time() - start_time
+    response.headers["X-Process-Time"] = str(process_time)
+    return response
 
 @app.get("/", response_class=HTMLResponse) 
 async def home(request: Request):
@@ -36,16 +49,7 @@ def wakeup():
     return "Server ON"
 
 @app.post("/webhook")
-async def webhook(request: Request):
-    request_json = await request.json()
-
-    
-
-    df_request = pd.DataFrame.from_dict(request_json)
-
-    print(df_request)
-
-    """
+def webhook(request: Request):
     req = request.get_json(silent=True, force=True)
     
     query_result = req.get("queryResult")
@@ -106,7 +110,6 @@ async def webhook(request: Request):
         }
 
     return webhookResponse
-    """
 
 
 
