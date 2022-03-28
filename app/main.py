@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from concurrent.futures import process
 import json
-from time import process_time, time
-from urllib import response
+from time import time
 import requests
 import os
 from fastapi import FastAPI, Request
@@ -47,7 +45,7 @@ def wakeup():
     return "Server ON"
 
 @app.post("/webhook")
-async def webhook(request: Request):
+def webhook(request: Request):
     req = request.json()
     
     query_result = req.get("queryResult")
