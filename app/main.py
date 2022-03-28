@@ -22,11 +22,11 @@ templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
 async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
-@app.get("/chatbot")
+@app.get("/chatbot", response_class=HTMLResponse)
 def chatbot(request: Request):
     return templates.TemplateResponse("chatbot.html", {"request": request})
 
-@app.get("/interface")
+@app.get("/interface", response_class=HTMLResponse)
 def interface(request: Request):
     return templates.TemplateResponse("interface.html", {"request": request})
 
@@ -34,8 +34,16 @@ def interface(request: Request):
 def wakeup():
     return "Server ON"
 
-@app.route("/webhook", methods=["POST"])
-def webhook():
+@app.post("/webhook")
+async def webhook(request: Request):
+
+    print(request)
+
+    req = await request.json()
+
+    print(req)
+
+    """
     req = request.get_json(silent=True, force=True)
     
     query_result = req.get("queryResult")
@@ -96,6 +104,7 @@ def webhook():
         }
 
     return webhookResponse
+    """
 
 
 
