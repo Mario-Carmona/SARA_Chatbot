@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+import re
 from time import time
 import requests
 import os
@@ -46,7 +47,8 @@ def wakeup():
 
 @app.post("/webhook")
 async def webhook(request: Request):
-    req = request.json()
+    req = await request.json()
+    print(type(req))
     
     query_result = req.get("queryResult")
     intent = query_result.get("intent").get("displayName")
