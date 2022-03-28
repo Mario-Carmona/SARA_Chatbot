@@ -12,23 +12,15 @@ import uvicorn
 #from flask import Flask, request, send_file
 
 
-class Server:
-    app = FastAPI()
+app = FastAPI()
 
-    app.mount("/static", StaticFiles(directory="./static"), name="static")
+app.mount("/static", StaticFiles(directory="./static"), name="static")
 
-    templates = Jinja2Templates(directory="./templates")
+templates = Jinja2Templates(directory="./templates")    
 
-    def __init__(self, host, port):
-        self.host = host
-        self.port = port
-
-    def run(self):
-        uvicorn.run(Server.app, host=self.host, port=self.port)
-
-    @app.get("/", response_class=HTMLResponse) 
-    async def home(request: Request):
-        return Server.templates.TemplateResponse("home.html", {"request": request})
+@app.get("/", response_class=HTMLResponse) 
+async def home(request: Request):
+    return templates.TemplateResponse("home.html", {"request": request})
 
     """
     @app.route("/wakeup", methods=["GET"])
@@ -115,6 +107,4 @@ if __name__ == "__main__":
     host = os.environ.get("HOST", config["host"])
     port = eval(os.environ.get("PORT", config["port"]))
 
-    server = Server(host, port)
-
-    server.run()
+    uvicorn.run(app, host=host, port=port)
