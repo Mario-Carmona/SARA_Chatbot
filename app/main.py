@@ -24,7 +24,7 @@ templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
 
 app.add_middleware(HTTPSRedirectMiddleware)
 
-@app.middleware("https")
+@app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
     start_time = time()
     response = await call_next(request)
