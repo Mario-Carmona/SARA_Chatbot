@@ -19,7 +19,7 @@ templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
 
 @app.get("/", response_class=HTMLResponse) 
 async def home(request: Request):
-    return templates.TemplateResponse("home.html")
+    return templates.TemplateResponse("home.html", {"request": request})
 
     """
     @app.route("/wakeup", methods=["GET"])
