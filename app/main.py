@@ -11,6 +11,7 @@ from fastapi.templating import Jinja2Templates
 import uvicorn
 #from flask import Flask, request, send_file
 from pathlib import Path
+import pandas as pd
 
 app = FastAPI()
 
@@ -36,12 +37,13 @@ def wakeup():
 
 @app.post("/webhook")
 async def webhook(request: Request):
+    request_json = await request.json()
 
-    print(request)
+    
 
-    req = await request.json()
+    df_request = pd.DataFrame.from_dict(request_json)
 
-    print(req)
+    print(df_request)
 
     """
     req = request.get_json(silent=True, force=True)
