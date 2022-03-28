@@ -48,7 +48,7 @@ def wakeup():
 
 @app.post("/webhook")
 async def webhook(request: Request):
-    req = request.get_json(silent=True, force=True)
+    req = request.json()
     
     query_result = req.get("queryResult")
     intent = query_result.get("intent").get("displayName")
