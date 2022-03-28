@@ -11,7 +11,6 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 import uvicorn
 #from flask import Flask, request, send_file
 from pathlib import Path
@@ -22,7 +21,6 @@ BASE_PATH = Path(__file__).resolve().parent
 app.mount("/static", StaticFiles(directory=str(BASE_PATH/"static")))
 templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
 
-app.add_middleware(HTTPSRedirectMiddleware)
 
 @app.middleware("http")
 async def add_process_time_header(request: Request, call_next):
