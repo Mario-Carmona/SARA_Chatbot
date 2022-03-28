@@ -36,15 +36,10 @@ class ModelArguments:
             "help": ""
         }
     )
-    workdir: str = field(
-        default="/mnt/homeGPU/mcarmona/",
-        metadata={
-            "help": ""
-        }
-    )
     generate_args_path: str = field(
         default=None,
         metadata={
             "help": ""
         }
     )
+    

@@ -1,5 +1,4 @@
 {
-    "debug": "False",
     "host": "0.0.0.0",
     "inference_url": "http://4416-35-184-60-16.ngrok.io/inferencia",
     "port": "5000"

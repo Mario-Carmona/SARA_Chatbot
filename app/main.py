@@ -4,24 +4,33 @@
 import json
 import requests
 import os
-from flask import Flask, request, send_file
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+import uvicorn
+#from flask import Flask, request, send_file
 
 
 class Server:
-    app = Flask(__name__)
+    app = FastAPI()
 
-    def __init__(self, host, port, debug):
+    app.mount("/static", StaticFiles(directory="./static"), name="static")
+
+    templates = Jinja2Templates(directory="./templates")
+
+    def __init__(self, host, port):
         self.host = host
         self.port = port
-        self.debug = debug
 
     def run(self):
-        Server.app.run(debug=self.debug, host=self.host, port=self.port)
+        uvicorn.run(Server.app, host=self.host, port=self.port)
 
-    @app.route("/") 
-    def home(): 
-        return send_file('./templates/home.html')
+    @app.get("/", response_class=HTMLResponse) 
+    async def home(request: Request):
+        return Server.templates.TemplateResponse("home.html", {"request": request})
 
+    """
     @app.route("/wakeup", methods=["GET"])
     def wakeup():
         return "Server ON"
@@ -96,6 +105,7 @@ class Server:
             }
 
         return webhookResponse
+    """
 
 if __name__ == "__main__":
 
@@ -104,8 +114,7 @@ if __name__ == "__main__":
 
     host = os.environ.get("HOST", config["host"])
     port = eval(os.environ.get("PORT", config["port"]))
-    debug = eval(config["debug"])
 
-    server = Server(host, port, debug)
+    server = Server(host, port)
 
     server.run()
