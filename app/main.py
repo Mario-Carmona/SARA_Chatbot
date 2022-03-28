@@ -15,6 +15,7 @@ from pathlib import Path
 app = FastAPI()
 
 BASE_PATH = Path(__file__).resolve().parent
+app.mount("/static", StaticFiles(directory=str(BASE_PATH/"static")))
 templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
 
 @app.get("/", response_class=HTMLResponse) 
