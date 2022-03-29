@@ -4,6 +4,7 @@
 import json
 import re
 from time import time
+from importlib_metadata import version
 import requests
 import os
 from fastapi import FastAPI, Request
@@ -14,7 +15,9 @@ import uvicorn
 #from flask import Flask, request, send_file
 from pathlib import Path
 
-app = FastAPI()
+
+
+app = FastAPI(version="1.0.0")
 
 BASE_PATH = Path(__file__).resolve().parent
 app.mount("/static", StaticFiles(directory=str(BASE_PATH/"static")))
@@ -53,6 +56,11 @@ async def webhook(request: Request):
     intent = query_result.get("intent").get("displayName")
 
     if intent == "Welcome":
+        url = config["inference_url"]
+        answer = requests.post(url)
+        print(answer)
+        
+        """
         outputContexts = query_result.get("outputContexts")
         name = outputContexts[0].get("name")
         session_id = req.get("responseId")
@@ -68,6 +76,7 @@ async def webhook(request: Request):
                 }
             ]
         }
+        """
     elif intent == "Talk":
         url = config["inference_url"]
         question = query_result.get("queryText")
@@ -112,7 +121,7 @@ async def webhook(request: Request):
 
 if __name__ == "__main__":
 
-    with open("./config.json") as file:
+    with open(str(BASE_PATH/"config.json")) as file:
         config = json.load(file)
 
     host = os.environ.get("HOST", config["host"])
