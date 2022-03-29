@@ -32,62 +32,24 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
 
-@dataclass
-class Intent:
-    displayName: str = field(
-        metadata={
-            "help": ""
-        }
-    )
-
-@dataclass
-class QueryResult:
-    queryText: str = field(
-        metadata={
-            "help": ""
-        }
-    )
-    intent: Intent = field(
-        metadata={
-            "help": ""
-        }
-    )
-    outputContexts: List[Dict[str,Any]] = field(
-        metadata={
-            "help": ""
-        }
-    )
-
-@dataclass
-class WebhookRequest:
-    responseId: str = field(
-        metadata={
-            "help": ""
-        }
-    )
-    query_result: QueryResult = field(
-        metadata={
-            "help": ""
-        }
-    )
 
 
 
-def make_response_welcome(webhook_request: WebhookRequest):
+def make_response_welcome(request: Dict):
     POS_ID = 0
     POS_CONTEXT = 1
     POS_WELCOME_COMPLETE = 2
 
-    outputContexts = webhook_request.query_result.outputContexts
+    outputContexts = request.get("query_result").get("outputContexts")
 
     if SERVER_GPU_URL != "":          
         session_id = outputContexts[POS_ID]
         session_id["parameters"] = {
-            "session_id": webhook_request.responseId
+            "session_id": request.get("responseId")
         }
         outputContexts[POS_ID] = session_id
 
-        entry = webhook_request.query_result.queryText
+        entry = request.get("query_result").get("queryText")
 
         query_json = {
             "entry": entry,
@@ -117,15 +79,15 @@ def make_response_welcome(webhook_request: WebhookRequest):
 
     return response
 
-def make_response_deduct(webhook_request: WebhookRequest):
+def make_response_deduct(request: Dict):
     POS_CONTEXT = 1
     POS_EDAD = 2
     POS_WELCOME_COMPLETE = 3
     POS_DEDUCT_COMPLETE = 4
 
-    outputContexts = webhook_request.query_result.outputContexts
+    outputContexts = request.get("query_result").get("outputContexts")
 
-    entry = webhook_request.query_result.queryText
+    entry = request.get("query_result").get("queryText")
 
     answer = entry
 
@@ -151,13 +113,13 @@ def make_response_deduct(webhook_request: WebhookRequest):
 
     return response
 
-def make_response_talk(webhook_request: WebhookRequest):
+def make_response_talk(request: Dict):
     POS_CONTEXT = 1
     POS_EDAD = 2
 
-    outputContexts = webhook_request.query_result.outputContexts
+    outputContexts = request.get("query_result").get("outputContexts")
 
-    entry = webhook_request.query_result.queryText
+    entry = request.get("query_result").get("queryText")
 
     edad = outputContexts[POS_EDAD]["parameters"]["edad"]
 
@@ -180,12 +142,12 @@ def make_response_talk(webhook_request: WebhookRequest):
 
     return response
 
-def make_response_goodbye(webhook_request: WebhookRequest):
+def make_response_goodbye(request: Dict):
     POS_CONTEXT = 1
 
-    outputContexts = webhook_request.query_result.outputContexts
+    outputContexts = request.get("query_result").get("outputContexts")
 
-    entry = webhook_request.query_result.queryText
+    entry = request.get("query_result").get("queryText")
 
     answer = "Adios"
 
@@ -246,23 +208,21 @@ def setURL(url: str):
 async def webhook( request: Request):
     print("----------->")
 
-    req = await request.json()
+    request_JSON = await request.json()
 
-    webhook_request = from_dict(data_class=WebhookRequest, data=req)
-    
-    intent = webhook_request.query_result.intent.displayName
+    intent = request_JSON.get("query_result").get("intent").get("displayName")
 
     response = {}
 
     if intent == "Welcome":
-        response = make_response_welcome(webhook_request)
+        response = make_response_welcome(request_JSON)
     elif intent == "Deduct":
-        response = make_response_deduct(webhook_request)
+        response = make_response_deduct(request_JSON)
     elif intent == "Talk":
-        response = make_response_talk(webhook_request)
+        response = make_response_talk(request_JSON)
     elif intent == "Goodbye":
         # Implementar guardado del historial
-        response = make_response_goodbye(webhook_request)
+        response = make_response_goodbye(request_JSON)
 
 
     print(response)
