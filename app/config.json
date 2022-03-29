@@ -1,5 +1,5 @@
 {
     "host": "0.0.0.0",
-    "inference_url": "",
+    "server_gpu_url": "",
     "port": "5000"
 }

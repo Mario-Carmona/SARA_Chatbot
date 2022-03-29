@@ -24,8 +24,7 @@ with open(str(BASE_PATH/"config.json")) as file:
 
 HOST = os.environ.get("HOST", config["host"])
 PORT = eval(os.environ.get("PORT", config["port"]))
-global INFERENCE_URL
-INFERENCE_URL = os.environ.get("INFERENCE_URL", config["inference_url"])
+SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
 app = FastAPI(version="1.0.0")
@@ -61,12 +60,8 @@ def wakeup():
 
 @app.get("/setURL")
 def setURL(url: str):
-    if url:
-        global INFERENCE_URL
-        INFERENCE_URL = url
-        return "URL fijada correctamente."
-    else:
-        return "Debe indicar la URL."
+    SERVER_GPU_URL = url
+    return "URL fijada correctamente."
 
 @app.post("/webhook")
 async def webhook(request: Request):
@@ -75,66 +70,87 @@ async def webhook(request: Request):
     query_result = req.get("queryResult")
     intent = query_result.get("intent").get("displayName")
 
+    outputContexts = query_result.get("outputContexts")
+
     if intent == "Welcome":
-        """
-        url = config["inference_url"]
-        answer = requests.get(url)
-        print(answer.content)
-        """
-        
-        print(INFERENCE_URL)
-        
-        outputContexts = query_result.get("outputContexts")
-        name = outputContexts[0].get("name")
-        session_id = req.get("responseId")
-        
-        webhookResponse = {
-            "outputContexts": [
-                {
-                    "name": name,
-                    "lifespanCount": 5,
-                    "parameters": {
-                        "session_id": session_id
-                    }
-                }
-            ]
+        POS_ID = 1
+        POS_CONTEXT = 2
+
+        if SERVER_GPU_URL != "":
+            session_id = outputContexts[POS_ID]
+            session_id["parameters"] = {
+                "session_id": req.get("responseId")
+            }
+            outputContexts[POS_ID] = session_id
+
+            entry = query_result.get("queryText")
+
+            query_json = {
+                "entry": entry,
+            }
+            #answer = requests.post(str(SERVER_GPU_URL/"deduct"), json=query_json)
+            answer = "Hola"
+
+            context = outputContexts[POS_CONTEXT]
+            context["parameters"] = {
+                "context": f"[A]: {entry}\n[B]: {answer}"
+            }
+            outputContexts[POS_CONTEXT] = context
+        else:
+            outputContexts = []
+            answer = "Servidor GPU no disponible"
+
+    elif intent == "Deduct":
+        POS_ID = 1
+        POS_CONTEXT = 2
+        POS_EDAD = 3
+
+        entry = query_result.get("queryText")
+
+        answer = entry
+
+        edad = outputContexts[POS_EDAD]
+        edad["parameters"] = {
+            "edad": entry
         }
+        outputContexts[POS_EDAD] = edad
+
     elif intent == "Talk":
-        question = query_result.get("queryText")
+        POS_ID = 1
+        POS_CONTEXT = 2
+        POS_EDAD = 3
+
+        entry = query_result.get("queryText")
+        edad = outputContexts[POS_EDAD]["parameters"]["edad"]
+
         query_json = {
-            "question": question,
+            "entry": entry,
         }
-        answer = requests.post(INFERENCE_URL, json=query_json)
-
-        outputContexts = query_result.get("outputContexts")
-
-        webhookResponse = {
-            "fulfillmentMessages": [
-                {
-                    "text": {
-                        "text": [
-                            answer
-                        ]
-                    }
-                }
-            ],
-            "outputContexts": outputContexts
+        answer = requests.post(str(SERVER_GPU_URL/edad), json=query_json)
+        
+        context = outputContexts[POS_CONTEXT]
+        context["parameters"] = {
+            "context": f"{context}\n[A]: {entry}\n[B]: {answer}"
         }
+        outputContexts[POS_CONTEXT] = context
+
     elif intent == "Goodbye":
         # Implementar guardado del historial
         pass
-    else:
-        webhookResponse = {
-            "fulfillmentMessages": [
-                {
-                    "text": {
-                        "text": [
-                            "Sin respuesta"
-                        ]
-                    }
+
+
+    webhookResponse = {
+        "fulfillmentMessages": [
+            {
+                "text": {
+                    "text": [
+                        answer
+                    ]
                 }
-            ]
-        }
+            }
+        ],
+        "outputContexts": outputContexts
+    }
 
     return webhookResponse
 
