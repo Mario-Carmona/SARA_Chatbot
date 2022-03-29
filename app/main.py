@@ -126,7 +126,7 @@ def make_response_goodbye(request: Dict):
 
     response = {
         "fulfillmentText": answer,
-        "output_contexts": outputContexts
+        "output_contexts": []
     }
 
     return response
