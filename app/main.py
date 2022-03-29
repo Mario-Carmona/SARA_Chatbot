@@ -46,7 +46,9 @@ def make_response_welcome(request: Dict):
         #answer = requests.post(SERVER_GPU_URL + "/deduct", json=query_json)
         answer = "Hola"
 
-        outputContexts[0]["parameters"]["context"] = f"[A]: {entry}\n[B]: {answer}"
+        outputContexts[0]["parameters"] = {
+            "context": f"[A]: {entry}\n[B]: {answer}"
+        }
     else:
         outputContexts = []
         answer = "Servidor GPU no disponible"
