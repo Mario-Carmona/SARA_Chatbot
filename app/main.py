@@ -92,16 +92,13 @@ class QueryResult(BaseModel):
     intent: Intent
     outputContexts: List[Context]
 
-class WebhookRequest(BaseModel):
-    responseId: str
-    queryResult: QueryResult
-
 
 @app.post("/webhook")
-async def webhook( request: WebhookRequest = Body(..., embed=True)):
+async def webhook( responseId: str, queryResult: QueryResult = Body(..., embed=True)):
     print("----------->")
     
-    print(request)
+    print(responseId)
+    print(queryResult)
     
 
     """
