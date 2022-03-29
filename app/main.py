@@ -252,6 +252,8 @@ async def webhook( request: Request):
     
     intent = webhook_request.query_result.intent.displayName
 
+    response = None
+
     if intent == "Welcome":
         response = make_response_welcome(webhook_request)
     elif intent == "Deduct":
@@ -261,7 +263,7 @@ async def webhook( request: Request):
     elif intent == "Goodbye":
         # Implementar guardado del historial
         response = make_response_goodbye(webhook_request)
-        
+
 
     print(response)
 
