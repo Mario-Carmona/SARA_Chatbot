@@ -13,7 +13,15 @@ from fastapi.templating import Jinja2Templates
 import uvicorn
 #from flask import Flask, request, send_file
 from pathlib import Path
+import streamlit as st
 
+
+with open(str(BASE_PATH/"config.json")) as file:
+        config = json.load(file)
+
+HOST = os.environ.get("HOST", config["host"])
+PORT = eval(os.environ.get("PORT", config["port"]))
+INFERENCE_URL = config["inference_url"]
 
 
 app = FastAPI(version="1.0.0")
@@ -47,6 +55,19 @@ def interface(request: Request):
 def wakeup():
     return "Server ON"
 
+@app.get("/setURL")
+def setURL():
+    st.title('Set Inference URL')
+    st.write("Fijar URL del servidor de inferencia.")
+    url = st.text_area("URL:")
+
+    if st.button('Set URL'):
+        if url:
+            INFERENCE_URL = url
+            st.write("URL fijada correctamente.")
+        else:
+            st.write("Debe indicar la URL.")
+
 @app.post("/webhook")
 async def webhook(request: Request):
     req = await request.json()
@@ -55,12 +76,14 @@ async def webhook(request: Request):
     intent = query_result.get("intent").get("displayName")
 
     if intent == "Welcome":
+        """
         url = config["inference_url"]
         answer = requests.get(url)
         print(answer.content)
+        """
         
-
-
+        print(INFERENCE_URL)
+        
         outputContexts = query_result.get("outputContexts")
         name = outputContexts[0].get("name")
         session_id = req.get("responseId")
@@ -77,12 +100,11 @@ async def webhook(request: Request):
             ]
         }
     elif intent == "Talk":
-        url = config["inference_url"]
         question = query_result.get("queryText")
         query_json = {
             "question": question,
         }
-        answer = requests.post(url, json=query_json)
+        answer = requests.post(INFERENCE_URL, json=query_json)
 
         outputContexts = query_result.get("outputContexts")
 
@@ -120,10 +142,4 @@ async def webhook(request: Request):
 
 if __name__ == "__main__":
 
-    with open(str(BASE_PATH/"config.json")) as file:
-        config = json.load(file)
-
-    host = os.environ.get("HOST", config["host"])
-    port = eval(os.environ.get("PORT", config["port"]))
-
-    uvicorn.run(app, host=host, port=port)
+    uvicorn.run(app, host=HOST, port=PORT)
