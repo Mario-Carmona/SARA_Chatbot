@@ -33,7 +33,7 @@ class ServerURL(BaseModel):
 
 
 
-async def make_response_welcome(request: Dict):
+def make_response_welcome(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if SERVER_GPU_URL != "":          
@@ -62,17 +62,17 @@ async def make_response_welcome(request: Dict):
 
     return response
 
-async def make_response_deduct_talk(request: Dict):
+def make_response_deduct_talk(request: Dict):
     POS_EDAD = 2
 
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if(not "edad" in outputContexts[0].get("parameters").keys()):
-        return await make_response_deduct(request)
+        return make_response_deduct(request)
     else:
-        return await make_response_talk(request)
+        return make_response_talk(request)
 
-async def make_response_deduct(request: Dict):
+def make_response_deduct(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -89,7 +89,7 @@ async def make_response_deduct(request: Dict):
 
     return response
 
-async def make_response_talk(request: Dict):
+def make_response_talk(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -117,7 +117,7 @@ async def make_response_talk(request: Dict):
 
     return response
 
-async def make_response_goodbye(request: Dict):
+def make_response_goodbye(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -145,50 +145,50 @@ templates = Jinja2Templates(directory=(BASE_PATH + "/templates"))
 
 
 @app.middleware("http")
-async def add_process_time_header(request: Request, call_next):
+def add_process_time_header(request: Request, call_next):
     start_time = time()
-    response = await call_next(request)
+    response = call_next(request)
     process_time = time() - start_time
     response.headers["X-Process-Time"] = str(process_time)
     return response
 
 @app.get("/", response_class=HTMLResponse) 
-async def home(request: Request):
+def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 @app.get("/chatbot", response_class=HTMLResponse)
-async def chatbot(request: Request):
+def chatbot(request: Request):
     return templates.TemplateResponse("chatbot.html", {"request": request})
 
 @app.get("/interface", response_class=HTMLResponse)
-async def interface(request: Request):
+def interface(request: Request):
     return templates.TemplateResponse("interface.html", {"request": request})
 
 @app.get("/wakeup", response_class=PlainTextResponse)
-async def wakeup():
+def wakeup():
     return "Server ON"
 
 @app.post("/setURL", response_class=PlainTextResponse)
-async def setURL(request: ServerURL):
+def setURL(request: ServerURL):
     global SERVER_GPU_URL
     SERVER_GPU_URL = request.url
     return "URL fijada correctamente"
 
 @app.post("/webhook")
-async def webhook( request: Request):
+def webhook( request: Request):
     print("----------->")
 
-    request_JSON = await request.json()
+    request_JSON = request.json()
 
     intent = request_JSON.get("queryResult").get("intent").get("displayName")
 
     if intent == "Welcome":
-        response = await make_response_welcome(request_JSON)
+        response = make_response_welcome(request_JSON)
     elif intent == "Deduct And Talk":
-        response = await make_response_deduct_talk(request_JSON)
+        response = make_response_deduct_talk(request_JSON)
     elif intent == "Goodbye":
         # Implementar guardado del historial
-        response = await make_response_goodbye(request_JSON)
+        response = make_response_goodbye(request_JSON)
 
     print(response)
 
