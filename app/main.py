@@ -76,7 +76,7 @@ def make_response_deduct_talk(request: Dict):
 
     outputContexts = request.get("queryResult").get("outputContexts")
 
-    if(outputContexts[POS_EDAD].key("parameters") == None):
+    if("parameters" in outputContexts[POS_EDAD].keys()):
         return make_response_deduct(request)
     else:
         return make_response_talk(request)
