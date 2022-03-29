@@ -30,7 +30,17 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
 
+class Intent(BaseModel):
+    displayName: str
 
+class Context(BaseModel):
+    name: str
+    lifespanCount: int
+    parameters: Dict[str, Any]
+
+class QueryResult(BaseModel):
+    intent: Intent
+    outputContexts: List[Context]
 
 
 
@@ -78,20 +88,6 @@ def setURL(url: str):
     global SERVER_GPU_URL
     SERVER_GPU_URL = url
     return "URL fijada correctamente."
-
-
-class Intent(BaseModel):
-    displayName: str
-
-class Context(BaseModel):
-    name: str
-    lifespanCount: int
-    parameters: Dict[str, Any]
-
-class QueryResult(BaseModel):
-    intent: Intent
-    outputContexts: List[Context]
-
 
 @app.post("/webhook")
 async def webhook( request: Request):
