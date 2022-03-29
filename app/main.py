@@ -37,7 +37,6 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 def make_response_welcome(request: Dict):
     POS_ID = 0
     POS_CONTEXT = 1
-    POS_WELCOME_COMPLETE = 2
 
     outputContexts = request.get("queryResult").get("outputContexts")
 
@@ -61,12 +60,6 @@ def make_response_welcome(request: Dict):
             "context": f"[A]: {entry}\n[B]: {answer}"
         }
         outputContexts[POS_CONTEXT] = context
-
-        welcome_complete = outputContexts[POS_WELCOME_COMPLETE]
-        welcome_complete["parameters"] = {
-            "welcome-complete": True
-        }
-        outputContexts[POS_WELCOME_COMPLETE] = welcome_complete
     else:
         outputContexts = []
         answer = "Servidor GPU no disponible"
