@@ -24,7 +24,8 @@ with open(str(BASE_PATH/"config.json")) as file:
 
 HOST = os.environ.get("HOST", config["host"])
 PORT = eval(os.environ.get("PORT", config["port"]))
-INFERENCE_URL = config["inference_url"]
+global INFERENCE_URL
+INFERENCE_URL = os.environ.get("INFERENCE_URL", config["inference_url"])
 
 
 app = FastAPI(version="1.0.0")
@@ -58,18 +59,14 @@ def interface(request: Request):
 def wakeup():
     return "Server ON"
 
-@app.get("/setURL")
-def setURL():
-    st.title('Set Inference URL')
-    st.write("Fijar URL del servidor de inferencia.")
-    url = st.text_area("URL:")
-
-    if st.button('Set URL'):
-        if url:
-            INFERENCE_URL = url
-            st.write("URL fijada correctamente.")
-        else:
-            st.write("Debe indicar la URL.")
+@app.get("/setURL/{url}")
+def setURL(url: str):
+    if url:
+        global INFERENCE_URL
+        INFERENCE_URL = url
+        return "URL fijada correctamente."
+    else:
+        return "Debe indicar la URL."
 
 @app.post("/webhook")
 async def webhook(request: Request):
