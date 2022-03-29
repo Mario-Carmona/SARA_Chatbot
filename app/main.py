@@ -94,14 +94,8 @@ class QueryResult(BaseModel):
 
 
 @app.post("/webhook")
-async def webhook( responseId: str, queryResult: QueryResult = Body(...)):
+async def webhook( request: Request):
     print("----------->")
-    
-    print(responseId)
-    print(queryResult)
-    
-
-    """
 
     req = await request.json()
 
@@ -180,23 +174,12 @@ async def webhook( responseId: str, queryResult: QueryResult = Body(...)):
         pass
 
 
-    webhookResponse = {
-        "fulfillmentMessages": [
-            {
-                "text": {
-                    "text": [
-                        answer
-                    ]
-                }
-            }
-        ],
-        "outputContexts": outputContexts
+    response = {
+        "fulfillmentText": answer,
+        "output_contexts": outputContexts
     }
-    """
 
-    return {
-        "fulfillmentText": "Sure thing! Let me pull up some restaurants."
-    }
+    return response
 
 
 
