@@ -252,7 +252,7 @@ async def webhook( request: Request):
     
     intent = webhook_request.query_result.intent.displayName
 
-    response = None
+    response = {}
 
     if intent == "Welcome":
         response = make_response_welcome(webhook_request)
