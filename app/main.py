@@ -111,7 +111,7 @@ def make_response_talk(request: Dict):
     outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer.content.decode('utf-8')}"
 
     response = {
-        "fulfillmentText": answer,
+        "fulfillmentText": answer.content.decode('utf-8'),
         "output_contexts": outputContexts
     }
 
