@@ -65,7 +65,7 @@ class WebhookRequest:
             "help": ""
         }
     )
-    queryResult: QueryResult = field(
+    query_result: QueryResult = field(
         metadata={
             "help": ""
         }
@@ -78,7 +78,7 @@ def make_response_welcome(webhook_request: WebhookRequest):
     POS_CONTEXT = 1
     POS_WELCOME_COMPLETE = 2
 
-    outputContexts = webhook_request.queryResult.outputContexts
+    outputContexts = webhook_request.query_result.outputContexts
 
     if SERVER_GPU_URL != "":          
         session_id = outputContexts[POS_ID]
@@ -123,7 +123,7 @@ def make_response_deduct(webhook_request: WebhookRequest):
     POS_WELCOME_COMPLETE = 3
     POS_DEDUCT_COMPLETE = 4
 
-    outputContexts = webhook_request.queryResult.outputContexts
+    outputContexts = webhook_request.query_result.outputContexts
 
     entry = webhook_request.query_result.queryText
 
@@ -155,7 +155,7 @@ def make_response_talk(webhook_request: WebhookRequest):
     POS_CONTEXT = 1
     POS_EDAD = 2
 
-    outputContexts = webhook_request.queryResult.outputContexts
+    outputContexts = webhook_request.query_result.outputContexts
 
     entry = webhook_request.query_result.queryText
 
@@ -183,7 +183,7 @@ def make_response_talk(webhook_request: WebhookRequest):
 def make_response_goodbye(webhook_request: WebhookRequest):
     POS_CONTEXT = 1
 
-    outputContexts = webhook_request.queryResult.outputContexts
+    outputContexts = webhook_request.query_result.outputContexts
 
     entry = webhook_request.query_result.queryText
 
