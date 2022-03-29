@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import json
-import re
 from time import time
 import requests
 import os
@@ -13,8 +12,6 @@ from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
-
-import streamlit as st
 
 
 BASE_PATH = Path(__file__).resolve().parent
@@ -71,6 +68,7 @@ async def webhook(request: Request):
     intent = query_result.get("intent").get("displayName")
 
     outputContexts = query_result.get("outputContexts")
+    outputContexts2 = query_result.get("outputContexts")
 
     if intent == "Welcome":
         POS_ID = 1
@@ -149,7 +147,7 @@ async def webhook(request: Request):
                 }
             }
         ],
-        "outputContexts": outputContexts
+        "outputContexts": outputContexts2
     }
 
     return webhookResponse

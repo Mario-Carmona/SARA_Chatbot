@@ -23,8 +23,8 @@ BASE_PATH = Path(__file__).resolve().parent
 def home():
     return "Server GPU ON"
 
-@app.get("/inference", response_class=PlainTextResponse)
-def home():
+@app.get("/Adulto", response_class=PlainTextResponse)
+def adulto():
     return "Texto de prueba"
 
 

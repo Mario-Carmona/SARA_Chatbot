@@ -2,4 +2,3 @@ requests
 fastapi
 uvicorn[standard]
 jinja2
-streamlit
