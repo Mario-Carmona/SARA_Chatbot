@@ -91,8 +91,6 @@ def make_response_deduct_talk(request: Dict):
 def make_response_deduct(request: Dict):
     POS_CONTEXT = 1
     POS_EDAD = 2
-    POS_WELCOME_COMPLETE = 3
-    POS_DEDUCT_COMPLETE = 4
 
     outputContexts = request.get("queryResult").get("outputContexts")
 
@@ -106,14 +104,6 @@ def make_response_deduct(request: Dict):
             "edad": answer
         }
         outputContexts[POS_EDAD] = edad
-
-        deduct_complete = outputContexts[POS_DEDUCT_COMPLETE]
-        deduct_complete["parameters"] = {
-            "deduct-complete": True
-        }
-        outputContexts[POS_DEDUCT_COMPLETE] = deduct_complete
-
-        outputContexts.pop(POS_WELCOME_COMPLETE)
     
     response = {
         "fulfillmentText": answer,
