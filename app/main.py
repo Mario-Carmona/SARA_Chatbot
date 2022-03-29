@@ -20,7 +20,7 @@ from pydantic import BaseModel
 
 BASE_PATH = Path(__file__).resolve().parent
 
-with open(str(BASE_PATH/"config.json")) as file:
+with open(BASE_PATH + "/config.json") as file:
         config = json.load(file)
 
 HOST = os.environ.get("HOST", config["host"])
@@ -35,31 +35,18 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
 def make_response_welcome(request: Dict):
-    POS_ID = 0
-    POS_CONTEXT = 1
-
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if SERVER_GPU_URL != "":          
-        session_id = outputContexts[POS_ID]
-        session_id["parameters"] = {
-            "session_id": request.get("responseId")
-        }
-        outputContexts[POS_ID] = session_id
-
         entry = request.get("queryResult").get("queryText")
 
         query_json = {
             "entry": entry,
         }
-        #answer = requests.post(str(SERVER_GPU_URL/"deduct"), json=query_json)
+        #answer = requests.post(SERVER_GPU_URL + "/deduct", json=query_json)
         answer = "Hola"
 
-        context = outputContexts[POS_CONTEXT]
-        context["parameters"] = {
-            "context": f"[A]: {entry}\n[B]: {answer}"
-        }
-        outputContexts[POS_CONTEXT] = context
+        outputContexts[0]["parameters"]["context"] = f"[A]: {entry}\n[B]: {answer}"
     else:
         outputContexts = []
         answer = "Servidor GPU no disponible"
@@ -76,15 +63,12 @@ def make_response_deduct_talk(request: Dict):
 
     outputContexts = request.get("queryResult").get("outputContexts")
 
-    if(not "parameters" in outputContexts[POS_EDAD].keys()):
+    if(not "edad" in outputContexts[0].get("parameters").keys()):
         return make_response_deduct(request)
     else:
         return make_response_talk(request)
 
 def make_response_deduct(request: Dict):
-    POS_CONTEXT = 1
-    POS_EDAD = 2
-
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -92,11 +76,7 @@ def make_response_deduct(request: Dict):
     answer = entry
 
     if answer in ["Niño", "Adolescente", "Adulto"]:
-        edad = outputContexts[POS_EDAD]
-        edad["parameters"] = {
-            "edad": answer
-        }
-        outputContexts[POS_EDAD] = edad
+        outputContexts[0]["parameters"]["edad"] = answer
     
     response = {
         "fulfillmentText": answer,
@@ -106,26 +86,20 @@ def make_response_deduct(request: Dict):
     return response
 
 def make_response_talk(request: Dict):
-    POS_CONTEXT = 1
-    POS_EDAD = 2
-
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
 
-    edad = outputContexts[POS_EDAD]["parameters"]["edad"]
+    edad = outputContexts[0]["parameters"]["edad"]
 
     query_json = {
         "entry": entry,
     }
-    answer = requests.post(str(SERVER_GPU_URL/edad), json=query_json)
+    answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json)
     
-    context = outputContexts[POS_CONTEXT]
-    contextContent = context["parameters"]["context"]
-    context["parameters"] = {
-        "context": f"{contextContent}\n[A]: {entry}\n[B]: {answer}"
-    }
-    outputContexts[POS_CONTEXT] = context
+    context = outputContexts[0]["parameters"]["context"]
+
+    outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
 
     response = {
         "fulfillmentText": answer,
@@ -135,20 +109,15 @@ def make_response_talk(request: Dict):
     return response
 
 def make_response_goodbye(request: Dict):
-    POS_CONTEXT = 1
-
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
 
     answer = "Adios"
 
-    context = outputContexts[POS_CONTEXT]
-    contextContent = context["parameters"]["context"]
-    context["parameters"] = {
-        "context": f"{contextContent}\n[A]: {entry}\n[B]: {answer}"
-    }
-    outputContexts[POS_CONTEXT] = context
+    context = outputContexts[0]["parameters"]["context"]
+
+    outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
 
     response = {
         "fulfillmentText": answer,
@@ -162,8 +131,8 @@ def make_response_goodbye(request: Dict):
 app = FastAPI(version="1.0.0")
 
 
-app.mount("/static", StaticFiles(directory=str(BASE_PATH/"static")))
-templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
+app.mount("/static", StaticFiles(directory=(BASE_PATH + "/static")))
+templates = Jinja2Templates(directory=(BASE_PATH + "/templates"))
 
 
 @app.middleware("http")
