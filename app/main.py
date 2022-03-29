@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from curses import meta
 import json
 from time import time
 import requests
 import os
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
+from dataclasses import dataclass, field
+from dacite import from_dict
 
 from fastapi import FastAPI, Body, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
@@ -29,26 +32,176 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
 
+@dataclass
+class Intent:
+    displayName: str = field(
+        metadata={
+            "help": ""
+        }
+    )
 
-class Intent(BaseModel):
-    displayName: str
+@dataclass
+class QueryResult:
+    queryText: str = field(
+        metadata={
+            "help": ""
+        }
+    )
+    intent: Intent = field(
+        metadata={
+            "help": ""
+        }
+    )
+    outputContexts: List[Dict[str,Any]] = field(
+        metadata={
+            "help": ""
+        }
+    )
 
-class Context(BaseModel):
-    name: str
-    lifespanCount: int
-    parameters: Dict[str, Any]
-
-class QueryResult(BaseModel):
-    intent: Intent
-    outputContexts: List[Context]
-
-
-
-
-
-
+@dataclass
+class WebhookRequest:
+    responseId: str = field(
+        metadata={
+            "help": ""
+        }
+    )
+    queryResult: QueryResult = field(
+        metadata={
+            "help": ""
+        }
+    )
 
 
+
+def make_response_welcome(webhook_request: WebhookRequest):
+    POS_ID = 0
+    POS_CONTEXT = 1
+    POS_WELCOME_COMPLETE = 2
+
+    outputContexts = webhook_request.queryResult.outputContexts
+
+    if SERVER_GPU_URL != "":          
+        session_id = outputContexts[POS_ID]
+        session_id["parameters"] = {
+            "session_id": webhook_request.responseId
+        }
+        outputContexts[POS_ID] = session_id
+
+        entry = webhook_request.query_result.queryText
+
+        query_json = {
+            "entry": entry,
+        }
+        #answer = requests.post(str(SERVER_GPU_URL/"deduct"), json=query_json)
+        answer = "Hola"
+
+        context = outputContexts[POS_CONTEXT]
+        context["parameters"] = {
+            "context": f"[A]: {entry}\n[B]: {answer}"
+        }
+        outputContexts[POS_CONTEXT] = context
+
+        welcome_complete = outputContexts[POS_WELCOME_COMPLETE]
+        welcome_complete["parameters"] = {
+            "welcome-complete": True
+        }
+        outputContexts[POS_WELCOME_COMPLETE] = welcome_complete
+    else:
+        outputContexts = []
+        answer = "Servidor GPU no disponible"
+    
+    response = {
+        "fulfillmentText": answer,
+        "output_contexts": outputContexts
+    }
+
+    return response
+
+def make_response_deduct(webhook_request: WebhookRequest):
+    POS_CONTEXT = 1
+    POS_EDAD = 2
+    POS_WELCOME_COMPLETE = 3
+    POS_DEDUCT_COMPLETE = 4
+
+    outputContexts = webhook_request.queryResult.outputContexts
+
+    entry = webhook_request.query_result.queryText
+
+    answer = entry
+
+    if answer in ["Niño", "Adolescente", "Adulto"]:
+        edad = outputContexts[POS_EDAD]
+        edad["parameters"] = {
+            "edad": answer
+        }
+        outputContexts[POS_EDAD] = edad
+
+        deduct_complete = outputContexts[POS_DEDUCT_COMPLETE]
+        deduct_complete["parameters"] = {
+            "deduct-complete": True
+        }
+        outputContexts[POS_DEDUCT_COMPLETE] = deduct_complete
+
+        outputContexts.pop(POS_WELCOME_COMPLETE)
+    
+    response = {
+        "fulfillmentText": answer,
+        "output_contexts": outputContexts
+    }
+
+    return response
+
+def make_response_talk(webhook_request: WebhookRequest):
+    POS_CONTEXT = 1
+    POS_EDAD = 2
+
+    outputContexts = webhook_request.queryResult.outputContexts
+
+    entry = webhook_request.query_result.queryText
+
+    edad = outputContexts[POS_EDAD]["parameters"]["edad"]
+
+    query_json = {
+        "entry": entry,
+    }
+    answer = requests.post(str(SERVER_GPU_URL/edad), json=query_json)
+    
+    context = outputContexts[POS_CONTEXT]
+    contextContent = context["parameters"]["context"]
+    context["parameters"] = {
+        "context": f"{contextContent}\n[A]: {entry}\n[B]: {answer}"
+    }
+    outputContexts[POS_CONTEXT] = context
+
+    response = {
+        "fulfillmentText": answer,
+        "output_contexts": outputContexts
+    }
+
+    return response
+
+def make_response_goodbye(webhook_request: WebhookRequest):
+    POS_CONTEXT = 1
+
+    outputContexts = webhook_request.queryResult.outputContexts
+
+    entry = webhook_request.query_result.queryText
+
+    answer = "Adios"
+
+    context = outputContexts[POS_CONTEXT]
+    contextContent = context["parameters"]["context"]
+    context["parameters"] = {
+        "context": f"{contextContent}\n[A]: {entry}\n[B]: {answer}"
+    }
+    outputContexts[POS_CONTEXT] = context
+
+    response = {
+        "fulfillmentText": answer,
+        "output_contexts": outputContexts
+    }
+
+    return response
 
 
 
@@ -95,91 +248,19 @@ async def webhook( request: Request):
 
     req = await request.json()
 
+    webhook_request = from_dict(dataclass=WebhookRequest, data=req)
     
-    
-    query_result = req.get("queryResult")
-    intent = query_result.get("intent").get("displayName")
-
-    outputContexts = query_result.get("outputContexts")
-    answer = ""
+    intent = webhook_request.query_result.intent.displayName
 
     if intent == "Welcome":
-        POS_ID = 1
-        POS_CONTEXT = 2
-
-        if SERVER_GPU_URL != "":
-            welcome_followup = outputContexts[0]
-            welcome_followup["parameters"] = {
-                "welcome-followup": True
-            }
-            outputContexts[0] = welcome_followup
-            
-            session_id = outputContexts[POS_ID]
-            session_id["parameters"] = {
-                "session_id": req.get("responseId")
-            }
-            outputContexts[POS_ID] = session_id
-
-            entry = query_result.get("queryText")
-
-            query_json = {
-                "entry": entry,
-            }
-            #answer = requests.post(str(SERVER_GPU_URL/"deduct"), json=query_json)
-            answer = "Hola"
-
-            context = outputContexts[POS_CONTEXT]
-            context["parameters"] = {
-                "context": f"[A]: {entry}\n[B]: {answer}"
-            }
-            outputContexts[POS_CONTEXT] = context
-        else:
-            outputContexts = []
-            answer = "Servidor GPU no disponible"
-
+        response = make_response_welcome(webhook_request)
     elif intent == "Deduct":
-        POS_ID = 1
-        POS_CONTEXT = 2
-        POS_EDAD = 3
-
-        entry = query_result.get("queryText")
-
-        answer = entry
-
-        edad = outputContexts[POS_EDAD]
-        edad["parameters"] = {
-            "edad": entry
-        }
-        outputContexts[POS_EDAD] = edad
-
+        response = make_response_deduct(webhook_request)
     elif intent == "Talk":
-        POS_ID = 1
-        POS_CONTEXT = 2
-        POS_EDAD = 3
-
-        entry = query_result.get("queryText")
-        edad = outputContexts[POS_EDAD]["parameters"]["edad"]
-
-        query_json = {
-            "entry": entry,
-        }
-        answer = requests.post(str(SERVER_GPU_URL/edad), json=query_json)
-        
-        context = outputContexts[POS_CONTEXT]
-        context["parameters"] = {
-            "context": f"{context}\n[A]: {entry}\n[B]: {answer}"
-        }
-        outputContexts[POS_CONTEXT] = context
-
+        response = make_response_talk(webhook_request)
     elif intent == "Goodbye":
         # Implementar guardado del historial
-        pass
-
-
-    response = {
-        "fulfillmentText": answer,
-        "output_contexts": outputContexts
-    }
+        response = make_response_goodbye(webhook_request)
 
     print(response)
 
