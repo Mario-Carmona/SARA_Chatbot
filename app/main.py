@@ -248,7 +248,7 @@ async def webhook( request: Request):
 
     req = await request.json()
 
-    webhook_request = from_dict(dataclass=WebhookRequest, data=req)
+    webhook_request = from_dict(data_class=WebhookRequest, data=req)
     
     intent = webhook_request.query_result.intent.displayName
 
