@@ -1,6 +1,7 @@
 {
     "host": "0.0.0.0",
     "port": "5000",
+    "controller_url": "https://sara-chatbot-tfg.herokuapp.com",
 
 
     "workdir": "/mnt/homeGPU/mcarmona/",

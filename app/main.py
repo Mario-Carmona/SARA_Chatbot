@@ -6,13 +6,14 @@ from time import time
 import os
 from pathlib import Path
 from typing import Dict
-import httpx
+import requests
 
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
+from pydantic import BaseModel
 
 
 BASE_PATH = str(Path(__file__).resolve().parent)
@@ -27,7 +28,8 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
 
-
+class ServerURL(BaseModel):
+    url: str
 
 
 
@@ -41,8 +43,8 @@ async def make_response_welcome(request: Dict):
             "entry": entry,
         }
         """
-        async with httpx.AsyncClient() as client:
-            answer = await client.post(SERVER_GPU_URL + "/deduct", data=query_json)
+        headers = {'content-type': 'application/json'}
+        answer = requests.post(SERVER_GPU_URL + "/deduct", json=query_json, headers=headers)
         """
         answer = "Hola"
 
@@ -97,9 +99,9 @@ async def make_response_talk(request: Dict):
     query_json = {
         "entry": entry,
     }
-    async with httpx.AsyncClient() as client:
-        answer = await client.post(SERVER_GPU_URL + "/" + edad, data=query_json)
-    
+    headers = {'content-type': 'application/json'}
+    answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
+
     context = outputContexts[0]["parameters"]["context"]
 
     outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
@@ -162,11 +164,11 @@ async def interface(request: Request):
 async def wakeup():
     return "Server ON"
 
-@app.get("/setURL")
-async def setURL(url: str):
+@app.post("/setURL", response_class=PlainTextResponse)
+async def setURL(request: ServerURL):
     global SERVER_GPU_URL
-    SERVER_GPU_URL = url
-    return "URL fijada correctamente."
+    SERVER_GPU_URL = request.url
+    return "URL fijada correctamente"
 
 @app.post("/webhook")
 async def webhook( request: Request):
