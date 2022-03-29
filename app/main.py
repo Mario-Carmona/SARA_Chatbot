@@ -78,6 +78,16 @@ def make_response_welcome(request: Dict):
 
     return response
 
+def make_response_deduct_talk(request: Dict):
+    POS_EDAD = 2
+
+    outputContexts = request.get("queryResult").get("outputContexts")
+
+    if(outputContexts[POS_EDAD].key("parameters") == None):
+        return make_response_deduct(request)
+    else:
+        return make_response_talk(request)
+
 def make_response_deduct(request: Dict):
     POS_CONTEXT = 1
     POS_EDAD = 2
@@ -215,10 +225,8 @@ async def webhook( request: Request):
 
     if intent == "Welcome":
         response = make_response_welcome(request_JSON)
-    elif intent == "Deduct":
-        response = make_response_deduct(request_JSON)
-    elif intent == "Talk":
-        response = make_response_talk(request_JSON)
+    elif intent == "Deduct And Talk":
+        response = make_response_deduct_talk(request_JSON)
     elif intent == "Goodbye":
         # Implementar guardado del historial
         response = make_response_goodbye(request_JSON)
