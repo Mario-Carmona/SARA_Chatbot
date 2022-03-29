@@ -4,7 +4,6 @@
 import json
 import re
 from time import time
-from importlib_metadata import version
 import requests
 import os
 from fastapi import FastAPI, Request
