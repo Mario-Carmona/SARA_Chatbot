@@ -179,6 +179,8 @@ async def webhook( request: Request):
         "output_contexts": outputContexts
     }
 
+    print(response)
+
     return response
 
 
