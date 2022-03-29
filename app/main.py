@@ -39,7 +39,7 @@ def make_response_welcome(request: Dict):
     POS_CONTEXT = 1
     POS_WELCOME_COMPLETE = 2
 
-    outputContexts = request.get("query_result").get("outputContexts")
+    outputContexts = request.get("queryResult").get("outputContexts")
 
     if SERVER_GPU_URL != "":          
         session_id = outputContexts[POS_ID]
@@ -48,7 +48,7 @@ def make_response_welcome(request: Dict):
         }
         outputContexts[POS_ID] = session_id
 
-        entry = request.get("query_result").get("queryText")
+        entry = request.get("queryResult").get("queryText")
 
         query_json = {
             "entry": entry,
@@ -84,9 +84,9 @@ def make_response_deduct(request: Dict):
     POS_WELCOME_COMPLETE = 3
     POS_DEDUCT_COMPLETE = 4
 
-    outputContexts = request.get("query_result").get("outputContexts")
+    outputContexts = request.get("queryResult").get("outputContexts")
 
-    entry = request.get("query_result").get("queryText")
+    entry = request.get("queryResult").get("queryText")
 
     answer = entry
 
@@ -116,9 +116,9 @@ def make_response_talk(request: Dict):
     POS_CONTEXT = 1
     POS_EDAD = 2
 
-    outputContexts = request.get("query_result").get("outputContexts")
+    outputContexts = request.get("queryResult").get("outputContexts")
 
-    entry = request.get("query_result").get("queryText")
+    entry = request.get("queryResult").get("queryText")
 
     edad = outputContexts[POS_EDAD]["parameters"]["edad"]
 
@@ -144,9 +144,9 @@ def make_response_talk(request: Dict):
 def make_response_goodbye(request: Dict):
     POS_CONTEXT = 1
 
-    outputContexts = request.get("query_result").get("outputContexts")
+    outputContexts = request.get("queryResult").get("outputContexts")
 
-    entry = request.get("query_result").get("queryText")
+    entry = request.get("queryResult").get("queryText")
 
     answer = "Adios"
 
@@ -209,7 +209,7 @@ async def webhook( request: Request):
 
     request_JSON = await request.json()
 
-    intent = request_JSON.get("query_result").get("intent").get("displayName")
+    intent = request_JSON.get("queryResult").get("intent").get("displayName")
 
     response = {}
 
