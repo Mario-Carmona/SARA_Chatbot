@@ -56,7 +56,7 @@ async def webhook(request: Request):
 
     if intent == "Welcome":
         url = config["inference_url"]
-        answer = requests.post(url)
+        answer = requests.get(url)
         print(answer)
         
         """
