@@ -108,6 +108,12 @@ async def webhook( request: Request):
         POS_CONTEXT = 2
 
         if SERVER_GPU_URL != "":
+            welcome_followup = outputContexts[0]
+            welcome_followup["parameters"] = {
+                "welcome-followup": True
+            }
+            outputContexts[0] = welcome_followup
+            
             session_id = outputContexts[POS_ID]
             session_id["parameters"] = {
                 "session_id": req.get("responseId")
