@@ -57,10 +57,10 @@ async def webhook(request: Request):
     if intent == "Welcome":
         url = config["inference_url"]
         answer = requests.get(url)
-        print(answer)
+        print(answer.content)
         
 
-        
+
         outputContexts = query_result.get("outputContexts")
         name = outputContexts[0].get("name")
         session_id = req.get("responseId")
