@@ -64,7 +64,7 @@ def setURL(url: str):
     SERVER_GPU_URL = url
     return "URL fijada correctamente."
 
-@app.post("/webhook", response_model=WebhookResponse)
+@app.post("/webhook", response_class=WebhookResponse)
 async def webhook(request: WebhookRequest):
     print("----------->")
     
