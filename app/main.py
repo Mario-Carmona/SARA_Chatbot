@@ -18,7 +18,7 @@ import uvicorn
 from pydantic import BaseModel
 
 
-BASE_PATH = Path(__file__).resolve().parent
+BASE_PATH = str(Path(__file__).resolve().parent)
 
 with open(BASE_PATH + "/config.json") as file:
         config = json.load(file)
