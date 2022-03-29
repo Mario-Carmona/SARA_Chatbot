@@ -68,8 +68,7 @@ async def webhook(request: Request):
     intent = query_result.get("intent").get("displayName")
 
     outputContexts = query_result.get("outputContexts")
-    outputContexts2 = query_result.get("outputContexts")
-    outputContexts2[0] = "ALGO"
+    answer = ""
 
     if intent == "Welcome":
         POS_ID = 1
@@ -149,7 +148,7 @@ async def webhook(request: Request):
                 }
             }
         ],
-        "outputContexts": outputContexts2
+        "outputContexts": outputContexts
     }
 
     return webhookResponse
