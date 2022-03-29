@@ -145,12 +145,6 @@ async def webhook(request: Request):
 
 
     webhookResponse = {
-        "speech": answer,
-        "displayText": answer,
-        "contextOut": outputContexts
-    }
-    """
-    webhookResponse = {
         "fulfillmentMessages": [
             {
                 "text": {
@@ -162,7 +156,6 @@ async def webhook(request: Request):
         ],
         "outputContexts": outputContexts
     }
-    """
 
     return webhookResponse
 
