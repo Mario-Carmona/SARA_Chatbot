@@ -179,7 +179,7 @@ def webhook( request: Request):
 
     request_JSON = request.json()
 
-    intent = request_JSON.get("queryResult").get("intent").get("displayName")
+    intent = request_JSON["queryResult"]["intent"]["displayName"]
 
     if intent == "Welcome":
         response = make_response_welcome(request_JSON)
