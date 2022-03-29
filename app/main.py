@@ -1,21 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from curses import meta
 import json
 from time import time
-import requests
 import os
 from pathlib import Path
-from typing import Dict, Any, List, Optional
-from dataclasses import dataclass, field
+from typing import Dict
+import httpx
 
-from fastapi import FastAPI, Body, Request
+from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
-from pydantic import BaseModel
 
 
 BASE_PATH = str(Path(__file__).resolve().parent)
@@ -34,7 +31,7 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
 
-def make_response_welcome(request: Dict):
+async def make_response_welcome(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if SERVER_GPU_URL != "":          
@@ -43,7 +40,10 @@ def make_response_welcome(request: Dict):
         query_json = {
             "entry": entry,
         }
-        #answer = requests.post(SERVER_GPU_URL + "/deduct", json=query_json)
+        """
+        async with httpx.AsyncClient() as client:
+            answer = await client.post(SERVER_GPU_URL + "/deduct", data=query_json)
+        """
         answer = "Hola"
 
         outputContexts[0]["parameters"] = {
@@ -60,7 +60,7 @@ def make_response_welcome(request: Dict):
 
     return response
 
-def make_response_deduct_talk(request: Dict):
+async def make_response_deduct_talk(request: Dict):
     POS_EDAD = 2
 
     outputContexts = request.get("queryResult").get("outputContexts")
@@ -70,7 +70,7 @@ def make_response_deduct_talk(request: Dict):
     else:
         return make_response_talk(request)
 
-def make_response_deduct(request: Dict):
+async def make_response_deduct(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -87,7 +87,7 @@ def make_response_deduct(request: Dict):
 
     return response
 
-def make_response_talk(request: Dict):
+async def make_response_talk(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -97,7 +97,8 @@ def make_response_talk(request: Dict):
     query_json = {
         "entry": entry,
     }
-    answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json)
+    async with httpx.AsyncClient() as client:
+        answer = await client.post(SERVER_GPU_URL + "/" + edad, data=query_json)
     
     context = outputContexts[0]["parameters"]["context"]
 
@@ -110,7 +111,7 @@ def make_response_talk(request: Dict):
 
     return response
 
-def make_response_goodbye(request: Dict):
+async def make_response_goodbye(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -150,19 +151,19 @@ async def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 @app.get("/chatbot", response_class=HTMLResponse)
-def chatbot(request: Request):
+async def chatbot(request: Request):
     return templates.TemplateResponse("chatbot.html", {"request": request})
 
 @app.get("/interface", response_class=HTMLResponse)
-def interface(request: Request):
+async def interface(request: Request):
     return templates.TemplateResponse("interface.html", {"request": request})
 
 @app.get("/wakeup", response_class=PlainTextResponse)
-def wakeup():
+async def wakeup():
     return "Server ON"
 
 @app.get("/setURL")
-def setURL(url: str):
+async def setURL(url: str):
     global SERVER_GPU_URL
     SERVER_GPU_URL = url
     return "URL fijada correctamente."
@@ -175,16 +176,13 @@ async def webhook( request: Request):
 
     intent = request_JSON.get("queryResult").get("intent").get("displayName")
 
-    response = {}
-
     if intent == "Welcome":
-        response = make_response_welcome(request_JSON)
+        response = await make_response_welcome(request_JSON)
     elif intent == "Deduct And Talk":
-        response = make_response_deduct_talk(request_JSON)
+        response = await make_response_deduct_talk(request_JSON)
     elif intent == "Goodbye":
         # Implementar guardado del historial
-        response = make_response_goodbye(request_JSON)
-
+        response = await make_response_goodbye(request_JSON)
 
     print(response)
 
