@@ -59,7 +59,7 @@ def interface(request: Request):
 def wakeup():
     return "Server ON"
 
-@app.get("/setURL/{url}")
+@app.get("/setURL")
 def setURL(url: str):
     if url:
         global INFERENCE_URL
