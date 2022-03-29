@@ -17,6 +17,8 @@ import uvicorn
 import streamlit as st
 
 
+BASE_PATH = Path(__file__).resolve().parent
+
 with open(str(BASE_PATH/"config.json")) as file:
         config = json.load(file)
 
@@ -27,7 +29,7 @@ INFERENCE_URL = config["inference_url"]
 
 app = FastAPI(version="1.0.0")
 
-BASE_PATH = Path(__file__).resolve().parent
+
 app.mount("/static", StaticFiles(directory=str(BASE_PATH/"static")))
 templates = Jinja2Templates(directory=str(BASE_PATH/"templates"))
 

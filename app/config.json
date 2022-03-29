@@ -1,5 +1,5 @@
 {
     "host": "0.0.0.0",
-    "inference_url": "http://083d-77-224-243-174.ngrok.io/",
+    "inference_url": "",
     "port": "5000"
 }
