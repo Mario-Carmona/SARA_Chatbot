@@ -261,6 +261,7 @@ async def webhook( request: Request):
     elif intent == "Goodbye":
         # Implementar guardado del historial
         response = make_response_goodbye(webhook_request)
+        
 
     print(response)
 
