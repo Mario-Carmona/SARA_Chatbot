@@ -13,7 +13,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
-from models.dialogflow import WebhookRequest, WebhookResponse
+from dialogflow import WebhookRequest, WebhookResponse
 
 
 BASE_PATH = Path(__file__).resolve().parent

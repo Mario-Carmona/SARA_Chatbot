@@ -2,4 +2,4 @@ requests
 fastapi
 uvicorn[standard]
 jinja2
-models
+dialogflow
