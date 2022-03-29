@@ -13,6 +13,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
+from models.dialogflow import WebhookRequest, WebhookResponse
+
 
 BASE_PATH = Path(__file__).resolve().parent
 
@@ -62,14 +64,18 @@ def setURL(url: str):
     SERVER_GPU_URL = url
     return "URL fijada correctamente."
 
-@app.post("/webhook")
-async def webhook(request: Request):
+@app.post("/webhook", response_model=WebhookResponse)
+async def webhook(request: WebhookRequest):
     print("----------->")
     
+    print(request)
     
+
+    """
+
     req = await request.json()
 
-    print(req)
+    
     
     query_result = req.get("queryResult")
     intent = query_result.get("intent").get("displayName")
@@ -156,6 +162,11 @@ async def webhook(request: Request):
         ],
         "outputContexts": outputContexts
     }
+    """
+
+    webhookResponse = WebhookResponse(
+        **{"fulfillmentText": "Sure thing! Let me pull up some restaurants."}
+    )
 
     return webhookResponse
 
