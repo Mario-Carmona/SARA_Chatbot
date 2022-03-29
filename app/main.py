@@ -100,18 +100,14 @@ def make_response_talk(request: Dict):
         "entry": entry,
     }
     headers = {'content-type': 'application/json'}
-    answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
-
-    print(answer)
-    print(answer.content)
-    print(answer.content.decode('utf-8'))
+    answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers).content.decode('utf-8')
 
     context = outputContexts[0]["parameters"]["context"]
 
-    outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer.content.decode('utf-8')}"
+    outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
 
     response = {
-        "fulfillmentText": answer.content.decode('utf-8'),
+        "fulfillmentText": answer,
         "output_contexts": outputContexts
     }
 
@@ -178,6 +174,8 @@ async def webhook( request: Request):
     print("----------->")
 
     request_JSON = await request.json()
+
+    print(request_JSON)
 
     intent = request_JSON["queryResult"]["intent"]["displayName"]
 
