@@ -174,7 +174,7 @@ def setURL(request: ServerURL):
     return "URL fijada correctamente"
 
 @app.post("/webhook")
-def webhook( request: Request):
+async def webhook( request: Request):
     print("----------->")
 
     request_JSON = request.json()
