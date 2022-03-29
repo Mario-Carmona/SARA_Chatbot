@@ -59,7 +59,8 @@ async def webhook(request: Request):
         answer = requests.get(url)
         print(answer)
         
-        """
+
+        
         outputContexts = query_result.get("outputContexts")
         name = outputContexts[0].get("name")
         session_id = req.get("responseId")
@@ -75,7 +76,6 @@ async def webhook(request: Request):
                 }
             ]
         }
-        """
     elif intent == "Talk":
         url = config["inference_url"]
         question = query_result.get("queryText")
