@@ -9,7 +9,6 @@ import os
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 from dataclasses import dataclass, field
-from dacite import from_dict
 
 from fastapi import FastAPI, Body, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
