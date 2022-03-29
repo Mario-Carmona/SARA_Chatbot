@@ -177,7 +177,7 @@ def setURL(request: ServerURL):
 async def webhook( request: Request):
     print("----------->")
 
-    request_JSON = request.json()
+    request_JSON = await request.json()
 
     intent = request_JSON["queryResult"]["intent"]["displayName"]
 
