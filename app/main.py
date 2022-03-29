@@ -66,9 +66,9 @@ async def make_response_deduct_talk(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if(not "edad" in outputContexts[0].get("parameters").keys()):
-        return make_response_deduct(request)
+        return await make_response_deduct(request)
     else:
-        return make_response_talk(request)
+        return await make_response_talk(request)
 
 async def make_response_deduct(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
