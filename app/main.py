@@ -94,7 +94,7 @@ class QueryResult(BaseModel):
 
 
 @app.post("/webhook")
-async def webhook( responseId: str, queryResult: QueryResult = Body(..., embed=True)):
+async def webhook( responseId: str, queryResult: QueryResult = Body(...)):
     print("----------->")
     
     print(responseId)
