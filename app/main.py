@@ -6,14 +6,14 @@ from time import time
 import requests
 import os
 from pathlib import Path
+from typing import Dict, Any, List
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Body, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
-
-from google.cloud.dialogflow_v2.types import WebhookRequest, WebhookResponse
+from pydantic import BaseModel
 
 
 BASE_PATH = Path(__file__).resolve().parent
@@ -25,6 +25,21 @@ HOST = os.environ.get("HOST", config["host"])
 PORT = eval(os.environ.get("PORT", config["port"]))
 global SERVER_GPU_URL
 SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 app = FastAPI(version="1.0.0")
@@ -64,8 +79,26 @@ def setURL(url: str):
     SERVER_GPU_URL = url
     return "URL fijada correctamente."
 
-@app.post("/webhook", response_class=WebhookResponse)
-async def webhook(request: WebhookRequest):
+
+class Intent(BaseModel):
+    displayName: str
+
+class Context(BaseModel):
+    name: str
+    lifespanCount: int
+    parameters: Dict[str, Any]
+
+class QueryResult(BaseModel):
+    intent: Intent
+    outputContexts: List[Context]
+
+class WebhookRequest(BaseModel):
+    responseId: str
+    queryResult: QueryResult
+
+
+@app.post("/webhook")
+async def webhook( request: WebhookRequest = Body(..., embed=True)):
     print("----------->")
     
     print(request)
@@ -164,11 +197,9 @@ async def webhook(request: WebhookRequest):
     }
     """
 
-    webhookResponse = WebhookResponse(
-        **{"fulfillmentText": "Sure thing! Let me pull up some restaurants."}
-    )
-
-    return webhookResponse
+    return {
+        "fulfillmentText": "Sure thing! Let me pull up some restaurants."
+    }
 
 
 
