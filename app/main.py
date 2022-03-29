@@ -120,6 +120,8 @@ def make_response_goodbye(request: Dict):
 
     answer = "Adios"
 
+    print(outputContexts[0]["parameters"])
+
     context = outputContexts[0]["parameters"]["context"]
 
     outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
