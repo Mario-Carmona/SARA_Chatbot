@@ -64,6 +64,8 @@ def setURL(url: str):
 
 @app.post("/webhook")
 async def webhook(request: Request):
+    print("----------->")
+    
     req = await request.json()
     
     query_result = req.get("queryResult")
