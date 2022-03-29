@@ -38,8 +38,6 @@ async def home():
 @app.post("/Adulto", response_class=PlainTextResponse)
 async def adulto(request: Entry):
 
-    print(request.entry)
-    
     return "Texto de prueba"
 
 
@@ -59,7 +57,7 @@ if __name__ == "__main__":
     url = config["controller_url"]
     headers = {'content-type': 'application/json'}
     response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
-    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + response)
+    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))
 
     nest_asyncio.apply()
 

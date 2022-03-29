@@ -44,7 +44,7 @@ async def make_response_welcome(request: Dict):
         }
         """
         headers = {'content-type': 'application/json'}
-        answer = requests.post(SERVER_GPU_URL + "/deduct", json=query_json, headers=headers)
+        answer = requests.post(SERVER_GPU_URL + "/deduct", json=query_json, headers=headers).content.decode('utf-8')
         """
         answer = "Hola"
 
@@ -101,6 +101,10 @@ async def make_response_talk(request: Dict):
     }
     headers = {'content-type': 'application/json'}
     answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
+
+    print(answer)
+    print(answer.content)
+    print(answer.content.decode('utf-8'))
 
     context = outputContexts[0]["parameters"]["context"]
 
