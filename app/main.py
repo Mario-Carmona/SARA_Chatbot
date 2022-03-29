@@ -69,6 +69,7 @@ async def webhook(request: Request):
 
     outputContexts = query_result.get("outputContexts")
     outputContexts2 = query_result.get("outputContexts")
+    outputContexts2[0] = "ALGO"
 
     if intent == "Welcome":
         POS_ID = 1
