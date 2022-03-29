@@ -95,6 +95,7 @@ async def webhook(request: Request):
                 "context": f"[A]: {entry}\n[B]: {answer}"
             }
             outputContexts[POS_CONTEXT] = context
+            print(outputContexts)
         else:
             outputContexts = []
             answer = "Servidor GPU no disponible"
