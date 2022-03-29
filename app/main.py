@@ -66,7 +66,10 @@ def setURL(url: str):
 async def webhook(request: Request):
     print("----------->")
     
+    
     req = await request.json()
+
+    print(req)
     
     query_result = req.get("queryResult")
     intent = query_result.get("intent").get("displayName")
@@ -142,6 +145,12 @@ async def webhook(request: Request):
 
 
     webhookResponse = {
+        "speech": answer,
+        "displayText": answer,
+        "contextOut": outputContexts
+    }
+    """
+    webhookResponse = {
         "fulfillmentMessages": [
             {
                 "text": {
@@ -153,6 +162,7 @@ async def webhook(request: Request):
         ],
         "outputContexts": outputContexts
     }
+    """
 
     return webhookResponse
 
