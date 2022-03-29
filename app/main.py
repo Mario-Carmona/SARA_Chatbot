@@ -21,6 +21,7 @@ with open(str(BASE_PATH/"config.json")) as file:
 
 HOST = os.environ.get("HOST", config["host"])
 PORT = eval(os.environ.get("PORT", config["port"]))
+global SERVER_GPU_URL
 SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 
@@ -57,6 +58,7 @@ def wakeup():
 
 @app.get("/setURL")
 def setURL(url: str):
+    global SERVER_GPU_URL
     SERVER_GPU_URL = url
     return "URL fijada correctamente."
 
