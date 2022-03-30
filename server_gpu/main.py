@@ -193,7 +193,7 @@ if infer_args.do_inference:
         os.system("nvidia-smi")
 
         prompt = "The Belgian national football team "
-        input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+        input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
 
         generated_ids = model.generate(input_ids)
         generated_text = tokenizer.decode(generated_ids[0])
