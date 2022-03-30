@@ -130,6 +130,8 @@ set_seed(training_args.seed)
 # Distributed training:
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
+
+"""
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     task_specific_params=generate_args
@@ -148,14 +150,16 @@ model = GPTJForCausalLM.from_pretrained(
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config
 )
-
+"""
 
 generator = pipeline(
     "conversational",
-    model=model,
-    tokenizer=tokenizer,
+    model=WORKDIR + model_args.model_name_or_path,
+    config=WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
+    tokenizer=WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
     framework="pt",
-    device=local_rank
+    device=local_rank,
+    use_fast=True
 )
 
 

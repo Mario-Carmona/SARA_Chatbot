@@ -10,6 +10,11 @@ class InferenceArguments:
             "help": ""
         }
     )
+    inference_dtype: str = field(
+        metadata={
+            "help": ""
+        }
+    )
     replace_method: str = field(
         metadata={
             "help": ""
