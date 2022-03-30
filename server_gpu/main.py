@@ -86,6 +86,8 @@ with open(WORKDIR + model_args.generate_args_path) as file:
 # Ruta donde instalar las extensiones de Pytorch
 os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
 
+os.environ["DEFAULT_NGROK_CONFIG_PATH"] = WORKDIR + "server_gpu/ngrok.yml"
+
 os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parallelism in tokenizers
 
 
