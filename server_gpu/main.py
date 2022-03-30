@@ -161,9 +161,10 @@ model = GPTJForCausalLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config,
-    torch_dtype=torch.float16,
-    device=local_rank  
+    torch_dtype=torch.float16
 )
+
+model.to(torch.device("cuda"))
 
 
 os.system("nvidia-smi")
