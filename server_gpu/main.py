@@ -189,10 +189,10 @@ def adulto(request: Entry):
 
     print(type(tokenizer("[B]: ", return_tensors="pt")))
     print(type(tokenizer("[B]: ", return_tensors="pt").input_ids))
-    print(tokenizer("[B]: ", return_tensors="pt").input_ids[0])
-    print(type(tokenizer("[B]: ", return_tensors="pt").input_ids[0]))
+    print(tokenizer("\n", return_tensors="pt").input_ids[0])
+    print(type(tokenizer("\n", return_tensors="pt").input_ids[0]))
 
-    aux = StoppingCriteriaList(tokenizer("\n[A]", return_tensors="pt").input_ids[0])
+    aux = StoppingCriteriaList(tokenizer("\n", return_tensors="pt").input_ids[0])
 
     generated_ids = model.generate(
         input_ids, 
