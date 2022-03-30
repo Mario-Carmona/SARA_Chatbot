@@ -168,6 +168,7 @@ os.system("nvidia-smi")
 
 if infer_args.do_inference:
     with torch.no_grad():
+        """
         generator.model = deepspeed.init_inference(
             generator.model,
             mp_size=world_size,
@@ -179,6 +180,7 @@ if infer_args.do_inference:
                 infer_args.quantize_groups
             )
         )
+        """
 
         conversation = Conversation()
 
