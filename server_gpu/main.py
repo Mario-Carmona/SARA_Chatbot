@@ -165,7 +165,7 @@ if infer_args.do_inference:
         generator.model = deepspeed.init_inference(
             generator.model,
             mp_size=world_size,
-            dtype=infer_args.inference_dtype,
+            dtype=torch.float16,
             replace_method=infer_args.replace_method,
             replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
         )
