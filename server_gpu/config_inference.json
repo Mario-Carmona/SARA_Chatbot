@@ -24,5 +24,7 @@
     "do_inference": true,
     "inference_dtype": "torch.float16",
     "replace_method": "auto",
-    "replace_with_kernel_inject": true
+    "replace_with_kernel_inject": true,
+    "quantize_groups": 8,
+    "mlp_exra_grouping": false
 }
