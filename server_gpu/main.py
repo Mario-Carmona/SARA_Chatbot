@@ -89,6 +89,8 @@ os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parallelism in tokenizers
 
 
+os.environ["HOME"] = WORKDIR
+
 """
 
 # distributed setup
@@ -205,13 +207,15 @@ async def home():
 
 @app.post("/Adulto", response_class=PlainTextResponse)
 async def adulto(request: Entry):
-
+    """
     conversation.add_user_input(request.entry)
 
     generator([conversation])
 
 
     return conversation.generated_responses[-1]
+    """
+    return "Prueba"
 
 
 
@@ -221,13 +225,6 @@ if __name__ == "__main__":
         config = json.load(file)
 
     port = eval(os.environ.get("PORT", config["port"]))
-
-    # Here we update the entire default config
-    pyngrok_config = conf.PyngrokConfig(ngrok_path=WORKDIR + "mcarmona/bin/ngrok")
-    conf.set_default(pyngrok_config)
-
-    # Here we update just one variable in the default config
-    conf.get_default().ngrok_path = WORKDIR + "mcarmona/bin/ngrok"
 
     pyngrok_config = conf.PyngrokConfig(
         ngrok_path=WORKDIR + "mcarmona/bin/ngrok",
