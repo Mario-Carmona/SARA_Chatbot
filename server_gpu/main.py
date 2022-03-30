@@ -55,7 +55,7 @@ class Entry(BaseModel):
     entry: str
 
 
-
+"""
 
 
 logger = logging.getLogger(__name__)
@@ -131,7 +131,6 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
-"""
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     task_specific_params=generate_args
@@ -150,7 +149,6 @@ model = GPTJForCausalLM.from_pretrained(
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config
 )
-"""
 
 generator = pipeline(
     "conversational",
@@ -168,7 +166,6 @@ os.system("nvidia-smi")
 
 if infer_args.do_inference:
     with torch.no_grad():
-        """
         generator.model = deepspeed.init_inference(
             generator.model,
             mp_size=world_size,
@@ -180,7 +177,6 @@ if infer_args.do_inference:
                 infer_args.quantize_groups
             )
         )
-        """
 
         conversation = Conversation()
 
@@ -188,7 +184,7 @@ if infer_args.do_inference:
 
 
 
-
+"""
 
 
 
@@ -223,6 +219,13 @@ if __name__ == "__main__":
         config = json.load(file)
 
     port = eval(os.environ.get("PORT", config["port"]))
+
+    # Here we update the entire default config
+    pyngrok_config = conf.PyngrokConfig(ngrok_path=WORKDIR + "mcarmona/bin/ngrok")
+    conf.set_default(pyngrok_config)
+
+    # Here we update just one variable in the default config
+    conf.get_default().ngrok_path = WORKDIR + "mcarmona/bin/ngrok"
 
     pyngrok_config = conf.PyngrokConfig(
         ngrok_path=WORKDIR + "mcarmona/bin/ngrok",
