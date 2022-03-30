@@ -192,7 +192,7 @@ def adulto(request: Entry):
     print(tokenizer("\n", return_tensors="pt").input_ids[0])
     print(type(tokenizer("\n", return_tensors="pt").input_ids[0]))
 
-    aux = StoppingCriteriaList(tokenizer("\n", return_tensors="pt").input_ids[0])
+    aux = StoppingCriteriaList(tokenizer("\n"))
 
     generated_ids = model.generate(
         input_ids, 
