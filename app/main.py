@@ -99,7 +99,7 @@ def make_response_talk(request: Dict):
     context = outputContexts[0]["parameters"]["context"]
 
     query_json = {
-        "entry": context + "\n[A]: " + entry + "\n[B]: ",
+        "entry": entry,
     }
     headers = {'content-type': 'application/json'}
     answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers).content.decode('utf-8')
