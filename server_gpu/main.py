@@ -141,7 +141,7 @@ tokenizer = AutoTokenizer.from_pretrained(
 
 
 model = GPTJForCausalLM.from_pretrained(
-    model_args.model_name_or_path,
+    WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config,
     revision=model_args.model_revision
