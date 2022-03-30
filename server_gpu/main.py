@@ -10,7 +10,7 @@ import uvicorn
 import os
 import requests
 from pathlib import Path
-from pyngrok import ngrok
+from pyngrok import ngrok, conf
 from pydantic import BaseModel
 
 
@@ -226,7 +226,9 @@ if __name__ == "__main__":
 
     port = eval(os.environ.get("PORT", config["port"]))
 
-    public_url = ngrok.connect(port).public_url
+    pyngrok_config = conf.PyngrokConfig(ngrok_path=WORKDIR + "server_gpu/ngrok.yml")
+
+    public_url = ngrok.connect(port, pyngrok_config=pyngrok_config).public_url
 
     print(bcolors.OK + "Public URL" + bcolors.RESET + ": " + public_url)
 
