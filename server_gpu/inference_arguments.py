@@ -25,12 +25,12 @@ class InferenceArguments:
             "help": ""
         }
     )
-    quantize_groups: int = field(
+    quantize_groups: Optional[int] = field(
         metadata={
             "help": ""
         }
     )
-    mlp_exra_grouping: bool = field(
+    mlp_exra_grouping: Optional[bool] = field(
         metadata={
             "help": ""
         }

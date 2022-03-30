@@ -27,7 +27,6 @@ import torch
 from project_arguments import ProyectArguments
 from model_arguments import ModelArguments
 from inference_arguments import InferenceArguments
-from data_training_arguments import DataTrainingArguments
 from transformers import TrainingArguments, HfArgumentParser
 
 
@@ -66,7 +65,6 @@ parser = HfArgumentParser(
     (
         ProyectArguments, 
         ModelArguments, 
-        DataTrainingArguments,
         InferenceArguments, 
         TrainingArguments
     )
