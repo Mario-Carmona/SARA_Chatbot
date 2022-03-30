@@ -161,7 +161,7 @@ model = deepspeed.init_inference(
     mp_size=world_size,
     dtype=torch.float16,
     replace_method=infer_args.replace_method,
-    replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
+    replace_with_kernel_inject=False,
 )
 
 os.system("nvidia-smi")
