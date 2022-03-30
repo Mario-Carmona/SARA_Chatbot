@@ -189,7 +189,7 @@ if infer_args.do_inference:
             )
         """
 
-        conversation = Conversation()
+        conversation = Conversation().to(torch.device("cuda"))
 
 
         conversation.add_user_input("¿Cómo es la película?")
