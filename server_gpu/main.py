@@ -134,7 +134,6 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
-"""
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     task_specific_params=generate_args
@@ -153,8 +152,17 @@ model = GPTJForCausalLM.from_pretrained(
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config
 )
-"""
 
+
+os.system("nvidia-smi")
+
+model = deepspeed.init_inference(
+    model,
+    mp_size=world_size,
+    dtype=torch.float16,
+    replace_method=infer_args.replace_method,
+    replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
+)
 
 os.system("nvidia-smi")
 
@@ -164,21 +172,19 @@ generator = pipeline(
     config=WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     tokenizer=WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
     framework="pt",
+    device=local_rank,
     use_fast=True
 )
 
 os.system("nvidia-smi")
 
 
+
+
+
 if infer_args.do_inference:
     with torch.no_grad():
-        generator.model = deepspeed.init_inference(
-            generator.model,
-            mp_size=world_size,
-            dtype=torch.float16,
-            replace_method=infer_args.replace_method,
-            replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
-        )
+        
 
         os.system("nvidia-smi")
 
