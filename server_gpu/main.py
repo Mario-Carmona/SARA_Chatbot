@@ -198,12 +198,11 @@ def adulto(request: Entry):
         top_p=1.0,
         max_time=3.0,
         
-        use_cache=True,
-        stopping_criteria=aux
+        use_cache=True
     )
     generated_text = tokenizer.decode(generated_ids[0])
 
-    print(generated_text.split("[B]: ")[-1])
+    print(generated_text)
 
     return generated_text.split("[B]: ")[-1]
 
