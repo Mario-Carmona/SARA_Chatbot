@@ -12,6 +12,7 @@ import requests
 from pathlib import Path
 from pyngrok import ngrok, conf
 from pydantic import BaseModel
+import nest_asyncio
 
 
 
@@ -90,6 +91,8 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parall
 
 
 os.environ["HOME"] = WORKDIR
+
+print(os.environ.get("HOME"))
 
 """
 
