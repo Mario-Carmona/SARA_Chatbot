@@ -132,8 +132,6 @@ set_seed(training_args.seed)
 # download model & vocab.
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
-    revision=model_args.model_revision,
-    torch_dtype=model_args.torch_dtype,
     task_specific_params=generate_args
 )
 
@@ -141,17 +139,14 @@ config = GPTJConfig.from_pretrained(
 tokenizer = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
     config=WORKDIR + model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
-    use_fast=True,
-    revision=model_args.model_revision
+    use_fast=True
 )
 
 
 model = GPTJForCausalLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
-    config=config,
-    revision=model_args.model_revision,
-    torch_dtype=model_args.model_torch_dtype
+    config=config
 )
 
 

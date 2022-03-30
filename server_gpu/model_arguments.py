@@ -26,16 +26,6 @@ class ModelArguments:
         default=None,
         metadata={"help": "Path to directory to store the pretrained models downloaded from huggingface.co"},
     )
-    model_revision: str = field(
-        default="main",
-        metadata={"help": "The specific model version to use (can be a branch name, tag name or commit id)."},
-    )
-    torch_dtype: str = field(
-        default="torch.float16",
-        metadata={
-            "help": ""
-        }
-    )
     generate_args_path: str = field(
         default=None,
         metadata={
