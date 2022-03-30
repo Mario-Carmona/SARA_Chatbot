@@ -233,10 +233,13 @@ if __name__ == "__main__":
 
     pyngrok_config = conf.PyngrokConfig(ngrok_path=WORKDIR + "server_gpu/ngrok.yml")
 
+    ngrok.update(pyngrok_config)
+
     public_url = ngrok.connect(
         port, 
         auth_token="25Pt1y3GT9JEnLudmofnYx6xvrS_2D2gZBpDpQGLhipQSfiHN",
-        region="eu"
+        region="eu",
+        pyngrok_config=pyngrok_config
     ).public_url
 
     print(bcolors.OK + "Public URL" + bcolors.RESET + ": " + public_url)
