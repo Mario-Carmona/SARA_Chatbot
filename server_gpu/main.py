@@ -134,6 +134,7 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
+"""
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     task_specific_params=generate_args
@@ -152,28 +153,26 @@ model = GPTJForCausalLM.from_pretrained(
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config
 )
+"""
 
 os.system("nvidia-smi")
 
-"""
 generator = pipeline(
     "conversational",
     model=WORKDIR + model_args.model_name_or_path,
     config=WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     tokenizer=WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
     framework="pt",
-    device=local_rank,
     use_fast=True
 )
 
-"""
 os.system("nvidia-smi")
 
 
 if infer_args.do_inference:
     with torch.no_grad():
-        model = deepspeed.init_inference(
-            model,
+        generator.model = deepspeed.init_inference(
+            generator.model,
             mp_size=world_size,
             dtype=torch.float16,
             replace_method=infer_args.replace_method,
@@ -189,6 +188,15 @@ if infer_args.do_inference:
         """
 
         conversation = Conversation()
+
+
+        conversation.add_user_input("¿Cómo es la película?")
+
+        generator([conversation])
+
+
+        print(conversation.generated_responses[-1])
+
 
         os.system("nvidia-smi")
 
