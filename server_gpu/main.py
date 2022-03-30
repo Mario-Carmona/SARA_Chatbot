@@ -201,11 +201,11 @@ app = FastAPI(version="1.0.0")
 BASE_PATH = Path(__file__).resolve().parent
 
 @app.get("/", response_class=PlainTextResponse)
-async def home():
+def home():
     return "Server GPU ON"
 
 @app.post("/Adulto", response_class=PlainTextResponse)
-async def adulto(request: Entry):
+def adulto(request: Entry):
     """
     conversation.add_user_input(request.entry)
 
