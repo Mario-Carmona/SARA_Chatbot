@@ -194,11 +194,9 @@ def adulto(request: Entry):
     generated_ids = model.generate(
         input_ids, 
         do_sample=True,
-        temperature=0.1,
+        temperature=1.0,
         top_p=1.0,
-        max_time=3.0,
-        
-        use_cache=True
+        max_time=3.0
     )
     generated_text = tokenizer.decode(generated_ids[0])
 
