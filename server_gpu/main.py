@@ -195,7 +195,6 @@ if infer_args.do_inference:
 
 
 
-
 app = FastAPI(version="1.0.0")
 
 BASE_PATH = Path(__file__).resolve().parent
