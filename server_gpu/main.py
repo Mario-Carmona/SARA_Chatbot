@@ -135,8 +135,7 @@ set_seed(training_args.seed)
 # download model & vocab.
 
 config = GPTJConfig.from_pretrained(
-    WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
-    task_specific_params=generate_args
+    WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path
 )
 
 
@@ -151,7 +150,7 @@ model = GPTJForCausalLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config,
-    dtype=torch.float16
+    torch_dtype=torch.float16
 )
 
 os.system("nvidia-smi")
@@ -195,7 +194,6 @@ if infer_args.do_inference:
         
         """
 
-        """
         conversation = Conversation()
 
 
@@ -205,7 +203,6 @@ if infer_args.do_inference:
 
 
         print(conversation.generated_responses[-1])
-        """
 
 
         os.system("nvidia-smi")
