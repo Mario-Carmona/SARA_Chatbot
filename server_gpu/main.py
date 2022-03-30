@@ -163,15 +163,21 @@ generator = pipeline(
 )
 
 
+os.system("nvidia-smi")
+
 
 if infer_args.do_inference:
     with torch.no_grad():
         generator.model = deepspeed.init_inference(
             generator.model,
             mp_size=world_size,
-            dtype=torch.float16,
+            dtype=torch.int8,
             replace_method=infer_args.replace_method,
             replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
+            quantization_setting=(
+                infer_args.mlp_exra_grouping,
+                infer_args.quantize_groups
+            )
         )
 
         conversation = Conversation()
