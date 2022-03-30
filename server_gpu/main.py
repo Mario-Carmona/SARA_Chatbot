@@ -204,6 +204,7 @@ def adulto(request: Entry):
 
     print(generated_text)
 
+
     return generated_text.split("[B]: ")[-1]
 
 
