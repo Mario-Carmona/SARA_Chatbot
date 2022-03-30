@@ -153,7 +153,6 @@ model = GPTJForCausalLM.from_pretrained(
     config=config
 )
 
-model.to(torch.device("cuda"))
 
 os.system("nvidia-smi")
 
@@ -179,10 +178,7 @@ if infer_args.do_inference:
             dtype=torch.int8,
             replace_method=infer_args.replace_method,
             replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
-            quantization_setting=(
-                infer_args.mlp_exra_grouping,
-                infer_args.quantize_groups
-            )
+            quantization_setting=8
         )
 
         os.system("nvidia-smi")
