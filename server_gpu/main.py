@@ -55,7 +55,7 @@ class Entry(BaseModel):
     entry: str
 
 
-"""
+
 
 
 logger = logging.getLogger(__name__)
@@ -88,6 +88,8 @@ os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parallelism in tokenizers
 
+
+"""
 
 # distributed setup
 local_rank = int(os.getenv("LOCAL_RANK", "0"))
