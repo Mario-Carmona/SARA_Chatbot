@@ -155,7 +155,6 @@ generator = pipeline(
     model=model,
     tokenizer=tokenizer,
     framework="pt",
-    task="",
     device=local_rank
 )
 
