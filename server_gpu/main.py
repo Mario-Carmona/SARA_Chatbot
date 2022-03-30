@@ -194,7 +194,7 @@ def adulto(request: Entry):
     generated_ids = model.generate(
         input_ids, 
         do_sample=True,
-        temperature=0.0,
+        temperature=0.1,
         top_p=1.0,
         max_time=3.0,
         
