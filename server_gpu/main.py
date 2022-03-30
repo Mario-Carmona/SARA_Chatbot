@@ -153,8 +153,11 @@ model = GPTJForCausalLM.from_pretrained(
     torch_dtype=torch.float16
 )
 
+model.to(torch.device("cuda"))
+
 os.system("nvidia-smi")
 
+"""
 generator = pipeline(
     "conversational",
     model=model,
@@ -164,6 +167,7 @@ generator = pipeline(
     use_fast=True,
     device=local_rank
 )
+"""
 
 
 os.system("nvidia-smi")
@@ -194,6 +198,7 @@ if infer_args.do_inference:
         
         """
 
+        """
         conversation = Conversation()
 
 
@@ -203,18 +208,16 @@ if infer_args.do_inference:
 
 
         print(conversation.generated_responses[-1])
-
+        """
 
         os.system("nvidia-smi")
 
-        """
-        prompt = "The Belgian national football team "
+        prompt = "La pelicula del otro día era "
         input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
 
         generated_ids = model.generate(input_ids)
         generated_text = tokenizer.decode(generated_ids[0])
         print(generated_text)
-        """
 
 """
 
