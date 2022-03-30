@@ -146,8 +146,7 @@ config = GPTJConfig.from_pretrained(
             "max_new_tokens": 200,
             "use_cache": True
         }
-    },
-    torch_dtype=torch.float16
+    }
 )
 
 
@@ -161,7 +160,9 @@ tokenizer = AutoTokenizer.from_pretrained(
 model = GPTJForCausalLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
-    config=config
+    config=config,
+    torch_dtype=torch.float16,
+    device=local_rank  
 )
 
 
@@ -171,7 +172,7 @@ generator = ConversationalPipeline(
     model=model,
     tokenizer=tokenizer,
     framework="pt",
-    device=local_rank    
+      
 )
 
 
@@ -179,7 +180,6 @@ conversation = Conversation()
 
 os.system("nvidia-smi")
 
-generator([conversation])
 
 
 
@@ -199,6 +199,8 @@ def home():
 def adulto(request: Entry):
 
     conversation.add_user_input(request.entry)
+
+    generator([conversation])
 
     print(conversation.generated_responses[-1])
 
