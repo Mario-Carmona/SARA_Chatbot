@@ -12,7 +12,6 @@ import requests
 from pathlib import Path
 from pyngrok import ngrok, conf
 from pydantic import BaseModel
-import nest_asyncio
 
 
 
@@ -242,6 +241,6 @@ if __name__ == "__main__":
     response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
     print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))
 
-    nest_asyncio.apply()
+    # killall ngrok  → Para eliminar todas las sessiones de ngrok
 
     uvicorn.run(app, port=port)
