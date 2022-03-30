@@ -155,24 +155,9 @@ model = GPTJForCausalLM.from_pretrained(
 
 model.to(torch.device("cuda"))
 
-os.system("nvidia-smi")
-
-"""
-generator = pipeline(
-    "conversational",
-    model=model,
-    config=config,
-    tokenizer=tokenizer,
-    framework="pt",
-    use_fast=True,
-    device=local_rank
-)
-"""
-
 
 os.system("nvidia-smi")
 
-"""
 model = deepspeed.init_inference(
     model,
     mp_size=world_size,
@@ -180,7 +165,6 @@ model = deepspeed.init_inference(
     replace_method=infer_args.replace_method,
     replace_with_kernel_inject=infer_args.replace_with_kernel_inject
 )
-"""
 
 os.system("nvidia-smi")
 
@@ -194,28 +178,12 @@ if infer_args.do_inference:
 
         os.system("nvidia-smi")
 
-        """
-        
-        """
-
-        """
-        conversation = Conversation()
-
-
-        conversation.add_user_input("¿Cómo es la película?")
-
-        generator([conversation])
-
-
-        print(conversation.generated_responses[-1])
-        """
-
-        os.system("nvidia-smi")
-
-        prompt = "La pelicula del otro día era "
+        prompt = """Conversación entre [A] y [B]
+        [A]: ¿Qué te parece la película?
+        [B]: La pelicula era """
         input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
 
-        generated_ids = model.generate(input_ids)
+        generated_ids = model.generate(input_ids, max_new_tokens=64)
         generated_text = tokenizer.decode(generated_ids[0])
         print(generated_text)
 
