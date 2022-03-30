@@ -189,6 +189,7 @@ def adulto(request: Entry):
 
     print(type(tokenizer("[B]: ", return_tensors="pt")))
     print(type(tokenizer("[B]: ", return_tensors="pt").input_ids))
+    print(type(tokenizer("[B]: ", return_tensors="pt").input_ids[0]))
 
     aux = StoppingCriteriaList(tokenizer("[A]", return_tensors="pt").input_ids)
 
@@ -204,7 +205,6 @@ def adulto(request: Entry):
     generated_text = tokenizer.decode(generated_ids[0])
 
     print(generated_text)
-    
 
 
     return generated_text.split("[B]: ")[-1]
