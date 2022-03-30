@@ -175,7 +175,7 @@ if infer_args.do_inference:
         model = deepspeed.init_inference(
             model,
             mp_size=world_size,
-            dtype=torch.int8,
+            dtype=torch.float16,
             replace_method=infer_args.replace_method,
             replace_with_kernel_inject=infer_args.replace_with_kernel_inject
             
@@ -191,6 +191,13 @@ if infer_args.do_inference:
         conversation = Conversation()
 
         os.system("nvidia-smi")
+
+        prompt = "The Belgian national football team "
+        input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+
+        generated_ids = model.generate(input_ids)
+        generated_text = tokenizer.decode(generated_ids[0])
+        print(generated_text)
 
 """
 
