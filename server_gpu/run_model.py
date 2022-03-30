@@ -44,14 +44,13 @@ def main():
         (
             ProyectArguments, 
             ModelArguments, 
-            DataTrainingArguments,
             InferenceArguments, 
             TrainingArguments
         )
     )
     
 
-    project_args, model_args, data_args, infer_args, training_args = parser.parse_json_file(json_file=args.config)
+    project_args, model_args, infer_args, training_args = parser.parse_json_file(json_file=args.config)
 
 
     WORKDIR = project_args.workdir

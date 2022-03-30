@@ -17,6 +17,34 @@ from pydantic import BaseModel
 
 
 
+
+import sys
+import time
+import argparse
+import logging
+
+import torch
+
+from project_arguments import ProyectArguments
+from model_arguments import ModelArguments
+from inference_arguments import InferenceArguments
+from data_training_arguments import DataTrainingArguments
+from transformers import TrainingArguments, HfArgumentParser
+
+
+
+from datasets import load_dataset, load_metric
+
+from transformers import set_seed
+from transformers.trainer_utils import is_main_process
+from transformers import AutoTokenizer, GPTJConfig, GPTJForCausalLM, ConversationalPipeline, Conversation
+
+import deepspeed
+
+
+
+
+
 class bcolors:
     OK = '\033[92m' #GREEN
     WARNING = '\033[93m' #YELLOW
@@ -25,6 +53,142 @@ class bcolors:
 
 class Entry(BaseModel):
     entry: str
+
+
+
+
+
+logger = logging.getLogger(__name__)
+
+
+parserScript = argparse.ArgumentParser()
+parserScript.add_argument(
+    "--config",
+    help=""
+)
+args = parserScript.parse_args()
+
+
+parser = HfArgumentParser(
+    (
+        ProyectArguments, 
+        ModelArguments, 
+        DataTrainingArguments,
+        InferenceArguments, 
+        TrainingArguments
+    )
+)
+
+
+project_args, model_args, infer_args, training_args = parser.parse_json_file(json_file=args.config)
+
+
+WORKDIR = project_args.workdir
+
+
+with open(WORKDIR + model_args.generate_args_path) as file:
+    generate_args = json.load(file)
+
+
+# Ruta donde instalar las extensiones de Pytorch
+os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
+
+
+# distributed setup
+local_rank = int(os.getenv("LOCAL_RANK", "0"))
+world_size = int(os.getenv("WORLD_SIZE", "1"))
+
+
+# Setup logging
+logging.basicConfig(
+    format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
+    datefmt="%m/%d/%Y %H:%M:%S",
+)
+logger.setLevel(logging.INFO if is_main_process(training_args.local_rank) else logging.WARN)
+
+
+
+# Log on each process the small summary:
+logger.warning(
+    f"Process rank: {training_args.local_rank}, device: {training_args.device}, n_gpu: {training_args.n_gpu}"
+    + f"distributed training: {bool(training_args.local_rank != -1)}, 16-bits training: {training_args.fp16}"
+)
+# Set the verbosity to info of the Transformers logger (on main process only):
+if is_main_process(training_args.local_rank):
+    transformers.utils.logging.set_verbosity_info()
+logger.info("Training/evaluation parameters %s", training_args)
+
+
+
+ # Set seed before initializing model.
+
+set_seed(training_args.seed)
+
+
+
+# Load pretrained model and tokenizer
+#
+# Distributed training:
+# The .from_pretrained methods guarantee that only one local process can concurrently
+# download model & vocab.
+config = GPTJConfig.from_pretrained(
+    WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
+    revision=model_args.model_revision,
+    torch_dtype=model_args.torch_dtype,
+    task_specific_params=generate_args
+)
+
+
+tokenizer = AutoTokenizer.from_pretrained(
+    WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
+    config=WORKDIR + model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
+    use_fast=True,
+    revision=model_args.model_revision,
+)
+
+
+model = GPTJForCausalLM.from_pretrained(
+    model_args.model_name_or_path,
+    from_tf=bool(".ckpt" in model_args.model_name_or_path),
+    config=config,
+    revision=model_args.model_revision,
+    torch_dtype=model_args.model_torch_dtype
+)
+
+
+generator = ConversationalPipeline(
+    model=model,
+    tokenizer=tokenizer,
+    framework="pt",
+    task="",
+    device=local_rank
+)
+
+
+
+if infer_args.do_inference:
+    with torch.no_grad():
+        generator.model = deepspeed.init_inference(
+            generator.model,
+            mp_size=world_size,
+            dtype=infer_args.inference_dtype,
+            replace_method=infer_args.replace_method,
+            replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
+        )
+
+        conversation = Conversation()
+
+        os.system("nvidia-smi")
+
+
+
+
+
+
+
+
+
+
 
 
 app = FastAPI(version="1.0.0")
@@ -38,7 +202,12 @@ async def home():
 @app.post("/Adulto", response_class=PlainTextResponse)
 async def adulto(request: Entry):
 
-    return "Texto de prueba"
+    conversation.add_user_input(request.entry)
+
+    generator([conversation])
+
+
+    return conversation.generated_responses[-1]
 
 
 
