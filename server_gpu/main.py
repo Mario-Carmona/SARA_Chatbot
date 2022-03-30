@@ -89,7 +89,6 @@ os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parallelism in tokenizers
 
 
-"""
 
 # distributed setup
 local_rank = int(os.getenv("LOCAL_RANK", "0"))
@@ -133,6 +132,7 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
+"""
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     task_specific_params=generate_args
@@ -151,6 +151,7 @@ model = GPTJForCausalLM.from_pretrained(
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config
 )
+"""
 
 generator = pipeline(
     "conversational",
@@ -168,6 +169,7 @@ os.system("nvidia-smi")
 
 if infer_args.do_inference:
     with torch.no_grad():
+        """
         generator.model = deepspeed.init_inference(
             generator.model,
             mp_size=world_size,
@@ -179,6 +181,7 @@ if infer_args.do_inference:
                 infer_args.quantize_groups
             )
         )
+        """
 
         conversation = Conversation()
 
@@ -186,7 +189,7 @@ if infer_args.do_inference:
 
 
 
-"""
+
 
 
 
@@ -204,15 +207,13 @@ def home():
 
 @app.post("/Adulto", response_class=PlainTextResponse)
 def adulto(request: Entry):
-    """
+
     conversation.add_user_input(request.entry)
 
     generator([conversation])
 
 
     return conversation.generated_responses[-1]
-    """
-    return "Prueba"
 
 
 
