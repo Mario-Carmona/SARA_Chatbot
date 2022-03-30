@@ -30,12 +30,6 @@ class ModelArguments:
         default="main",
         metadata={"help": "The specific model version to use (can be a branch name, tag name or commit id)."},
     )
-    torch_dtype: str = field(
-        default="torch.float16",
-        metadata={
-            "help": ""
-        }
-    )
     generate_args_path: str = field(
         default=None,
         metadata={

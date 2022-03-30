@@ -39,6 +39,8 @@ from transformers import AutoTokenizer, GPTJConfig, GPTJForCausalLM, Conversatio
 
 import deepspeed
 
+import transformers
+
 
 
 
@@ -142,8 +144,7 @@ model = GPTJForCausalLM.from_pretrained(
     model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config,
-    revision=model_args.model_revision,
-    torch_dtype=model_args.model_torch_dtype
+    revision=model_args.model_revision
 )
 
 

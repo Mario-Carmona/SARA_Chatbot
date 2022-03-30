@@ -11,7 +11,6 @@
     "tokenizer_name": "EleutherAI/gpt-j-6B",
     "tokenizer_config_name": "EleutherAI/gpt-j-6B/tokenizer_config.json",
     "model_revision": "float16",
-    "torch_dtype": "torch.float16",
     "generate_args_path": "server_gpu/generate_config.json",
     "output_dir": "./",
 
