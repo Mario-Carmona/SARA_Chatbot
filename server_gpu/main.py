@@ -134,7 +134,6 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
-"""
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
     task_specific_params=generate_args
@@ -153,10 +152,10 @@ model = GPTJForCausalLM.from_pretrained(
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config
 )
-"""
 
 os.system("nvidia-smi")
 
+"""
 generator = pipeline(
     "conversational",
     model=WORKDIR + model_args.model_name_or_path,
@@ -165,30 +164,32 @@ generator = pipeline(
     framework="pt",
     use_fast=True
 )
+"""
 
 os.system("nvidia-smi")
 
 
 if infer_args.do_inference:
     with torch.no_grad():
-        generator.model = deepspeed.init_inference(
-            generator.model,
+        model = deepspeed.init_inference(
+            model,
             mp_size=world_size,
             dtype=torch.float16,
             replace_method=infer_args.replace_method,
-            replace_with_kernel_inject=infer_args.replace_with_kernel_inject
-            
+            replace_with_kernel_inject=infer_args.replace_with_kernel_inject,
+            quantization_setting=(
+                infer_args.mlp_exra_grouping,
+                infer_args.quantize_groups
+            )
         )
 
         os.system("nvidia-smi")
 
         """
-        quantization_setting=(
-                infer_args.mlp_exra_grouping,
-                infer_args.quantize_groups
-            )
+        
         """
 
+        """
         conversation = Conversation().to(torch.device("cuda"))
 
 
@@ -199,17 +200,17 @@ if infer_args.do_inference:
 
         print(conversation.generated_responses[-1])
 
+        """
+
 
         os.system("nvidia-smi")
 
-        """
         prompt = "The Belgian national football team "
         input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
 
         generated_ids = model.generate(input_ids)
         generated_text = tokenizer.decode(generated_ids[0])
         print(generated_text)
-        """
 
 """
 
