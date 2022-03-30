@@ -196,7 +196,9 @@ def adulto(request: Entry):
         do_sample=True,
         temperature=1.0,
         top_p=1.0,
-        max_time=3.0
+        max_time=3.0,
+        max_new_tokens=200,
+        use_cache=True
     )
     generated_text = tokenizer.decode(generated_ids[0])
 
