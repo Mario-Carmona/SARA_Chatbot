@@ -35,7 +35,7 @@ from datasets import load_dataset, load_metric
 
 from transformers import set_seed
 from transformers.trainer_utils import is_main_process
-from transformers import AutoTokenizer, GPTJConfig, GPTJForCausalLM, ConversationalPipeline, Conversation
+from transformers import AutoTokenizer, GPTJConfig, GPTJForCausalLM, pipeline, Conversation
 
 import deepspeed
 
@@ -86,10 +86,16 @@ with open(WORKDIR + model_args.generate_args_path) as file:
 # Ruta donde instalar las extensiones de Pytorch
 os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parallelism in tokenizers
+
 
 # distributed setup
 local_rank = int(os.getenv("LOCAL_RANK", "0"))
 world_size = int(os.getenv("WORLD_SIZE", "1"))
+
+
+torch.cuda.set_device(local_rank)
+deepspeed.init_distributed()
 
 
 # Setup logging
@@ -136,7 +142,7 @@ tokenizer = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
     config=WORKDIR + model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
     use_fast=True,
-    revision=model_args.model_revision,
+    revision=model_args.model_revision
 )
 
 
@@ -144,11 +150,13 @@ model = GPTJForCausalLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config,
-    revision=model_args.model_revision
+    revision=model_args.model_revision,
+    torch_dtype=model_args.model_torch_dtype
 )
 
 
-generator = ConversationalPipeline(
+generator = pipeline(
+    "conversational",
     model=model,
     tokenizer=tokenizer,
     framework="pt",
