@@ -175,9 +175,7 @@ if infer_args.do_inference:
 
         os.system("nvidia-smi")
 
-        prompt = """Conversación entre [A] y [B]
-        [A]: ¿Qué te parece la película?
-        [B]: La pelicula era """
+        prompt = """Conversación entre [A] y [B]\n[A]: ¿Qué te parece la película?\n[B]: La pelicula era """
         input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
 
         generated_ids = model.generate(input_ids, max_new_tokens=64)
