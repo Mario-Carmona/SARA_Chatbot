@@ -36,7 +36,7 @@ from datasets import load_dataset, load_metric
 
 from transformers import set_seed
 from transformers.trainer_utils import is_main_process
-from transformers import AutoTokenizer, GPTJConfig, GPTJForCausalLM, pipeline, Conversation
+from transformers import AutoTokenizer, GPTJConfig, GPTJForCausalLM, ConversationalPipeline, Conversation
 
 import deepspeed
 
@@ -136,7 +136,18 @@ set_seed(training_args.seed)
 # download model & vocab.
 
 config = GPTJConfig.from_pretrained(
-    WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path
+    WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
+    task_specific_params={
+        "conversational": {
+            "do_sample": True,
+            "temperature": 1.0,
+            "top_p": 1.0,
+            "max_time": 3.0,
+            "max_new_tokens": 200,
+            "use_cache": True
+        }
+    },
+    torch_dtype=torch.float16
 )
 
 
@@ -156,17 +167,19 @@ model = GPTJForCausalLM.from_pretrained(
 
 os.system("nvidia-smi")
 
-model = deepspeed.init_inference(
-    model,
-    mp_size=world_size,
-    dtype=torch.float16,
-    replace_method=infer_args.replace_method,
-    replace_with_kernel_inject=infer_args.replace_with_kernel_inject
+generator = ConversationalPipeline(
+    model=model,
+    tokenizer=tokenizer,
+    framework="pt",
+    device=local_rank    
 )
+
+
+conversation = Conversation()
 
 os.system("nvidia-smi")
 
-
+generator([conversation])
 
 
 
@@ -185,31 +198,12 @@ def home():
 @app.post("/Adulto", response_class=PlainTextResponse)
 def adulto(request: Entry):
 
-    input_ids = tokenizer(request.entry, return_tensors="pt").input_ids.to(torch.device("cuda"))
+    conversation.add_user_input(request.entry)
 
-    print(type(tokenizer("[B]: ", return_tensors="pt")))
-    print(type(tokenizer("[B]: ", return_tensors="pt").input_ids))
-    print(tokenizer("\n", return_tensors="pt").input_ids[0])
-    print(type(tokenizer("\n", return_tensors="pt").input_ids[0]))
-
-    aux = StoppingCriteriaList(tokenizer("\n", return_tensors="pt").input_ids[0])
-
-    generated_ids = model.generate(
-        input_ids, 
-        do_sample=True,
-        temperature=1.0,
-        top_p=1.0,
-        max_time=3.0,
-        max_new_tokens=200,
-        use_cache=True,
-        stopping_criteria=aux
-    )
-    generated_text = tokenizer.decode(generated_ids[0])
-
-    print(generated_text)
+    print(conversation.generated_responses[-1])
 
 
-    return generated_text.split("[B]: ")[-1]
+    return conversation.generated_responses[-1]
 
 
 
