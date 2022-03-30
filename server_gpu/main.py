@@ -187,7 +187,8 @@ def adulto(request: Entry):
 
     input_ids = tokenizer(request.entry, return_tensors="pt").input_ids.to(torch.device("cuda"))
 
-    print(tokenizer("[B]: ", return_tensors="pt").input_ids)
+    print(type(tokenizer("[B]: ", return_tensors="pt")))
+    print(type(tokenizer("[B]: ", return_tensors="pt").input_ids))
 
     aux = StoppingCriteriaList(tokenizer("[A]", return_tensors="pt").input_ids)
 
@@ -203,6 +204,7 @@ def adulto(request: Entry):
     generated_text = tokenizer.decode(generated_ids[0])
 
     print(generated_text)
+    
 
 
     return generated_text.split("[B]: ")[-1]
