@@ -28,6 +28,7 @@ from project_arguments import ProyectArguments
 from model_arguments import ModelArguments
 from inference_arguments import InferenceArguments
 from transformers import TrainingArguments, HfArgumentParser
+from transformers import StoppingCriteriaList
 
 
 
@@ -169,29 +170,9 @@ os.system("nvidia-smi")
 
 
 
-if infer_args.do_inference:
-    with torch.no_grad():
-        
-
-        os.system("nvidia-smi")
-
-        prompt = """Conversación entre [A] y [B]\n[A]: ¿Qué te parece la película?\n[B]: La pelicula era """
-        input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
-
-        generated_ids = model.generate(input_ids, max_new_tokens=64)
-        generated_text = tokenizer.decode(generated_ids[0])
-        print(generated_text)
-
-"""
-
-"""
 
 
 
-
-
-
-"""
 
 app = FastAPI(version="1.0.0")
 
@@ -204,12 +185,27 @@ def home():
 @app.post("/Adulto", response_class=PlainTextResponse)
 def adulto(request: Entry):
 
-    conversation.add_user_input(request.entry)
+    input_ids = tokenizer(request.entry, return_tensors="pt").input_ids.to(torch.device("cuda"))
 
-    generator([conversation])
+    print(tokenizer("[B]: ", return_tensors="pt").input_ids)
 
+    aux = StoppingCriteriaList(tokenizer("[A]", return_tensors="pt").input_ids)
 
-    return conversation.generated_responses[-1]
+    generated_ids = model.generate(
+        input_ids, 
+        do_sample=True,
+        temperature=0.0,
+        top_p=1.0,
+        max_time=3.0,
+        
+        use_cache=True,
+        stopping_criteria=aux
+    )
+    generated_text = tokenizer.decode(generated_ids[0])
+
+    print(generated_text.split("[B]: ")[-1])
+
+    return generated_text.split("[B]: ")[-1]
 
 
 
@@ -241,5 +237,3 @@ if __name__ == "__main__":
     # killall ngrok  → Para eliminar todas las sessiones de ngrok
 
     uvicorn.run(app, port=port)
-
-"""

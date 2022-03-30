@@ -49,7 +49,7 @@ def make_response_welcome(request: Dict):
         answer = "Hola"
 
         outputContexts[0]["parameters"] = {
-            "context": f"[A]: {entry}\n[B]: {answer}"
+            "context": f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: {answer}"
         }
     else:
         outputContexts = []
@@ -96,13 +96,13 @@ def make_response_talk(request: Dict):
 
     edad = outputContexts[0]["parameters"]["edad"]
 
+    context = outputContexts[0]["parameters"]["context"]
+
     query_json = {
-        "entry": entry,
+        "entry": context + "\n[A]: " + entry + "\n[B]: ",
     }
     headers = {'content-type': 'application/json'}
     answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers).content.decode('utf-8')
-
-    context = outputContexts[0]["parameters"]["context"]
 
     outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
 
