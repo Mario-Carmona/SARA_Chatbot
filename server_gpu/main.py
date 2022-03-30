@@ -224,6 +224,13 @@ if __name__ == "__main__":
 
     port = eval(os.environ.get("PORT", config["port"]))
 
+    # Here we update the entire default config
+    pyngrok_config = conf.PyngrokConfig(ngrok_path=WORKDIR + "server_gpu/ngrok.yml")
+    conf.set_default(pyngrok_config)
+
+    # Here we update just one variable in the default config
+    conf.get_default().ngrok_path = WORKDIR + "server_gpu/ngrok.yml"
+
     pyngrok_config = conf.PyngrokConfig(ngrok_path=WORKDIR + "server_gpu/ngrok.yml")
 
     public_url = ngrok.connect(
