@@ -11,7 +11,6 @@ import os
 import requests
 from pathlib import Path
 from pyngrok import ngrok
-import nest_asyncio
 from pydantic import BaseModel
 
 
@@ -61,12 +60,6 @@ class Entry(BaseModel):
 logger = logging.getLogger(__name__)
 
 
-parserScript = argparse.ArgumentParser()
-parserScript.add_argument(
-    "--config",
-    help=""
-)
-args = parserScript.parse_args()
 
 
 parser = HfArgumentParser(
@@ -80,7 +73,7 @@ parser = HfArgumentParser(
 )
 
 
-project_args, model_args, infer_args, training_args = parser.parse_json_file(json_file=args.config)
+project_args, model_args, infer_args, training_args = parser.parse_json_file(json_file="config_inference.json")
 
 
 WORKDIR = project_args.workdir
