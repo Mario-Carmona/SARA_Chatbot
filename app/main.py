@@ -8,18 +8,20 @@ from pathlib import Path
 from typing import Dict
 import requests
 
+from pydantic import BaseModel
+
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
-from pydantic import BaseModel
+
 
 
 BASE_PATH = str(Path(__file__).resolve().parent)
 
 with open(BASE_PATH + "/config.json") as file:
-        config = json.load(file)
+    config = json.load(file)
 
 HOST = os.environ.get("HOST", config["host"])
 PORT = eval(os.environ.get("PORT", config["port"]))
@@ -63,8 +65,6 @@ def make_response_welcome(request: Dict):
     return response
 
 def make_response_deduct_talk(request: Dict):
-    POS_EDAD = 2
-
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if(not "edad" in outputContexts[0].get("parameters").keys()):
@@ -135,16 +135,15 @@ def make_response_goodbye(request: Dict):
 
 app = FastAPI(version="1.0.0")
 
-
 app.mount("/static", StaticFiles(directory=(BASE_PATH + "/static")))
 templates = Jinja2Templates(directory=(BASE_PATH + "/templates"))
-
 
 @app.middleware("http")
 def add_process_time_header(request: Request, call_next):
     start_time = time()
     response = call_next(request)
     process_time = time() - start_time
+    print(f"Tiempo del proceso: {process_time}")
     return response
 
 @app.get("/", response_class=HTMLResponse) 
@@ -171,8 +170,6 @@ def setURL(request: ServerURL):
 
 @app.post("/webhook")
 async def webhook( request: Request):
-    print("----------->")
-
     request_JSON = await request.json()
 
     print(request_JSON)

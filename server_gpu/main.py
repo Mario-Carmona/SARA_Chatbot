@@ -184,11 +184,9 @@ os.system("nvidia-smi")
 
 def make_response_Adulto(entry: str):
 
-    entry_EN = es_en_translator(entry)
+    entry_EN = es_en_translator(entry)[0]["translation_text"]
 
     print(entry_EN)
-
-    entry_EN = entry_EN[0]["translation_text"]
 
     conversation.add_user_input(entry_EN)
 
@@ -208,12 +206,9 @@ def make_response_Adulto(entry: str):
 
     print(response_EN)
 
-    response = en_es_translator(response_EN)
-
+    response = en_es_translator(response_EN)[0]["translation_text"]
 
     print(response)
-
-    response = response[0]["translation_text"]
 
     return response
 
