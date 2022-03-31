@@ -171,7 +171,7 @@ generator = ConversationalPipeline(
     model=model,
     tokenizer=tokenizer,
     framework="pt",
-    device=torch.device("cuda")
+    device=local_rank
 )
 
 
