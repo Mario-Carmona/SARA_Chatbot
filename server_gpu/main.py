@@ -37,7 +37,7 @@ from datasets import load_dataset, load_metric
 
 from transformers import set_seed
 from transformers.trainer_utils import is_main_process
-from transformers import AutoConfig, AutoTokenizer, AutoModel, TranslationPipeline, ConversationalPipeline, Conversation
+from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, ConversationalPipeline, Conversation
 
 import deepspeed
 
@@ -142,18 +142,18 @@ configGPT_J = AutoConfig.from_pretrained(
 
 tokenizerGPT_J = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
-    config=WORKDIR + model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
     use_fast=True
 )
 
 
-modelGPT_J = AutoModel.from_pretrained(
+modelGPT_J = AutoModelForCausalLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=configGPT_J,
     torch_dtype=torch.float16
 )
 
+"""
 configTrans_ES_EN = AutoConfig.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
 )
@@ -184,6 +184,7 @@ modelTrans_EN_ES = AutoModel.from_pretrained(
     torch_dtype=torch.float16
 )
 
+
 os.system("nvidia-smi")
 
 es_en_translator = TranslationPipeline(
@@ -201,6 +202,7 @@ en_es_translator = TranslationPipeline(
     framework="pt",
     device=local_rank
 )
+"""
 
 os.system("nvidia-smi")
 

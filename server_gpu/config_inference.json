@@ -6,9 +6,9 @@
 
     "workdir": "/mnt/homeGPU/mcarmona/",
 
-    "model_name_or_path": "EleutherAI/gpt-j-6B",
-    "model_config_name": "EleutherAI/gpt-j-6B/config.json",
-    "tokenizer_name": "EleutherAI/gpt-j-6B",
+    "model_name_or_path": "PlanTL-GOB-ES/gpt2-large-bne",
+    "model_config_name": "PlanTL-GOB-ES/gpt2-large-bne/config.json",
+    "tokenizer_name": "PlanTL-GOB-ES/gpt2-large-bne",
     "tokenizer_config_name": "EleutherAI/gpt-j-6B/tokenizer_config.json",
     "generate_args_path": "server_gpu/generate_config.json",
     "output_dir": "./",
