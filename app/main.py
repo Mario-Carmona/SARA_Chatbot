@@ -51,7 +51,7 @@ def make_response_welcome(request: Dict):
         answer = "Hola"
 
         outputContexts[0]["parameters"] = {
-            "context": f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: {answer}"
+            "context": f"[A]: {entry}\n[B]: {answer}"
         }
     else:
         outputContexts = []
