@@ -99,7 +99,6 @@ world_size = int(os.getenv("WORLD_SIZE", "1"))
 
 
 torch.cuda.set_device(local_rank)
-deepspeed.init_distributed()
 
 
 # Setup logging
@@ -137,16 +136,6 @@ set_seed(training_args.seed)
 
 config = GPTJConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
-    task_specific_params={
-        "conversational": {
-            "do_sample": True,
-            "temperature": 1.0,
-            "top_p": 1.0,
-            "max_time": 3.0,
-            "max_new_tokens": 200,
-            "use_cache": True
-        }
-    }
 )
 
 
@@ -199,12 +188,24 @@ def adulto(request: Entry):
 
     conversation.add_user_input(request.entry)
 
-    generator([conversation])
+    generator(
+        [conversation],
+        do_sample=True,
+        temperature=1.0,
+        top_p=1.0,
+        max_time=3.0,
+        max_new_tokens=200,
+        use_cache=True
+    )
 
-    print(conversation.generated_responses[-1])
+    response = conversation.generated_responses[-1]
+
+    conversation.mark_processed()
+
+    print(response)
 
 
-    return conversation.generated_responses[-1]
+    return response
 
 
 
