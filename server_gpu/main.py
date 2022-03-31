@@ -164,8 +164,6 @@ model = GPTJForCausalLM.from_pretrained(
     torch_dtype=torch.float16
 )
 
-model.to(torch.device("cuda"))
-
 
 os.system("nvidia-smi")
 
@@ -173,7 +171,7 @@ generator = ConversationalPipeline(
     model=model,
     tokenizer=tokenizer,
     framework="pt",
-      
+    device=torch.device("cuda")
 )
 
 
