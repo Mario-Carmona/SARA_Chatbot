@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from pyexpat import model
+import re
 from click import prompt
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
@@ -153,7 +155,6 @@ modelGPT_J = AutoModelForSeq2SeqLM.from_pretrained(
     torch_dtype=torch.float16
 )
 
-"""
 configTrans_ES_EN = AutoConfig.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
 )
@@ -162,12 +163,14 @@ tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-es-en"
 )
 
-modelTrans_ES_EN = AutoModel.from_pretrained(
+modelTrans_ES_EN = AutoModelForSeq2SeqLM.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-es-en",
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=configTrans_ES_EN,
     torch_dtype=torch.float16
 )
+
+modelTrans_ES_EN.to(torch.device("cuda"))
 
 configTrans_EN_ES = AutoConfig.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-en-es/config.json"
@@ -177,16 +180,19 @@ tokenizerTrans_EN_ES = AutoTokenizer.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-en-es"
 )
 
-modelTrans_EN_ES = AutoModel.from_pretrained(
+modelTrans_EN_ES = AutoModelForSeq2SeqLM.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-en-es",
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=configTrans_EN_ES,
     torch_dtype=torch.float16
 )
 
+modelTrans_EN_ES.to(torch.device("cuda"))
+
 
 os.system("nvidia-smi")
 
+"""
 es_en_translator = TranslationPipeline(
     model=modelTrans_ES_EN,
     tokenizer=tokenizerTrans_ES_EN,
@@ -242,7 +248,12 @@ def adulto(request: Entry):
     print(prompt)
     """
 
-    conversation.add_user_input(request.entry)
+    generated_ids = modelTrans_ES_EN.generate(request.entry, do_sample=True, max_length=200)
+    generated_text = tokenizerTrans_ES_EN.decode(generated_ids[0])
+
+    print(generated_text)
+
+    conversation.add_user_input(generated_text)
 
     pipelineConversation(
         [conversation],
@@ -259,6 +270,13 @@ def adulto(request: Entry):
     conversation.mark_processed()
 
     print(response)
+
+    generated_ids = modelTrans_EN_ES.generate(response, do_sample=True, max_length=200)
+    generated_text = tokenizerTrans_EN_ES.decode(generated_ids[0])
+
+    print(generated_text)
+
+    response = generated_text
 
     """
     response = en_es_translator(response)
