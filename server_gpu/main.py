@@ -39,7 +39,7 @@ from datasets import load_dataset, load_metric
 
 from transformers import set_seed
 from transformers.trainer_utils import is_main_process
-from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, ConversationalPipeline, Conversation
+from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
 
 import deepspeed
 
@@ -170,7 +170,7 @@ modelTrans_ES_EN = AutoModelForSeq2SeqLM.from_pretrained(
     torch_dtype=torch.float16
 )
 
-modelTrans_ES_EN.to(torch.device("cuda"))
+
 
 configTrans_EN_ES = AutoConfig.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-en-es/config.json"
@@ -187,12 +187,11 @@ modelTrans_EN_ES = AutoModelForSeq2SeqLM.from_pretrained(
     torch_dtype=torch.float16
 )
 
-modelTrans_EN_ES.to(torch.device("cuda"))
+
 
 
 os.system("nvidia-smi")
 
-"""
 es_en_translator = TranslationPipeline(
     model=modelTrans_ES_EN,
     tokenizer=tokenizerTrans_ES_EN,
@@ -208,7 +207,6 @@ en_es_translator = TranslationPipeline(
     framework="pt",
     device=local_rank
 )
-"""
 
 os.system("nvidia-smi")
 
@@ -248,12 +246,13 @@ def adulto(request: Entry):
     print(prompt)
     """
 
-    generated_ids = modelTrans_ES_EN.generate(request.entry, do_sample=True, max_length=200)
-    generated_text = tokenizerTrans_ES_EN.decode(generated_ids[0])
+    entry_EN = es_en_translator(request.entry)
 
-    print(generated_text)
 
-    conversation.add_user_input(generated_text)
+    print(entry_EN)
+
+
+    conversation.add_user_input(entry_EN)
 
     pipelineConversation(
         [conversation],
@@ -265,18 +264,17 @@ def adulto(request: Entry):
         use_cache=True
     )
 
-    response = conversation.generated_responses[-1]
+    response_EN = conversation.generated_responses[-1]
 
     conversation.mark_processed()
 
+    print(response_EN)
+
+    response = en_es_translator(response_EN)
+
+
     print(response)
 
-    generated_ids = modelTrans_EN_ES.generate(response, do_sample=True, max_length=200)
-    generated_text = tokenizerTrans_EN_ES.decode(generated_ids[0])
-
-    print(generated_text)
-
-    response = generated_text
 
     """
     response = en_es_translator(response)
