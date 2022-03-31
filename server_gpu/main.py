@@ -246,12 +246,11 @@ def adulto(request: Entry):
     print(prompt)
     """
 
-    entry_EN = es_en_translator(request.entry)
+    entry_EN = es_en_translator(request.entry)[0]["translation_text"]
 
 
     print(entry_EN)
 
-    time.sleep(1.0)
 
 
     conversation.add_user_input(entry_EN)
@@ -271,13 +270,11 @@ def adulto(request: Entry):
     conversation.mark_processed()
 
     print(response_EN)
-    time.sleep(1.0)
 
-    response = en_es_translator(response_EN)
+    response = en_es_translator(response_EN)[0]["translation_text"]
 
 
     print(response)
-    time.sleep(1.0)
 
 
     """
