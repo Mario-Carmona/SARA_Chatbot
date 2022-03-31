@@ -251,6 +251,8 @@ def adulto(request: Entry):
 
     print(entry_EN)
 
+    time.sleep(1.0)
+
 
     conversation.add_user_input(entry_EN)
 
@@ -269,11 +271,13 @@ def adulto(request: Entry):
     conversation.mark_processed()
 
     print(response_EN)
+    time.sleep(1.0)
 
     response = en_es_translator(response_EN)
 
 
     print(response)
+    time.sleep(1.0)
 
 
     """
