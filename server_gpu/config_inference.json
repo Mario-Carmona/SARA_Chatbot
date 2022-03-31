@@ -6,10 +6,10 @@
 
     "workdir": "/mnt/homeGPU/mcarmona/",
 
-    "model_name_or_path": "DeepESP/gpt2-spanish",
-    "model_config_name": "DeepESP/gpt2-spanish/config.json",
-    "tokenizer_name": "DeepESP/gpt2-spanish",
-    "tokenizer_config_name": "DeepESP/gpt2-spanish/tokenizer_config.json",
+    "model_name_or_path": "EleutherAI/gpt-j-6B",
+    "model_config_name": "EleutherAI/gpt-j-6B/config.json",
+    "tokenizer_name": "EleutherAI/gpt-j-6B",
+    "tokenizer_config_name": "EleutherAI/gpt-j-6B/tokenizer_config.json",
     "generate_args_path": "server_gpu/generate_config.json",
     "output_dir": "./",
 
