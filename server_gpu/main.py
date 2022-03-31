@@ -153,6 +153,8 @@ modelGPT_J = AutoModelForCausalLM.from_pretrained(
     torch_dtype=torch.float16
 )
 
+modelGPT_J.to(torch.device("cuda"))
+
 """
 configTrans_ES_EN = AutoConfig.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
@@ -206,6 +208,7 @@ en_es_translator = TranslationPipeline(
 
 os.system("nvidia-smi")
 
+"""
 pipelineConversation = ConversationalPipeline(
     model=modelGPT_J,
     tokenizer=tokenizerGPT_J,
@@ -215,6 +218,7 @@ pipelineConversation = ConversationalPipeline(
 
 
 conversation = Conversation()
+"""
 
 os.system("nvidia-smi")
 
@@ -242,6 +246,7 @@ def adulto(request: Entry):
     print(prompt)
     """
 
+    """
     conversation.add_user_input(request.entry)
 
     pipelineConversation(
@@ -259,6 +264,7 @@ def adulto(request: Entry):
     conversation.mark_processed()
 
     print(response)
+    """
 
     """
     response = en_es_translator(response)
@@ -266,11 +272,10 @@ def adulto(request: Entry):
     print(response)
     """
 
-    """
     prompt = f"Conversación entre [A] y [B]\n[A]: {request.entry}\n[B]: "
 
-    input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
-    generated_ids = model.generate(
+    input_ids = tokenizerGPT_J(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
+    generated_ids = modelGPT_J.generate(
         input_ids,
         do_sample=True,
         temperature=1.0,
@@ -279,8 +284,9 @@ def adulto(request: Entry):
         max_length=1000,
         use_cache=True
     )
-    response = tokenizer.decode(generated_ids[0])
-    """
+    response = tokenizerGPT_J.decode(generated_ids[0])
+
+    print(response)
 
     return response
 
