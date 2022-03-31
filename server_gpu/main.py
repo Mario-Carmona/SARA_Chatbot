@@ -194,6 +194,7 @@ def adulto(request: Entry):
         temperature=1.0,
         top_p=1.0,
         max_time=3.0,
+        min_length=None,
         max_length=None,
         max_new_tokens=200,
         use_cache=True
