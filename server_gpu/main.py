@@ -36,7 +36,7 @@ from datasets import load_dataset, load_metric
 
 from transformers import set_seed
 from transformers.trainer_utils import is_main_process
-from transformers import AutoTokenizer, GPTJConfig, GPTJForCausalLM, ConversationalPipeline, Conversation
+from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, ConversationalPipeline, Conversation
 
 import deepspeed
 
@@ -134,7 +134,7 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
-config = GPTJConfig.from_pretrained(
+config = AutoConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
 )
 
@@ -146,7 +146,7 @@ tokenizer = AutoTokenizer.from_pretrained(
 )
 
 
-model = GPTJForCausalLM.from_pretrained(
+model = AutoModelForCausalLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=config,
