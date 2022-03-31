@@ -160,7 +160,6 @@ configTrans_ES_EN = AutoConfig.from_pretrained(
 
 tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-es-en",
-    config=WORKDIR + "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
     use_fast=True
 )
 
@@ -177,7 +176,6 @@ configTrans_EN_ES = AutoConfig.from_pretrained(
 
 tokenizerTrans_EN_ES = AutoTokenizer.from_pretrained(
     WORKDIR + "Helsinki-NLP/opus-mt-en-es",
-    config=WORKDIR + "Helsinki-NLP/opus-mt-en-es/tokenizer_config.json",
     use_fast=True
 )
 
