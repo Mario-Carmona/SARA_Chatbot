@@ -236,11 +236,13 @@ def home():
 @app.post("/Adulto", response_class=PlainTextResponse)
 def adulto(request: Entry):
 
+    """
     prompt = es_en_translator(request.entry)
 
     print(prompt)
+    """
 
-    conversation.add_user_input(prompt)
+    conversation.add_user_input(request.entry)
 
     pipelineConversation(
         [conversation],
@@ -258,9 +260,11 @@ def adulto(request: Entry):
 
     print(response)
 
+    """
     response = en_es_translator(response)
 
     print(response)
+    """
 
     """
     prompt = f"Conversación entre [A] y [B]\n[A]: {request.entry}\n[B]: "
