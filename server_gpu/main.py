@@ -37,7 +37,7 @@ from datasets import load_dataset, load_metric
 
 from transformers import set_seed
 from transformers.trainer_utils import is_main_process
-from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, ConversationalPipeline, Conversation
+from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, ConversationalPipeline, Conversation
 
 import deepspeed
 
@@ -146,14 +146,12 @@ tokenizerGPT_J = AutoTokenizer.from_pretrained(
 )
 
 
-modelGPT_J = AutoModelForCausalLM.from_pretrained(
+modelGPT_J = AutoModelForSeq2SeqLM.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
     config=configGPT_J,
     torch_dtype=torch.float16
 )
-
-modelGPT_J.to(torch.device("cuda"))
 
 """
 configTrans_ES_EN = AutoConfig.from_pretrained(
@@ -208,7 +206,6 @@ en_es_translator = TranslationPipeline(
 
 os.system("nvidia-smi")
 
-"""
 pipelineConversation = ConversationalPipeline(
     model=modelGPT_J,
     tokenizer=tokenizerGPT_J,
@@ -218,7 +215,6 @@ pipelineConversation = ConversationalPipeline(
 
 
 conversation = Conversation()
-"""
 
 os.system("nvidia-smi")
 
@@ -246,7 +242,6 @@ def adulto(request: Entry):
     print(prompt)
     """
 
-    """
     conversation.add_user_input(request.entry)
 
     pipelineConversation(
@@ -264,7 +259,6 @@ def adulto(request: Entry):
     conversation.mark_processed()
 
     print(response)
-    """
 
     """
     response = en_es_translator(response)
@@ -272,6 +266,7 @@ def adulto(request: Entry):
     print(response)
     """
 
+    """
     prompt = f"Conversación entre [A] y [B]\n[A]: {request.entry}\n[B]: "
 
     input_ids = tokenizerGPT_J(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
@@ -287,6 +282,7 @@ def adulto(request: Entry):
     response = tokenizerGPT_J.decode(generated_ids[0])
 
     print(response)
+    """
 
     return response
 
