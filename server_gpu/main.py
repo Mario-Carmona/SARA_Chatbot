@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from click import prompt
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
@@ -36,7 +37,7 @@ from datasets import load_dataset, load_metric
 
 from transformers import set_seed
 from transformers.trainer_utils import is_main_process
-from transformers import AutoConfig, AutoTokenizer, AutoModelForCausalLM, ConversationalPipeline, Conversation
+from transformers import AutoConfig, AutoTokenizer, AutoModel, TranslationPipeline, ConversationalPipeline, Conversation
 
 import deepspeed
 
@@ -134,41 +135,88 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
-config = AutoConfig.from_pretrained(
+configGPT_J = AutoConfig.from_pretrained(
     WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
 )
 
 
-tokenizer = AutoTokenizer.from_pretrained(
+tokenizerGPT_J = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
     config=WORKDIR + model_args.tokenizer_config_name if model_args.tokenizer_config_name else None,
     use_fast=True
 )
 
 
-model = AutoModelForCausalLM.from_pretrained(
+modelGPT_J = AutoModel.from_pretrained(
     WORKDIR + model_args.model_name_or_path,
     from_tf=bool(".ckpt" in model_args.model_name_or_path),
-    config=config,
+    config=configGPT_J,
     torch_dtype=torch.float16
 )
 
+configTrans_ES_EN = AutoConfig.from_pretrained(
+    WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
+)
 
-model.to(torch.device("cuda"))
+tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
+    WORKDIR + "Helsinki-NLP/opus-mt-es-en",
+    config=WORKDIR + "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
+    use_fast=True
+)
+
+modelTrans_ES_EN = AutoModel.from_pretrained(
+    WORKDIR + "Helsinki-NLP/opus-mt-es-en",
+    from_tf=bool(".ckpt" in model_args.model_name_or_path),
+    config=configTrans_ES_EN,
+    torch_dtype=torch.float16
+)
+
+configTrans_EN_ES = AutoConfig.from_pretrained(
+    WORKDIR + "Helsinki-NLP/opus-mt-en-es/config.json"
+)
+
+tokenizerTrans_EN_ES = AutoTokenizer.from_pretrained(
+    WORKDIR + "Helsinki-NLP/opus-mt-en-es",
+    config=WORKDIR + "Helsinki-NLP/opus-mt-en-es/tokenizer_config.json",
+    use_fast=True
+)
+
+modelTrans_EN_ES = AutoModel.from_pretrained(
+    WORKDIR + "Helsinki-NLP/opus-mt-en-es",
+    from_tf=bool(".ckpt" in model_args.model_name_or_path),
+    config=configTrans_EN_ES,
+    torch_dtype=torch.float16
+)
 
 os.system("nvidia-smi")
 
-"""
-generator = ConversationalPipeline(
-    model=model,
-    tokenizer=tokenizer,
+es_en_translator = TranslationPipeline(
+    model=modelTrans_ES_EN,
+    tokenizer=tokenizerTrans_ES_EN,
+    framework="pt",
+    device=local_rank
+)
+
+os.system("nvidia-smi")
+
+en_es_translator = TranslationPipeline(
+    model=modelTrans_EN_ES,
+    tokenizer=tokenizerTrans_EN_ES,
+    framework="pt",
+    device=local_rank
+)
+
+os.system("nvidia-smi")
+
+pipelineConversation = ConversationalPipeline(
+    model=modelGPT_J,
+    tokenizer=tokenizerGPT_J,
     framework="pt",
     device=local_rank
 )
 
 
 conversation = Conversation()
-"""
 
 os.system("nvidia-smi")
 
@@ -190,10 +238,13 @@ def home():
 @app.post("/Adulto", response_class=PlainTextResponse)
 def adulto(request: Entry):
 
-    """
-    conversation.add_user_input(request.entry)
+    prompt = es_en_translator(request.entry)
 
-    generator(
+    print(prompt)
+
+    conversation.add_user_input(prompt)
+
+    pipelineConversation(
         [conversation],
         do_sample=True,
         temperature=1.0,
@@ -208,8 +259,12 @@ def adulto(request: Entry):
     conversation.mark_processed()
 
     print(response)
-    """
 
+    response = en_es_translator(response)
+
+    print(response)
+
+    """
     prompt = f"Conversación entre [A] y [B]\n[A]: {request.entry}\n[B]: "
 
     input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
@@ -223,6 +278,7 @@ def adulto(request: Entry):
         use_cache=True
     )
     response = tokenizer.decode(generated_ids[0])
+    """
 
     return response
 
