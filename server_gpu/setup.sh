@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export PATH="/opt/anaconda/anaconda3/bin:$PATH"
 
