@@ -154,8 +154,11 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 
+model.to(torch.device("cuda"))
+
 os.system("nvidia-smi")
 
+"""
 generator = ConversationalPipeline(
     model=model,
     tokenizer=tokenizer,
@@ -165,6 +168,7 @@ generator = ConversationalPipeline(
 
 
 conversation = Conversation()
+"""
 
 os.system("nvidia-smi")
 
@@ -186,6 +190,7 @@ def home():
 @app.post("/Adulto", response_class=PlainTextResponse)
 def adulto(request: Entry):
 
+    """
     conversation.add_user_input(request.entry)
 
     generator(
@@ -203,7 +208,21 @@ def adulto(request: Entry):
     conversation.mark_processed()
 
     print(response)
+    """
 
+    prompt = f"Conversación entre [A] y [B]\n[A]: {request.entry}\n[B]: "
+
+    input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
+    generated_ids = model.generate(
+        input_ids,
+        do_sample=True,
+        temperature=1.0,
+        top_p=1.0,
+        max_time=3.0,
+        max_length=1000,
+        use_cache=True
+    )
+    response = tokenizer.decode(generated_ids[0])
 
     return response
 
