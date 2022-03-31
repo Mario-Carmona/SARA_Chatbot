@@ -1,0 +1,32 @@
+{
+    "workdir": "/mnt/homeGPU/mcarmona/",
+    "host": "0.0.0.0",
+    "port": "5000",
+    "controller_url": "https://sara-chatbot-tfg.herokuapp.com",
+    "ngrok_path": "mcarmona/bin/ngrok",
+    "ngrok_config_path": "server_gpu/ngrok.yml",
+
+
+    "model_conver": "facebook/blenderbot-3B",
+    "model_conver_config": "facebook/blenderbot-3B/config.json",
+    "model_conver_tokenizer": "facebook/blenderbot-3B",
+    "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
+
+    "model_trans_ES_EN": "Helsinki-NLP/opus-mt-es-en",
+    "model_trans_ES_EN_config": "Helsinki-NLP/opus-mt-es-en/config.json",
+    "model_trans_ES_EN_tokenizer": "Helsinki-NLP/opus-mt-es-en",
+    "model_trans_ES_EN_tokenizer_config": "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
+
+    "model_trans_EN_ES": "Helsinki-NLP/opus-mt-en-es",
+    "model_trans_EN_ES_config": "Helsinki-NLP/opus-mt-en-es/config.json",
+    "model_trans_EN_ES_tokenizer": "Helsinki-NLP/opus-mt-en-es",
+    "model_trans_EN_ES_tokenizer_config": "Helsinki-NLP/opus-mt-en-es/tokenizer_config.json",
+
+
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "max_time": 3.0,
+    "max_length": 1000,
+    "use_cache": true
+}

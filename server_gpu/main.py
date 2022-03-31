@@ -1,49 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from pyexpat import model
-import re
-from click import prompt
-from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, PlainTextResponse
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-import json
-import uvicorn
 import os
 import requests
 from pathlib import Path
-from pyngrok import ngrok, conf
-from pydantic import BaseModel
-
-
-
-
-
-import sys
-import time
-import argparse
-import logging
-
-import torch
 
 from project_arguments import ProyectArguments
 from model_arguments import ModelArguments
-from inference_arguments import InferenceArguments
-from transformers import TrainingArguments, HfArgumentParser
-from transformers import StoppingCriteriaList
+from generate_arguments import GenerateArguments
+from transformers import HfArgumentParser
 
+from pydantic import BaseModel
 
+from fastapi import FastAPI
+from fastapi.responses import PlainTextResponse
+import uvicorn
 
-from datasets import load_dataset, load_metric
+from pyngrok import ngrok, conf
+
+import torch
 
 from transformers import set_seed
-from transformers.trainer_utils import is_main_process
 from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
 
-import deepspeed
-
-import transformers
 
 
 
@@ -62,29 +41,24 @@ class Entry(BaseModel):
 
 
 
-logger = logging.getLogger(__name__)
-
-
+BASE_PATH = Path(__file__).resolve().parent
+CONFIG_FILE = "config_server.json"
 
 
 parser = HfArgumentParser(
     (
         ProyectArguments, 
         ModelArguments, 
-        InferenceArguments, 
-        TrainingArguments
+        GenerateArguments
     )
 )
 
 
-project_args, model_args, infer_args, training_args = parser.parse_json_file(json_file="config_inference.json")
+project_args, model_args, generate_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 
 WORKDIR = project_args.workdir
 
-
-with open(WORKDIR + model_args.generate_args_path) as file:
-    generate_args = json.load(file)
 
 
 # Ruta donde instalar las extensiones de Pytorch
@@ -93,41 +67,17 @@ os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about parallelism in tokenizers
 
 
-os.system("HOME="+WORKDIR)
-
 
 # distributed setup
 local_rank = int(os.getenv("LOCAL_RANK", "0"))
 world_size = int(os.getenv("WORLD_SIZE", "1"))
 
-
 torch.cuda.set_device(local_rank)
 
 
-# Setup logging
-logging.basicConfig(
-    format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
-    datefmt="%m/%d/%Y %H:%M:%S",
-)
-logger.setLevel(logging.INFO if is_main_process(training_args.local_rank) else logging.WARN)
+# Set seed before initializing model.
 
-
-
-# Log on each process the small summary:
-logger.warning(
-    f"Process rank: {training_args.local_rank}, device: {training_args.device}, n_gpu: {training_args.n_gpu}"
-    + f"distributed training: {bool(training_args.local_rank != -1)}, 16-bits training: {training_args.fp16}"
-)
-# Set the verbosity to info of the Transformers logger (on main process only):
-if is_main_process(training_args.local_rank):
-    transformers.utils.logging.set_verbosity_info()
-logger.info("Training/evaluation parameters %s", training_args)
-
-
-
- # Set seed before initializing model.
-
-set_seed(training_args.seed)
+set_seed(0)
 
 
 
@@ -137,60 +87,64 @@ set_seed(training_args.seed)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
-configGPT_J = AutoConfig.from_pretrained(
-    WORKDIR + model_args.model_config_name if model_args.model_config_name else WORKDIR + model_args.model_name_or_path,
+configConver = AutoConfig.from_pretrained(
+    WORKDIR + model_args.model_conver_config
 )
 
 
-tokenizerGPT_J = AutoTokenizer.from_pretrained(
-    WORKDIR + model_args.tokenizer_name if model_args.tokenizer_name else WORKDIR + model_args.model_name_or_path,
+tokenizerConver = AutoTokenizer.from_pretrained(
+    WORKDIR + model_args.model_conver_tokenizer,
+    config=WORKDIR + model_args.model_conver_tokenizer_config,
     use_fast=True
 )
 
 
-modelGPT_J = AutoModelForSeq2SeqLM.from_pretrained(
-    WORKDIR + model_args.model_name_or_path,
-    from_tf=bool(".ckpt" in model_args.model_name_or_path),
-    config=configGPT_J,
+modelConver = AutoModelForSeq2SeqLM.from_pretrained(
+    WORKDIR + model_args.model_conver,
+    from_tf=bool(".ckpt" in model_args.model_conver),
+    config=configConver,
     torch_dtype=torch.float16
 )
 
+# ----------------------------------------------
+
 configTrans_ES_EN = AutoConfig.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
+    WORKDIR + model_args.model_trans_ES_EN_config
 )
 
 tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-es-en"
+    WORKDIR + model_args.model_trans_ES_EN_tokenizer,
+    config=WORKDIR + model_args.model_trans_ES_EN_tokenizer_config,
+    use_fast=True
 )
 
 modelTrans_ES_EN = AutoModelForSeq2SeqLM.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-es-en",
-    from_tf=bool(".ckpt" in model_args.model_name_or_path),
+    WORKDIR + model_args.model_trans_ES_EN,
+    from_tf=bool(".ckpt" in model_args.model_trans_ES_EN),
     config=configTrans_ES_EN,
     torch_dtype=torch.float16
 )
 
-
+# ----------------------------------------------
 
 configTrans_EN_ES = AutoConfig.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-en-es/config.json"
+    WORKDIR + model_args.model_trans_EN_ES_config
 )
 
 tokenizerTrans_EN_ES = AutoTokenizer.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-en-es"
+    WORKDIR + model_args.model_trans_EN_ES_tokenizer,
+    config=WORKDIR + model_args.model_trans_EN_ES_tokenizer_config,
+    use_fast=True
 )
 
 modelTrans_EN_ES = AutoModelForSeq2SeqLM.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-en-es",
-    from_tf=bool(".ckpt" in model_args.model_name_or_path),
+    WORKDIR + model_args.model_trans_EN_ES,
+    from_tf=bool(".ckpt" in model_args.model_trans_EN_ES),
     config=configTrans_EN_ES,
     torch_dtype=torch.float16
 )
 
-
-
-
-os.system("nvidia-smi")
+# ----------------------------------------------
 
 es_en_translator = TranslationPipeline(
     model=modelTrans_ES_EN,
@@ -199,7 +153,7 @@ es_en_translator = TranslationPipeline(
     device=local_rank
 )
 
-os.system("nvidia-smi")
+# ----------------------------------------------
 
 en_es_translator = TranslationPipeline(
     model=modelTrans_EN_ES,
@@ -208,17 +162,18 @@ en_es_translator = TranslationPipeline(
     device=local_rank
 )
 
-os.system("nvidia-smi")
+# ----------------------------------------------
 
 pipelineConversation = ConversationalPipeline(
-    model=modelGPT_J,
-    tokenizer=tokenizerGPT_J,
+    model=modelConver,
+    tokenizer=tokenizerConver,
     framework="pt",
     device=local_rank
 )
 
-
 conversation = Conversation()
+
+# ----------------------------------------------
 
 os.system("nvidia-smi")
 
@@ -227,42 +182,24 @@ os.system("nvidia-smi")
 
 
 
+def make_response_Adulto(entry: str):
 
-
-app = FastAPI(version="1.0.0")
-
-BASE_PATH = Path(__file__).resolve().parent
-
-@app.get("/", response_class=PlainTextResponse)
-def home():
-    return "Server GPU ON"
-
-@app.post("/Adulto", response_class=PlainTextResponse)
-def adulto(request: Entry):
-
-    """
-    prompt = es_en_translator(request.entry)
-
-    print(prompt)
-    """
-
-    entry_EN = es_en_translator(request.entry)[0]["translation_text"]
-
+    entry_EN = es_en_translator(entry)
 
     print(entry_EN)
 
-
+    entry_EN = entry_EN[0]["translation_text"]
 
     conversation.add_user_input(entry_EN)
 
     pipelineConversation(
         [conversation],
-        do_sample=True,
-        temperature=1.0,
-        top_p=1.0,
-        max_time=3.0,
-        max_length=1000,
-        use_cache=True
+        do_sample=generate_args.do_sample,
+        temperature=generate_args.temperature,
+        top_p=generate_args.top_p,
+        max_time=generate_args.max_time,
+        max_length=generate_args.max_length,
+        use_cache=generate_args.use_cache
     )
 
     response_EN = conversation.generated_responses[-1]
@@ -271,35 +208,29 @@ def adulto(request: Entry):
 
     print(response_EN)
 
-    response = en_es_translator(response_EN)[0]["translation_text"]
+    response = en_es_translator(response_EN)
 
 
     print(response)
 
+    response = response[0]["translation_text"]
 
-    """
-    response = en_es_translator(response)
+    return response
 
-    print(response)
-    """
 
-    """
-    prompt = f"Conversación entre [A] y [B]\n[A]: {request.entry}\n[B]: "
 
-    input_ids = tokenizerGPT_J(prompt, return_tensors="pt").input_ids.to(torch.device("cuda"))
-    generated_ids = modelGPT_J.generate(
-        input_ids,
-        do_sample=True,
-        temperature=1.0,
-        top_p=1.0,
-        max_time=3.0,
-        max_length=1000,
-        use_cache=True
-    )
-    response = tokenizerGPT_J.decode(generated_ids[0])
 
-    print(response)
-    """
+
+app = FastAPI(version="1.0.0")
+
+@app.get("/", response_class=PlainTextResponse)
+def home():
+    return "Server GPU ON"
+
+@app.post("/Adulto", response_class=PlainTextResponse)
+def adulto(request: Entry):
+
+    response = make_response_Adulto(request.entry)
 
     return response
 
@@ -307,14 +238,11 @@ def adulto(request: Entry):
 
 if __name__ == "__main__":
 
-    with open(str(BASE_PATH/"config.json")) as file:
-        config = json.load(file)
-
-    port = eval(os.environ.get("PORT", config["port"]))
+    port = eval(os.environ.get("PORT", project_args.port))
 
     pyngrok_config = conf.PyngrokConfig(
-        ngrok_path=WORKDIR + "mcarmona/bin/ngrok",
-        config_path=WORKDIR + "server_gpu/ngrok.yml"
+        ngrok_path=WORKDIR + project_args.ngrok_path,
+        config_path=WORKDIR + project_args.ngrok_config_path
     )
 
     public_url = ngrok.connect(
@@ -325,7 +253,7 @@ if __name__ == "__main__":
     print(bcolors.OK + "Public URL" + bcolors.RESET + ": " + public_url)
 
     print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
-    url = config["controller_url"]
+    url = project_args.controller_url
     headers = {'content-type': 'application/json'}
     response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
     print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))

@@ -5,4 +5,5 @@ uvicorn[standard]
 pyngrok
 torch>=1.9
 transformers==4.14.1
+transformers[deepspeed]
 sentencepiece

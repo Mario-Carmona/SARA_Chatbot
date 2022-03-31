@@ -4,33 +4,33 @@ from typing import Optional
 
 
 @dataclass
-class ProyectArguments:
-    workdir: str = field(
+class GenerateArguments:
+    do_sample: bool = field(
         metadata={
             "help": ""
         }
     )
-    host: str = field(
+    temperature: float = field(
         metadata={
             "help": ""
         }
     )
-    port: str = field(
+    top_p: float = field(
         metadata={
             "help": ""
         }
     )
-    controller_url: str = field(
+    max_time: float = field(
         metadata={
             "help": ""
         }
     )
-    ngrok_path: str = field(
+    max_length: int = field(
         metadata={
             "help": ""
         }
     )
-    ngrok_config_path: str = field(
+    use_cache: bool = field(
         metadata={
             "help": ""
         }
