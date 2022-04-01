@@ -104,6 +104,8 @@ modelConver = AutoModelForCausalLM.from_pretrained(
     config=configConver
 )
 
+modelConver.to(torch.device("cuda"))
+
 # ----------------------------------------------
 
 configTrans_ES_EN = AutoConfig.from_pretrained(
@@ -162,6 +164,7 @@ en_es_translator = TranslationPipeline(
 
 # ----------------------------------------------
 
+"""
 pipelineConversation = TextGenerationPipeline(
     model=modelConver,
     tokenizer=tokenizerConver,
@@ -170,6 +173,7 @@ pipelineConversation = TextGenerationPipeline(
 )
 
 conversation = Conversation()
+"""
 
 # ----------------------------------------------
 
@@ -188,6 +192,7 @@ def make_response_Adulto(entry: str):
 
     #conversation.add_user_input(entry)
 
+    """
     response = pipelineConversation(
         args=f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ",
         do_sample=generate_args.do_sample,
@@ -197,6 +202,19 @@ def make_response_Adulto(entry: str):
         max_length=generate_args.max_length,
         use_cache=generate_args.use_cache
     )["generated_text"]
+    """
+
+    input_ids = tokenizerConver(f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ", return_tensors="pt").input_ids.to(torch.device("cuda"))
+    generated_ids = modelConver.generate(
+        input_ids,
+        do_sample=generate_args.do_sample,
+        temperature=generate_args.temperature,
+        top_p=generate_args.top_p,
+        max_time=generate_args.max_time,
+        max_length=generate_args.max_length,
+        use_cache=generate_args.use_cache
+    )
+    response = tokenizerConver.decode(generated_ids[0])
 
     #conversation.mark_processed()
 
