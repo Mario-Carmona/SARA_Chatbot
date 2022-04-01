@@ -21,7 +21,7 @@ from pyngrok import ngrok, conf
 import torch
 
 from transformers import set_seed
-from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
+from transformers import AutoModel, AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
 
 
 
@@ -98,7 +98,7 @@ tokenizerConver = AutoTokenizer.from_pretrained(
 )
 
 
-modelConver = AutoModelForSeq2SeqLM.from_pretrained(
+modelConver = AutoModel.from_pretrained(
     WORKDIR + model_args.model_conver,
     from_tf=bool(".ckpt" in model_args.model_conver),
     config=configConver,
