@@ -21,7 +21,7 @@ from pyngrok import ngrok, conf
 import torch
 
 from transformers import set_seed
-from transformers import AutoModel, AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
+from transformers import AutoModel, AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, TextGenerationPipeline, Conversation
 
 
 
@@ -162,7 +162,7 @@ en_es_translator = TranslationPipeline(
 
 # ----------------------------------------------
 
-pipelineConversation = ConversationalPipeline(
+pipelineConversation = TextGenerationPipeline(
     model=modelConver,
     tokenizer=tokenizerConver,
     framework="pt",
@@ -186,10 +186,10 @@ def make_response_Adulto(entry: str):
 
     #print(entry_EN)
 
-    conversation.add_user_input(entry)
+    #conversation.add_user_input(entry)
 
     pipelineConversation(
-        [conversation],
+        f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ",
         do_sample=generate_args.do_sample,
         temperature=generate_args.temperature,
         top_p=generate_args.top_p,
@@ -198,9 +198,9 @@ def make_response_Adulto(entry: str):
         use_cache=generate_args.use_cache
     )
 
-    response = conversation.generated_responses[-1]
+    response = conversation["generated_text"]
 
-    conversation.mark_processed()
+    #conversation.mark_processed()
 
     #print(response_EN)
 
