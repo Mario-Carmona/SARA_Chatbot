@@ -21,7 +21,7 @@ from pyngrok import ngrok, conf
 import torch
 
 from transformers import set_seed
-from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
+from transformers import AutoModel, AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
 
 
 
@@ -94,15 +94,15 @@ configConver = AutoConfig.from_pretrained(
 
 tokenizerConver = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.model_conver_tokenizer,
-    config=WORKDIR + model_args.model_conver_tokenizer_config,
     use_fast=True
 )
 
 
-modelConver = AutoModelForSeq2SeqLM.from_pretrained(
+modelConver = AutoModel.from_pretrained(
     WORKDIR + model_args.model_conver,
     from_tf=bool(".ckpt" in model_args.model_conver),
-    config=configConver
+    config=configConver,
+    torch_dtype=torch.float16
 )
 
 # ----------------------------------------------
@@ -120,7 +120,8 @@ tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
 modelTrans_ES_EN = AutoModelForSeq2SeqLM.from_pretrained(
     WORKDIR + model_args.model_trans_ES_EN,
     from_tf=bool(".ckpt" in model_args.model_trans_ES_EN),
-    config=configTrans_ES_EN
+    config=configTrans_ES_EN,
+    torch_dtype=torch.float16
 )
 
 # ----------------------------------------------
@@ -138,7 +139,8 @@ tokenizerTrans_EN_ES = AutoTokenizer.from_pretrained(
 modelTrans_EN_ES = AutoModelForSeq2SeqLM.from_pretrained(
     WORKDIR + model_args.model_trans_EN_ES,
     from_tf=bool(".ckpt" in model_args.model_trans_EN_ES),
-    config=configTrans_EN_ES
+    config=configTrans_EN_ES,
+    torch_dtype=torch.float16
 )
 
 # ----------------------------------------------
@@ -181,10 +183,7 @@ os.system("nvidia-smi")
 
 def make_response_Adulto(entry: str):
 
-    entry_EN = es_en_translator(
-        entry,
-        max_time=0.5
-    )[0]["translation_text"]
+    entry_EN = es_en_translator(entry)[0]["translation_text"]
 
     print(entry_EN)
 
@@ -206,10 +205,7 @@ def make_response_Adulto(entry: str):
 
     print(response_EN)
 
-    response = en_es_translator(
-        response_EN,
-        max_time=0.5
-    )[0]["translation_text"]
+    response = en_es_translator(response_EN)[0]["translation_text"]
 
     print(response)
 

@@ -7,9 +7,9 @@
     "ngrok_config_path": "server_gpu/ngrok.yml",
 
 
-    "model_conver": "facebook/blenderbot-3B",
-    "model_conver_config": "facebook/blenderbot-3B/config.json",
-    "model_conver_tokenizer": "facebook/blenderbot-3B",
+    "model_conver": "PlanTL-GOB-ES/gpt2-large-bne",
+    "model_conver_config": "PlanTL-GOB-ES/gpt2-large-bne/config.json",
+    "model_conver_tokenizer": "PlanTL-GOB-ES/gpt2-large-bne",
     "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
 
     "model_trans_ES_EN": "Helsinki-NLP/opus-mt-es-en",
