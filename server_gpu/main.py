@@ -189,7 +189,7 @@ def make_response_Adulto(entry: str):
     #conversation.add_user_input(entry)
 
     response = pipelineConversation(
-        f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ",
+        args=f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ",
         do_sample=generate_args.do_sample,
         temperature=generate_args.temperature,
         top_p=generate_args.top_p,
