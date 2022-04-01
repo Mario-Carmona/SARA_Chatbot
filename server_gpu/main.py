@@ -21,7 +21,7 @@ from pyngrok import ngrok, conf
 import torch
 
 from transformers import set_seed
-from transformers import AutoModelForCausalLM, AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, TextGenerationPipeline, Conversation
+from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
 
 
 
@@ -94,17 +94,17 @@ configConver = AutoConfig.from_pretrained(
 
 tokenizerConver = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.model_conver_tokenizer,
+    config=WORKDIR + model_args.model_conver_tokenizer_config,
     use_fast=True
 )
 
 
-modelConver = AutoModelForCausalLM.from_pretrained(
+modelConver = AutoModelForSeq2SeqLM.from_pretrained(
     WORKDIR + model_args.model_conver,
     from_tf=bool(".ckpt" in model_args.model_conver),
-    config=configConver
+    config=configConver,
+    torch_dtype=torch.float16
 )
-
-modelConver.to(torch.device("cuda"))
 
 # ----------------------------------------------
 
@@ -164,8 +164,7 @@ en_es_translator = TranslationPipeline(
 
 # ----------------------------------------------
 
-"""
-pipelineConversation = TextGenerationPipeline(
+pipelineConversation = ConversationalPipeline(
     model=modelConver,
     tokenizer=tokenizerConver,
     framework="pt",
@@ -173,7 +172,6 @@ pipelineConversation = TextGenerationPipeline(
 )
 
 conversation = Conversation()
-"""
 
 # ----------------------------------------------
 
@@ -186,27 +184,14 @@ os.system("nvidia-smi")
 
 def make_response_Adulto(entry: str):
 
-    #entry_EN = es_en_translator(entry)[0]["translation_text"]
+    entry_EN = es_en_translator(entry)[0]["translation_text"]
 
-    #print(entry_EN)
+    print(entry_EN)
 
-    #conversation.add_user_input(entry)
+    conversation.add_user_input(entry_EN)
 
-    """
-    response = pipelineConversation(
-        args=f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ",
-        do_sample=generate_args.do_sample,
-        temperature=generate_args.temperature,
-        top_p=generate_args.top_p,
-        max_time=generate_args.max_time,
-        max_length=generate_args.max_length,
-        use_cache=generate_args.use_cache
-    )["generated_text"]
-    """
-
-    input_ids = tokenizerConver(f"Conversación entre [A] y [B]\n[A]: Hola, yo me llamo Mario\n[B]: Buenas, yo me llamo Sara\n[A]: {entry}\n[B]: ", return_tensors="pt").input_ids.to(torch.device("cuda"))
-    generated_ids = modelConver.generate(
-        input_ids,
+    pipelineConversation(
+        [conversation],
         do_sample=generate_args.do_sample,
         temperature=generate_args.temperature,
         top_p=generate_args.top_p,
@@ -214,13 +199,14 @@ def make_response_Adulto(entry: str):
         max_length=generate_args.max_length,
         use_cache=generate_args.use_cache
     )
-    response = tokenizerConver.decode(generated_ids[0])
 
-    #conversation.mark_processed()
+    response_EN = conversation.generated_responses[-1]
 
-    #print(response_EN)
+    conversation.mark_processed()
 
-    #response = en_es_translator(response_EN)[0]["translation_text"]
+    print(response_EN)
+
+    response = en_es_translator(response_EN)[0]["translation_text"]
 
     print(response)
 
