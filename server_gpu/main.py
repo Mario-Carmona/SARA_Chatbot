@@ -94,7 +94,6 @@ configConver = AutoConfig.from_pretrained(
 
 tokenizerConver = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.model_conver_tokenizer,
-    config=WORKDIR + model_args.model_conver_tokenizer_config,
     use_fast=True
 )
 
@@ -184,11 +183,11 @@ os.system("nvidia-smi")
 
 def make_response_Adulto(entry: str):
 
-    entry_EN = es_en_translator(entry)[0]["translation_text"]
+    #entry_EN = es_en_translator(entry)[0]["translation_text"]
 
-    print(entry_EN)
+    #print(entry_EN)
 
-    conversation.add_user_input(entry_EN)
+    conversation.add_user_input(entry)
 
     pipelineConversation(
         [conversation],
@@ -200,13 +199,13 @@ def make_response_Adulto(entry: str):
         use_cache=generate_args.use_cache
     )
 
-    response_EN = conversation.generated_responses[-1]
+    response = conversation.generated_responses[-1]
 
     conversation.mark_processed()
 
-    print(response_EN)
+    #print(response_EN)
 
-    response = en_es_translator(response_EN)[0]["translation_text"]
+    #response = en_es_translator(response_EN)[0]["translation_text"]
 
     print(response)
 

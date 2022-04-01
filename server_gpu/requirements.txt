@@ -6,3 +6,5 @@ pyngrok
 torch>=1.9
 transformers==4.14.1
 sentencepiece
+datasets==1.16.1
+pandas
