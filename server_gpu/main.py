@@ -204,7 +204,7 @@ def make_response_Adulto(entry: str):
     )["generated_text"]
     """
 
-    input_ids = tokenizerConver(f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ", return_tensors="pt").input_ids.to(torch.device("cuda"))
+    input_ids = tokenizerConver(f"Conversación entre [A] y [B]\n[A]: Hola, yo me llamo Mario\n[B]: Buenas, yo me llamo Sara\n[A]: {entry}\n[B]: ", return_tensors="pt").input_ids.to(torch.device("cuda"))
     generated_ids = modelConver.generate(
         input_ids,
         do_sample=generate_args.do_sample,
