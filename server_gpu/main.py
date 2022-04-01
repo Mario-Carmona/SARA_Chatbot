@@ -188,7 +188,7 @@ def make_response_Adulto(entry: str):
 
     #conversation.add_user_input(entry)
 
-    pipelineConversation(
+    response = pipelineConversation(
         f"Conversación entre [A] y [B]\n[A]: {entry}\n[B]: ",
         do_sample=generate_args.do_sample,
         temperature=generate_args.temperature,
@@ -196,9 +196,7 @@ def make_response_Adulto(entry: str):
         max_time=generate_args.max_time,
         max_length=generate_args.max_length,
         use_cache=generate_args.use_cache
-    )
-
-    response = conversation["generated_text"]
+    )["generated_text"]
 
     #conversation.mark_processed()
 
