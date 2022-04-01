@@ -101,8 +101,7 @@ tokenizerConver = AutoTokenizer.from_pretrained(
 modelConver = AutoModel.from_pretrained(
     WORKDIR + model_args.model_conver,
     from_tf=bool(".ckpt" in model_args.model_conver),
-    config=configConver,
-    torch_dtype=torch.float16
+    config=configConver
 )
 
 # ----------------------------------------------
