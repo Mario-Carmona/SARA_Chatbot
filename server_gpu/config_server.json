@@ -24,9 +24,9 @@
 
 
     "do_sample": true,
-    "temperature": 1.0,
+    "temperature": 0.1,
     "top_p": 1.0,
-    "max_time": 3.0,
+    "max_time": 2.0,
     "max_length": 1000,
     "use_cache": true
 }
