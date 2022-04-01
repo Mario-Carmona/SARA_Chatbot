@@ -181,7 +181,10 @@ os.system("nvidia-smi")
 
 def make_response_Adulto(entry: str):
 
-    entry_EN = es_en_translator(entry)[0]["translation_text"]
+    entry_EN = es_en_translator(
+        entry,
+        max_time=0.5
+    )[0]["translation_text"]
 
     print(entry_EN)
 
@@ -203,7 +206,10 @@ def make_response_Adulto(entry: str):
 
     print(response_EN)
 
-    response = en_es_translator(response_EN)[0]["translation_text"]
+    response = en_es_translator(
+        response_EN,
+        max_time=0.5
+    )[0]["translation_text"]
 
     print(response)
 
