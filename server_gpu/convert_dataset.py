@@ -36,5 +36,6 @@ if __name__ == "__main__":
         lines[i] = lines[i].split('|')
 
     csvfile = pd.DataFrame(lines[1:], columns=lines[0])
+    csvfile = csvfile.drop([csvfile.columns.values[0]], axis=1)
 
     csvfile.to_csv(args.csvfile)

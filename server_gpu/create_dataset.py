@@ -1,35 +1,106 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from pathlib import Path
-
-from project_arguments import ProyectArguments
-from dataset_arguments import DatasetArguments
-from transformers import HfArgumentParser
-
+import argparse
+from cmath import nan
+import pandas as pd
+import sys
 
 
-BASE_PATH = Path(__file__).resolve().parent
-CONFIG_FILE = "config_dataset.json"
+def generarContexto(dataset):
+    context = []
+    nombre = dataset["Nombre"].tolist()
+    nombre_alter = dataset["Nombre_Alternativo"].tolist()
+    definicion = dataset["Definición"].tolist()
 
+    for i in range(len(nombre)):
+        aux = nombre[i]
+        if str(nombre_alter[i]) != "nan":
+            aux += ". " + nombre_alter[i]
+        aux += ". " + definicion[i]
 
-parser = HfArgumentParser(
-    (
-        ProyectArguments,
-        DatasetArguments
+        context.append(aux)
+
+    dataset = dataset.drop(
+        ["Nombre", "Nombre_Alternativo", "Definición"], 
+        axis=1
     )
-)
+    dataset["Contexto"] = context
 
-project_args, dataset_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
+    return dataset
+
+def obtenerTrainDataset(dataset, train_split):
+    train_dataset = dataset.sample(
+        frac=train_split,
+        random_state=0,
+        axis=0,
+        ignore_index=True
+    )
+
+    return train_dataset
+    
+def obtenerValidationDataset(dataset, train_dataset):
+    validation_dataset = pd.merge(dataset, train_dataset, how='outer', indicator='Exist')
+    validation_dataset = validation_dataset.loc[validation_dataset['Exist'] != 'both']
+    validation_dataset = validation_dataset.drop(["Exist"], axis=1)
+    validation_dataset = validation_dataset.sample(
+        frac=1,
+        random_state=0,
+        axis=0,
+        ignore_index=True
+    )
+
+    return validation_dataset
 
 
-WORKDIR = project_args.workdir
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "datasetfile", 
+        type = str,
+        help = "El formato del archivo debe ser \'archivo.csv\'"
+    )
+
+    parser.add_argument(
+        "trainfile", 
+        type = str,
+        help = "El formato del archivo debe ser \'archivo.csv\'"
+    )
+    parser.add_argument(
+        "validationfile", 
+        type = str,
+        help = "El formato del archivo debe ser \'archivo.csv\'"
+    )
+
+    parser.add_argument(
+        "train_split", 
+        type = float,
+        help = "De ser un flotante mayor que 0 y menor que 1'"
+    )
+
+    try:
+        args = parser.parse_args()
+        assert args.datasetfile.split('.')[-1] == "csv"
+        assert args.trainfile.split('.')[-1] == "csv"
+        assert args.validationfile.split('.')[-1] == "csv"
+        assert args.train_split > 0.0 and args.train_split < 1.0
+    except:
+        parser.print_help()
+        sys.exit(0)
 
 
+    dataset = pd.read_csv(args.datasetfile)
 
+    train_dataset = obtenerTrainDataset(dataset, args.train_split)
 
+    validation_dataset = obtenerValidationDataset(dataset, train_dataset)
 
+    train_dataset = generarContexto(train_dataset)
 
+    validation_dataset = generarContexto(validation_dataset)
 
+    train_dataset.to_csv(args.trainfile)
 
-
+    validation_dataset.to_csv(args.validationfile)
