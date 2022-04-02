@@ -125,6 +125,10 @@ def make_response_talk(request: Dict):
     headers = {'content-type': 'application/json'}
     output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
 
+    print(output)
+
+    time.sleep(2)
+
     outputContexts[0]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
     outputContexts[0]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
     outputContexts[0]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
