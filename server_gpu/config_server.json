@@ -28,5 +28,6 @@
     "top_p": 1.0,
     "max_time": 3.0,
     "max_length": 1000,
+    "min_length": 0,
     "use_cache": true
 }

@@ -30,6 +30,11 @@ class GenerateArguments:
             "help": ""
         }
     )
+    min_length: int = field(
+        metadata={
+            "help": ""
+        }
+    )
     use_cache: bool = field(
         metadata={
             "help": ""

@@ -21,7 +21,7 @@ from pyngrok import ngrok, conf
 import torch
 
 from transformers import set_seed
-from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, TranslationPipeline, ConversationalPipeline, Conversation
+from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, BlenderbotForConditionalGeneration, TranslationPipeline, ConversationalPipeline, Conversation
 
 
 
@@ -99,7 +99,7 @@ tokenizerConver = AutoTokenizer.from_pretrained(
 )
 
 
-modelConver = AutoModelForSeq2SeqLM.from_pretrained(
+modelConver = BlenderbotForConditionalGeneration.from_pretrained(
     WORKDIR + model_args.model_conver,
     from_tf=bool(".ckpt" in model_args.model_conver),
     config=configConver,
@@ -197,6 +197,7 @@ def make_response_Adulto(entry: str):
         top_p=generate_args.top_p,
         max_time=generate_args.max_time,
         max_length=generate_args.max_length,
+        min_lenght=generate_args.min_lenght,
         use_cache=generate_args.use_cache
     )
 
