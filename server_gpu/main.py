@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from typing import List
 import requests
 from pathlib import Path
 
@@ -36,6 +37,8 @@ class bcolors:
 
 class Entry(BaseModel):
     entry: str
+    past_user_inputs: List[str]
+    generated_responses: List[str]
 
 
 
@@ -171,8 +174,6 @@ pipelineConversation = ConversationalPipeline(
     device=local_rank
 )
 
-conversation = Conversation()
-
 # ----------------------------------------------
 
 os.system("nvidia-smi")
@@ -182,16 +183,22 @@ os.system("nvidia-smi")
 
 
 
-def make_response_Adulto(entry: str):
+def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_responses: List[str]):
 
-    entry_EN = es_en_translator(entry)[0]["translation_text"]
+    entry_EN = es_en_translator(
+        entry
+    )[0]["translation_text"]
 
     print(entry_EN)
 
-    conversation.add_user_input(entry_EN)
+    conversation = Conversation(
+        entry_EN,
+        past_user_inputs=past_user_inputs,
+        generated_responses=generated_responses
+    )
 
     pipelineConversation(
-        [conversation],
+        conversation,
         do_sample=generate_args.do_sample,
         temperature=generate_args.temperature,
         top_p=generate_args.top_p,
@@ -201,15 +208,26 @@ def make_response_Adulto(entry: str):
         use_cache=generate_args.use_cache
     )
 
-    response_EN = conversation.generated_responses[-1]
+    answer_EN = conversation.generated_responses[-1]
 
-    conversation.mark_processed()
+    print(answer_EN)
 
-    print(response_EN)
+    answer = en_es_translator(
+        answer_EN
+    )[0]["translation_text"]
 
-    response = en_es_translator(response_EN)[0]["translation_text"]
+    print(answer)
 
-    print(response)
+    response = {
+        "entry": {
+            "ES": entry, 
+            "EN": entry_EN
+        },
+        "answer": {
+            "ES": answer, 
+            "EN": answer_EN
+        }
+    }
 
     return response
 
@@ -223,10 +241,14 @@ app = FastAPI(version="1.0.0")
 def home():
     return "Server GPU ON"
 
-@app.post("/Adulto", response_class=PlainTextResponse)
+@app.post("/Adulto")
 def adulto(request: Entry):
 
-    response = make_response_Adulto(request.entry)
+    response = make_response_Adulto(
+        request.entry, 
+        request.past_user_inputs,
+        request.generated_responses
+    )
 
     return response
 

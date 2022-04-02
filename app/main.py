@@ -43,16 +43,34 @@ def make_response_welcome(request: Dict):
 
         query_json = {
             "entry": entry,
+            "past_user_inputs": None,
+            "generated_responses": None
         }
         """
         headers = {'content-type': 'application/json'}
-        answer = requests.post(SERVER_GPU_URL + "/deduct", json=query_json, headers=headers).content.decode('utf-8')
+        output = requests.post(SERVER_GPU_URL + "/deduct", json=query_json, headers=headers)
         """
-        answer = "Hola"
+        output = {
+            "entry": {
+                "ES": "Hola", 
+                "EN": "Hello"
+            },
+            "answer": {
+                "ES": "Hola", 
+                "EN": "Hello"
+            }
+        }
 
         outputContexts[0]["parameters"] = {
-            "context": f"[A]: {entry}\n[B]: {answer}"
+            "context": {
+                "entry": [output["entry"]["ES"]],
+                "answer": [output["answer"]["ES"]]
+            },
+            "past_user_inputs": [output["entry"]["EN"]],
+            "generated_responses": [output["answer"]["EN"]]
         }
+
+        answer = output["answer"]["ES"]
     else:
         outputContexts = []
         answer = "Servidor GPU no disponible"
@@ -96,15 +114,23 @@ def make_response_talk(request: Dict):
 
     edad = outputContexts[0]["parameters"]["edad"]
 
-    context = outputContexts[0]["parameters"]["context"]
+    past_user_inputs = outputContexts[0]["parameters"]["past_user_inputs"]
+    generated_responses = outputContexts[0]["parameters"]["generated_responses"]
 
     query_json = {
         "entry": entry,
+        "past_user_inputs": past_user_inputs,
+        "generated_responses": generated_responses
     }
     headers = {'content-type': 'application/json'}
-    answer = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers).content.decode('utf-8')
+    output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
 
-    outputContexts[0]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
+    outputContexts[0]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
+    outputContexts[0]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
+    outputContexts[0]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
+    outputContexts[0]["parameters"]["generated_responses"].append(output["answer"]["EN"])
+
+    answer = output["answer"]["ES"]
 
     response = {
         "fulfillmentText": answer,
@@ -118,11 +144,37 @@ def make_response_goodbye(request: Dict):
 
     entry = request.get("queryResult").get("queryText")
 
-    answer = "Adios"
+    edad = outputContexts[0]["parameters"]["edad"]
 
-    context = outputContexts[-1]["parameters"]["context"]
+    past_user_inputs = outputContexts[0]["parameters"]["past_user_inputs"]
+    generated_responses = outputContexts[0]["parameters"]["generated_responses"]
 
-    outputContexts[-1]["parameters"]["context"] = f"{context}\n[A]: {entry}\n[B]: {answer}"
+    query_json = {
+        "entry": entry,
+        "past_user_inputs": None,
+        "generated_responses": None
+    }
+    """
+    headers = {'content-type': 'application/json'}
+    output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
+    """
+    output = {
+        "entry": {
+            "ES": "Adios", 
+            "EN": "Bye bye"
+        },
+        "answer": {
+            "ES": "Adios", 
+            "EN": "Bye bye"
+        }
+    }
+
+    outputContexts[0]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
+    outputContexts[0]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
+    outputContexts[0]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
+    outputContexts[0]["parameters"]["generated_responses"].append(output["answer"]["EN"])
+
+    answer = output["answer"]["ES"]
 
     response = {
         "fulfillmentText": answer,
