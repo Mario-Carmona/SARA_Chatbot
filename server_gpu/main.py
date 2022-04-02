@@ -105,7 +105,8 @@ tokenizerConver = AutoTokenizer.from_pretrained(
 modelConver = BlenderbotForConditionalGeneration.from_pretrained(
     WORKDIR + model_args.model_conver,
     from_tf=bool(".ckpt" in model_args.model_conver),
-    config=configConver
+    config=configConver,
+    torch_dtype=torch.float16
 )
 
 # ----------------------------------------------
@@ -123,7 +124,8 @@ tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
 modelTrans_ES_EN = MarianMTModel.from_pretrained(
     WORKDIR + model_args.model_trans_ES_EN,
     from_tf=bool(".ckpt" in model_args.model_trans_ES_EN),
-    config=configTrans_ES_EN
+    config=configTrans_ES_EN,
+    torch_dtype=torch.float16
 )
 
 # ----------------------------------------------
@@ -141,7 +143,8 @@ tokenizerTrans_EN_ES = AutoTokenizer.from_pretrained(
 modelTrans_EN_ES = MarianMTModel.from_pretrained(
     WORKDIR + model_args.model_trans_EN_ES,
     from_tf=bool(".ckpt" in model_args.model_trans_EN_ES),
-    config=configTrans_EN_ES
+    config=configTrans_EN_ES,
+    torch_dtype=torch.float16
 )
 
 # ----------------------------------------------
