@@ -49,6 +49,7 @@ def make_response_welcome(request: Dict):
         """
         headers = {'content-type': 'application/json'}
         output = requests.post(SERVER_GPU_URL + "/deduct", json=query_json, headers=headers)
+        output = json.loads(output.content.decode('utf-8'))
         """
         output = {
             "entry": {
@@ -124,11 +125,7 @@ def make_response_talk(request: Dict):
     }
     headers = {'content-type': 'application/json'}
     output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
-
-    print(output.content.decode('utf-8'))
-    print(type(output.content.decode('utf-8')))
-
-    time.sleep(2)
+    output = json.loads(output.content.decode('utf-8'))
 
     outputContexts[0]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
     outputContexts[0]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
@@ -162,6 +159,7 @@ def make_response_goodbye(request: Dict):
     """
     headers = {'content-type': 'application/json'}
     output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
+    output = json.loads(output.content.decode('utf-8'))
     """
     output = {
         "entry": {
