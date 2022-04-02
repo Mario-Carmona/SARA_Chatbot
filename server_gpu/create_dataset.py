@@ -101,6 +101,8 @@ if __name__ == "__main__":
 
     validation_dataset = generarContexto(validation_dataset)
 
-    train_dataset.to_csv(args.trainfile)
+    nombre_train_file = args.trainfile.split('.')[0] + "_" + str(args.train_split) + "." + args.trainfile.split('.')[-1]
+    train_dataset.to_csv(nombre_train_file)
 
-    validation_dataset.to_csv(args.validationfile)
+    nombre_vali_file = args.validationfile.split('.')[0] + "_" + str(args.train_split) + "." + args.validationfile.split('.')[-1]
+    validation_dataset.to_csv(nombre_vali_file)
