@@ -5,6 +5,8 @@ import os
 from typing import List
 import requests
 from pathlib import Path
+import argparse
+import sys
 
 from project_arguments import ProyectArguments
 from model_arguments import ModelArguments
@@ -27,6 +29,21 @@ from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, Maria
 
 
 
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "config_file", 
+    type = str,
+    help = "El formato del archivo debe ser \'config.json\'"
+)
+
+try:
+    args = parser.parse_args()
+    assert args.config_file.split('.')[-1] == "json"
+except:
+    parser.print_help()
+    sys.exit(0)
+
 
 
 class bcolors:
@@ -45,7 +62,7 @@ class Entry(BaseModel):
 
 
 BASE_PATH = Path(__file__).resolve().parent
-CONFIG_FILE = "config_server.json"
+CONFIG_FILE = args.config_file
 
 
 parser = HfArgumentParser(
