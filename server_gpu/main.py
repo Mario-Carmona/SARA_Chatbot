@@ -233,6 +233,14 @@ def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_resp
 
 
 
+def send_public_URL():
+    print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
+    url = project_args.controller_url
+    headers = {'content-type': 'application/json'}
+    response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
+    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))
+
+
 
 
 app = FastAPI(version="1.0.0")
@@ -253,6 +261,13 @@ def adulto(request: Entry):
     return response
 
 
+@app.get("/Reconnect", response_class=PlainTextResponse)
+def adulto():
+
+    send_public_URL()
+
+    return "Reenviada URL"
+
 
 if __name__ == "__main__":
 
@@ -263,6 +278,7 @@ if __name__ == "__main__":
         config_path=WORKDIR + project_args.ngrok_config_path
     )
 
+    global public_url
     public_url = ngrok.connect(
         port, 
         pyngrok_config=pyngrok_config
@@ -270,11 +286,7 @@ if __name__ == "__main__":
 
     print(bcolors.OK + "Public URL" + bcolors.RESET + ": " + public_url)
 
-    print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
-    url = project_args.controller_url
-    headers = {'content-type': 'application/json'}
-    response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
-    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))
+    send_public_URL()
 
     # killall ngrok  → Para eliminar todas las sessiones de ngrok
 
