@@ -27,7 +27,7 @@
     "temperature": 1.0,
     "top_p": 1.0,
     "max_time": 3.0,
-    "max_length": 200,
+    "max_length": 128,
     "min_length": 0,
     "use_cache": true
 }
