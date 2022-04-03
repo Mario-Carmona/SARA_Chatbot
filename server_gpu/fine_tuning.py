@@ -181,7 +181,6 @@ def tokenize_function(examples):
         max_length=data_args.max_seq_length,
         stride=data_args.doc_stride,
         padding="max_length" if data_args.pad_to_max_length else False,
-        return_tensors="pt",
         return_token_type_ids=True
     )
 
