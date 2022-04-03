@@ -118,7 +118,7 @@ if data_args.train_file is not None:
 if data_args.validation_file is not None:
     data_files["validation"] = data_args.validation_file
 extension = data_args.train_file.split(".")[-1]
-datasets = load_dataset(extension, data_files=data_files, field="data")
+datasets = load_dataset(extension, data_files=data_files)
 
 
 
