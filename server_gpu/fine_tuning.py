@@ -251,9 +251,7 @@ if training_args.do_train:
     train_dataset = datasets["train"].map(
         prepare_train_features,
         batched=True,
-        num_proc=data_args.preprocessing_num_workers,
-        remove_columns=column_names,
-        load_from_cache_file=not data_args.overwrite_cache,
+        remove_columns=column_names
     )
 
 
@@ -306,9 +304,7 @@ if training_args.do_eval:
     validation_dataset = datasets["validation"].map(
         prepare_validation_features,
         batched=True,
-        num_proc=data_args.preprocessing_num_workers,
-        remove_columns=column_names,
-        load_from_cache_file=not data_args.overwrite_cache,
+        remove_columns=column_names
     )
 
 
