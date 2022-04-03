@@ -188,6 +188,8 @@ def prepare_train_features(examples):
         padding="max_length" if data_args.pad_to_max_length else False,
     )
 
+    print(tokenizerConver.cls_token_id)
+
     print(tokenized_examples)
 
     # Since one example might give us several features if it has a long context, we need a map from a feature to
