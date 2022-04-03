@@ -5,27 +5,27 @@ from typing import Optional
 
 @dataclass
 class DataTrainingArguments:
-    train_file: bool = field(
+    train_file: Optional[bool] = field(
         metadata={
             "help": ""
         }
     )
-    validation_file: bool = field(
+    validation_file: Optional[bool] = field(
         metadata={
             "help": ""
         }
     )
-    max_seq_length: int = field(
+    max_seq_length: Optional[int] = field(
         metadata={
             "help": ""
         }
     )
-    pad_to_max_length: bool = field(
+    pad_to_max_length: Optional[bool] = field(
         metadata={
             "help": ""
         }
     )
-    doc_stride: int = field(
+    doc_stride: Optional[int] = field(
         metadata={
             "help": ""
         }

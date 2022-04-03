@@ -10,27 +10,27 @@ class ProyectArguments:
             "help": ""
         }
     )
-    host: str = field(
+    host: Optional[str] = field(
         metadata={
             "help": ""
         }
     )
-    port: str = field(
+    port: Optional[str] = field(
         metadata={
             "help": ""
         }
     )
-    controller_url: str = field(
+    controller_url: Optional[str] = field(
         metadata={
             "help": ""
         }
     )
-    ngrok_path: str = field(
+    ngrok_path: Optional[str] = field(
         metadata={
             "help": ""
         }
     )
-    ngrok_config_path: str = field(
+    ngrok_config_path: Optional[str] = field(
         metadata={
             "help": ""
         }

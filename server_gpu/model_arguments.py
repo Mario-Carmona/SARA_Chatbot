@@ -37,7 +37,7 @@ class ModelArguments:
     
     # --------------------------------------------------
 
-    model_trans_ES_EN: str = field(
+    model_trans_ES_EN: Optional[str] = field(
         default=None,
         metadata={
             "help": "Path to pretrained model or model identifier from huggingface.co/models"
@@ -64,7 +64,7 @@ class ModelArguments:
 
     # --------------------------------------------------
 
-    model_trans_EN_ES: str = field(
+    model_trans_EN_ES: Optional[str] = field(
         default=None,
         metadata={
             "help": "Path to pretrained model or model identifier from huggingface.co/models"
