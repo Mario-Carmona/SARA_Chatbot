@@ -2,6 +2,9 @@
     "workdir": "/mnt/homeGPU/mcarmona/",
     "host": "0.0.0.0",
     "port": "5000",
+    "controller_url": "",
+    "ngrok_path": "",
+    "ngrok_config_path": "",
 
 
     "model_conver": "facebook/blenderbot-3B",
