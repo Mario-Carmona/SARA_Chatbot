@@ -31,5 +31,5 @@
     "num_train_epochs": 2,
     "max_seq_length": 128,
     "pad_to_max_length": true,
-    "doc_stride": 128
+    "doc_stride": 0
 }
