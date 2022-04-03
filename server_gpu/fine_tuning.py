@@ -172,6 +172,8 @@ pad_on_right = tokenizerConver.padding_side == "right"
 
 # Training preprocessing
 def prepare_train_features(examples):
+    print(examples)
+    
     # Tokenize our examples with truncation and maybe padding, but keep the overflows using a stride. This results
     # in one example possible giving several features when a context is long, each of those features having a
     # context that overlaps a bit the context of the previous feature.
@@ -186,13 +188,16 @@ def prepare_train_features(examples):
         padding="max_length" if data_args.pad_to_max_length else False,
     )
 
+    print(tokenized_examples)
+
     # Since one example might give us several features if it has a long context, we need a map from a feature to
     # its corresponding example. This key gives us just that.
     sample_mapping = tokenized_examples.pop("overflow_to_sample_mapping")
+    print(sample_mapping)
     # The offset mappings will give us a map from token to character position in the original context. This will
     # help us compute the start_positions and end_positions.
     offset_mapping = tokenized_examples.pop("offset_mapping")
-
+    print(offset_mapping)
     # Let's label those examples!
     tokenized_examples["start_positions"] = []
     tokenized_examples["end_positions"] = []
