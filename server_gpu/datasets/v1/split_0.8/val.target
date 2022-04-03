@@ -1,0 +1,7 @@
+Una opción es usar codificación one-hot y convertir la variable "color" en tres variables dummy nuevas (una por color). Estas tres variables serán binarias y podrán tomar el valor de 0 o 1, pero solo estará en 1 una sola de estas tres variables a la vez. Asi podemos comparar colores usando una distancia de hamming. 
+Si hablamos de transferencias bancarias, éstas se podrían hacer sin necesidad de un ordenador centralizado (un banco).
+Piensa en el ADN de los organismos que habitan en nuestro planeta, o bien, en la cantidad de vídeos de TikTok que se publican día a día. Los algoritmos convencionales se "atragantrían" con tantos datos y es necesario utilizar algoritmos y estrategias diferentes.
+Los científic@s de datos constituyen un nuevo perfil académico. Existen varios másteres que se especializan en Ciencia de Datos y es probable que en breve también se abran carreras de grado específicas...
+Algoritmo para hacer croquetas: Paso 1: Picar el jamón en trocitos pequeños. Paso 2: Poner en una la sartén un poco de mantequilla, una cucharada de harina...
+A) a = a + 1 se puede escribir como a += 1. B) 1 < x and x < 10 se puede escribir como 1 < x < 10. C) number = 1000000000 se puede escribir como number = 1_000_000_000.
+Por ejemplo, si tenemos un conjunto de datos con información del alto (X), ancho (Y) y profundidad (Z) de un objeto y queremos clasificarlo como grande o pequeño podemos tener reglas como: Si (X > 20) entonces grande, Si (X <= 20) entonces pequeño, Si (X > 10) e (Y>10) entonces grande.
