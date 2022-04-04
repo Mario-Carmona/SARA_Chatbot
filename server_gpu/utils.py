@@ -26,11 +26,9 @@ from typing import Callable, Dict, Iterable, List, Tuple, Union
 import numpy as np
 import torch
 import torch.distributed as dist
-from sacrebleu import corpus_bleu
 from torch import nn
 from torch.utils.data import Dataset, Sampler
 
-from sentence_splitter import add_newline_to_end_of_each_sentence
 from transformers import BartTokenizer, EvalPrediction, PreTrainedTokenizer
 from transformers.file_utils import cached_property
 
@@ -67,11 +65,6 @@ def label_smoothed_nll_loss(lprobs, target, epsilon, ignore_index=-100):
 def lmap(f: Callable, x: Iterable) -> List:
     """list(map(f, x))"""
     return list(map(f, x))
-
-
-def calculate_bleu(output_lns, refs_lns, **kwargs) -> dict:
-    """Uses sacrebleu's corpus_bleu implementation."""
-    return {"bleu": round(corpus_bleu(output_lns, [refs_lns], **kwargs).score, 4)}
 
 
 
