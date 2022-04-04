@@ -21,8 +21,8 @@
     "seed": 0,
     "output_dir": "result_finetuning/v1",
     "overwrite_output_dir": false,
-    "train_file": "datasets/v1/trainDataset_0.8.csv",
-    "validation_file": "datasets/v1/validationDataset_0.8.csv",
+    "data_dir": "datasets/v1/split_0.8",
+    "task": "conversational",
 
     "do_train": true,
     "do_eval": false,
@@ -31,5 +31,13 @@
     "num_train_epochs": 2,
     "max_seq_length": 128,
     "pad_to_max_length": true,
-    "doc_stride": 0
+    "doc_stride": 0,
+
+
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "max_length": 128,
+    "min_length": 0,
+    "use_cache": true
 }

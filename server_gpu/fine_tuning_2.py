@@ -11,14 +11,30 @@ from datasets import load_dataset, load_metric
 
 from project_arguments import ProyectArguments
 from model_arguments import ModelArguments
+from generate_arguments import GenerateArguments
 from data_training_arguments import DataTrainingArguments
 from transformers import TrainingArguments, HfArgumentParser
 
 from transformers import set_seed
 from transformers import AutoConfig, AutoTokenizer, MarianMTModel, BlenderbotForConditionalGeneration
-from transformers import default_data_collator, DataCollatorWithPadding, EvalPrediction, TrainingArguments, Trainer
+from transformers import default_data_collator, DataCollatorWithPadding, EvalPrediction, TrainingArguments, Trainer, Seq2SeqTrainer, Seq2SeqTrainingArguments
 from transformers.trainer_utils import is_main_process
 import transformers
+from transformers.training_args import ParallelMode
+
+from utils import (
+    Seq2SeqDataCollator,
+    Seq2SeqDataset,
+    assert_all_frozen,
+    build_compute_metrics_fn,
+    check_output_dir,
+    freeze_embeds,
+    freeze_params,
+    lmap,
+    save_json,
+    use_task_specific_params,
+    write_txt_file,
+)
 
 import torch
 
@@ -26,6 +42,27 @@ import torch
 
 
 logger = logging.getLogger(__name__)
+
+
+def handle_metrics(split, metrics, output_dir):
+    """
+    Log and save metrics
+    Args:
+    - split: one of train, val, test
+    - metrics: metrics dict
+    - output_dir: where to save the metrics
+    """
+
+    logger.info(f"***** {split} metrics *****")
+    for key in sorted(metrics.keys()):
+        logger.info(f"  {key} = {metrics[key]}")
+    save_json(metrics, os.path.join(output_dir, f"{split}_results.json"))
+
+
+
+
+
+
 
 
 
@@ -53,27 +90,19 @@ parser = HfArgumentParser(
     (
         ProyectArguments, 
         ModelArguments,
+        GenerateArguments,
         DataTrainingArguments,
         TrainingArguments
     )
 )
 
-project_args, model_args, data_args, training_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
+project_args, model_args, generate_args, data_args, training_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 
 WORKDIR = project_args.workdir
 
 
-if (
-    os.path.exists(training_args.output_dir)
-    and os.listdir(training_args.output_dir)
-    and training_args.do_train
-    and not training_args.overwrite_output_dir
-):
-    raise ValueError(
-        f"Output directory ({training_args.output_dir}) already exists and is not empty."
-        "Use --overwrite_output_dir to overcome."
-    )
+check_output_dir(training_args)
 
 
 
@@ -82,17 +111,21 @@ if (
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
     datefmt="%m/%d/%Y %H:%M:%S",
+    level=logging.INFO if training_args.local_rank in [-1, 0] else logging.WARN,
 )
-logger.setLevel(logging.INFO if is_main_process(training_args.local_rank) else logging.WARN)
-
-# Log on each process the small summary:
 logger.warning(
-    f"Process rank: {training_args.local_rank}, device: {training_args.device}, n_gpu: {training_args.n_gpu}"
-    + f"distributed training: {bool(training_args.local_rank != -1)}, 16-bits training: {training_args.fp16}"
+    "Process rank: %s, device: %s, n_gpu: %s, distributed training: %s, 16-bits training: %s",
+    training_args.local_rank,
+    training_args.device,
+    training_args.n_gpu,
+    bool(training_args.parallel_mode == ParallelMode.DISTRIBUTED),
+    training_args.fp16,
 )
 # Set the verbosity to info of the Transformers logger (on main process only):
 if is_main_process(training_args.local_rank):
     transformers.utils.logging.set_verbosity_info()
+    transformers.utils.logging.enable_default_handler()
+    transformers.utils.logging.enable_explicit_format()
 logger.info("Training/evaluation parameters %s", training_args)
 
 
@@ -103,23 +136,6 @@ logger.info("Training/evaluation parameters %s", training_args)
 set_seed(training_args.seed)
 
 
-# Get the datasets: you can either provide your own CSV/JSON/TXT training and evaluation files (see below)
-# or just provide the name of one of the public datasets available on the hub at https://huggingface.co/datasets/
-# (the dataset will be downloaded automatically from the datasets Hub).
-#
-# For CSV/JSON files, this script will use the column called 'text' or the first column if no column called
-# 'text' is found. You can easily tweak this behavior (see below).
-#
-# In distributed training, the load_dataset function guarantee that only one local process can concurrently
-# download the dataset.
-data_files = {}
-if data_args.train_file is not None:
-    data_files["train"] = data_args.train_file
-if data_args.validation_file is not None:
-    data_files["validation"] = data_args.validation_file
-extension = data_args.train_file.split(".")[-1]
-datasets = load_dataset(extension, data_files=data_files)
-
 
 
 
@@ -129,7 +145,17 @@ datasets = load_dataset(extension, data_files=data_files)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 configConver = AutoConfig.from_pretrained(
-    WORKDIR + model_args.model_conver_config
+    WORKDIR + model_args.model_conver_config,
+    task_specific_params={
+        data_args.task: {
+            "do_sample": generate_args.do_sample,
+            "temperature": generate_args.temperature,
+            "top_p": generate_args.top_p,
+            "max_length": generate_args.max_length,
+            "min_length": generate_args.min_length,
+            "use_cache": generate_args.use_cache
+        }
+    }
 )
 
 
@@ -149,135 +175,37 @@ modelConver = BlenderbotForConditionalGeneration.from_pretrained(
 
 
 
-# Preprocessing the datasets.
-# Preprocessing is slighlty different for training and evaluation.
-if training_args.do_train:
-    column_names = datasets["train"].column_names
-elif training_args.do_eval:
-    column_names = datasets["validation"].column_names
-else:
-    raise ValueError(
-        "El script debe ejecutarse activando al menos una de las funciones (Training ó Evaluation)"
+
+dataset_class = Seq2SeqDataset
+
+
+
+
+# Get datasets
+train_dataset = (
+    dataset_class(
+        tokenizerConver,
+        type_path="train",
+        data_dir=data_args.data_dir,
+        n_obs=data_args.n_train,
+        max_target_length=data_args.max_target_length,
+        max_source_length=data_args.max_source_length
     )
-question_column_name = "Pregunta" if "Pregunta" in column_names else column_names[0]
-context_column_name = "Contexto" if "Contexto" in column_names else column_names[1]
-answer_column_name = "Respuesta" if "Respuesta" in column_names else column_names[2]
-
-
-
-# Padding side determines if we do (question|context) or (context|question).
-pad_on_right = tokenizerConver.padding_side == "right"
-
-
-
-def tokenize_function(examples):
-    # Tokenize our examples with truncation and maybe padding, but keep the overflows using a stride. This results
-    # in one example possible giving several features when a context is long, each of those features having a
-    # context that overlaps a bit the context of the previous feature.
-    tokenized_examples = tokenizerConver(
-        examples[question_column_name if pad_on_right else context_column_name],
-        examples[context_column_name if pad_on_right else question_column_name],
-        truncation="only_second" if pad_on_right else "only_first",
-        max_length=data_args.max_seq_length,
-        stride=data_args.doc_stride,
-        return_overflowing_tokens=True,
-        return_offsets_mapping=True,
-        padding="max_length" if data_args.pad_to_max_length else False
+    if training_args.do_train
+    else None
+)
+eval_dataset = (
+    dataset_class(
+        tokenizerConver,
+        type_path="val",
+        data_dir=data_args.data_dir,
+        n_obs=data_args.n_val,
+        max_target_length=data_args.val_max_target_length,
+        max_source_length=data_args.max_source_length
     )
-
-
-    # Since one example might give us several features if it has a long context, we need a map from a feature to
-    # its corresponding example. This key gives us just that.
-    sample_mapping = tokenized_examples.pop("overflow_to_sample_mapping")
-    # The offset mappings will give us a map from token to character position in the original context. This will
-    # help us compute the start_positions and end_positions.
-    offset_mapping = tokenized_examples.pop("offset_mapping")
-
-    # Let's label those examples!
-    tokenized_examples["start_positions"] = []
-    tokenized_examples["end_positions"] = []
-
-    for i, offsets in enumerate(offset_mapping):
-        # We will label impossible answers with the index of the CLS token.
-        input_ids = tokenized_examples["input_ids"][i]
-        cls_index = input_ids.index(tokenizerConver.cls_token_id)
-
-        # Grab the sequence corresponding to that example (to know what is the context and what is the question).
-        sequence_ids = tokenized_examples.sequence_ids(i)
-
-        # One example can give several spans, this is the index of the example containing this span of text.
-        sample_index = sample_mapping[i]
-        answers = examples[answer_column_name][sample_index]
-        # If no answers are given, set the cls_index as answer.
-        if len(answers["answer_start"]) == 0:
-            tokenized_examples["start_positions"].append(cls_index)
-            tokenized_examples["end_positions"].append(cls_index)
-        else:
-            # Start/end character index of the answer in the text.
-            start_char = answers["answer_start"][0]
-            end_char = start_char + len(answers["text"][0])
-
-            # Start token index of the current span in the text.
-            token_start_index = 0
-            while sequence_ids[token_start_index] != (1 if pad_on_right else 0):
-                token_start_index += 1
-
-            # End token index of the current span in the text.
-            token_end_index = len(input_ids) - 1
-            while sequence_ids[token_end_index] != (1 if pad_on_right else 0):
-                token_end_index -= 1
-
-            # Detect if the answer is out of the span (in which case this feature is labeled with the CLS index).
-            if not (offsets[token_start_index][0] <= start_char and offsets[token_end_index][1] >= end_char):
-                tokenized_examples["start_positions"].append(cls_index)
-                tokenized_examples["end_positions"].append(cls_index)
-            else:
-                # Otherwise move the token_start_index and token_end_index to the two ends of the answer.
-                # Note: we could go after the last offset if the answer is the last word (edge case).
-                while token_start_index < len(offsets) and offsets[token_start_index][0] <= start_char:
-                    token_start_index += 1
-                tokenized_examples["start_positions"].append(token_start_index - 1)
-                while offsets[token_end_index][1] >= end_char:
-                    token_end_index -= 1
-                tokenized_examples["end_positions"].append(token_end_index + 1)
-
-    return tokenized_examples
-
-
-
-
-
-if training_args.do_train:
-    train_dataset = datasets["train"].map(
-        tokenize_function,
-        batched=True,
-        remove_columns=column_names
-    )
-
-
-
-
-
-if training_args.do_eval:
-    validation_dataset = datasets["validation"].map(
-        tokenize_function,
-        batched=True,
-        remove_columns=column_names
-    )
-
-
-
-
-
-# Data collator
-# We have already padded to max length if the corresponding flag is True, otherwise we need to pad in the data
-# collator.
-data_collator = default_data_collator if data_args.pad_to_max_length else DataCollatorWithPadding(tokenizerConver)
-
-
-
-
-
+    if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO
+    else None
+)
 
 
 
@@ -298,20 +226,14 @@ def compute_metrics(p: EvalPrediction):
 
 
 
-
-
-
-
-
-# Initialize our Trainer
-trainer = Trainer(
+trainer = Seq2SeqTrainer(
     model=modelConver,
     args=training_args,
-    train_dataset=train_dataset if training_args.do_train else None,
-    eval_dataset=validation_dataset if training_args.do_eval else None,
-    tokenizer=tokenizerConver,
-    data_collator=data_collator,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+    data_collator=Seq2SeqDataCollator(tokenizerConver, data_args, training_args.tpu_num_cores),
     compute_metrics=compute_metrics,
+    tokenizer=tokenizerConver,
 )
 
 
@@ -319,98 +241,55 @@ trainer = Trainer(
 
 
 
-
+all_metrics = {}
 # Training
 if training_args.do_train:
-    train_result = trainer.train()
-    trainer.save_model()  # Saves the tokenizer too for easy upload
+    logger.info("*** Train ***")
 
-    output_train_file = os.path.join(training_args.output_dir, "train_results.txt")
+    train_result = trainer.train(
+        model_path=model_args.model_conver
+    )
+    metrics = train_result.metrics
+    metrics["train_n_objs"] = data_args.n_train
+
+    trainer.save_model()  # this also saves the tokenizer
+
     if trainer.is_world_process_zero():
-        with open(output_train_file, "w") as writer:
-            logger.info("***** Train results *****")
-            for key, value in sorted(train_result.metrics.items()):
-                logger.info(f"  {key} = {value}")
-                writer.write(f"{key} = {value}\n")
+        handle_metrics("train", metrics, training_args.output_dir)
+        all_metrics.update(metrics)
 
         # Need to save the state, since Trainer.save_model saves only the tokenizer with the model
         trainer.state.save_to_json(os.path.join(training_args.output_dir, "trainer_state.json"))
 
+        # For convenience, we also re-save the tokenizer to the same directory,
+        # so that you can share your model easily on huggingface.co/models =)
+        tokenizerConver.save_pretrained(training_args.output_dir)
+
+
 # Evaluation
-results = {}
 if training_args.do_eval:
     logger.info("*** Evaluate ***")
-    results = trainer.evaluate()
 
-    output_eval_file = os.path.join(training_args.output_dir, "eval_results.txt")
+    metrics = trainer.evaluate(
+        metric_key_prefix="val", max_length=data_args.val_max_target_length, num_beams=data_args.eval_beams
+    )
+    metrics["val_n_objs"] = data_args.n_val
+    metrics["val_loss"] = round(metrics["val_loss"], 4)
+
     if trainer.is_world_process_zero():
-        with open(output_eval_file, "w") as writer:
-            logger.info("***** Eval results *****")
-            for key, value in sorted(results.items()):
-                logger.info(f"  {key} = {value}")
-                writer.write(f"{key} = {value}\n")
 
-
-print(results)
+        handle_metrics("val", metrics, training_args.output_dir)
+        all_metrics.update(metrics)
 
 
 
 
+if trainer.is_world_process_zero():
+    save_json(all_metrics, os.path.join(training_args.output_dir, "all_results.json"))
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-tokenizerConver = AutoTokenizer.from_pretrained(
-    WORKDIR + model_args.model_conver_tokenizer,
-    config=WORKDIR + model_args.model_conver_tokenizer_config,
-    use_fast=True
-)
-
-
-
-def preprocess(dataset):
-    pass
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(all_metrics)
 
 
 
