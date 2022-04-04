@@ -18,7 +18,7 @@ from transformers import TrainingArguments, HfArgumentParser
 from transformers import set_seed
 from transformers import AutoConfig, AutoTokenizer, MarianMTModel, BlenderbotForConditionalGeneration
 from transformers import default_data_collator, DataCollatorWithPadding, EvalPrediction, TrainingArguments, Trainer, Seq2SeqTrainer, Seq2SeqTrainingArguments
-from transformers.trainer_utils import is_main_process
+from transformers.trainer_utils import is_main_process, EvaluationStrategy
 import transformers
 from transformers.training_args import ParallelMode
 
