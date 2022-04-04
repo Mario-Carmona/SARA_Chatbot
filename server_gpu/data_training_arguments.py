@@ -13,7 +13,7 @@ class DataTrainingArguments:
         metadata={"help": "Task name, summarization (or summarization_{dataset} for pegasus) or translation"},
     )
     max_source_length: Optional[int] = field(
-        default=1024,
+        default=128,
         metadata={
             "help": "The maximum total input sequence length after tokenization. Sequences longer "
             "than this will be truncated, sequences shorter will be padded."
@@ -27,7 +27,7 @@ class DataTrainingArguments:
         },
     )
     val_max_target_length: Optional[int] = field(
-        default=142,
+        default=128,
         metadata={
             "help": "The maximum total sequence length for validation target text after tokenization. Sequences longer "
             "than this will be truncated, sequences shorter will be padded. "
