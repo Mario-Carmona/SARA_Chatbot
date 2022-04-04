@@ -224,7 +224,8 @@ class Seq2SeqDataset(AbstractSeq2SeqDataset):
 
     def collate_fn(self, batch) -> Dict[str, torch.Tensor]:
         """Call prepare_seq2seq_batch."""
-        batch_encoding: Dict[str, torch.Tensor] = self.tokenizer.prepare_seq2seq_batch(
+        print(x for x in batch)
+        batch_encoding: Dict[str, torch.Tensor] = self.tokenizer(
             [x["src_texts"] for x in batch],
             tgt_texts=[x["tgt_texts"] for x in batch],
             max_length=self.max_source_length,
@@ -282,7 +283,8 @@ class Seq2SeqDataCollator:
         return shifted_input_ids
 
     def _encode(self, batch) -> Dict[str, torch.Tensor]:
-        batch_encoding = self.tokenizer.prepare_seq2seq_batch(
+        print(x for x in batch)
+        batch_encoding = self.tokenizer(
             [x["src_texts"] for x in batch],
             tgt_texts=[x["tgt_texts"] for x in batch],
             max_length=self.data_args.max_source_length,
