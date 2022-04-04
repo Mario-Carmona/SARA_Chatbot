@@ -239,6 +239,8 @@ all_metrics = {}
 if training_args.do_train:
     logger.info("*** Train ***")
 
+    os.system("nvidia-smi")
+
     train_result = trainer.train()
     metrics = train_result.metrics
     metrics["train_n_objs"] = data_args.n_train
