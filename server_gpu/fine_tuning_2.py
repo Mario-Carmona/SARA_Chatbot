@@ -85,7 +85,7 @@ parser = HfArgumentParser(
         ModelArguments,
         GenerateArguments,
         DataTrainingArguments,
-        TrainingArguments
+        Seq2SeqTrainingArguments
     )
 )
 
