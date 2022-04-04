@@ -19,7 +19,7 @@
 
 
     "seed": 0,
-    "output_dir": "result_finetuning/v1",
+    "output_dir": "result_finetuning/v2",
     "overwrite_output_dir": false,
     "data_dir": "datasets/v1/split_0.8",
     "task": "conversational",
