@@ -195,7 +195,7 @@ train_dataset = (
         n_obs=data_args.n_train,
         max_target_length=data_args.max_target_length,
         max_source_length=data_args.max_source_length,
-        prefix=model.config.prefix or "",
+        prefix=modelConver.config.prefix or "",
     )
     if training_args.do_train
     else None
@@ -208,7 +208,7 @@ eval_dataset = (
         n_obs=data_args.n_val,
         max_target_length=data_args.val_max_target_length,
         max_source_length=data_args.max_source_length,
-        prefix=model.config.prefix or "",
+        prefix=modelConver.config.prefix or "",
     )
     if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO
     else None
