@@ -192,8 +192,8 @@ if data_args.eval_beams is None:
 
 
 data_files = {}
-data_files["train"] = WORKDIR + "server_gpu/datasets/v1/split_0.8/train.csv"
-data_files["validation"] = WORKDIR + "server_gpu/datasets/v1/split_0.8/val.csv"
+data_files["train"] = WORKDIR + "datasets/v1/split_0.8/train_EN.csv"
+data_files["validation"] = WORKDIR + "datasets/v1/split_0.8/val_EN.csv"
 datasets = load_dataset("csv", data_files=data_files)
 
 
