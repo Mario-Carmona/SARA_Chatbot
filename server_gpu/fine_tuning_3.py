@@ -246,7 +246,9 @@ def compute_metrics(eval_pred: EvalPrediction):
 """
 
 def compute_metrics(p: EvalPrediction):
-    return metric.compute(predictions=np.asarray(p.predictions).flatten(), references=np.asarray(p.label_ids).flatten())
+    predic = np.asarray(p.predictions).flatten()
+    refer = np.asarray(p.label_ids).flatten()
+    return metric.compute(predictions=predic, references=refer)
 
 
 trainer = Seq2SeqTrainer(
