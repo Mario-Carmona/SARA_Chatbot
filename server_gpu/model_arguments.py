@@ -11,25 +11,25 @@ class ModelArguments:
 
     
     model_conver: str = field(
-        default=None, 
+        default=None,
         metadata={
             "help": "Path to pretrained model or model identifier from huggingface.co/models"
         }
     )
-    model_conver_config: Optional[str] = field(
-        default=None, 
+    model_conver_config: str = field(
+        default=None,
         metadata={
             "help": "Pretrained config name or path if not the same as model_name"
         }
     )
-    model_conver_tokenizer: Optional[str] = field(
-        default=None, 
+    model_conver_tokenizer: str = field(
+        default=None,
         metadata={
             "help": "Pretrained tokenizer name or path if not the same as model_name"
         }
     )
-    model_conver_tokenizer_config: Optional[str] = field(
-        default=None, 
+    model_conver_tokenizer_config: str = field(
+        default=None,
         metadata={
             "help": "Pretrained tokenizer config name or path if not the same as model_name"
         }
@@ -37,25 +37,25 @@ class ModelArguments:
     
     # --------------------------------------------------
 
-    model_trans_ES_EN: Optional[str] = field(
+    model_trans_ES_EN: str = field(
         default=None,
         metadata={
             "help": "Path to pretrained model or model identifier from huggingface.co/models"
         }
     )
-    model_trans_ES_EN_config: Optional[str] = field(
+    model_trans_ES_EN_config: str = field(
         default=None, 
         metadata={
             "help": "Pretrained config name or path if not the same as model_name"
         }
     )
-    model_trans_ES_EN_tokenizer: Optional[str] = field(
+    model_trans_ES_EN_tokenizer: str = field(
         default=None, 
         metadata={
             "help": "Pretrained tokenizer name or path if not the same as model_name"
         }
     )
-    model_trans_ES_EN_tokenizer_config: Optional[str] = field(
+    model_trans_ES_EN_tokenizer_config: str = field(
         default=None, 
         metadata={
             "help": "Pretrained tokenizer config name or path if not the same as model_name"
@@ -64,25 +64,25 @@ class ModelArguments:
 
     # --------------------------------------------------
 
-    model_trans_EN_ES: Optional[str] = field(
+    model_trans_EN_ES: str = field(
         default=None,
         metadata={
             "help": "Path to pretrained model or model identifier from huggingface.co/models"
         }
     )
-    model_trans_EN_ES_config: Optional[str] = field(
+    model_trans_EN_ES_config: str = field(
         default=None, 
         metadata={
             "help": "Pretrained config name or path if not the same as model_name"
         }
     )
-    model_trans_EN_ES_tokenizer: Optional[str] = field(
+    model_trans_EN_ES_tokenizer: str = field(
         default=None, 
         metadata={
             "help": "Pretrained tokenizer name or path if not the same as model_name"
         }
     )
-    model_trans_EN_ES_tokenizer_config: Optional[str] = field(
+    model_trans_EN_ES_tokenizer_config: str = field(
         default=None, 
         metadata={
             "help": "Pretrained tokenizer config name or path if not the same as model_name"

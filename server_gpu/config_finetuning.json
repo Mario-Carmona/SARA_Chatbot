@@ -1,10 +1,5 @@
 {
     "workdir": "/mnt/homeGPU/mcarmona/",
-    "host": "0.0.0.0",
-    "port": "5000",
-    "controller_url": "",
-    "ngrok_path": "",
-    "ngrok_config_path": "",
 
 
     "model_conver": "facebook/blenderbot-3B",
@@ -12,21 +7,24 @@
     "model_conver_tokenizer": "facebook/blenderbot-3B",
     "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
 
-    "model_trans_ES_EN": "Helsinki-NLP/opus-mt-es-en",
-    "model_trans_ES_EN_config": "Helsinki-NLP/opus-mt-es-en/config.json",
-    "model_trans_ES_EN_tokenizer": "Helsinki-NLP/opus-mt-es-en",
-    "model_trans_ES_EN_tokenizer_config": "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
+
+    "data_dir": "datasets/v1/split_0.8",
+    "task": "conversational",
+    "max_source_length": 128,
+    "max_target_length": 128,
+    "val_max_target_length": 128,
 
 
     "seed": 0,
+
     "output_dir": "result_finetuning/v2",
     "overwrite_output_dir": false,
-    "data_dir": "datasets/v1/split_0.8",
-    "task": "conversational",
 
     "do_train": true,
     "do_eval": false,
-    "per_device_train_batch_size": 12,
+    "evaluation_strategy": "epoch",
+
+    "per_device_train_batch_size": 32,
     "learning_rate": 3e-5,
     "num_train_epochs": 2,
     "max_seq_length": 128,

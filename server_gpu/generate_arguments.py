@@ -5,37 +5,37 @@ from typing import Optional
 
 @dataclass
 class GenerateArguments:
-    do_sample: Optional[bool] = field(
+    do_sample: bool = field(
         metadata={
             "help": ""
         }
     )
-    temperature: Optional[float] = field(
+    temperature: float = field(
         metadata={
             "help": ""
         }
     )
-    top_p: Optional[float] = field(
+    top_p: float = field(
         metadata={
             "help": ""
         }
     )
-    max_time: Optional[float] = field(
+    max_time: float = field(
         metadata={
             "help": ""
         }
     )
-    max_length: Optional[int] = field(
+    max_length: int = field(
         metadata={
             "help": ""
         }
     )
-    min_length: Optional[int] = field(
+    min_length: int = field(
         metadata={
             "help": ""
         }
     )
-    use_cache: Optional[bool] = field(
+    use_cache: bool = field(
         metadata={
             "help": ""
         }
