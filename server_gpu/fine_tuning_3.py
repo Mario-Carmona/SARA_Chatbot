@@ -256,8 +256,13 @@ modelConver.to(device)
 
 os.system("nvidia-smi")
 
+print(train_dataloader)
+
+for batch in train_dataloader:
+    print((k, v) for k, v in batch.items() )
 
 
+"""
 
 from tqdm.auto import tqdm
 
@@ -277,7 +282,7 @@ for epoch in range(num_epochs):
         progress_bar.update(1)
 
 
-
+"""
 
 
 
