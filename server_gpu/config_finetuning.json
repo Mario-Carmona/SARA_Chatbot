@@ -9,8 +9,8 @@
 
 
     "seed": 0,
-    "output_dir": "result_finetuning/v2",
-    "overwrite_output_dir": false,
+    "output_dir": "result_finetuning/v1",
+    "overwrite_output_dir": true,
     "data_dir": "datasets/v1/split_0.8",
     "task": "conversational",
     "max_source_length": 128,
