@@ -233,6 +233,13 @@ training_args = Seq2SeqTrainingArguments(
     num_train_epochs=1,
 )
 
+
+metric = load_metric("accuracy")
+
+def compute_metrics(p: EvalPrediction):
+    return metric.compute(predictions=p.predictions, references=p.label_ids)
+
+
 trainer = Seq2SeqTrainer(
     model=modelConver,
     args=training_args,
@@ -240,9 +247,27 @@ trainer = Seq2SeqTrainer(
     eval_dataset=tokenized_datasets["validation"],
     tokenizer=tokenizerConver,
     data_collator=data_collator,
+    compute_metrics=compute_metrics,
 )
 
-trainer.train()
+
+
+#trainer.train()
+
+
+all_metrics = {}
+
+
+metrics = trainer.evaluate(
+    metric_key_prefix="val", max_length=data_args.val_max_target_length, num_beams=data_args.eval_beams
+)
+metrics["val_n_objs"] = data_args.n_val
+metrics["val_loss"] = round(metrics["val_loss"], 4)
+
+if trainer.is_world_process_zero():
+
+    handle_metrics("val", metrics, training_args.output_dir)
+    all_metrics.update(metrics)
 
 
 
