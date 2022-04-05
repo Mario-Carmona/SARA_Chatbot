@@ -84,11 +84,17 @@ if __name__ == "__main__":
 
     train_source, train_target = obtenerSourceTarget(train_dataset)
 
-    train_aux = pd.DataFrame([train_source, train_target], columns=["source", "target"])
+    train_aux = pd.DataFrame({
+        "source": train_source,
+        "target": train_target
+    })
 
     val_source, val_target = obtenerSourceTarget(validation_dataset)
 
-    val_aux = pd.DataFrame([val_source, val_target], columns=["source", "target"])
+    val_aux = pd.DataFrame({
+        "source": val_source,
+        "target": val_target
+    })
 
     dir = os.path.join(args.result_dir, f"split_{args.train_split}")
     if not os.path.exists(dir):
