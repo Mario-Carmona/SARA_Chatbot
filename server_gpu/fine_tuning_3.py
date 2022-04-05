@@ -224,6 +224,13 @@ eval_dataset = (
 
 print(type(train_dataset))
 
+
+train_dataloader = DataLoader(train_dataset, shuffle=True, batch_size=8)
+eval_dataloader = DataLoader(eval_dataset, batch_size=8)
+
+
+
+
 """
 # TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
 metric = load_metric("bleu")
