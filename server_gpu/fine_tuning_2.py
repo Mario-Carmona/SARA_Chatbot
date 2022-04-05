@@ -93,7 +93,7 @@ project_args, model_args, generate_args, data_args, training_args = parser.parse
 
 
 WORKDIR = project_args.workdir
-OUTPUTDIR = str(WORKDIR/project_args.output_dir)
+OUTPUTDIR = str(WORKDIR/training_args.output_dir)
 
 
 check_output_dir(training_args)
