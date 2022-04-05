@@ -245,10 +245,10 @@ def compute_metrics(eval_pred: EvalPrediction):
     return metric.compute(predictions=predictions, references=labels)
 """
 
-def compute_metrics(p: EvalPrediction):
-    predic_flat = np.argmax(p.predictions, axis=1).flatten()
-    labels_flat = p.label_ids.flatten()
-    return np.sum(predic_flat == labels_flat) / len(labels_flat)
+def compute_metrics(eval_pred: EvalPrediction):
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
 
 
 trainer = Seq2SeqTrainer(
