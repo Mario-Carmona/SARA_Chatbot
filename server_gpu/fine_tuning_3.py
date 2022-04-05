@@ -271,7 +271,6 @@ trainer.train()
 """
 
 
-tokenized_datasets.set_format("torch")
 
 
 
@@ -309,6 +308,8 @@ progress_bar = tqdm(range(num_training_steps))
 modelConver.train()
 for epoch in range(num_epochs):
     for batch in train_dataloader:
+        print(batch)
+        """
         batch = {k: v.to(device) for k, v in batch.items()}
         outputs = modelConver(**batch)
         loss = outputs.loss
@@ -318,6 +319,7 @@ for epoch in range(num_epochs):
         lr_scheduler.step()
         optimizer.zero_grad()
         progress_bar.update(1)
+        """
 
 
 
