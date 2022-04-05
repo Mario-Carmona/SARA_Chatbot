@@ -35,3 +35,8 @@ class DataTrainingArguments:
     n_val: int = field(default=-1, metadata={"help": "# validation examples. -1 means use all."})
     src_lang: str = field(default=None, metadata={"help": "Source language id for translation."})
     tgt_lang: str = field(default=None, metadata={"help": "Target language id for translation."})
+    eval_beams: Optional[int] = field(default=None, metadata={"help": "# num_beams to use for evaluation."})
+    ignore_pad_token_for_loss: bool = field(
+        default=True,
+        metadata={"help": "If only pad tokens should be ignored. This assumes that `config.pad_token_id` is defined."},
+    )

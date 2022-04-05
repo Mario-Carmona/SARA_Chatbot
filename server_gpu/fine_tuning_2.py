@@ -152,6 +152,12 @@ configConver = AutoConfig.from_pretrained(
     }
 )
 
+extra_model_params = ("encoder_layerdrop", "decoder_layerdrop", "dropout", "attention_dropout")
+for p in extra_model_params:
+    if getattr(training_args, p, None):
+        assert hasattr(configConver, p), f"({configConver.__class__.__name__}) doesn't have a `{p}` attribute"
+        setattr(configConver, p, getattr(training_args, p))
+
 
 tokenizerConver = AutoTokenizer.from_pretrained(
     WORKDIR + model_args.model_conver_tokenizer,
@@ -169,6 +175,11 @@ modelConver = BlenderbotForConditionalGeneration.from_pretrained(
 
 
 
+# set num_beams for evaluation
+if data_args.eval_beams is None:
+    data_args.eval_beams = modelConver.config.num_beams
+
+
 
 dataset_class = Seq2SeqDataset
 
@@ -183,7 +194,8 @@ train_dataset = (
         data_dir=data_args.data_dir,
         n_obs=data_args.n_train,
         max_target_length=data_args.max_target_length,
-        max_source_length=data_args.max_source_length
+        max_source_length=data_args.max_source_length,
+        prefix=model.config.prefix or "",
     )
     if training_args.do_train
     else None
@@ -195,7 +207,8 @@ eval_dataset = (
         data_dir=data_args.data_dir,
         n_obs=data_args.n_val,
         max_target_length=data_args.val_max_target_length,
-        max_source_length=data_args.max_source_length
+        max_source_length=data_args.max_source_length,
+        prefix=model.config.prefix or "",
     )
     if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO
     else None
@@ -206,10 +219,6 @@ eval_dataset = (
 
 # TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
 metric = load_metric("accuracy")
-
-
-
-
 
 
 
@@ -265,7 +274,7 @@ if training_args.do_eval:
     logger.info("*** Evaluate ***")
 
     metrics = trainer.evaluate(
-        metric_key_prefix="val", max_length=data_args.val_max_target_length
+        metric_key_prefix="val", max_length=data_args.val_max_target_length, num_beams=data_args.eval_beams
     )
     metrics["val_n_objs"] = data_args.n_val
     metrics["val_loss"] = round(metrics["val_loss"], 4)
