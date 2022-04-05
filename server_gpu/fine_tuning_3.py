@@ -214,7 +214,7 @@ def preprocess_function(examples):
 tokenized_datasets = datasets.map(preprocess_function, batched=True)
 
 
-
+"""
 
 from transformers import DataCollatorForSeq2Seq
 
@@ -237,13 +237,13 @@ training_args = Seq2SeqTrainingArguments(
 
 metric = load_metric("f1")
 
-"""
+
 def compute_metrics(eval_pred: EvalPrediction):
     logits, labels = eval_pred
     print(labels)
     predictions = np.argmax(logits, axis=2)
     return metric.compute(predictions=predictions, references=labels)
-"""
+
 
 def compute_metrics(p: EvalPrediction):
     pred_flat = np.argmax(p.predictions, axis=1).flatten()
@@ -267,6 +267,58 @@ trainer = Seq2SeqTrainer(
 
 
 trainer.train()
+
+"""
+
+
+tokenized_datasets.set_format("torch")
+
+
+
+from torch.utils.data import DataLoader
+
+train_dataloader = DataLoader(tokenized_datasets["train"], shuffle=True, batch_size=8)
+eval_dataloader = DataLoader(tokenized_datasets["validation"], batch_size=8)
+
+
+
+from torch.optim import AdamW
+
+optimizer = AdamW(modelConver.parameters(), lr=5e-5)
+
+
+from transformers import get_scheduler
+
+num_epochs = 3
+num_training_steps = num_epochs * len(train_dataloader)
+lr_scheduler = get_scheduler(
+    name="linear", optimizer=optimizer, num_warmup_steps=0, num_training_steps=num_training_steps
+)
+
+
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+modelConver.to(device)
+
+
+
+
+from tqdm.auto import tqdm
+
+progress_bar = tqdm(range(num_training_steps))
+
+modelConver.train()
+for epoch in range(num_epochs):
+    for batch in train_dataloader:
+        batch = {k: v.to(device) for k, v in batch.items()}
+        outputs = modelConver(**batch)
+        loss = outputs.loss
+        loss.backward()
+
+        optimizer.step()
+        lr_scheduler.step()
+        optimizer.zero_grad()
+        progress_bar.update(1)
+
 
 
 
