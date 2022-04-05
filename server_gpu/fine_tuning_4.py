@@ -241,7 +241,9 @@ training_args = Seq2SeqTrainingArguments(
 metric = load_metric("accuracy")
 
 def compute_metrics(eval_pred: EvalPrediction):
+    print(type(eval_pred.predictions))
     print(eval_pred.predictions.shape)
+    print(type(eval_pred.label_ids))
     print(eval_pred.label_ids.shape)
     predictions = torch.argmax(eval_pred.predictions, dim=-1)
     predictions = predictions.flatten()
