@@ -259,7 +259,9 @@ os.system("nvidia-smi")
 print(train_dataloader)
 
 for batch in train_dataloader:
-    print((k, v) for k, v in batch.items() )
+    for k, v in batch.items():
+        print(type(k))
+        print(type(v))
 
 
 """
