@@ -223,10 +223,11 @@ eval_dataset = (
 
 
 # TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
-#metric = load_metric("perplexity")
+metric = load_metric("bleu")
 
+"""
 def lmap(f: Callable, x: Iterable) -> List:
-    """list(map(f, x))"""
+    list(map(f, x))
     return list(map(f, x))
 
 def non_pad_len(tokens: np.ndarray) -> int:
@@ -240,7 +241,7 @@ def decode_pred(pred: EvalPrediction) -> Tuple[List[str], List[str]]:
     return pred_str, label_str
 
 def calculate_bleu(output_lns, refs_lns, **kwargs) -> dict:
-    """Uses sacrebleu's corpus_bleu implementation."""
+    Uses sacrebleu's corpus_bleu implementation.
     return {"bleu": round(corpus_bleu(output_lns, [refs_lns], **kwargs).score, 4)}
 
 def translation_metrics(pred: EvalPrediction) -> Dict:
@@ -249,16 +250,17 @@ def translation_metrics(pred: EvalPrediction) -> Dict:
     gen_len = np.round(np.mean(lmap(non_pad_len, pred.predictions)), 1)
     bleu.update({"gen_len": gen_len})
     return bleu
-
-
 """
+
 def compute_metrics(p: EvalPrediction):
     return metric.compute(predictions=p.predictions, references=p.label_ids)
-"""
 
+
+"""
 def compute_metrics(p: EvalPrediction):
     return translation_metrics(EvalPrediction)
 
+"""
 
 trainer = Seq2SeqTrainer(
     model=modelConver,
