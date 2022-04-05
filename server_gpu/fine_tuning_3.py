@@ -202,7 +202,7 @@ datasets = load_dataset("csv", data_files=data_files)
 def preprocess_function(examples):
     inputs = [example for example in examples["source"]]
     targets = [example for example in examples["target"]]
-    model_inputs = tokenizerConver(inputs, max_length=128, truncation=True)
+    model_inputs = tokenizerConver(inputs, max_length=128, truncation=True, padding_side="right")
 
     with tokenizerConver.as_target_tokenizer():
         labels = tokenizerConver(targets, max_length=128, truncation=True, padding_side="right")
