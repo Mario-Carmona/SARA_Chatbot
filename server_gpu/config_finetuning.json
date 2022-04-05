@@ -23,6 +23,9 @@
     "overwrite_output_dir": false,
     "data_dir": "datasets/v1/split_0.8",
     "task": "conversational",
+    "max_source_length": 128,
+    "max_target_length": 128,
+    "val_max_target_length": 128,
 
     "do_train": true,
     "do_eval": false,
