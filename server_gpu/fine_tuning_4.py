@@ -238,6 +238,13 @@ training_args = Seq2SeqTrainingArguments(
 )
 
 
+metric = load_metric("accuracy")
+
+def compute_metrics(eval_pred: EvalPrediction):
+    print(eval_pred)
+
+
+
 trainer = Seq2SeqTrainer(
     model=modelConver,
     args=training_args,
@@ -245,6 +252,7 @@ trainer = Seq2SeqTrainer(
     eval_dataset=tokenized_datasets["validation"],
     tokenizer=tokenizerConver,
     data_collator=data_collator,
+    compute_metrics=compute_metrics
 )
 
 
