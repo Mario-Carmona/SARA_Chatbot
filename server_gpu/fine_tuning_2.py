@@ -13,13 +13,13 @@ from project_arguments import ProyectArguments
 from model_arguments import ModelArguments
 from generate_arguments import GenerateArguments
 from data_training_arguments import DataTrainingArguments
-from transformers import TrainingArguments, HfArgumentParser
+from transformers import Seq2SeqTrainingArguments, HfArgumentParser
 
-from transformers import set_seed
-from transformers import AutoConfig, AutoTokenizer, MarianMTModel, BlenderbotForConditionalGeneration
-from transformers import default_data_collator, DataCollatorWithPadding, EvalPrediction, TrainingArguments, Trainer, Seq2SeqTrainer, Seq2SeqTrainingArguments
-from transformers.trainer_utils import is_main_process, EvaluationStrategy
 import transformers
+from transformers import set_seed
+from transformers import AutoConfig, AutoTokenizer, BlenderbotForConditionalGeneration
+from transformers import EvalPrediction, Seq2SeqTrainer
+from transformers.trainer_utils import is_main_process, EvaluationStrategy
 from transformers.training_args import ParallelMode
 
 from utils import (
@@ -93,6 +93,7 @@ project_args, model_args, generate_args, data_args, training_args = parser.parse
 
 
 WORKDIR = project_args.workdir
+OUTPUTDIR = str(WORKDIR/project_args.output_dir)
 
 
 check_output_dir(training_args)
@@ -248,15 +249,15 @@ if training_args.do_train:
     trainer.save_model()  # this also saves the tokenizer
 
     if trainer.is_world_process_zero():
-        handle_metrics("train", metrics, training_args.output_dir)
+        handle_metrics("train", metrics, OUTPUTDIR)
         all_metrics.update(metrics)
 
         # Need to save the state, since Trainer.save_model saves only the tokenizer with the model
-        trainer.state.save_to_json(os.path.join(training_args.output_dir, "trainer_state.json"))
+        trainer.state.save_to_json(os.path.join(OUTPUTDIR, "trainer_state.json"))
 
         # For convenience, we also re-save the tokenizer to the same directory,
         # so that you can share your model easily on huggingface.co/models =)
-        tokenizerConver.save_pretrained(training_args.output_dir)
+        tokenizerConver.save_pretrained(OUTPUTDIR)
 
 
 # Evaluation
@@ -271,14 +272,14 @@ if training_args.do_eval:
 
     if trainer.is_world_process_zero():
 
-        handle_metrics("val", metrics, training_args.output_dir)
+        handle_metrics("val", metrics, OUTPUTDIR)
         all_metrics.update(metrics)
 
 
 
 
 if trainer.is_world_process_zero():
-    save_json(all_metrics, os.path.join(training_args.output_dir, "all_results.json"))
+    save_json(all_metrics, os.path.join(OUTPUTDIR, "all_results.json"))
 
 
 

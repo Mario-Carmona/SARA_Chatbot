@@ -1,21 +1,11 @@
 {
     "workdir": "/mnt/homeGPU/mcarmona/",
-    "host": "0.0.0.0",
-    "port": "5000",
-    "controller_url": "",
-    "ngrok_path": "",
-    "ngrok_config_path": "",
 
 
     "model_conver": "facebook/blenderbot-3B",
     "model_conver_config": "facebook/blenderbot-3B/config.json",
     "model_conver_tokenizer": "facebook/blenderbot-3B",
     "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
-
-    "model_trans_ES_EN": "Helsinki-NLP/opus-mt-es-en",
-    "model_trans_ES_EN_config": "Helsinki-NLP/opus-mt-es-en/config.json",
-    "model_trans_ES_EN_tokenizer": "Helsinki-NLP/opus-mt-es-en",
-    "model_trans_ES_EN_tokenizer_config": "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
 
 
     "seed": 0,
