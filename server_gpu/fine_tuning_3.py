@@ -234,10 +234,12 @@ training_args = Seq2SeqTrainingArguments(
 )
 
 
-metric = load_metric("bleu")
+metric = load_metric("accuracy")
 
-def compute_metrics(p: EvalPrediction):
-    return metric.compute(predictions=p.predictions, references=p.label_ids)
+def compute_metrics(eval_pred: EvalPrediction):
+    logits, labels = eval_pred
+    predictions = np.argmax(logits, axis=-1)
+    return metric.compute(predictions=predictions, references=labels)
 
 
 trainer = Seq2SeqTrainer(
@@ -268,6 +270,8 @@ if trainer.is_world_process_zero():
 
     handle_metrics("val", metrics, training_args.output_dir)
     all_metrics.update(metrics)
+
+
 
 
 
