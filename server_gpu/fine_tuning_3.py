@@ -311,11 +311,12 @@ progress_bar = tqdm(range(num_training_steps))
 modelConver.train()
 for epoch in range(num_epochs):
     for batch in train_dataloader:
+        batch = {k: v.to(device) for k, v in batch.items()}
         print("------------------>")
-        print(batch.items()[-1])
+        print(batch)
 
         """
-        batch = {k: v.to(device) for k, v in batch.items()}
+        
         outputs = modelConver(**batch)
         loss = outputs.loss
         loss.backward()
