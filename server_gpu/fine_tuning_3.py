@@ -254,7 +254,7 @@ device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cp
 modelConver.to(device)
 
 
-
+os.system("nvidia-smi")
 
 
 """
