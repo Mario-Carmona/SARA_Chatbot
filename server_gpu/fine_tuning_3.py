@@ -230,6 +230,32 @@ eval_dataloader = DataLoader(eval_dataset, batch_size=8)
 
 
 
+from torch.optim import AdamW
+
+optimizer = AdamW(modelConver.parameters(), lr=5e-5)
+
+
+
+from transformers import get_scheduler
+
+
+
+num_epochs = 3
+
+num_training_steps = num_epochs * len(train_dataloader)
+
+
+lr_scheduler = get_scheduler(
+    name="linear", optimizer=optimizer, num_warmup_steps=0, num_training_steps=num_training_steps
+)
+
+
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+modelConver.to(device)
+
+
+
+
 
 """
 # TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
