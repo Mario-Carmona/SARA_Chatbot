@@ -315,7 +315,7 @@ for epoch in range(num_epochs):
         outputs = modelConver(**batch)
         print("------------------>")
         print(outputs)
-
+        input("-->")
         """
         
         
