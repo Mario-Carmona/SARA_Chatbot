@@ -214,6 +214,11 @@ def preprocess_function(examples):
 tokenized_datasets = datasets.map(preprocess_function, batched=True)
 
 
+tokenized_datasets = tokenized_datasets.remove_columns(["Unnamed: 0", "source", "target"])
+
+tokenized_datasets.set_format("torch")
+
+
 
 
 from transformers import DataCollatorForSeq2Seq
