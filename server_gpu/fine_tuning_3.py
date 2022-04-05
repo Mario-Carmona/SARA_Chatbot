@@ -254,9 +254,9 @@ trainer = Seq2SeqTrainer(
 
 
 
-#trainer.train()
+trainer.train()
 
-
+"""
 all_metrics = {}
 
 
@@ -271,7 +271,7 @@ if trainer.is_world_process_zero():
     handle_metrics("val", metrics, training_args.output_dir)
     all_metrics.update(metrics)
 
-
+"""
 
 
 
