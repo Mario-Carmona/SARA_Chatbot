@@ -242,7 +242,7 @@ metric = load_metric("accuracy")
 
 def compute_metrics(eval_pred: EvalPrediction):
     print(type(eval_pred.predictions))
-    print(eval_pred.predictions.shape)
+    print(len(eval_pred.predictions))
     print(type(eval_pred.label_ids))
     print(eval_pred.label_ids.shape)
     predictions = torch.argmax(eval_pred.predictions, dim=-1)
