@@ -205,7 +205,7 @@ def preprocess_function(examples):
     model_inputs = tokenizerConver(inputs, max_length=128, truncation=True)
 
     with tokenizerConver.as_target_tokenizer():
-        labels = tokenizerConver(targets, max_length=128, truncation=True)
+        labels = tokenizerConver(targets, max_length=128, truncation=True, padding_side="right")
 
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
