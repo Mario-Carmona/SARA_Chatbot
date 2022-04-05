@@ -258,6 +258,7 @@ os.system("nvidia-smi")
 
 
 
+
 from tqdm.auto import tqdm
 
 progress_bar = tqdm(range(num_training_steps))
