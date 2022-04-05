@@ -188,187 +188,62 @@ if data_args.eval_beams is None:
 
 
 
-dataset_class = Seq2SeqDataset
+
+
+data_files = {}
+data_files["train"] = WORKDIR + "datasets/v1/split_0.8/train.csv"
+data_files["validation"] = WORKDIR + "datasets/v1/split_0.8/val.csv"
+datasets = load_dataset("csv", data_files=data_files)
 
 
 
 
-# Get datasets
-train_dataset = (
-    dataset_class(
-        tokenizerConver,
-        type_path="train",
-        data_dir=data_args.data_dir,
-        n_obs=data_args.n_train,
-        max_target_length=data_args.max_target_length,
-        max_source_length=data_args.max_source_length,
-        prefix=modelConver.config.prefix or "",
-    )
-    if training_args.do_train
-    else None
+def preprocess_function(examples):
+    inputs = [example for example in examples["source"]]
+    targets = [example for example in examples["target"]]
+    model_inputs = tokenizerConver(inputs, max_length=128, truncation=True)
+
+    with tokenizerConver.as_target_tokenizer():
+        labels = tokenizerConver(targets, max_length=128, truncation=True)
+
+    model_inputs["labels"] = labels["input_ids"]
+    return model_inputs
+
+
+tokenized_datasets = datasets.map(preprocess_function, batched=True)
+
+
+
+
+from transformers import DataCollatorForSeq2Seq
+
+data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizerConver, model=modelConver)
+
+
+
+
+training_args = Seq2SeqTrainingArguments(
+    output_dir="./results",
+    evaluation_strategy="epoch",
+    learning_rate=2e-5,
+    per_device_train_batch_size=16,
+    per_device_eval_batch_size=16,
+    weight_decay=0.01,
+    save_total_limit=3,
+    num_train_epochs=1,
+    fp16=True,
 )
-eval_dataset = (
-    dataset_class(
-        tokenizerConver,
-        type_path="val",
-        data_dir=data_args.data_dir,
-        n_obs=data_args.n_val,
-        max_target_length=data_args.val_max_target_length,
-        max_source_length=data_args.max_source_length,
-        prefix=modelConver.config.prefix or "",
-    )
-    if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO
-    else None
-)
-
-
-print(type(train_dataset))
-
-
-train_dataloader = DataLoader(train_dataset, shuffle=True, batch_size=8)
-eval_dataloader = DataLoader(eval_dataset, batch_size=8)
-
-
-
-from torch.optim import AdamW
-
-optimizer = AdamW(modelConver.parameters(), lr=5e-5)
-
-
-
-from transformers import get_scheduler
-
-
-
-num_epochs = 3
-
-num_training_steps = num_epochs * len(train_dataloader)
-
-
-lr_scheduler = get_scheduler(
-    name="linear", optimizer=optimizer, num_warmup_steps=0, num_training_steps=num_training_steps
-)
-
-
-device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-modelConver.to(device)
-
-
-os.system("nvidia-smi")
-
-print(train_dataloader)
-
-for batch in train_dataloader:
-    for k, v in batch.items():
-        print(type(k))
-        print(type(v))
-
-
-"""
-
-from tqdm.auto import tqdm
-
-progress_bar = tqdm(range(num_training_steps))
-
-modelConver.train()
-for epoch in range(num_epochs):
-    for batch in train_dataloader:
-        batch = {k: v.to(device) for k, v in batch.items()}
-        outputs = modelConver(**batch)
-        loss = outputs.loss
-        loss.backward()
-
-        optimizer.step()
-        lr_scheduler.step()
-        optimizer.zero_grad()
-        progress_bar.update(1)
-
-
-"""
-
-
-
-
-
-
-
-"""
-# TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
-metric = load_metric("bleu")
-
-
-print(metric.inputs_description)
-
-def compute_metrics(p: EvalPrediction):
-    return metric.compute(predictions=p.predictions, references=p.label_ids)
-
-
 
 trainer = Seq2SeqTrainer(
     model=modelConver,
     args=training_args,
-    train_dataset=train_dataset,
-    eval_dataset=eval_dataset,
-    data_collator=Seq2SeqDataCollator(tokenizerConver, data_args, training_args.tpu_num_cores),
-    compute_metrics=compute_metrics,
+    train_dataset=tokenized_datasets["train"],
+    eval_dataset=tokenized_datasets["validation"],
     tokenizer=tokenizerConver,
+    data_collator=data_collator,
 )
 
+trainer.train()
 
 
 
-
-
-all_metrics = {}
-# Training
-if training_args.do_train:
-    logger.info("*** Train ***")
-
-    os.system("nvidia-smi")
-
-    train_result = trainer.train()
-    metrics = train_result.metrics
-    metrics["train_n_objs"] = data_args.n_train
-
-    trainer.save_model()  # this also saves the tokenizer
-
-    if trainer.is_world_process_zero():
-        handle_metrics("train", metrics, training_args.output_dir)
-        all_metrics.update(metrics)
-
-        # Need to save the state, since Trainer.save_model saves only the tokenizer with the model
-        trainer.state.save_to_json(os.path.join(training_args.output_dir, "trainer_state.json"))
-
-        # For convenience, we also re-save the tokenizer to the same directory,
-        # so that you can share your model easily on huggingface.co/models =)
-        tokenizerConver.save_pretrained(training_args.output_dir)
-
-
-# Evaluation
-if training_args.do_eval:
-    logger.info("*** Evaluate ***")
-
-    metrics = trainer.evaluate(
-        metric_key_prefix="val", max_length=data_args.val_max_target_length, num_beams=data_args.eval_beams
-    )
-    metrics["val_n_objs"] = data_args.n_val
-    metrics["val_loss"] = round(metrics["val_loss"], 4)
-
-    if trainer.is_world_process_zero():
-
-        handle_metrics("val", metrics, training_args.output_dir)
-        all_metrics.update(metrics)
-
-
-
-
-if trainer.is_world_process_zero():
-    save_json(all_metrics, os.path.join(training_args.output_dir, "all_results.json"))
-
-
-
-print(all_metrics)
-
-
-
-"""
