@@ -234,7 +234,7 @@ training_args = Seq2SeqTrainingArguments(
 )
 
 
-metric = load_metric("accuracy")
+metric = load_metric("bleu")
 
 def compute_metrics(p: EvalPrediction):
     return metric.compute(predictions=p.predictions, references=p.label_ids)
