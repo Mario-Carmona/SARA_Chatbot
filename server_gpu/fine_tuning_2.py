@@ -13,7 +13,6 @@ from project_arguments import ProyectArguments
 from model_arguments import ModelArguments
 from generate_arguments import GenerateArguments
 from data_training_arguments import DataTrainingArguments
-from training_arguments import Seq2SeqTrainingArgumentsCustom
 from transformers import TrainingArguments, HfArgumentParser
 
 from transformers import set_seed
@@ -86,7 +85,7 @@ parser = HfArgumentParser(
         ModelArguments,
         GenerateArguments,
         DataTrainingArguments,
-        Seq2SeqTrainingArgumentsCustom
+        Seq2SeqTrainingArguments
     )
 )
 
