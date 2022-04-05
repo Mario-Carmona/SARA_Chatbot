@@ -6,6 +6,7 @@ import argparse
 import sys
 import os
 import logging
+from typing import Dict, Tuple, List, Callable, Iterable
 
 from datasets import load_dataset, load_metric
 
@@ -30,6 +31,10 @@ from utils import (
 )
 
 import torch
+
+from sacrebleu import corpus_bleu
+
+import numpy as np
 
 
 
@@ -220,13 +225,39 @@ eval_dataset = (
 # TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
 metric = load_metric("perplexity")
 
+def lmap(f: Callable, x: Iterable) -> List:
+    """list(map(f, x))"""
+    return list(map(f, x))
+
+def non_pad_len(tokens: np.ndarray) -> int:
+    return np.count_nonzero(tokens != tokenizerConver.pad_token_id)
+
+def decode_pred(pred: EvalPrediction) -> Tuple[List[str], List[str]]:
+    pred_str = tokenizerConver.batch_decode(pred.predictions, skip_special_tokens=True)
+    label_str = tokenizerConver.batch_decode(pred.label_ids, skip_special_tokens=True)
+    pred_str = lmap(str.strip, pred_str)
+    label_str = lmap(str.strip, label_str)
+    return pred_str, label_str
+
+def calculate_bleu(output_lns, refs_lns, **kwargs) -> dict:
+    """Uses sacrebleu's corpus_bleu implementation."""
+    return {"bleu": round(corpus_bleu(output_lns, [refs_lns], **kwargs).score, 4)}
+
+def translation_metrics(pred: EvalPrediction) -> Dict:
+    pred_str, label_str = decode_pred(pred)
+    bleu: Dict = calculate_bleu(pred_str, label_str)
+    gen_len = np.round(np.mean(lmap(non_pad_len, pred.predictions)), 1)
+    bleu.update({"gen_len": gen_len})
+    return bleu
 
 
+"""
 def compute_metrics(p: EvalPrediction):
     return metric.compute(predictions=p.predictions, references=p.label_ids)
+"""
 
-
-
+def compute_metrics(p: EvalPrediction):
+    return translation_metrics(EvalPrediction)
 
 
 trainer = Seq2SeqTrainer(
