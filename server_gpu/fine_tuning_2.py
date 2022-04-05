@@ -252,6 +252,8 @@ def translation_metrics(pred: EvalPrediction) -> Dict:
     return bleu
 """
 
+print(metric.inputs_description)
+
 def compute_metrics(p: EvalPrediction):
     return metric.compute(predictions=p.predictions, references=p.label_ids)
 
