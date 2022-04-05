@@ -242,7 +242,7 @@ trainer = Seq2SeqTrainer(
     model=modelConver,
     args=training_args,
     train_dataset=tokenized_datasets["train"],
-    eval_dataset=tokenized_datasets["test"],
+    eval_dataset=tokenized_datasets["validation"],
     tokenizer=tokenizerConver,
     data_collator=data_collator,
 )
