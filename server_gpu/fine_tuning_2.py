@@ -218,7 +218,7 @@ eval_dataset = (
 
 
 # TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
-metric = load_metric("accuracy")
+metric = load_metric("perplexity")
 
 
 
