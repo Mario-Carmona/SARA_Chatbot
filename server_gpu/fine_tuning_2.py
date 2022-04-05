@@ -223,7 +223,7 @@ eval_dataset = (
 
 
 # TODO: Once the fix lands in a Datasets release, remove the _local here and the squad_v2_local folder.
-metric = load_metric("perplexity")
+#metric = load_metric("perplexity")
 
 def lmap(f: Callable, x: Iterable) -> List:
     """list(map(f, x))"""
