@@ -93,7 +93,7 @@ project_args, model_args, generate_args, data_args, training_args = parser.parse
 
 
 WORKDIR = project_args.workdir
-OUTPUTDIR = WORKDIR + training_args.output_dir
+training_args.output_dir = WORKDIR + training_args.output_dir
 
 
 check_output_dir(training_args)
@@ -249,15 +249,15 @@ if training_args.do_train:
     trainer.save_model()  # this also saves the tokenizer
 
     if trainer.is_world_process_zero():
-        handle_metrics("train", metrics, OUTPUTDIR)
+        handle_metrics("train", metrics, training_args.output_dir)
         all_metrics.update(metrics)
 
         # Need to save the state, since Trainer.save_model saves only the tokenizer with the model
-        trainer.state.save_to_json(os.path.join(OUTPUTDIR, "trainer_state.json"))
+        trainer.state.save_to_json(os.path.join(training_args.output_dir, "trainer_state.json"))
 
         # For convenience, we also re-save the tokenizer to the same directory,
         # so that you can share your model easily on huggingface.co/models =)
-        tokenizerConver.save_pretrained(OUTPUTDIR)
+        tokenizerConver.save_pretrained(training_args.output_dir)
 
 
 # Evaluation
@@ -272,14 +272,14 @@ if training_args.do_eval:
 
     if trainer.is_world_process_zero():
 
-        handle_metrics("val", metrics, OUTPUTDIR)
+        handle_metrics("val", metrics, training_args.output_dir)
         all_metrics.update(metrics)
 
 
 
 
 if trainer.is_world_process_zero():
-    save_json(all_metrics, os.path.join(OUTPUTDIR, "all_results.json"))
+    save_json(all_metrics, os.path.join(training_args.output_dir, "all_results.json"))
 
 
 
