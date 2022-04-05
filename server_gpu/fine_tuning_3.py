@@ -332,8 +332,8 @@ for batch in eval_dataloader:
 
     logits = outputs.logits
     predictions = torch.argmax(logits, dim=-1)
-    print(predictions.shape)
-    print(batch["labels"].shape)
+    print(predictions.flatten().shape)
+    print(batch["labels"].flatten().shape)
     metric.add_batch(predictions=predictions, references=batch["labels"])
 
 metric.compute()
