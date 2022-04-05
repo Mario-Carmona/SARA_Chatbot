@@ -231,7 +231,6 @@ training_args = Seq2SeqTrainingArguments(
     weight_decay=0.01,
     save_total_limit=3,
     num_train_epochs=1,
-    fp16=True,
 )
 
 trainer = Seq2SeqTrainer(
