@@ -247,6 +247,8 @@ def compute_metrics(eval_pred: EvalPrediction):
 
 def compute_metrics(eval_pred: EvalPrediction):
     logits, labels = eval_pred
+    print(logits)
+    print(label)
     predictions = np.argmax(logits, axis=-1)
     return metric.compute(predictions=predictions, references=labels)
 
