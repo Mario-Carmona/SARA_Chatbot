@@ -7,6 +7,9 @@ import os
 from pathlib import Path
 from typing import Dict
 import requests
+import psycopg2
+from datetime import datetime
+import asyncio
 
 from pydantic import BaseModel
 
@@ -141,6 +144,50 @@ def make_response_talk(request: Dict):
 
     return response
 
+def generarContent(context, past_user_inputs, generated_responses):
+    content = ""
+
+    for entry, answer, entry_EN, answer_EN in zip(context["entry"], context["answer"], past_user_inputs, generated_responses):
+        content += f"[USER]: {entry}\n"
+        content += f"[USER (EN)]: {entry_EN}\n"
+        content += f"[BOT (EN)]: {answer_EN}\n"
+        content += f"[BOT]: {answer}\n\n"
+    
+    return content
+
+async def save_conversation(context, past_user_inputs, generated_responses, edad, date_ini):
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    db = psycopg2.connect(DATABASE_URL, sslmode='require')
+
+    cur = db.cursor()
+
+    content = generarContent(context, past_user_inputs, generated_responses)
+
+    date_fin = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+
+    cur.execute(
+        """INSERT INTO Conversations (content, edad, date_ini, date_fin) 
+            VALUES (
+                %s,
+                %s,
+                %s, 
+                %s
+            )
+        """,
+        (
+            content, 
+            edad, 
+            date_ini,
+            date_fin
+        )
+    )
+
+    db.commit()
+
+    cur.close()
+    db.close()
+
 def make_response_goodbye(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
@@ -183,6 +230,16 @@ def make_response_goodbye(request: Dict):
         "fulfillmentText": answer,
         "output_contexts": []
     }
+
+    DATABASE_URL = os.environ['DATABASE_URL']
+
+    asyncio.run(save_conversation(
+        outputContexts[0]["parameters"]["context"], 
+        outputContexts[0]["parameters"]["past_user_inputs"], 
+        outputContexts[0]["parameters"]["generated_responses"], 
+        outputContexts[0]["parameters"]["edad"], 
+        outputContexts[0]["parameters"]["date_ini"]
+    ))
 
     return response
 

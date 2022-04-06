@@ -1,0 +1,45 @@
+/*
+Creación de un tipo enumerado
+*/
+CREATE TYPE age AS ENUM ('Niño', 'Adulto');
+
+
+/*
+La función tiene que ser inmutable para poder usarse como columna generadora
+https://anthonysotolongo.wordpress.com/2020/04/10/triggers-vs-generate-columns-en-postgresql-12-insert/
+
+Para calcular la diferencia de tiempo como intervalo
+https://es.stackoverflow.com/questions/382539/como-calcular-las-horas-entre-fechas-en-postgresql
+*/
+CREATE OR REPLACE FUNCTION calc_duration(fecha_ini TIMESTAMP,fecha_fin TIMESTAMP)
+    RETURNS TIME AS $$
+BEGIN
+    
+    RETURN to_char((EXTRACT(EPOCH FROM fecha_fin) - EXTRACT(EPOCH FROM fecha_ini) || ' seconds')::interval, 'HH24:MI:SS');
+
+END
+$$
+LANGUAGE PLPGSQL IMMUTABLE;
+
+
+CREATE TABLE Conversations (
+    id BIGSERIAL,
+    verified BOOL DEFAULT 'false',
+    content TEXT NOT NULL,
+    edad age NOT NULL,
+    date_ini TIMESTAMP NOT NULL,
+    date_fin TIMESTAMP NOT NULL,
+    duration TIME GENERATED ALWAYS AS (
+        calc_duration(date_ini, date_fin)
+    ) STORED,
+    PRIMARY KEY (id)
+);
+
+
+INSERT INTO Conversations(content, edad, date_ini, date_fin) 
+VALUES (
+    'Text', 
+    'Adulto', 
+    '2022-04-04 12:00:00', 
+    '2022-04-04 13:00:00'
+);
