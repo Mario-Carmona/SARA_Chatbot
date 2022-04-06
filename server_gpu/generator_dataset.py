@@ -107,7 +107,7 @@ def generarDatasetAdulto(dataset):
 
     print(groups_datasets[0].Text.to_list()[0])
     
-    result = summaryPipeline(groups_datasets[-2].Text.to_list()[0], min_length=1, max_length=29, num_beams=8, num_return_sequences=8)
+    result = summaryPipeline(groups_datasets[-2].Text.to_list()[0], min_length=1, max_length=29, num_beams=8, num_return_sequences=8, n_docs=4)
     print(result)
 
     return None, None, None, None
