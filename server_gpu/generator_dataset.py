@@ -42,7 +42,7 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
     for i in dataset.Text.to_list():
         batch = tokenizerSum(i, truncation=True, padding="longest", return_tensors="pt")
         
-        print(batch.shape[1])
+        print(batch)
 
         if(batch.shape[1] <= 50):
             frases = i.split('. ')

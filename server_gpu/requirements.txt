@@ -10,3 +10,4 @@ datasets==1.16.1
 pandas
 sklearn
 sacrebleu
+protobuf
