@@ -100,7 +100,7 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
-    result = summaryPipeline(groups_datasets[0].Text.to_list()[0], min_length=5, max_length=39, num_beams=10, num_return_sequences=10)
+    result = summaryPipeline(groups_datasets[0].Text.to_list()[0], min_length=5, max_length=29)
 
     print(result)
 
