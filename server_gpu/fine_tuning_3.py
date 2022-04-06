@@ -331,7 +331,7 @@ for batch in eval_dataloader:
         outputs = modelConver(**batch)
 
     logits = outputs.logits
-    
+    print(logits.shape)
     predictions = torch.argmax(logits, dim=-1)
     predictions = predictions.flatten()
     
