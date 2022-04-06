@@ -71,20 +71,23 @@ def generarDatasetAdulto(dataset):
         use_fast=True
     )
 
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
     modelSum = PegasusForConditionalGeneration.from_pretrained(
         WORKDIR + "google/pegasus-xsum",
         from_tf=bool(".ckpt" in "google/pegasus-xsum"),
         config=configSum,
         torch_dtype=torch.float16
-    )
+    ).to(device)
 
+    """
     summaryPipeline = SummarizationPipeline(
         model=modelSum,
         tokenizer=tokenizerSum,
         framework="pt",
         device=local_rank
     )
-
+    """
 
 
 
@@ -107,8 +110,13 @@ def generarDatasetAdulto(dataset):
 
     print(groups_datasets[0].Text.to_list()[0])
     
-    result = summaryPipeline(groups_datasets[-2].Text.to_list()[0], min_length=1, max_length=29, num_beams=8, num_return_sequences=8, n_docs=4)
-    print(result)
+    src_text = groups_datasets[0].Text.to_list()[0]
+    batch = tokenizerSum(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
+    translated = modelSum.generate(**batch, min_length=1, max_length=29, num_beams=8, num_return_sequences=8, n_docs=4)
+    tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+
+    #result = summaryPipeline(groups_datasets[-2].Text.to_list()[0], min_length=1, max_length=29, num_beams=8, num_return_sequences=8, n_docs=4)
+    print(tgt_text)
 
     return None, None, None, None
 
