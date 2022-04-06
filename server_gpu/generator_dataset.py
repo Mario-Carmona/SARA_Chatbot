@@ -13,49 +13,57 @@ from transformers import AutoConfig, AutoTokenizer, MarianMTModel, TranslationPi
 
 WORKDIR = "/mnt/homeGPU/mcarmona/"
 
-configTrans_ES_EN = AutoConfig.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
-)
-
-tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-es-en",
-    config=WORKDIR + "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
-    use_fast=True
-)
-
-modelTrans_ES_EN = MarianMTModel.from_pretrained(
-    WORKDIR + "Helsinki-NLP/opus-mt-es-en",
-    from_tf=bool(".ckpt" in "Helsinki-NLP/opus-mt-es-en"),
-    config=configTrans_ES_EN,
-    torch_dtype=torch.float16
-)
-
 local_rank = int(os.getenv("LOCAL_RANK", "0"))
 
-es_en_translator = TranslationPipeline(
-    model=modelTrans_ES_EN,
-    tokenizer=tokenizerTrans_ES_EN,
-    framework="pt",
-    device=local_rank
-)
 
 
+def traducirES_EN(dataset, es_en_translator):
+    topic = es_en_translator(["Hola", "Adios"])
 
-def traducirES_EN(text):
-    return es_en_translator(text)[0]["translation_text"]
+    return topic
 
 def generarDatasetAdulto(dataset):
+
+    configTrans_ES_EN = AutoConfig.from_pretrained(
+        WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
+    )
+
+    tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
+        WORKDIR + "Helsinki-NLP/opus-mt-es-en",
+        config=WORKDIR + "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
+        use_fast=True
+    )
+
+    modelTrans_ES_EN = MarianMTModel.from_pretrained(
+        WORKDIR + "Helsinki-NLP/opus-mt-es-en",
+        from_tf=bool(".ckpt" in "Helsinki-NLP/opus-mt-es-en"),
+        config=configTrans_ES_EN,
+        torch_dtype=torch.float16
+    )
+
+    es_en_translator = TranslationPipeline(
+        model=modelTrans_ES_EN,
+        tokenizer=tokenizerTrans_ES_EN,
+        framework="pt",
+        device=local_rank
+    )
+
+
 
     groups = dataset.groupby(dataset.Topic)
 
     groups_values = dataset.Topic.to_list()
 
-    groups_datasets = [groups.get_group(value).drop(columns=["Unnamed: 0"]) for value in groups_values]
+    groups_datasets = [groups.get_group(value) for value in groups_values]
 
-    groups_datasets = [i.apply(traducirES_EN) for i in groups_datasets]
+    print(traducirES_EN(groups_values[0], es_en_translator))
+
+    """
+    groups_datasets = [i.apply(traducirES_EN, args=[es_en_translator]) for i in groups_datasets]
 
     for i in groups_datasets:
         print(i.Text)
+    """
 
     return None, None, None, None
 
@@ -105,6 +113,8 @@ if __name__ == "__main__":
 
 
     dataset = pd.read_csv(args.dataset_file)
+
+    dataset = dataset.drop(columns=["Unnamed: 0"])
 
     if args.dataset_type == "Adulto":
         train_source, train_target, val_source, val_target = generarDatasetAdulto(dataset)
