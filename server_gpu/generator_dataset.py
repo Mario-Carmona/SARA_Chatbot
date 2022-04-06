@@ -9,6 +9,7 @@ import os
 import torch
 
 from transformers import AutoConfig, AutoTokenizer, MarianMTModel, PegasusForConditionalGeneration, TranslationPipeline, SummarizationPipeline
+from transformers import AutoModelWithLMHead, AutoTokenizer
 
 
 WORKDIR = "/mnt/homeGPU/mcarmona/"
@@ -30,8 +31,39 @@ def traducirES_EN(dataset, es_en_translator):
 
     return dataset
 
-def summarization(dataset, summaryPipeline):
-    pass
+def unique(lista):
+    lista_set = set(lista)
+    unique_list = list(lista_set)
+    return unique_list
+
+def summarization(dataset, configSum, tokenizerSum, modelSum, device):
+    text = []
+
+    for i in dataset.Text.to_list():
+        batch = tokenizerSum(i, truncation=True, padding="longest", return_tensors="pt")
+        
+        print(batch.shape[1])
+
+        if(batch.shape[1] <= 50):
+            frases = i.split('. ')
+            for pos in range(len(frases)-1):
+                frases[pos] += "."
+            text += frases
+        else:
+            batch.to(device)
+            translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
+            tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+            text += unique(tgt_text)
+        
+    topic = dataset.Topic.to_list()[0] * len(text)
+
+    dataset = pd.DataFrame({
+        "Topic": topic,
+        "Text": text
+    })
+
+    return dataset
+    
 
 def generarDatasetAdulto(dataset):
 
@@ -80,18 +112,26 @@ def generarDatasetAdulto(dataset):
         torch_dtype=torch.float16
     ).to(device)
 
-    """
-    summaryPipeline = SummarizationPipeline(
-        model=modelSum,
-        tokenizer=tokenizerSum,
-        framework="pt",
-        device=local_rank
-    )
-    """
+    
+    
+
+
+    
+
+    tokenizer = AutoTokenizer.from_pretrained(WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap")
+    model = AutoModelWithLMHead.from_pretrained(WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap")
 
 
 
+    def get_question(answer, context, max_length=64):
+        input_text = "answer: %s  context: %s </s>" % (answer, context)
+        features = tokenizer([input_text], return_tensors='pt')
 
+        output = model.generate(input_ids=features['input_ids'], 
+                    attention_mask=features['attention_mask'],
+                    max_length=max_length)
+
+        return tokenizer.decode(output[0])
 
 
 
@@ -108,15 +148,14 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
-    print([groups_datasets[-2].Text.to_list()[0]])
-    
-    src_text = [groups_datasets[-2].Text.to_list()[0], groups_datasets[-3].Text.to_list()[0]]
-    batch = tokenizerSum(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
-    translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=2)
-    tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+    groups_datasets = [summarization(i, configSum, tokenizerSum, modelSum, device) for i in groups_datasets]
 
-    #result = summaryPipeline(groups_datasets[-2].Text.to_list()[0], min_length=1, max_length=29, num_beams=8, num_return_sequences=8, n_docs=4)
-    print(tgt_text)
+    context = groups_datasets[0].Text.to_list()[0]
+    answer = groups_datasets[0].Topic.to_list()[0]
+
+    print(get_question(answer, context))
+
+
 
     return None, None, None, None
 
