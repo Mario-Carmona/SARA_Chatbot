@@ -54,7 +54,8 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [i.apply(traducirES_EN) for i in groups_datasets]
 
-    print(groups_datasets[0])
+    for i in groups_datasets:
+        print(i.Text)
 
     return None, None, None, None
 
