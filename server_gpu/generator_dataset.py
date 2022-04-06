@@ -30,6 +30,9 @@ def traducirES_EN(dataset, es_en_translator):
 
     return dataset
 
+def summarization(dataset, summaryPipeline):
+    pass
+
 def generarDatasetAdulto(dataset):
 
     configTrans_ES_EN = AutoConfig.from_pretrained(
@@ -100,9 +103,11 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
-    print(groups_datasets[0].Text.to_list()[0])
-    result = summaryPipeline(groups_datasets[0].Text.to_list()[0], min_length=1, max_length=29)
+    groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
+    print(groups_datasets[0].Text.to_list()[0])
+    
+    result = summaryPipeline(groups_datasets[-2].Text.to_list()[0], min_length=1, max_length=29, num_beams=8, num_return_sequences=8)
     print(result)
 
     return None, None, None, None
