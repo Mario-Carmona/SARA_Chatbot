@@ -44,7 +44,7 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
         
         print(batch)
 
-        if(batch.shape[1] <= 50):
+        if(batch['input_ids'].shape[1] <= 50):
             frases = i.split('. ')
             for pos in range(len(frases)-1):
                 frases[pos] += "."
