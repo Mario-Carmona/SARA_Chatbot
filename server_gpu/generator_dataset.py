@@ -18,9 +18,17 @@ local_rank = int(os.getenv("LOCAL_RANK", "0"))
 
 
 def traducirES_EN(dataset, es_en_translator):
-    topic = es_en_translator(["Hola", "Adios"])
+    aux = {}
 
-    return topic
+    for column in dataset.columns.values:
+        content = es_en_translator(dataset[column].to_list())
+        content = [i["translation_text"] for i in content]
+
+        aux[column] = content
+
+    dataset = pd.DataFrame(aux)
+
+    return dataset
 
 def generarDatasetAdulto(dataset):
 
@@ -56,14 +64,10 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [groups.get_group(value) for value in groups_values]
 
-    print(traducirES_EN(groups_values[0], es_en_translator))
-
-    """
-    groups_datasets = [i.apply(traducirES_EN, args=[es_en_translator]) for i in groups_datasets]
+    groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
     for i in groups_datasets:
-        print(i.Text)
-    """
+        print(i.Text.to_list())
 
     return None, None, None, None
 
