@@ -108,11 +108,11 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
-    print(groups_datasets[-2].Text.to_list()[0])
+    print(groups_datasets[0].Text.to_list()[0])
     
-    src_text = groups_datasets[-2].Text.to_list()[0]
+    src_text = groups_datasets[0].Text.to_list()[0]
     batch = tokenizerSum(src_text, truncation=True, padding="longest", return_tensors="pt").to(device)
-    translated = modelSum.generate(**batch, min_length=1, max_length=29, num_beams=8, num_return_sequences=8)
+    translated = modelSum.generate(**batch, min_length=1, max_length=29, num_beams=8, num_return_sequences=1)
     tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
 
     #result = summaryPipeline(groups_datasets[-2].Text.to_list()[0], min_length=1, max_length=29, num_beams=8, num_return_sequences=8, n_docs=4)
