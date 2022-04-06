@@ -119,7 +119,7 @@ def generarDatasetAdulto(dataset):
     
 
     tokenizer = AutoTokenizer.from_pretrained(WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap")
-    model = AutoModelWithLMHead.from_pretrained(WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap")
+    model = AutoModelWithLMHead.from_pretrained(WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap").to(device)
 
 
 
