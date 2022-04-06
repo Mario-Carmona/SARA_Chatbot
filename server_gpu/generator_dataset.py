@@ -8,7 +8,7 @@ import os
 
 import torch
 
-from transformers import AutoConfig, AutoTokenizer, MarianMTModel, TranslationPipeline
+from transformers import AutoConfig, AutoTokenizer, MarianMTModel, PegasusForConditionalGeneration, TranslationPipeline, SummarizationPipeline
 
 
 WORKDIR = "/mnt/homeGPU/mcarmona/"
@@ -58,6 +58,40 @@ def generarDatasetAdulto(dataset):
 
 
 
+    configSum = AutoConfig.from_pretrained(
+        WORKDIR + "google/pegasus-xsum/config.json"
+    )
+
+    tokenizerSum = AutoTokenizer.from_pretrained(
+        WORKDIR + "google/pegasus-xsum",
+        config=WORKDIR + "google/pegasus-xsum/tokenizer_config.json",
+        use_fast=True
+    )
+
+    modelSum = PegasusForConditionalGeneration.from_pretrained(
+        WORKDIR + "google/pegasus-xsum",
+        from_tf=bool(".ckpt" in "google/pegasus-xsum"),
+        config=configSum,
+        torch_dtype=torch.float16
+    )
+
+    summaryPipeline = SummarizationPipeline(
+        model=modelSum,
+        tokenizer=tokenizerSum,
+        framework="pt",
+        device=local_rank
+    )
+
+
+
+
+
+
+
+
+
+
+
     groups = dataset.groupby(dataset.Topic)
 
     groups_values = dataset.Topic.to_list()
@@ -66,8 +100,9 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
-    for i in groups_datasets:
-        print(i.Text.to_list())
+    result = summaryPipeline(groups_datasets[0].Text.to_list()[0], max_length=128)
+
+    print(result)
 
     return None, None, None, None
 
