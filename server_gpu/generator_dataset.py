@@ -50,7 +50,7 @@ def generarDatasetAdulto(dataset):
 
     groups_values = dataset.Topic.to_list()
 
-    groups_datasets = [groups.get_group(value) for value in groups_values]
+    groups_datasets = [groups.get_group(value).drop(columns=["Unnamed: 0"]) for value in groups_values]
 
     groups_datasets = [i.apply(traducirES_EN) for i in groups_datasets]
 
