@@ -241,14 +241,10 @@ training_args = Seq2SeqTrainingArguments(
 metric = load_metric("accuracy")
 
 def compute_metrics(eval_pred: EvalPrediction):
-    print(type(eval_pred.predictions))
-    print(len(eval_pred.predictions))
-    print(type(eval_pred.predictions[0]))
-    print(eval_pred.predictions[0].shape)
-    print(type(eval_pred.label_ids))
-    print(eval_pred.label_ids.shape)
-    print(eval_pred.label_ids)
-    predictions = torch.argmax(eval_pred.predictions, dim=-1)
+    # No se si es el índice 0 ó 1, se podrá comprobar cuando
+    # se tengan más datos porque no se si es la predicción
+    # ó la máscara
+    predictions = np.argmax(eval_pred.predictions[0], axis=-1)
     predictions = predictions.flatten()
     references = eval_pred.label_ids.flatten()
     return metric.compute(predictions=predictions, references=references)
