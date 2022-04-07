@@ -65,7 +65,10 @@ def make_response_welcome(request: Dict):
             }
         }
 
+        date_ini = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+
         outputContexts[0]["parameters"] = {
+            "date_ini": date_ini,
             "context": {
                 "entry": [output["entry"]["ES"]],
                 "answer": [output["answer"]["ES"]]
