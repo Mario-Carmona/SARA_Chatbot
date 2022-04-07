@@ -59,14 +59,18 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
     for i in dataset.Text.to_list():
         batch = tokenizerSum(i, truncation=True, padding="longest", return_tensors="pt")
         
+        """
         if(batch['input_ids'].shape[1] <= 50):
             frases = split(i, ". ")
             text += frases
         else:
-            batch.to(device)
-            translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
-            tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
-            text += unique(tgt_text)
+            """
+        batch.to(device)
+        translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
+        tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+        text += unique(tgt_text)
+
+        print(text)
         
     topic = dataset.Topic.to_list()[0] * len(text)
 
@@ -159,8 +163,6 @@ def generarDatasetAdulto(dataset):
     groups_values = dataset.Topic.to_list()
 
     groups_datasets = [groups.get_group(value) for value in groups_values]
-
-    groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
     groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
 
