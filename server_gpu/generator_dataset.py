@@ -125,7 +125,7 @@ def generarDatasetAdulto(dataset):
 
     def get_question(answer, context, max_length=64):
         input_text = "answer: %s  context: %s </s>" % (answer, context)
-        features = tokenizer([input_text], return_tensors='pt')
+        features = tokenizer([input_text], return_tensors='pt').to(device)
 
         output = model.generate(input_ids=features['input_ids'], 
                     attention_mask=features['attention_mask'],
