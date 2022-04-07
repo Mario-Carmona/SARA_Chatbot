@@ -182,13 +182,16 @@ def generarDatasetAdulto(dataset):
         return tokenizer.decode(output[0])
     """
 
+    max_length=64
 
     input_text = "answer: %s  context: %s </s>" % (answer, context)
 
-    batch = tokenizerGenQues(input_text, padding="longest", return_tensors="pt").to(device)
+    batch = tokenizerGenQues([input_text], padding="longest", return_tensors="pt").to(device)
 
-    translated = modelGenQues.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
-    tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+    translated = modelGenQues.generate(input_ids=batch['input_ids'], 
+                    attention_mask=batch['attention_mask'],
+                    max_length=max_length, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
+    tgt_text = tokenizerSum.decode(translated[0], skip_special_tokens=True)
 
 
     print(context)
