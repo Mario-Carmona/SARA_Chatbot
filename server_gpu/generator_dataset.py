@@ -112,7 +112,8 @@ def generarDatasetAdulto(dataset):
         for dataset in groups_datasets:
             new_dataset = {}
 
-            for column in dataset.columns.values:
+            new_dataset[dataset.columns.values[0]] = dataset[dataset.columns.values[0]].to_list()
+            for column in dataset.columns.values[1:]:
                 lista = []
                 for text in dataset[column].to_list():
                     lista.append(translator.translate_text(text, target_lang="EN-US").text)
@@ -134,19 +135,23 @@ def generarDatasetAdulto(dataset):
         new_groups_datasets = []
 
         for dataset in groups_datasets:
+            subject = []
             text = []
 
-            for i in dataset.Text.to_list():
+            for i, j in zip(dataset.Text.to_list(), dataset.Subject.to_list()):
                 batch = tokenizerSum(i, padding="longest", return_tensors="pt")
                 
                 if(batch['input_ids'].shape[1] <= 50):
                     frases = split(i, ". ")
                     text += frases
+                    subject += [j] * len(frases)
                 else:
                     batch.to(device)
                     translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
                     tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
-                    text += unique(tgt_text)
+                    aux = unique(tgt_text)
+                    text += aux
+                    subject += [j] * len(aux)
                 
                 progress_bar.update(1)
                 
@@ -154,6 +159,7 @@ def generarDatasetAdulto(dataset):
 
             new_groups_datasets.append(pd.DataFrame({
                 "Topic": topic,
+                "Subject": subject,
                 "Text": text
             }))
 
@@ -172,9 +178,10 @@ def generarDatasetAdulto(dataset):
         for dataset in groups_datasets:
             answer = []
             question = []
+            subject_list = []
 
-            for topic, text in zip(dataset.Topic.to_list(), dataset.Text.to_list()):
-                input_text = "answer: %s  context: %s </s>" % (topic, text)
+            for subject, text in zip(dataset.Subject.to_list(), dataset.Text.to_list()):
+                input_text = "answer: %s  context: %s </s>" % (subject, text)
                 features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
                 output = modelGenQues.generate(
                     input_ids=features['input_ids'], 
@@ -187,6 +194,7 @@ def generarDatasetAdulto(dataset):
 
                 answer += [text] * len(result)
                 question += result
+                subject_list += [subject] * len(result)
 
                 progress_bar.update(1)
 
@@ -194,6 +202,7 @@ def generarDatasetAdulto(dataset):
 
             new_groups_datasets.append(pd.DataFrame({
                 "Topic": topic,
+                "Subject": subject_list,
                 "Question": question,
                 "Answer": answer
             }))

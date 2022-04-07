@@ -41,9 +41,9 @@ if __name__ == "__main__":
     output_dataset["Text"] = output_dataset["Definición"] + " " + output_dataset["Respuesta"]
 
     output_dataset = output_dataset.drop(
-        columns=["Nombre_Alternativo", "Definición", "Pregunta", "Respuesta"]
+        columns=["Definición", "Pregunta", "Respuesta"]
     )
 
-    output_dataset = output_dataset.rename(columns={"Nombre":"Topic"})
+    output_dataset = output_dataset.rename(columns={"Nombre":"Topic", "Tema":"Subject"})
 
     output_dataset.to_csv(args.output_dataset)
