@@ -53,7 +53,17 @@ def obtenerTrainDataset(groups_datasets, train_split):
             ignore_index=True
         ))
 
-    return pd.concat(lista)
+    train_dataset = pd.concat(lista)
+
+    train_dataset = train_dataset.drop(columns=["Unnamed: 0"])
+    train_dataset = train_dataset.sample(
+        frac=1,
+        random_state=0,
+        axis=0,
+        ignore_index=True
+    )
+
+    return train_dataset
 
 
 def obtenerValidationDataset(dataset, train_dataset):
@@ -286,6 +296,7 @@ if __name__ == "__main__":
         groups_datasets = generarDatasetAdulto(dataset)
 
     total_dataset = pd.concat(groups_datasets)
+    total_dataset.drop(columns=["Unnamed: 0"])
 
     train_dataset = obtenerTrainDataset(groups_datasets, args.train_split)
 
