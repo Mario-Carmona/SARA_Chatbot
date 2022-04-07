@@ -16,20 +16,11 @@ WORKDIR = "/mnt/homeGPU/mcarmona/"
 
 local_rank = int(os.getenv("LOCAL_RANK", "0"))
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
-def traducirES_EN(dataset, es_en_translator):
-    aux = {}
 
-    for column in dataset.columns.values:
-        content = es_en_translator(dataset[column].to_list())
-        content = [i["translation_text"] for i in content]
 
-        aux[column] = content
-
-    dataset = pd.DataFrame(aux)
-
-    return dataset
 
 def unique(lista):
     lista_set = set(lista)
@@ -49,29 +40,34 @@ def split(cadena, subcadena):
 
     return lista
 
-def summarization(dataset, configSum, tokenizerSum, modelSum, device):
-    text = []
 
-    for i in dataset.Text.to_list():
-        batch = tokenizerSum(i, padding="longest", return_tensors="pt")
-        
-        if(batch['input_ids'].shape[1] <= 50):
-            frases = split(i, ". ")
-            text += frases
-        else:
-            batch.to(device)
-            translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
-            tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
-            text += unique(tgt_text)
-        
-    topic = dataset.Topic.to_list()[0] * len(text)
+def obtenerTrainDataset(groups_datasets, train_split):
 
-    dataset = pd.DataFrame({
-        "Topic": topic,
-        "Text": text
-    })
+    lista = []
 
-    return dataset
+    for dataset in groups_datasets:
+        lista.append(dataset.sample(
+            frac=train_split,
+            random_state=0,
+            axis=0,
+            ignore_index=True
+        ))
+
+    return pd.concat(lista)
+
+
+def obtenerValidationDataset(dataset, train_dataset):
+    validation_dataset = pd.merge(dataset, train_dataset, how='outer', indicator='Exist')
+    validation_dataset = validation_dataset.loc[validation_dataset['Exist'] != 'both']
+    validation_dataset = validation_dataset.drop(["Exist"], axis=1)
+    validation_dataset = validation_dataset.sample(
+        frac=1,
+        random_state=0,
+        axis=0,
+        ignore_index=True
+    )
+
+    return validation_dataset
     
 
 def generarDatasetAdulto(dataset):
@@ -114,7 +110,7 @@ def generarDatasetAdulto(dataset):
         use_fast=True
     )
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
+    
 
     modelSum = PegasusForConditionalGeneration.from_pretrained(
         WORKDIR + "google/pegasus-xsum",
@@ -147,25 +143,44 @@ def generarDatasetAdulto(dataset):
 
 
 
+    def traducirES_EN(dataset):
+        aux = {}
+
+        for column in dataset.columns.values:
+            content = es_en_translator(dataset[column].to_list())
+            content = [i["translation_text"] for i in content]
+
+            aux[column] = content
+
+        dataset = pd.DataFrame(aux)
+
+        return dataset
 
 
+    def summarization(dataset):
+        text = []
 
-    
+        for i in dataset.Text.to_list():
+            batch = tokenizerSum(i, padding="longest", return_tensors="pt")
+            
+            if(batch['input_ids'].shape[1] <= 50):
+                frases = split(i, ". ")
+                text += frases
+            else:
+                batch.to(device)
+                translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
+                tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+                text += unique(tgt_text)
+            
+        topic = dataset.Topic.to_list()[0] * len(text)
 
+        dataset = pd.DataFrame({
+            "Topic": topic,
+            "Text": text
+        })
 
+        return dataset
 
-
-
-
-    groups = dataset.groupby(dataset.Topic)
-
-    groups_values = dataset.Topic.to_list()
-
-    groups_datasets = [groups.get_group(value) for value in groups_values]
-
-    groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
-
-    groups_datasets = [summarization(i, configSum, tokenizerSum, modelSum, device) for i in groups_datasets]
 
 
     def generateQuestions(dataset):
@@ -197,32 +212,26 @@ def generarDatasetAdulto(dataset):
 
         return dataset
 
-
-
-    """
-    def get_question(answer, context, max_length=64):
-        input_text = ["answer: %s  context: %s </s>" % (i, j) for i, j in zip(answer, context)]
-        #input_text = "answer: %s  context: %s </s>" % (answer, context)
-        features = tokenizerGenQues(input_text, padding="longest", return_tensors='pt').to(device)
-
-        output = modelGenQues.generate(input_ids=features['input_ids'], 
-                    attention_mask=features['attention_mask'],
-                    max_length=max_length,
-                    num_beams=4, num_return_sequences=4)
-
-        print(output)
-
-        result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(8)]
-
-        return result
-    """
-
-    groups_datasets = [generateQuestions(i) for i in groups_datasets]
+    
     
 
 
 
-    return None, None, None, None
+
+
+    groups = dataset.groupby(dataset.Topic)
+
+    groups_values = dataset.Topic.to_list()
+
+    groups_datasets = [groups.get_group(value) for value in groups_values]
+
+    groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
+
+    groups_datasets = [summarization(i, configSum, tokenizerSum, modelSum, device) for i in groups_datasets]
+
+    groups_datasets = [generateQuestions(i) for i in groups_datasets]
+    
+    return groups_datasets
 
 
 
@@ -274,6 +283,19 @@ if __name__ == "__main__":
     dataset = dataset.drop(columns=["Unnamed: 0"])
 
     if args.dataset_type == "Adulto":
-        train_source, train_target, val_source, val_target = generarDatasetAdulto(dataset)
+        groups_datasets = generarDatasetAdulto(dataset)
+
+    total_dataset = pd.concat(groups_datasets)
+
+    train_dataset = obtenerTrainDataset(groups_datasets, args.train_split)
+
+    validation_dataset = obtenerValidationDataset(total_dataset, train_dataset)
+
+    dir = os.path.join(args.result_dir, f"split_{args.train_split}")
+    if not os.path.exists(dir):
+        os.mkdir(dir)
+
+    train_dataset.to_csv(f"{dir}/train.csv")
+    validation_dataset.to_csv(f"{dir}/validation.csv")
 
 
