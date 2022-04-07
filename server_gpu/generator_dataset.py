@@ -94,34 +94,6 @@ def generarDatasetAdulto(dataset):
     translator = deepl.Translator(auth_key)
     
 
-    """
-    configTrans_ES_EN = AutoConfig.from_pretrained(
-        WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
-    )
-
-    tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
-        WORKDIR + "Helsinki-NLP/opus-mt-es-en",
-        config=WORKDIR + "Helsinki-NLP/opus-mt-es-en/tokenizer_config.json",
-        use_fast=True
-    )
-
-    modelTrans_ES_EN = MarianMTModel.from_pretrained(
-        WORKDIR + "Helsinki-NLP/opus-mt-es-en",
-        from_tf=bool(".ckpt" in "Helsinki-NLP/opus-mt-es-en"),
-        config=configTrans_ES_EN,
-        torch_dtype=torch.float16
-    )
-
-    es_en_translator = TranslationPipeline(
-        model=modelTrans_ES_EN,
-        tokenizer=tokenizerTrans_ES_EN,
-        framework="pt",
-        device=local_rank
-    )
-    """
-
-
-
     configSum = AutoConfig.from_pretrained(
         WORKDIR + "google/pegasus-xsum/config.json"
     )
@@ -164,82 +136,6 @@ def generarDatasetAdulto(dataset):
     ).to(device)
 
 
-
-    def traducirES_EN(dataset):
-        aux = {}
-
-        for column in dataset.columns.values:
-            lista = []
-            for text in dataset[column].to_list():
-                lista.append(translator.translate_text(text, target_lang="EN-US").text)
-                progress_bar.update(1)
-            aux[column] = lista
-
-        dataset = pd.DataFrame(aux)
-
-        return dataset
-
-
-    def summarization(dataset):
-        text = []
-
-        for i in dataset.Text.to_list():
-            batch = tokenizerSum(i, padding="longest", return_tensors="pt")
-            
-            if(batch['input_ids'].shape[1] <= 50):
-                frases = split(i, ". ")
-                text += frases
-            else:
-                batch.to(device)
-                translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
-                tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
-                text += unique(tgt_text)
-            
-            progress_bar.update(1)
-            
-        topic = [dataset.Topic.to_list()[0]] * len(text)
-
-        dataset = pd.DataFrame({
-            "Topic": topic,
-            "Text": text
-        })
-
-        return dataset
-
-
-
-    def generateQuestions(dataset):
-        answer = []
-        question = []
-
-        for topic, text in zip(dataset.Topic.to_list(), dataset.Text.to_list()):
-            input_text = "answer: %s  context: %s </s>" % (topic, text)
-            features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
-            output = modelGenQues.generate(
-                input_ids=features['input_ids'], 
-                attention_mask=features['attention_mask'],
-                max_length=64,
-                num_beams=4, num_return_sequences=4
-            )
-            result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(len(output))]
-            result = unique([i[10:] for i in result])
-
-            answer += [text] * len(result)
-            question += result
-
-            progress_bar.update(1)
-
-        topic = [dataset.Topic.to_list()[0]] * len(answer)
-
-        dataset = pd.DataFrame({
-            "Topic": topic,
-            "Question": question,
-            "Answer": answer
-        })
-
-        return dataset
-
-    
     def calculateElements(groups_datasets, calc_columns=False):
         num = 0
         for i in groups_datasets:
@@ -252,7 +148,111 @@ def generarDatasetAdulto(dataset):
         
         return num
 
+    def traducirES_EN(groups_datasets):
+        print(bcolors.WARNING + "Realizando traducción a Inglés..." + bcolors.RESET)
 
+        progress_bar = tqdm(range(calculateElements(groups_datasets, True)))
+        
+        new_groups_datasets = []
+
+        for dataset in groups_datasets:
+            new_dataset = {}
+
+            for column in dataset.columns.values:
+                lista = []
+                for text in dataset[column].to_list():
+                    lista.append(translator.translate_text(text, target_lang="EN-US").text)
+                    progress_bar.update(1)
+                new_dataset[column] = lista
+
+            new_groups_datasets.append(pd.DataFrame(new_dataset))
+
+        print(bcolors.OK + "Terminada traducción" + bcolors.RESET)
+
+        return new_groups_datasets
+
+
+    def summarization(groups_datasets):
+
+        print(bcolors.WARNING + "Realizando resumen del texto..." + bcolors.RESET)
+
+        progress_bar = tqdm(range(calculateElements(groups_datasets)))
+
+        new_groups_datasets = []
+
+        for dataset in groups_datasets:
+            text = []
+
+            for i in dataset.Text.to_list():
+                batch = tokenizerSum(i, padding="longest", return_tensors="pt")
+                
+                if(batch['input_ids'].shape[1] <= 50):
+                    frases = split(i, ". ")
+                    text += frases
+                else:
+                    batch.to(device)
+                    translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
+                    tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+                    text += unique(tgt_text)
+                
+                progress_bar.update(1)
+                
+            topic = [dataset.Topic.to_list()[0]] * len(text)
+
+            new_groups_datasets.append(pd.DataFrame({
+                "Topic": topic,
+                "Text": text
+            }))
+
+        print(bcolors.OK + "Terminado resumen" + bcolors.RESET)
+
+        return new_groups_datasets
+
+
+
+    def generateQuestions(groups_datasets):
+
+        print(bcolors.WARNING + "Realizando generación de preguntas..." + bcolors.RESET)
+
+        progress_bar = tqdm(range(calculateElements(groups_datasets)))
+
+        new_groups_datasets = []
+
+        for dataset in groups_datasets:
+            answer = []
+            question = []
+
+            for topic, text in zip(dataset.Topic.to_list(), dataset.Text.to_list()):
+                input_text = "answer: %s  context: %s </s>" % (topic, text)
+                features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
+                output = modelGenQues.generate(
+                    input_ids=features['input_ids'], 
+                    attention_mask=features['attention_mask'],
+                    max_length=64,
+                    num_beams=4, num_return_sequences=4
+                )
+                result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(len(output))]
+                result = unique([i[10:] for i in result])
+
+                answer += [text] * len(result)
+                question += result
+
+                progress_bar.update(1)
+
+            topic = [dataset.Topic.to_list()[0]] * len(answer)
+
+            new_groups_datasets.append(pd.DataFrame({
+                "Topic": topic,
+                "Question": question,
+                "Answer": answer
+            }))
+
+        print(bcolors.OK + "Terminada generación de preguntas" + bcolors.RESET)
+
+        return new_groups_datasets
+
+    
+    
 
 
     groups = dataset.groupby(dataset.Topic)
@@ -261,28 +261,12 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [groups.get_group(value) for value in groups_values]
 
-    print(bcolors.WARNING + "Realizando traducción a Inglés..." + bcolors.RESET)
+    groups_datasets = traducirES_EN(groups_datasets)
 
-    progress_bar = tqdm(range(calculateElements(groups_datasets, True)))
+    groups_datasets = summarization(groups_datasets)
 
-    groups_datasets = [traducirES_EN(i) for i in groups_datasets]
+    groups_datasets = generateQuestions(groups_datasets)
 
-    print(bcolors.OK + "Terminada traducción" + bcolors.RESET)
-    print(bcolors.WARNING + "Realizando resumen del texto..." + bcolors.RESET)
-
-    progress_bar = tqdm(range(calculateElements(groups_datasets)))
-
-    groups_datasets = [summarization(i) for i in groups_datasets]
-
-    print(bcolors.OK + "Terminado resumen" + bcolors.RESET)
-    print(bcolors.WARNING + "Realizando generación de preguntas..." + bcolors.RESET)
-
-    progress_bar = tqdm(range(calculateElements(groups_datasets)))
-
-    groups_datasets = [generateQuestions(i) for i in groups_datasets]
-
-    print(bcolors.OK + "Terminada generación de preguntas" + bcolors.RESET)
-    
     return groups_datasets
 
 
