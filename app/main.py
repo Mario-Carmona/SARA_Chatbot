@@ -199,7 +199,7 @@ async def save_conversation(context, past_user_inputs, generated_responses, edad
     cur.close()
     db.close()
 
-def make_response_goodbye(request: Dict):
+async def make_response_goodbye(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -246,13 +246,13 @@ def make_response_goodbye(request: Dict):
 
     DATABASE_URL = os.environ['DATABASE_URL']
 
-    asyncio.run(save_conversation(
+    await save_conversation(
         outputContexts[elem]["parameters"]["context"], 
         outputContexts[elem]["parameters"]["past_user_inputs"], 
         outputContexts[elem]["parameters"]["generated_responses"], 
         outputContexts[elem]["parameters"]["edad"], 
         outputContexts[elem]["parameters"]["date_ini"]
-    ))
+    )
 
     return response
 
