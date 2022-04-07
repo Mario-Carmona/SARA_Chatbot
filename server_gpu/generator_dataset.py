@@ -182,7 +182,7 @@ def generarDatasetAdulto(dataset):
 
         print(output)
 
-        result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(4)]
+        result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(8)]
 
         return result
 
