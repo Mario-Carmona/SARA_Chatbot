@@ -36,6 +36,8 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 class ServerURL(BaseModel):
     url: str
 
+def obtenerElemContext(outputContexts):
+    return [i for i, s in enumerate(outputContexts) if s["name"].__contains__("welcome-followup")][0]
 
 
 def make_response_welcome(request: Dict):
@@ -67,7 +69,9 @@ def make_response_welcome(request: Dict):
 
         date_ini = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
 
-        outputContexts[0]["parameters"] = {
+        elem = obtenerElemContext(outputContexts)
+
+        outputContexts[elem]["parameters"] = {
             "date_ini": date_ini,
             "context": {
                 "entry": [output["entry"]["ES"]],
@@ -105,7 +109,9 @@ def make_response_deduct(request: Dict):
     answer = entry
 
     if answer in ["Niño", "Adolescente", "Adulto"]:
-        outputContexts[0]["parameters"]["edad"] = answer
+        elem = obtenerElemContext(outputContexts)
+
+        outputContexts[elem]["parameters"]["edad"] = answer
     
     response = {
         "fulfillmentText": answer,
@@ -119,10 +125,12 @@ def make_response_talk(request: Dict):
 
     entry = request.get("queryResult").get("queryText")
 
-    edad = outputContexts[0]["parameters"]["edad"]
+    elem = obtenerElemContext(outputContexts)
 
-    past_user_inputs = outputContexts[0]["parameters"]["past_user_inputs"]
-    generated_responses = outputContexts[0]["parameters"]["generated_responses"]
+    edad = outputContexts[elem]["parameters"]["edad"]
+
+    past_user_inputs = outputContexts[elem]["parameters"]["past_user_inputs"]
+    generated_responses = outputContexts[elem]["parameters"]["generated_responses"]
 
     query_json = {
         "entry": entry,
@@ -133,10 +141,10 @@ def make_response_talk(request: Dict):
     output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
     output = json.loads(output.content.decode('utf-8'))
 
-    outputContexts[0]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
-    outputContexts[0]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
-    outputContexts[0]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
-    outputContexts[0]["parameters"]["generated_responses"].append(output["answer"]["EN"])
+    outputContexts[elem]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
+    outputContexts[elem]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
+    outputContexts[elem]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
+    outputContexts[elem]["parameters"]["generated_responses"].append(output["answer"]["EN"])
 
     answer = output["answer"]["ES"]
 
@@ -196,10 +204,12 @@ def make_response_goodbye(request: Dict):
 
     entry = request.get("queryResult").get("queryText")
 
-    edad = outputContexts[0]["parameters"]["edad"]
+    elem = obtenerElemContext(outputContexts)
 
-    past_user_inputs = outputContexts[0]["parameters"]["past_user_inputs"]
-    generated_responses = outputContexts[0]["parameters"]["generated_responses"]
+    edad = outputContexts[elem]["parameters"]["edad"]
+
+    past_user_inputs = outputContexts[elem]["parameters"]["past_user_inputs"]
+    generated_responses = outputContexts[elem]["parameters"]["generated_responses"]
 
     query_json = {
         "entry": entry,
@@ -222,10 +232,10 @@ def make_response_goodbye(request: Dict):
         }
     }
 
-    outputContexts[0]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
-    outputContexts[0]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
-    outputContexts[0]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
-    outputContexts[0]["parameters"]["generated_responses"].append(output["answer"]["EN"])
+    outputContexts[elem]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
+    outputContexts[elem]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
+    outputContexts[elem]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
+    outputContexts[elem]["parameters"]["generated_responses"].append(output["answer"]["EN"])
 
     answer = output["answer"]["ES"]
 
@@ -237,11 +247,11 @@ def make_response_goodbye(request: Dict):
     DATABASE_URL = os.environ['DATABASE_URL']
 
     asyncio.run(save_conversation(
-        outputContexts[0]["parameters"]["context"], 
-        outputContexts[0]["parameters"]["past_user_inputs"], 
-        outputContexts[0]["parameters"]["generated_responses"], 
-        outputContexts[0]["parameters"]["edad"], 
-        outputContexts[0]["parameters"]["date_ini"]
+        outputContexts[elem]["parameters"]["context"], 
+        outputContexts[elem]["parameters"]["past_user_inputs"], 
+        outputContexts[elem]["parameters"]["generated_responses"], 
+        outputContexts[elem]["parameters"]["edad"], 
+        outputContexts[elem]["parameters"]["date_ini"]
     ))
 
     return response
