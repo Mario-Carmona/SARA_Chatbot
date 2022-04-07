@@ -5,11 +5,20 @@ import argparse
 import pandas as pd
 import sys
 import os
+import deepl
+from tqdm.auto import tqdm
 
 import torch
 
 from transformers import AutoConfig, AutoTokenizer, MarianMTModel, PegasusForConditionalGeneration, TranslationPipeline, SummarizationPipeline
 from transformers import T5ForConditionalGeneration, AutoTokenizer
+
+
+class bcolors:
+    OK = '\033[92m' #GREEN
+    WARNING = '\033[93m' #YELLOW
+    FAIL = '\033[91m' #RED
+    RESET = '\033[0m' #RESET COLOR
 
 
 WORKDIR = "/mnt/homeGPU/mcarmona/"
@@ -81,8 +90,11 @@ def obtenerValidationDataset(dataset, train_dataset):
 
 def generarDatasetAdulto(dataset):
 
+    auth_key = "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx"
+    translator = deepl.Translator(auth_key)
     
 
+    """
     configTrans_ES_EN = AutoConfig.from_pretrained(
         WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
     )
@@ -106,6 +118,7 @@ def generarDatasetAdulto(dataset):
         framework="pt",
         device=local_rank
     )
+    """
 
 
 
@@ -156,10 +169,11 @@ def generarDatasetAdulto(dataset):
         aux = {}
 
         for column in dataset.columns.values:
-            content = es_en_translator(dataset[column].to_list())
-            content = [i["translation_text"] for i in content]
-
-            aux[column] = content
+            lista = []
+            for text in dataset[column].to_list():
+                lista.append(translator.translate_text(text, target_lang="EN-US").text)
+                progress_bar.update(1)
+            aux[column] = lista
 
         dataset = pd.DataFrame(aux)
 
@@ -180,6 +194,8 @@ def generarDatasetAdulto(dataset):
                 translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
                 tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
                 text += unique(tgt_text)
+            
+            progress_bar.update(1)
             
         topic = [dataset.Topic.to_list()[0]] * len(text)
 
@@ -211,6 +227,8 @@ def generarDatasetAdulto(dataset):
             answer += [text] * len(result)
             question += result
 
+            progress_bar.update(1)
+
         topic = [dataset.Topic.to_list()[0]] * len(answer)
 
         dataset = pd.DataFrame({
@@ -222,8 +240,17 @@ def generarDatasetAdulto(dataset):
         return dataset
 
     
-    
-
+    def calculateElements(groups_datasets, calc_columns=False):
+        num = 0
+        for i in groups_datasets:
+            num_columns = len(i.columns.values)
+            num_rows = len(i.Topic.to_list())
+            if calc_columns:
+                num += num_columns * num_rows
+            else:
+                num += num_rows
+        
+        return num
 
 
 
@@ -234,11 +261,27 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [groups.get_group(value) for value in groups_values]
 
+    print(bcolors.WARNING + "Realizando traducción a Inglés..." + bcolors.RESET)
+
+    progress_bar = tqdm(range(calculateElements(groups_datasets, True)))
+
     groups_datasets = [traducirES_EN(i) for i in groups_datasets]
+
+    print(bcolors.OK + "Terminada traducción" + bcolors.RESET)
+    print(bcolors.WARNING + "Realizando resumen del texto..." + bcolors.RESET)
+
+    progress_bar = tqdm(range(calculateElements(groups_datasets)))
 
     groups_datasets = [summarization(i) for i in groups_datasets]
 
+    print(bcolors.OK + "Terminado resumen" + bcolors.RESET)
+    print(bcolors.WARNING + "Realizando generación de preguntas..." + bcolors.RESET)
+
+    progress_bar = tqdm(range(calculateElements(groups_datasets)))
+
     groups_datasets = [generateQuestions(i) for i in groups_datasets]
+
+    print(bcolors.OK + "Terminada generación de preguntas" + bcolors.RESET)
     
     return groups_datasets
 
