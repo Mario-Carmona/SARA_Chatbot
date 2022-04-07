@@ -44,6 +44,7 @@ def split(cadena, subcadena):
     while aux != -1:
         lista.append(cadena[inicio:aux+1])
         inicio = aux+2
+        cadena = cadena[inicio:]
     
     lista.append(cadena[inicio:])
 
