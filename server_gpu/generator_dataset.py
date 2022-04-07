@@ -167,9 +167,39 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [summarization(i, configSum, tokenizerSum, modelSum, device) for i in groups_datasets]
 
-    context = groups_datasets[0].Text.to_list()[0:2]
-    answer = groups_datasets[0].Topic.to_list()[0:2]
 
+    def generateQuestions(dataset):
+        answer = []
+        question = []
+
+        for topic, text in zip(dataset.Topic.to_list(), dataset.Text.to_list()):
+            input_text = "answer: %s  context: %s </s>" % (topic, text)
+            features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
+            output = modelGenQues.generate(
+                input_ids=features['input_ids'], 
+                attention_mask=features['attention_mask'],
+                max_length=64,
+                num_beams=4, num_return_sequences=4
+            )
+            result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(len(output))]
+            result = unique([i[10:] for i in result])
+
+            answer += [text] * len(result)
+            question += result
+
+        topic = dataset.Topic.to_list()[0] * len(answer)
+
+        dataset = pd.DataFrame({
+            "Topic": topic,
+            "Question": question,
+            "Answer": answer
+        })
+
+        return dataset
+
+
+
+    """
     def get_question(answer, context, max_length=64):
         input_text = ["answer: %s  context: %s </s>" % (i, j) for i, j in zip(answer, context)]
         #input_text = "answer: %s  context: %s </s>" % (answer, context)
@@ -185,22 +215,10 @@ def generarDatasetAdulto(dataset):
         result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(8)]
 
         return result
-
-    """
-    max_length=64
-
-    input_text = "answer: %s  context: %s </s>" % (answer, context)
-
-    batch = tokenizerGenQues([input_text], padding="longest", return_tensors="pt").to(device)
-
-    translated = modelGenQues.generate(input_ids=batch['input_ids'], 
-                    attention_mask=batch['attention_mask'],
-                    max_length=max_length, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
-    tgt_text = tokenizerSum.decode(translated[0], skip_special_tokens=True)
     """
 
-    print(context)
-    print(get_question(answer, context))
+    groups_datasets = [generateQuestions(i) for i in groups_datasets]
+    
 
 
 
