@@ -179,7 +179,9 @@ def generarDatasetAdulto(dataset):
                     max_length=max_length,
                     num_beams=4, num_return_sequences=4)
 
-        return tokenizerGenQues.decode(output[0])
+        print(output)
+
+        return tokenizerGenQues.decode(output[0], skip_special_tokens=True)
 
     """
     max_length=64
