@@ -166,7 +166,7 @@ def generarContent(context, past_user_inputs, generated_responses):
     
     return content
 
-async def save_conversation(context, past_user_inputs, generated_responses, edad, date_ini):
+def save_conversation(context, past_user_inputs, generated_responses, edad, date_ini):
     DATABASE_URL = os.environ['DATABASE_URL']
 
     db = psycopg2.connect(DATABASE_URL, sslmode='require')
@@ -199,7 +199,7 @@ async def save_conversation(context, past_user_inputs, generated_responses, edad
     cur.close()
     db.close()
 
-async def make_response_goodbye(request: Dict):
+def make_response_goodbye(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -246,7 +246,7 @@ async def make_response_goodbye(request: Dict):
 
     DATABASE_URL = os.environ['DATABASE_URL']
 
-    await save_conversation(
+    save_conversation(
         outputContexts[elem]["parameters"]["context"], 
         outputContexts[elem]["parameters"]["past_user_inputs"], 
         outputContexts[elem]["parameters"]["generated_responses"], 
