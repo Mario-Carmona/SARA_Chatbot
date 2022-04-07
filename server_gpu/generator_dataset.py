@@ -36,6 +36,19 @@ def unique(lista):
     unique_list = list(lista_set)
     return unique_list
 
+def split(cadena, subcadena):
+    lista = []
+
+    inicio = 0
+    aux = cadena.find(subcadena)
+    while aux != -1:
+        lista.append(cadena[inicio:aux+1])
+        inicio = aux+2
+    
+    lista.append(cadena[inicio:])
+
+    return lista
+
 def summarization(dataset, configSum, tokenizerSum, modelSum, device):
     text = []
 
@@ -43,7 +56,7 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
         batch = tokenizerSum(i, truncation=True, padding="longest", return_tensors="pt")
         
         if(batch['input_ids'].shape[1] <= 50):
-            frases = i.split(sep='. ')
+            frases = split(i, ". ")
             for pos in range(len(frases)-1):
                 frases[pos] += "."
             text += frases
