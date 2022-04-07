@@ -176,7 +176,8 @@ def generarDatasetAdulto(dataset):
 
         output = modelGenQues.generate(input_ids=features['input_ids'], 
                     attention_mask=features['attention_mask'],
-                    max_length=max_length)
+                    max_length=max_length,
+                    num_beams=4, num_return_sequences=4)
 
         return tokenizerGenQues.decode(output[0])
 
