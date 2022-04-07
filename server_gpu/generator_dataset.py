@@ -202,7 +202,7 @@ def generarDatasetAdulto(dataset):
             answer += [text] * len(result)
             question += result
 
-        topic = dataset.Topic.to_list()[0] * len(answer)
+        topic = [dataset.Topic.to_list()[0]] * len(answer)
 
         dataset = pd.DataFrame({
             "Topic": topic,
