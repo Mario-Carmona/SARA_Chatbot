@@ -67,6 +67,17 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
 
 def generarDatasetAdulto(dataset):
 
+    def get_question(answer, context, max_length=64):
+        input_text = "answer: %s  context: %s </s>" % (answer, context)
+        features = tokenizer([input_text], return_tensors='pt').to(device)
+
+        output = model.generate(input_ids=features['input_ids'], 
+                    attention_mask=features['attention_mask'],
+                    max_length=max_length)
+
+        return tokenizer.decode(output[0])
+
+
     configTrans_ES_EN = AutoConfig.from_pretrained(
         WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
     )
@@ -123,15 +134,7 @@ def generarDatasetAdulto(dataset):
 
 
 
-    def get_question(answer, context, max_length=64):
-        input_text = "answer: %s  context: %s </s>" % (answer, context)
-        features = tokenizer([input_text], return_tensors='pt').to(device)
-
-        output = model.generate(input_ids=features['input_ids'], 
-                    attention_mask=features['attention_mask'],
-                    max_length=max_length)
-
-        return tokenizer.decode(output[0])
+    
 
 
 
