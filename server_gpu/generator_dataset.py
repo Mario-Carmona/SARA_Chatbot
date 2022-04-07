@@ -225,9 +225,9 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [groups.get_group(value) for value in groups_values]
 
-    groups_datasets = [traducirES_EN(i, es_en_translator) for i in groups_datasets]
+    groups_datasets = [traducirES_EN(i) for i in groups_datasets]
 
-    groups_datasets = [summarization(i, configSum, tokenizerSum, modelSum, device) for i in groups_datasets]
+    groups_datasets = [summarization(i) for i in groups_datasets]
 
     groups_datasets = [generateQuestions(i) for i in groups_datasets]
     
