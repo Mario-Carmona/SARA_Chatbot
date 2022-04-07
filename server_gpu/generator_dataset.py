@@ -9,7 +9,7 @@ import os
 import torch
 
 from transformers import AutoConfig, AutoTokenizer, MarianMTModel, PegasusForConditionalGeneration, TranslationPipeline, SummarizationPipeline
-from transformers import AutoModelWithLMHead, AutoTokenizer
+from transformers import T5ForConditionalGeneration, AutoTokenizer
 
 
 WORKDIR = "/mnt/homeGPU/mcarmona/"
@@ -39,21 +39,13 @@ def unique(lista):
 def split(cadena, subcadena):
     lista = []
 
-    print("\""+cadena+"\"")
-
     aux = cadena.find(subcadena)
-    print(aux)
     while aux != -1:
-        print(cadena[:aux+1])
         lista.append(cadena[:aux+1])
         cadena = cadena[aux+2:]
-        print("\""+cadena+"\"")
         aux = cadena.find(subcadena)
-        print(aux)
     
     lista.append(cadena)
-
-    print(lista)
 
     return lista
 
@@ -61,7 +53,7 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
     text = []
 
     for i in dataset.Text.to_list():
-        batch = tokenizerSum(i, truncation=True, padding="longest", return_tensors="pt")
+        batch = tokenizerSum(i, padding="longest", return_tensors="pt")
         
         if(batch['input_ids'].shape[1] <= 50):
             frases = split(i, ". ")
@@ -84,16 +76,7 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
 
 def generarDatasetAdulto(dataset):
 
-    def get_question(answer, context, max_length=64):
-        input_text = "answer: %s  context: %s </s>" % (answer, context)
-        features = tokenizer([input_text], return_tensors='pt').to(device)
-
-        output = model.generate(input_ids=features['input_ids'], 
-                    attention_mask=features['attention_mask'],
-                    max_length=max_length)
-
-        return tokenizer.decode(output[0])
-
+    
 
     configTrans_ES_EN = AutoConfig.from_pretrained(
         WORKDIR + "Helsinki-NLP/opus-mt-es-en/config.json"
@@ -141,13 +124,29 @@ def generarDatasetAdulto(dataset):
     ).to(device)
 
     
-    
 
 
-    
 
-    tokenizer = AutoTokenizer.from_pretrained(WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap")
-    model = AutoModelWithLMHead.from_pretrained(WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap").to(device)
+
+    configGenQues = AutoConfig.from_pretrained(
+        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/config.json"
+    )
+
+    tokenizerGenQues = AutoTokenizer.from_pretrained(
+        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
+        config=WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/tokenizer_config.json",
+        use_fast=True
+    )
+
+    modelGenQues = T5ForConditionalGeneration.from_pretrained(
+        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
+        from_tf=bool(".ckpt" in "mrm8488/t5-base-finetuned-question-generation-ap"),
+        config=configGenQues,
+        torch_dtype=torch.float16
+    ).to(device)
+
+
+
 
 
 
@@ -171,8 +170,28 @@ def generarDatasetAdulto(dataset):
     context = groups_datasets[0].Text.to_list()[1]
     answer = groups_datasets[0].Topic.to_list()[1]
 
+
+    def get_question(answer, context, max_length=64):
+        input_text = "answer: %s  context: %s </s>" % (answer, context)
+        features = tokenizer([input_text], return_tensors='pt').to(device)
+
+        output = model.generate(input_ids=features['input_ids'], 
+                    attention_mask=features['attention_mask'],
+                    max_length=max_length)
+
+        return tokenizer.decode(output[0])
+
+
+    input_text = "answer: %s  context: %s </s>" % (answer, context)
+
+    batch = tokenizerGenQues(input_text, padding="longest", return_tensors="pt").to(device)
+
+    translated = modelGenQues.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
+    tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+
+
     print(context)
-    print(get_question(answer, context))
+    print(tgt_text)
 
 
 
