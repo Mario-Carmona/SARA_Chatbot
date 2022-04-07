@@ -49,6 +49,8 @@ def split(cadena, subcadena):
     
     lista.append(cadena[inicio:])
 
+    print(lista)
+
     return lista
 
 def summarization(dataset, configSum, tokenizerSum, modelSum, device):
