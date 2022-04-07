@@ -170,18 +170,17 @@ def generarDatasetAdulto(dataset):
     context = groups_datasets[0].Text.to_list()[1]
     answer = groups_datasets[0].Topic.to_list()[1]
 
-    """
     def get_question(answer, context, max_length=64):
         input_text = "answer: %s  context: %s </s>" % (answer, context)
-        features = tokenizer([input_text], return_tensors='pt').to(device)
+        features = tokenizerGenQues([input_text], return_tensors='pt').to(device)
 
-        output = model.generate(input_ids=features['input_ids'], 
+        output = modelGenQues.generate(input_ids=features['input_ids'], 
                     attention_mask=features['attention_mask'],
                     max_length=max_length)
 
-        return tokenizer.decode(output[0])
-    """
+        return tokenizerGenQues.decode(output[0])
 
+    """
     max_length=64
 
     input_text = "answer: %s  context: %s </s>" % (answer, context)
@@ -192,10 +191,10 @@ def generarDatasetAdulto(dataset):
                     attention_mask=batch['attention_mask'],
                     max_length=max_length, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
     tgt_text = tokenizerSum.decode(translated[0], skip_special_tokens=True)
-
+    """
 
     print(context)
-    print(tgt_text)
+    print(get_question(answer, context))
 
 
 
