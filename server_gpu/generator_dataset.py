@@ -181,7 +181,7 @@ def generarDatasetAdulto(dataset):
 
         print(output)
 
-        return tokenizerGenQues.decode(output[0], skip_special_tokens=True)
+        return tokenizerGenQues.decode(output, skip_special_tokens=True)
 
     """
     max_length=64
