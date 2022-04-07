@@ -172,7 +172,7 @@ def generarDatasetAdulto(dataset):
                 tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
                 text += unique(tgt_text)
             
-        topic = dataset.Topic.to_list()[0] * len(text)
+        topic = [dataset.Topic.to_list()[0]] * len(text)
 
         dataset = pd.DataFrame({
             "Topic": topic,
