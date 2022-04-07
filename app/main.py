@@ -9,6 +9,7 @@ from typing import Dict
 import requests
 import psycopg2
 from datetime import datetime
+import pytz
 import asyncio
 
 from pydantic import BaseModel
@@ -31,7 +32,7 @@ PORT = eval(os.environ.get("PORT", config["port"]))
 global SERVER_GPU_URL
 SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
-
+SPAIN = pytz.timezone('Europe/Madrid')
 
 class ServerURL(BaseModel):
     url: str
@@ -67,7 +68,7 @@ def make_response_welcome(request: Dict):
             }
         }
 
-        date_ini = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+        date_ini = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
         elem = obtenerElemContext(outputContexts)
 
@@ -175,7 +176,7 @@ def save_conversation(context, past_user_inputs, generated_responses, edad, date
 
     content = generarContent(context, past_user_inputs, generated_responses)
 
-    date_fin = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
+    date_fin = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
     cur.execute(
         """INSERT INTO Conversations (edad, date_ini, date_fin, content) 
