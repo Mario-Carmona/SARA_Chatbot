@@ -43,3 +43,9 @@ VALUES (
     '2022-04-04 12:00:00', 
     '2022-04-04 13:00:00'
 );
+
+
+UPDATE Conversations
+    SET verified='true'
+    WHERE id=1;
+
