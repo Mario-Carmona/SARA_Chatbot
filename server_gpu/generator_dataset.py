@@ -167,12 +167,13 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [summarization(i, configSum, tokenizerSum, modelSum, device) for i in groups_datasets]
 
-    context = groups_datasets[0].Text.to_list()[1]
-    answer = groups_datasets[0].Topic.to_list()[1]
+    context = groups_datasets[0].Text.to_list()[0:2]
+    answer = groups_datasets[0].Topic.to_list()[0:2]
 
     def get_question(answer, context, max_length=64):
-        input_text = "answer: %s  context: %s </s>" % (answer, context)
-        features = tokenizerGenQues([input_text], return_tensors='pt').to(device)
+        input_text = ["answer: %s  context: %s </s>" % (i, j) for i, j in zip(answer, context)]
+        #input_text = "answer: %s  context: %s </s>" % (answer, context)
+        features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
 
         output = modelGenQues.generate(input_ids=features['input_ids'], 
                     attention_mask=features['attention_mask'],
