@@ -1,327 +1,320 @@
-,Topic,Question,Answer
-0,Model,"In this paper, we show how to train an AI model to predict the outcome of a problem?","In this paper, we show how to train an artificial intelligence (AI) model to predict the outcome of a problem."
-1,Data science,There is a growing demand for what?,There is a growing demand for data scientists across the world.
-2,Grafo,Graph theory is a branch of mathematics that deals with data structures?,Graph theory is a branch of mathematics that deals with data structures.
-3,Test the Turing,What test has DeepMind passed?,"An artificial intelligence (AI) called DeepMind has passed the Turing Test for the first time, the BBC reports."
-4,Tree,"In this class, we will learn how to use what to solve some common problems?",In this class we will learn how to use a tree to solve some common problems.
-5,Federated learning,"What is a technique that allows to train an algorithm in a way, using its own data and only shares it with other users?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), and only shares it with other users."
-6,Metadata,What is an important part of a data?,Metadata is an important part of data.
-7,Big data,What revolution does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution."
-8,Grafo,Which branch of mathematics deals with the relationship between data and people?,Graph theory is a branch of mathematics that deals with the relationship between data and people.
-9,Grafo,What is the name of the Greek philosopher who studied graph theory?,Graph theory is a theory of how data is organised and relationships between points are formed.
-10,Metadata,What part of the data we collect and store is important?,Metadata is an important part of the data we collect and store.
-11,Federated learning,"What is a technique called that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), and only shares this model with other users."
-12,Reinforcement learning,What is a type of machine learning in which a decision is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision is followed by a reinforcement (positive or negative).
-13,Data science,What is the branch of science that deals with the analysis of large volumes of data called?,Data Science is a branch of science that deals with the analysis of large volumes of data.
-14,GPU,What is a Graphics Processing Unit?,A Graphics Processing Unit (GPU) is a piece of computer hardware that is used to process data.
-15,Turing completo,What is a system that has a computational power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machine...
-16,Decision tree,What does Ahmed Rashid look at in a series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at how to make a tree."
-17,Augmented reality,What is AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the hottest technologies in the world of technology.
-18,Federated learning,What is a technique that allows to train an algorithm in a way?,"Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private or local)."
-19,Intelligent agent,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have"
-20,GPU,What is another term for Graphics Processing Unit?,A Graphics Processing Unit (GPU) is a piece of computer equipment that is used to process data.
-21,Turing Machine,What is a machine that is capable of performing any computation?,A Turing machine is a machine that is capable of performing any computation (that a computer is capable of performing this theoretical model).
-22,Rules of association,What is a set of rules that can be used to classify data?,Association rules are a set of rules that can be used to classify data sets.
-23,Hash Table,What is a data structure that relates a value called 'key' to one or more other elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more other element."
-24,Hash Table,"What is a data structure that relates a value called ""key"" to one or more elements called?","A Hash Table is a data structure that relates a value called ""key"" to one or more elements."
-25,Merkle Tree,What is another type of blockchain?,Hash Trees and Merkle Trees are two types of Blockchain technology.
-26,Variables dummy,What is a variable called that can be created when the original variable cannot be used?,A Dummy Variable is a variable that can be created when the original variable cannot be used.
-27,Xenobot,"What is the name of the new type of robot created by scientists at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of robot."
-28,Metadata,What is an important part of any data set?,Metadata is an important part of any data set.
-29,Rules of association,What is a set of rules that can be used to classify data sets?,Association rules are a set of rules that can be used to classify data sets.
-30,Sugar code,What does Ahmedou Ould-Abdallah call sugar?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at some of the most popular letters from the continent."
-31,Test the Turing,What test has DeepMind passed for the first time?,An artificial intelligence (AI) system called DeepMind has passed the Turing Test for the first time.
-32,Xenobot,"What is the name of the new type of living robot created by scientists at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of living robot called a xenobot."
-33,Bot,What is a computer program that can perform repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behavior that a person would have, doing the same thing, but automatically."
-34,Bot,What is a computer program capable of performing repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet and simulates the behaviour that a person would have, doing the same thing but automatically."
-35,Federated learning,"What is a technique that allows to train an algorithm in a way, using its own data and local data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private) and local."
-36,Blockchain,What could be used to transfer money without a bank?,"If we talk about bank transfers, these could be done without the need of a centralized computer (a bank)."
-37,Big data,Ahmed Rashid looks at the revolution in Africa.,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution in Africa."
-38,Model,What do we train to predict the likelihood of a problem being solved?,"In this paper, we show how to train an artificial intelligence (AI) model to predict the likelihood of a problem being solved."
-39,Federated learning,What is a technique that allows to train an algorithm in a way using its own data?,"Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local)."
-40,Hash Table,What is a data structure that relates a value called 'key' to one or more elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more element."
-41,Big data,Ahmed Rashid looks at some of the challenges facing the film industry?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data challenges facing the industry."
-42,Generative models,What is an important part of computer science and artificial intelligence?,Generative models are an important part of computer science and artificial intelligence.
-43,Smart data,"Along with big data, what is the other type of data?",There are two main types of data: smart data and big data.
-44,Bot,What is a computer program capable of performing repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behaviour that a person would have, doing the same thing but automatically."
-45,Xenobot,What is the name of the living robot created by scientists at the University of California?,"Scientists at the University of California, Los Angeles, have created a new type of living robot called a  Xenobot."
-46,Decision tree,What tree of life does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of the tree of life."
-47,Rules of association,A set of what can be used to classify objects in a data set?,Association rules are a set of rules that can be used to classify objects in a data set.
-48,Subajuste,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in data.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in data."
-49,Model,This paper describes how to train an artificial intelligence (AI) model.,This paper describes how to train an artificial intelligence (AI) model.
-50,Big data,Ahmed Rashid looks at what revolution in Africa?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution and how it is changing our lives."
-51,Grafo,Which branch of mathematics deals with the structure of data?,Graph theory is a branch of mathematics that deals with the structure of data.
-52,Green computing,What is it called when computing makes responsible use of resources?,Green Computing refers to computing that makes responsible use of resources.
-53,Turing completo,What type of system has a computational power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machine.
-54,Subajuste,What is one of the problems faced by African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at one of the most common problems faced by African journalists:"
-55,Sugar code,What will you learn about in this tutorial?,"In this tutorial, you will learn about sugar coding and how to use it in your coding."
-56,Prologue,In what program will I show you how to solve a factorial with two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in PROLOG.
-57,Federated learning,"What is the technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), but only shares this model with other users."
-58,Green computing,Research and Markets has added what report to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the ""Green Computing"" report to their offering."
-59,Variables dummy,What is the term for a variable that can be created when the original variable cannot be used?,A Dummy Variable is a variable that can be created when the original variable cannot be used.
-60,Tree,In this class we will learn how to use what to solve some common problems in computer science?,In this class we are going to learn how to use a tree to solve some common problems in computer science.
-61,Turing Machine,What is a device called that uses a table of rules to manipulate symbols on a data tape?,A Turing Machine is a device that uses a table of rules to manipulate symbols on a data tape.
-62,Data science,What term has gained popularity in recent years?,The term Data Science has been gaining popularity in recent years.
-63,Metaverse,Ahmedou Ould-Abdallah looks at the future of what type of technology?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the future of metaverse technology."
-64,Turing Machine,What is a formal model of computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model) according to their complexity.
-65,GPU,What is a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer equipment that is used for processing data.
-66,Algorithm,What is an example of an algorithm for making croquettes?,"An example of an algorithm for making croquettes is as follows: Step 1: Chop the ham into small pieces, Step 2: Put in a frying pan a little butter, a spoonful of flour,..."
-67,Merkle Tree,Hash Trees and what other tree are part of the Blockchain technology?,Hash Trees and Merkle Trees are part of the Blockchain technology.
-68,Bot,What is a computer program that performs repetitive tasks on the internet called?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behavior that a person would have, doing the same thing but automatically."
-69,GPU,What is another name for a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer hardware that is used to process data.
-70,Subajuste,Ahmed Rashid looks at one of the most common problems faced by African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at one of the most common problems faced by African journalists:"
-71,Model,"In this paper, we show how to train an AI model that can predict the outcome of a clinical trial?","In this paper, we show how to train an artificial intelligence (AI) model that can predict the outcome of a clinical trial."
-72,Hash function,What is it called when a set of data is transformed into an alphanumeric code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into an alphanumeric code of fixed length.
-73,Xenobot,What is the name of the living robot created by scientists at the University of California?,"Scientists at the University of California, Los Angeles, have created a new type of living robot, a Xenobot."
-74,Autoencoder,What is a particular type of artificial neural network called?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoder.
-75,Bot,What is a computer program capable of performing repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet and simulates the behavior that a person would have, doing the same thing, but automatically."
-76,Reinforcement learning,What is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement (negative or positive)?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement (negative or positive).
-77,Green computing,Research and Markets has announced the addition of what report to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing-research) has announced the addition of the ""Green Computing - Research and Markets"" report to their offering."
-78,IoT,What does Sevenzo call the internet of things?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things (IoT) is changing the way we live."
-79,Generative models,What are an important part of artificial intelligence?,Generative models are an important part of artificial intelligence.
-80,Generative models,What type of models are important in computer science?,Generative models are an important part of computer science.
-81,Subajuste,Ahmedou Ould-Abdallah looks at one of the most common problems faced by those working in the film and television industry.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by those working in the film and television industry:"
-82,Metadata,What is a collection of information that accompanies data called?,Metadata is a collection of information that accompanies data.
-83,Metaverse,Farai Sevenzo looks at the future of what?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at the future of metaverses."
-84,Decision tree,What is the hierarchy of a Christmas tree?,The hierarchy of a Christmas tree is an interesting concept.
-85,Tree,"In this class, we will learn how to use what to solve some common problems?",In this class we are going to learn how to use a tree to solve some common problems.
-86,Decision tree,What does Ahmed Rashid look at in his letters to African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of life."
-87,Grafo,What is the name of Grafo?,Graph theory is a theory of how data is organised.
-88,Overadjustment,What does Ahmed Rashid say is important in artificial intelligence?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in artificial intelligence (AI)."
-89,GPU,What is another name for a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer equipment used to process data.
-90,Overadjustment,What does Ahmed Rashid think is important in computer science?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in computer science."
-91,Subajuste,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern."
-92,Generative models,What kind of models are used to train machine learning algorithms?,Generative models are an important part of artificial intelligence and have been used for many years to train machine learning algorithms.
-93,Augmented reality,What is another name for AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world of technology.
-94,Intelligent agent,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have a"
-95,Data science,What type of scientist is able to extract useful information from large volumes of data?,There is a growing demand for data scientists who are able to extract useful information from large volumes of data.
-96,Intelligent agent,There are many different types of what?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all all have one thing in common - they all have one thing in common - they all"
-97,Variables dummy,What is a variable that is created when a categorical variable cannot be used?,A Dummy Variable is a variable that is created when a categorical variable cannot be used.
-98,Sugar code,What will you learn in this tutorial?,"In this tutorial, you will learn about sugar coding and how to use it in your programming."
-99,Xenobot,"What is the name of the living robot created by scientists at the University of California, Berkeley?","Scientists at the University of California, Berkeley, have created a new type of living robot."
-100,Reinforcement learning,What is a type of machine learning in which a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement ( positive or negative).
-101,Metadata,What is an essential part of any data set?,Metadata is an essential part of any data set.
-102,Big data,What does Ahmed Rashid explain why it's important?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid explains why big data is so important."
-103,Metaverse,Farai Sevenzo looks at the future of what kind of technology?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at the future of metaverse technology."
-104,Turing Machine,What is a device that uses a table of rules to manipulate symbols on a data tape called?,A Turing machine is a device that uses a table of rules to manipulate symbols on a data tape.
-105,Variables dummy,What is the term for a variable that is created when it can't be used?,A Dummy Variable is a variable that is created when the original variable can't be used.
-106,Xenobot,What is the name of the living robot created by scientists at the University of California?,"Scientists at the University of California, Los Angeles, have created a new type of living robot called a Xenobot."
-107,Overadjustment,What does Ahmed Rashid say is important in artificial intelligence?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in artificial intelligence."
-108,Turing Machine,What is a formal model of computation that can perform any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of doing this theoretical model).
-109,Reinforcement learning,What is it called when a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement.
-110,Prologue,In which language will we learn how to solve a factorial?,In this lesson we are going to learn how to solve a factorial with two Facts and a Rule in the Prolog language.
-111,Metadata,What part of any data set is important?,Metadata is an important part of any data set.
-112,Grafo,Graph theory is a branch of mathematics that deals with the relationship between data and people?,Graph theory is a branch of mathematics that deals with the relationship between data and people.
-113,Hash function,What is a mathematical function that transforms data into anumeric code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into anumeric code of fixed length.
-114,IoT,What does Ahmedou Ould-Abdallah call the internet of things?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) is changing the way we live."
-115,Prologue,In what program can you solve a factorial with two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in Prolog.
-116,Blockchain,What could be used to make bank transfers?,"If we talk about bank transfers, these could be done without the need of a centralized computer (a bank)."
-117,Autoencoder,What is a type of artificial neural network?,Autoencoders are a type of artificial neural network that are used to learn encodings from unlabelled data.
-118,Smart data,What type of data is big data?,There are two main types of data: smart and big data.
-119,Turing completo,What is a system that has a computational power equivalent to theUniversal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to theUniversal Turing Machine.
-120,Xenobot,"What is the name of the living robot created by scientists at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of living robot."
-121,Sugar code,What will you learn in this tutorial?,"In this tutorial, you will learn about sugar coding and how to use it in your coding."
-122,Test the Turing,What test does Ahmedou Ould-Abdallah look at?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the Turing Test."
-123,Variables dummy,What is a Variable called that is created when the original Variable cannot be used?,A Dummy Variable is a variable that is created when the original Variable cannot be used.
-124,Turing completo,What system has a computational power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machine.
-125,Rules of association,What is a set of rules that can be used to classify data?,Association rules are a set of rules that can be used to classify data.
-126,Generative models,What type of models are an important part of artificial intelligence?,"Generative models are an important part of artificial intelligence, and their use is growing."
-127,Decision tree,What does Ahmed Rashid look at in his letters to African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of decisions."
-128,IoT,What is the internet of things?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things (IoT) is changing the way we live."
-129,Test the Turing,What test has DeepMind passed for the first time?,An artificial intelligence (AI) called DeepMind has passed the Turing Test for the first time.
-130,Rules of association,What are rules that can be used to classify data?,Association rules are a set of rules that can be used to classify data.
-131,Prologue,In what program will I show you how to solve a factorial?,In this tutorial I will show you how to solve a factorial in Prolog.
-132,Smart data,Big data is what type of data?,There are two main types of data: smart and big.
-133,Metaverse,What does Farai Sevenzo look at?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at the future of metaverses."
-134,Merkle Tree,Hash Trees and what other tree are part of the blockchain technology?,Hash Trees and Merkle Trees are part of the Blockchain technology.
-135,Generative models,What type of model is an important part of machine learning?,Generative models are an important part of machine learning.
-136,Turing Machine,What is a machine that uses a table of rules to manipulate symbols on a data tape?,A Turing Machine is a machine that uses a table of rules to manipulate symbols on a data tape.
-137,Augmented reality,What is AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world of entertainment.
-138,GPU,What does GPU stand for?,A graphics processing unit (GPU) is a piece of computer equipment that is used to process data like images and video.
-139,Rules of association,What is a set of rules that govern the classification of data sets?,Association rules are a set of rules that govern the classification of data sets.
-140,Big data,What issue does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data issues facing Africa."
-141,Smart data,Big data and what other kind of data are there?,There are two main types of data: big data and smart data.
-142,Green computing,What type of report did Research and Markets add to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global...) has announced the addition of the ""Green Computing"" report to their offering."
-143,Data science,What type of scientist is needed to extract useful information from large amounts of data?,There is a growing demand for data scientists who are able to extract useful information from large amounts of data.
-144,Rules of association,What is a set of rules that govern classification of objects in data sets?,Association rules are a set of rules that govern the classification of objects in data sets.
-145,Hash function,What is a mathematical function that transforms a set of data into an alphanumeric code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into a alphanumeric code of fixed length.
-146,Variables dummy,What is a variable called that is created when it cannot be used?,"A Dummy Variable is a variable that is created when the original variable cannot be used, such as a categorical variable."
-147,Decision tree,What does Ahmed Rashid look at in a series of letters from African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at how to make a tree."
-148,Autoencoder,What is a particular type of artificial neural network called?,Autoencoders are a particular type of artificial neural network that are divided into two parts: the encoder and the decoder.
-149,Green computing,What has Research and Markets added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the "" Green Computing - Research and Markets"" report to their offering."
-150,Turing completo,What system has a computational power equivalent to the Universal Turing Machines?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machines.
-151,Model,"In this paper, we show how to train an AI that can predict the likelihood of a given outcome?","In this paper, we show how to train an artificial intelligence (AI) model that can predict the likelihood of a given outcome."
-152,Decision tree,What does Ahmed Rashid look at in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of decisions."
-153,Merkle Tree,Hash Trees and what other type of tree is used in the Blockchain?,Hash Trees and Merkle Trees are two types of data structures used in the Blockchain.
-154,Augmented reality,What is another name for AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world of entertainment.
-155,Turing completo,What system has a computational power equal to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equal to the Universal Turing Machine.
-156,Tree,In this course we will learn how to use what as a data structure?,In this course we are going to learn how to use a tree as a data structure.
-157,Big data,What issue does Ahmed Rashid look at in a series of letters from African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data issues facing the continent."
-158,Data science,What field of study is booming?,The world of data science is booming.
-159,Augmented reality,What is another name for virtual reality?,Augmented Reality (AR) and Virtual Reality (VR) are two of the newest technologies in the world of technology.
-160,GPU,What is another term for Graphics Processing Unit?,A Graphics Processing Unit (GPU) is a piece of computer equipment used to process data.
-161,Autoencoder,What is the second part of an artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two part: the encoder and the decoder.
-162,Grafo,Graph theory is a branch of mathematics that deals with the relationship between data and information.,Graph theory is a branch of mathematics that deals with the relationship between data and information.
-163,Bot,What is a computer program that performs repetitive tasks on the internet called?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet and simulates the behavior that a person would have, doing the same thing, but automatically."
-164,Subajuste,Ahmedou Ould-Abdallah looks at one of the most common problems faced by those working in the film and television industry:,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by those working in the film and television industry:"
-165,Autoencoder,What is a type of artificial neural network that is divided into two parts?,Autoencoders are a type of artificial neural network that is divided into two parts: the encoder and the decoder.
-166,Federated learning,What is a technique that allows to train an algorithm in a way using its own data?,"Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private or local)."
-167,Data science,What type of scientist is there a growing demand for?,There is a growing demand for data scientists across the world.
-168,Tree,In this course we will learn how to use what to solve computer science problems?,In this course we are going to learn how to use a tree to solve some common problems in computer science.
-169,Intelligent agent,There are many different types of what?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have one thing in common - they all have one thing in common - they all have"
-170,Intelligent agent,What type of agent has one thing in common?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have"
-171,Xenobot,"What is the name of the new type of robot created by scientists at the University of California, Berkeley?","Scientists at the University of California, Berkeley, have created a new type of living robot."
-172,Merkle Tree,Hash Trees and what other type of tree are used in the blockchain technology?,Hash Trees and Merkle Trees are two types of data structures used in the Blockchain technology.
-173,IoT,What technology is changing the way we live?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things is changing the way we live."
-174,Turing Machine,What is a formal model of computation that is capable of performing any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model) according to its complexity.
-175,Bot,What is a computer program that can perform repetitive tasks?,A robot is a computer program capable of performing repetitive tasks.
-176,Augmented reality,What is AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world of technology.
-177,Test the Turing,What does Ahmedou Ould-Abdallah look at in his series of letters?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the Turing Test."
-178,Automatic learning,What type of learning can be grouped into?,"They can be grouped into: Supervised, Unsupervised, Semi-supervised."
-179,Sugar code,What does Ahmedou Ould-Abdallah look at in a series of letters?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the meaning of sugar."
-180,Model,What type of AI can predict the outcome of a clinical trial?,This paper describes how to train an artificial intelligence (AI) model that can predict the outcome of a clinical trial.
-181,Reinforcement learning,What is it called when a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning where a decision made by an algorithm is followed by a reinforcement (positive or negative).
-182,Reinforcement learning,What is a type of machine learning where a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by a algorithm is followed by a reinforcement (positive or negative).
-183,Green computing,What refers to computing that makes responsible use of resources?,Green Computing refers to computing that makes responsible use of resources.
-184,Merkle Tree,Hash Trees and what other type of tree are used in Blockchain technology?,Hash Trees and Merkle Trees are two types of data structures used in Blockchain technology.
-185,Turing Machine,What is a formal model of computation capable of performing any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model).
-186,GPU,What is a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer equipment that is used to process data.
-187,Big data,Ahmed Rashid looks at some of the issues facing Africa?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data issues facing Africa."
-188,Hash function,What is the mathematical function that transforms a set of data into a code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into a code of fixed length.
-189,Hash function,What is a mathematical function that transforms a set of data into an alphabetic code of fixed length?,A Hash Function or Summary Function is a mathematical function that transforms a set of data into an alphabetic code of fixed length.
-190,Prologue,What language will I show you how to solve a factorial with two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in the Prolog language.
-191,Hash Table,"What is a data structure that relates a value called ""key"" to one or more other elements?","A Hash Table is a data structure that relates a value called ""key"" to one or more other Elements."
-192,Green computing,What has Research and Markets added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the ""Green Computing"" report to their offering."
-193,Metaverse,Farai Sevenzo looks at the future of what kind of universe?,"In our series of letters from African journalists, filmmaker and columnist Farai Sevenzo looks at the future of metaverses."
-194,Automatic learning,What type of learning can they be classified into?,"They can be grouped into: Supervised, Unsupervised, Semi-supervised."
-195,Bot,What is a computer program that can perform repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet and simulates the behavior that a person would have, doing the same thing but automatically."
-196,Subajuste,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in data.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in the data."
-197,Xenobot,What is the name of the living robot created by scientists at the University of California?,"Scientists at the University of California, Los Angeles, have created a new type of living robot called a xenobot."
-198,Overadjustment,What problem does Ahmed Rashid look at in computer science?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the problem of ""overfitting"" in computer science."
-199,Bot,What is a computer program capable of performing repetitive tasks?,A bot is a computer program capable of performing repetitive tasks.
-200,Test the Turing,What test did DeepMind pass for the first time?,An artificial intelligence (AI) called DeepMind has passed the Turing Test for the first time.
-201,Variables dummy,What type of variable is created when a categorical variable can't be used?,A Dummy Variable is a variable that is created when a categorical variable cannot be used.
-202,Federated learning,"What is a technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local) and other users' data."
-203,IoT,What does Ahmedou Ould-Abdallah call the internet of things?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) is changing our lives."
-204,Big data,What type of revolution does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution."
-205,Tree,In this course we will learn how to use what to solve common problems?,In this course we are going to learn how to use a tree to solve some common problems.
-206,Metaverse,Ahmed Rashid looks at the future of what kind of technology?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the future of metaverse technology."
-207,Smart data,What type of data is big data?,There are two types of data: smart data and big data.
-208,Variables dummy,What type of variable is created when the original variable cannot be used?,A Dummy Variable is a variable that is created when the original variable cannot be used.
-209,Metadata,What part of the data we collect and use is important?,Metadata is an important part of the data we collect and use.
-210,Intelligent agent,What type of agent has a common thing in common?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have a"
-211,Model,"In this paper, we show how to train what to predict the likelihood of a given outcome?","In this paper, we show how to train an artificial intelligence (AI) model to predict the likelihood of a given outcome."
-212,Intelligent agent,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have"
-213,Federated learning,"What is a technique that allows to train an algorithm in a way, using its own data but only shares it with other users?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), but only shares it with other users."
-214,Turing Machine,What is a formal model of computation that is capable of performing any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model).
-215,Smart data,Big data is what type of data?,There are two types of data: smart and big.
-216,Generative models,What type of models are an important part of artificial intelligence and computer science?,Generative models are an important part of artificial intelligence and computer science.
-217,Sugar code,What will we learn about in this lesson?,"In this lesson, we are going to learn about sugar coding and how to use it."
-218,Turing completo,What type of system has computing power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computing power equivalent to the Universal Turing Machine.
-219,Xenobot,"What is the name of the robot created by scientists at the University of California, Berkeley?","Scientists at the University of California, Berkeley, have created a new type of robot."
-220,Turing completo,What is a system called that has a computational power equivalent to the Universal Turing machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing machine.
-221,IoT,What does Ahmedou Ould-Abdallah call the internet of things?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) is changing the way we live and work."
-222,Augmented reality,What does AR stand for?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular forms of technology today.
-223,Grafo,Which branch of computer science deals with data structures?,Graph theory is a branch of computer science that deals with data structures.
-224,Test the Turing,What test did DeepMind pass?,"An artificial intelligence (AI) system called DeepMind has passed the Turing Test for the first time, the BBC reports."
-225,Smart data,What type of data is big data?,There are two main types of data: smart data and big data.
-226,Autoencoder,What is the name of the type of artificial neural network that is divided into two parts?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoder.
-227,Tree,"In this lesson, we will learn how to use what to solve computer science problems?",In this lesson we are going to learn how to use a tree to solve some common problems in computer science.
-228,Augmented reality,What does AR stand for?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world today.
-229,Autoencoder,What is the name of the type of artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoder
-230,Metadata,What is it called?,What is metadata?
-231,Subajuste,Ahmedou Ould-Abdallah looks at one of the most common problems faced by researchers working in the field of artificial intelligence?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by researchers working in the field of artificial intelligence."
-232,Smart data,"Along with big data, what type of data is there?",There are two types of data: smart and big data.
-233,Overadjustment,What does Ahmed Rashid look at in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the problem of ""overfitting""."
-234,Turing completo,What type of system has a computational power equivalent to the Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Turing Machine.
-235,Decision tree,What does Ahmed Rashid look at in his letters to African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of decision."
-236,IoT,What does Ahmedou Ould-Abdallah refer to as the internet of things?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) could change the way we live."
-237,Prologue,In which part of the text will we learn how to solve a factorial?,In this lesson we are going to learn how to solve a factorial with two Facts and a Rule in Prolog.
-238,Augmented reality,What is another name for AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world of digital media.
-239,Algorithm,What is an example of a technique for making croquettes?,"An example of an algorithm for making croquettes is as follows: Step 1: Chop the ham into small pieces, Step 2: Put in a frying pan a little butter, a spoonful of flour,..."
-240,Overadjustment,What does Ahmed Rashid talk about in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in computer science."
-241,Merkle Tree,What is another type of data structure that can be used in Blockchain technology?,Hash Trees and Merkle Trees are two types of data structures that can be used in Blockchain technology.
-242,Overadjustment,What does Ahmed Rashid look at in his series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in machine learning."
-243,Intelligent agent,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one"
-244,Hash function,What is another name for a mathematical function that transforms a set of data into a code of fixed length?,A Hash Function or Summary Function is a mathematical function that transforms a set of data into a code of fixed length.
-245,Rules of association,What are the rules that govern the classification of objects in a data set?,Association rules are a set of rules that govern the classification of objects in a data set.
-246,Data science,What branch of science deals with the analysis and management of large amounts of data?,Data Science is a branch of science that deals with the analysis and management of large amounts of data.
-247,Metaverse,Ahmedou Ould-Abdallah looks at some of the ideas behind what?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at some of the ideas behind metaverses."
-248,Metaverse,What does Ahmedou Ould-Abdallah look at in his series of letters?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at some of the ideas behind metaverses."
-249,Green computing,What has Research and Markets added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the ""Green Computing - Research and Markets"" report to their offering."
-250,Intelligent agent,What type of agent has one thing in common?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common: they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one"
-251,Grafo,Graph theory is a branch of mathematics that deals with the structure of data.,Graph theory is a branch of mathematics that deals with the structure of data.
-252,GPU,What is a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer equipment used to process data.
-253,Big data,Ahmed Rashid looks at the revolution in what field?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution and how it is changing our world."
-254,Sugar code,"In this lesson, we will learn about what?","In this lesson, we are going to learn about sugar coding and how to use it."
-255,Turing Machine,What is a device called that uses a table of rules to manipulate symbols on a data tape?,A Turing machine is a device that uses a table of rules to manipulate symbols on a data tape.
-256,Tree,"In this lesson, we will learn how to use what to solve common problems?",In this lesson we are going to learn how to use a tree to solve some common problems.
-257,Grafo,Graph theory is a branch of mathematics that deals with the relationship between information and people?,Graph theory is a branch of mathematics that deals with the relationship between information and people.
-258,Prologue,In what program can you solve a factorial?,In this tutorial I will show you how to solve a factorial in Prolog.
-259,Generative models,What is an important part of artificial intelligence?,Generative models are an important part of artificial intelligence and computer science.
-260,Hash Table,What is a data structure that relates a value called 'key' to one or more elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more elements."
-261,Intelligent agent,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have one thing in common - they all have"
-262,Autoencoder,What is a type of artificial neural network that is used to learn encodings from unlabeled data?,Autoencoders are a type of artificial neural network that are used to learn encodings from unlabeled data.
-263,Green computing,What is the name of the report that Research and Markets has added to its offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the ""Green Computing"" report to its offering."
-264,Model,What do we show how to train to predict the likelihood of a problem being solved?,"In this paper, we show how to train an artificial intelligence (AI) model to predict the likelihood of a problem being solved."
-265,Hash function,What transforms a set of data into an alphabetic code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into an alphabetic code of fixed length.
-266,Merkle Tree,Hash Trees and what other type of tree are used in blockchain technology?,Hash Trees and Merkle Trees are two types of data structures that are used in Blockchain technology.
-267,Overadjustment,What does Ahmed Rashid discuss in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in computer science."
-268,Green computing,Research and Markets has added what report to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing-research) has announced the addition of the ""Green Computing"" report to their offering."
-269,Metadata,What is an important part of the data that we collect and store?,Metadata is an important part of the data we collect and store.
-270,Model,This paper describes how to train what?,This paper describes how to train an artificial intelligence model.
-271,Federated learning,"What is a technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private) and local."
-272,Smart data,Big data is what type of data?,There are two types of data: smart data and big data.
-273,Hash Table,What is a data structure that relates a value called a key to one or more other elements?,"A Hash Table is a data structure that relates avalue called ""key"" to one or more other elements."
-274,IoT,What is the internet of things?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things (IoT) is changing the way we live and work."
-275,Subajuste,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists:,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists:"
-276,Metadata,What part of a data collection system is important?,Metadata is an important part of any data collection system.
-277,Hash Table,"What is a data structure that relates a value called ""key"" to one or more elements called?","A Hash Table is a data structure that relates a value called ""key"" to one or more element."
-278,IoT,What type of technology is changing the way we live?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things is changing the way we live."
-279,Metaverse,Ahmed Rashid looks at the future of what?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the future of metaverses."
-280,Hash function,What is another term for a mathematical function that transforms a set of data into an alphabetic code of fixed length?,A Hash Function or Summary Function is a mathematical function that transforms a set of data into an alphabetic code of fixed length.
-281,Generative models,What type of models are an important part of artificial intelligence research?,Generative models are an important part of artificial intelligence research.
-282,Reinforcement learning,What is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement ( positive or negative).
-283,Prologue,In what program will we solve a factorial with two Facts and a Rule?,In this lesson we are going to learn how to solve a factorial with two Facts and a Rule in PROLOG.
-284,Decision tree,What does Ahmed Rashid look at in a series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of the tree."
-285,Tree,In this class we will learn how to use what to solve common problems?,In this class we are going to learn how to use a tree to solve some common problems.
-286,Test the Turing,What test did DeepMind pass for the first time?,"An artificial intelligence (AI) system called DeepMind has passed the Turing Test for the first time, according to BBC News."
-287,Autoencoder,What is the second part of an artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoding decoder.
-288,Reinforcement learning,What is a type of machine learning wherein a decision made by an algorithm is followed by a reinforcement (positive or negative)?,Reinforcement learning is a type of machine learning wherein a decision made by an algorithm is followed by a reinforcement (positive or negative).
-289,Reinforcement learning,What is a type of machine learning in which a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement (positive or negative).
-290,Generative models,What is an important part of artificial intelligence?,"Generative models are an important part of artificial intelligence, and their use is growing."
-291,Prologue,In what language are we going to solve a factorial?,In this lesson we are going to learn how to solve a factorial in Prolog.
-292,Merkle Tree,Hash Trees and what other type of tree are used in the Blockchain?,Hash Trees and Merkle Trees are two types of data structures used in Blockchain.
-293,Hash Table,What is a data structure that relates a value called 'key' to one or more other elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more other elements."
-294,Hash Table,What is a Data structure that relates a value called key to one or more other elements?,"A Hash Table is a Data structure that relates a value called ""key"" to one or more other elements."
-295,Tree,In this class we will learn how to use what to solve common problems?,In this class we will learn how to use a tree to solve some common problems.
-296,Hash function,What is another name for Summary Function?,A Hash Function or Summary Function is a mathematical function that transforms a set of data into an alphanumeric code of fixed length.
-297,Merkle Tree,Hash Trees and what other type of data structure can be used in Blockchain technology?,Hash Trees and Merkle Trees are two types of data structures that can be used in Blockchain technology.
-298,Prologue,In what program can you solve a factorial using two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in Prolog.
-299,Subajuste,What is one of the most common problems faced by African journalists?,"In our series of letters from African journalists, filmmaker and columnist Farai Sevenzo looks at one of the most common problems faced by African journalists:"
-300,Autoencoder,What is a particular type of artificial neural network that is divided into two parts?,Autoencoders are a particular type of artificial neural network that are divided into two parts: the encoder and the decoder.
-301,Test the Turing,Ahmedou Ould-Abdallah looks at what test?,"In our series of letters from African journalists, film-maker and columnist Ahmedou Ould-Abdallah looks at the Turing Test."
-302,Augmented reality,What is another name for virtual reality?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world.
-303,Smart data,What is the other type of data?,There are two types of data: big data and smart data.
-304,Data science,What is the branch of science that deals with the analysis of large amounts of data?,Data Science is a branch of science that deals with the analysis of large amounts of data.
-305,Reinforcement learning,What is a type of machine learning in which a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning where a decision made by an algorithm is followed by a reinforcement (positive or negative).
-306,Decision tree,What does Ahmed Rashid look at in his series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the hierarchy of the human mind."
-307,Variables dummy,What type of variable is created when the original variable cannot be used?,A Dummy Variable is a variable that is created when the originalvariable cannot be used.
-308,Rules of association,What is a new type of decision tree called?,association rules are a new type of decision tree.
-309,Variables dummy,What is a variable called that is created when the original variables cannot be used?,A Dummy Variable is a variable that is created when the original variables cannot be used.
-310,IoT,What technology is changing the way we live?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things is changing the way we live."
-311,Sugar code,"In this tutorial, you will learn about what?","In this tutorial, you will learn about sugar coding."
-312,Overadjustment,What does Ahmed Rashid discuss in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in artificial intelligence."
-313,Data science,What type of scientist can extract useful information from large amounts of data?,There is a growing demand for data scientists who are able to extract useful information from large amounts of data.
-314,Overadjustment,What is the problem of overfitting?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the problem of ""overfitting"" in computer science."
-315,Hash Table,"What is a data structure that relates a value called ""key"" to one or more other elements called?","A hash table is a data structure that relates a value called ""key"" to one or more other elements."
-316,Test the Turing,What does Ahmed Rashid look at in his series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the Turing Test."
-317,Hash function,What is a mathematical function that transforms a set of data into a fixed length alphanumeric code?,A Hash Function is a mathematical function that transforms a set of data into a alphanumeric code of fixed length.
-318,GPU,What is a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer equipment that is used to process data like images and video.
-319,Bot,What is a computer program capable of performing repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behavior that a person would have, doing the same thing but automatically."
-320,Sugar code,"In this lesson, we're going to learn how to write code using what?","In this lesson, we are going to learn how to write code using sugar."
-321,Turing completo,What type of system has a computational power equivalent to the Universal Turing Machines?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machines.
-322,Sugar code,"In this lesson, we will learn about what?","In this lesson, we are going to learn about sugar coding."
-323,Model,What does this paper describe how to train?,This paper describes how to train an artificial intelligence (AI) model.
-324,Metaverse,Ahmedou Ould-Abdallah looks at the future of what?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the future of metaverses."
-325,Rules of association,What is a set of rules that govern the classification of data?,Association rules are a set of rules that govern the classification of data.
+,source,target
+0,There are many different types of what?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have one thing in common - they all have"
+1,"Along with big data, what is the other type of data?",There are two main types of data: smart and big data.
+2,What is a computer program that can perform repetitive tasks?,A bot is a computer program capable of performing repetitive tasks.
+3,"What is a technique that allows to train an algorithm in a way, using its own data, but only shares it with other users?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), but only shares it with other users."
+4,What is a piece of computer equipment that is used for processing data called?,A graphics processing unit (GPU) is a piece of computer equipment that is used for processing data.
+5,"What is a technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), and only shares this model with other users."
+6,What does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the Turing Test."
+7,What is the tree of life?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of the tree of life."
+8,What tree of life does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of life."
+9,"In this tutorial, you will learn about what?","In this tutorial, you will learn about sugar coding."
+10,"What is a technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private) and local."
+11,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists:"
+12,This paper describes how to train an artificial intelligence model?,This paper describes how to train an artificial intelligence model.
+13,What system has a computational power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machine.
+14,What test did DeepMind pass?,"An artificial intelligence (AI) system called DeepMind has passed the Turing Test for the first time, the BBC reports."
+15,What is a technique that allows to train an algorithm in a way?,"Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local) and other users' data."
+16,This paper describes how to train an artificial intelligence (AI) model?,This paper describes how to train an artificial intelligence (AI) model.
+17,What is a mathematical function that transforms a set of data into an alphanumeric code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into an alphanumeric code of fixed length.
+18,"What is a technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), but only shares this model with other users."
+19,What is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement (negative or positive).
+20,In what program will I show you how to solve a factorial with two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in PROLOG.
+21,"In this class, we will learn how to use what to solve some common problems?",In this class we will learn how to use a tree to solve some common problems.
+22,What type of models are an important part of AI?,"Generative models are an important part of artificial intelligence, and their use is growing."
+23,What is a set of rules that govern classification of objects in a data set?,Association rules are a set of rules that govern the classification of objects in a data set.
+24,What type of data is big data?,There are two types of data: smart and big.
+25,What is a particular type of artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoder.
+26,What are there many different types of?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all all have one thing in common - they all have one thing in common - they all"
+27,What is a computer program that performs repetitive tasks on the internet called?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behavior that a person would have, doing the same thing but automatically."
+28,What is a computer program that performs repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behavior that a person would have, doing the same thing but automatically."
+29,Hash Trees and Merkle Trees are two types of data structures used in the Blockchain.,Hash Trees and Merkle Trees are two types of data structures used in the Blockchain.
+30,What is a system called that has a computational power equivalent to a Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Turing Machine.
+31,What issue does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data issues facing the continent."
+32,What is a data structure that relates a value called a key to one or more other elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more other elements."
+33,Ahmed Rashid looks at the revolution in Africa.,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution in Africa."
+34,Ahmedou Ould-Abdallah looks at the future of what kind of technology?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the future of metaverse technology."
+35,"In this class, we will learn how to use what to solve common problems?",In this class we are going to learn how to use a tree to solve some common problems.
+36,What is a computer program capable of performing repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behavior that a person would have, doing the same thing, but automatically."
+37,What does AR stand for?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world of technology.
+38,What term has gained popularity in recent years?,The term Data Science has been gaining popularity in recent years.
+39,What is the name of the Greek philosopher who studied graph theory?,Graph theory is a theory of how data is organised and relationships between points are formed.
+40,What is a machine that uses a table of rules to manipulate symbols on a data tape called?,A Turing Machine is a machine that uses a table of rules to manipulate symbols on a data tape.
+41,In what language can you solve a factorial with two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in the Prolog language.
+42,"What is a technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), and only shares it with other users."
+43,What type of models are important in machine learning?,Generative models are an important part of machine learning.
+44,What is a formal model of computation that is capable of performing any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model) according to their complexity.
+45,What is the problem of overfitting in computer science?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the problem of ""overfitting"" in computer science."
+46,What is a formal model of computation capable of performing any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model) according to their complexity.
+47,"Along with big data, what type of data are there?",There are two types of data: smart data and big data.
+48,There is a growing demand for what?,There is a growing demand for data scientists across the world.
+49,What report did Research and Markets add to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the "" Green Computing - Research and Markets"" report to their offering."
+50,What is a data structure that relates a value called a key to one or more elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more elements."
+51,What is a variable called that is created when the original variable can't be used?,A Dummy Variable is a variable that is created when the original variable can't be used.
+52,"Along with big data, what type of data are there?",There are two types of data: smart and big data.
+53,Farai Sevenzo looks at the future of what?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at the future of metaverses."
+54,What is an important part of artificial intelligence?,Generative models are an important part of artificial intelligence and computer science.
+55,What is a set of rules that govern classification of data?,Association rules are a set of rules that govern the classification of data.
+56,What could be used to transfer money without a bank?,"If we talk about bank transfers, these could be done without the need for a centralized computer (a bank)."
+57,What does Ahmed Rashid look at in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in computer science."
+58,"What is the name of the new type of robot created at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of robot."
+59,What issue does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data issues facing Africa."
+60,What kind of algorithm solves a problem?,Sequence of instructions to solve a problem.
+61,What is a computer program capable of performing repetitive tasks called?,A robot is a computer program capable of performing repetitive tasks.
+62,"What is the name of the living robot created at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of living robot."
+63,What is a system called that has a computational power equivalent to the Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Turing Machine.
+64,Hash Trees and Merkle Trees are two types of data structures used in blockchain technology.,Hash Trees and Merkle Trees are two types of data structures used in Blockchain technology.
+65,What is the name of Grafo?,Graph theory is a theory of how data is organised.
+66,What is the term for a piece of computer equipment that is used to process data?,A graphics processing unit (GPU) is a piece of computer equipment that is used to process data.
+67,What is a device that uses a table of rules to manipulate symbols on a data tape called?,A Turing machine is a device that uses a table of rules to manipulate symbols on a data tape.
+68,What type of learning can be grouped into?,"They can be grouped into: Supervised, Unsupervised, Semi-supervised."
+69,What is it called when a decision is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision is followed by a reinforcement (positive or negative).
+70,"In this course, we will learn how to use what type of data structure?",In this course we are going to learn how to use a tree as a data structure.
+71,What is it called when a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning where a decision made by an algorithm is followed by a reinforcement (positive or negative).
+72,What type of computer equipment is used to process data?,A Graphics Processing Unit (GPU) is a piece of computer equipment used to process data.
+73,What is a piece of computer hardware that is used to process data?,A graphics processing unit (GPU) is a piece of computer hardware that is used to process data.
+74,What type of data is big data?,There are two types of data: smart and big data.
+75,What is an important part of computer science and artificial intelligence?,Generative models are an important part of computer science and artificial intelligence.
+76,What does Ahmedou Ould-Abdallah call the Internet of Things?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things is changing the way we live."
+77,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern."
+78,What is a data structure that relates a value called key to one or more other elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more other element."
+79,"In this paper, we show how to train an AI model to predict the likelihood of a given outcome?","In this paper, we show how to train an artificial intelligence (AI) model to predict the likelihood of a given outcome."
+80,What does Ahmed Rashid look at in his series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the hierarchy of the human mind."
+81,What are a set of rules that can be used to classify data sets?,Association rules are a set of rules that can be used to classify data sets.
+82,What is a system called that has a computational power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machine...
+83,"What is the name of the robot created by scientists at the University of California, Berkeley?","Scientists at the University of California, Berkeley, have created a new type of living robot."
+84,What do we train to predict the outcome of a clinical trial?,"In this paper, we show how to train an artificial intelligence (AI) model that can predict the outcome of a clinical trial."
+85,"What is the name of the new type of living robot created by scientists at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of living robot called a Xenobot."
+86,What type of models are an important part of AI?,Generative models are an important part of artificial intelligence.
+87,What field of science is booming?,The world of data science is booming.
+88,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have"
+89,What is the term for a variable that is created when it can't be used?,A Dummy Variable is a variable that is created when the original variable can't be used.
+90,What is another name for virtual reality?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular forms of technology today.
+91,What is the name of the data structure that relates a value called key to one or more other elements?,A Hash Table is a data structure that relates a value called key to one or more other elements.
+92,What is a type of machine learning wherein a decision made by an algorithm is followed by a reinforcement (positive or negative)?,Reinforcement learning is a type of machine learning wherein a decision made by an algorithm is followed by a reinforcement (positive or negative).
+93,"What does Ahmed Rashid call the problem of ""overfitting?""","In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the problem of ""overfitting""."
+94,What revolution is Ahmed Rashid looking at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution in Africa."
+95,Farai Sevenzo looks at the future of what kind of world?,"In our series of letters from African journalists, filmmaker and columnist Farai Sevenzo looks at the future of metaverses."
+96,Hash Trees and Merkle Trees are two types of data structures used in Blockchain technology.,Hash Trees and Merkle Trees are two types of data structures used in Blockchain technology.
+97,Big data and what other kind of data are there?,There are two types of data: big data and smart data.
+98,What is a piece of computer equipment that is used to process data?,A graphics processing unit (GPU) is a piece of computer equipment that is used to process data like images and video.
+99,What does Ahmed Rashid look at in his series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in artificial intelligence."
+100,What type of system has a computational power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machine.
+101,What is a type of machine learning where a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement (negative or positive).
+102,What are the rules that govern the classification of data sets?,Association rules are a set of rules that govern the classification of data sets.
+103,What is it called when a set of data is transformed into a code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into a code of fixed length.
+104,Ahmedou Ould-Abdallah looks at how what is changing the way we live and work?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) is changing the way we live and work."
+105,Ahmed Rashid looks at the future of what kind of technology?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the future of metaverse technology."
+106,What do you learn about in this tutorial?,"In this tutorial, you will learn about sugar coding and how to use it in your programming."
+107,What type of data is big?,There are two types of data: smart and big.
+108,Which branch of mathematics deals with data structures?,Graph theory is a branch of mathematics that deals with data structures.
+109,What are an important part of artificial intelligence and computer science?,Generative models are an important part of artificial intelligence and computer science.
+110,There are many different types of what?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all all have one thing in common - they all have one thing in common - they all"
+111,"In this lesson, we are going to learn about what?","In this lesson, we are going to learn about sugar coding and how to use it."
+112,What type of variable can be created when the original variable cannot be used?,A Dummy Variable is a variable that can be created when the original variable cannot be used.
+113,What is a formal model of computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model).
+114,What does Ahmed Rashid look at in a series of letters from African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at how to make a tree."
+115,"In this lesson, we will learn how to use what to solve computer science problems?",In this lesson we are going to learn how to use a tree to solve some common problems in computer science.
+116,What is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement (positive or negative)?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement (positive or negative).
+117,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists: what?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists:"
+118,What type of scientist can extract useful information from large amounts of data?,There is a growing demand for data scientists who are able to extract useful information from large amounts of data.
+119,Ahmedou Ould-Abdallah looks at one of the most common problems faced by researchers working in the field of artificial intelligence.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by researchers working in the field of artificial intelligence."
+120,What are a set of rules that can be used to classify data?,Association rules are a set of rules that can be used to classify data.
+121,"What is the new type of robot created by scientists at the University of California, Berkeley?","Scientists at the University of California, Berkeley, have created a new type of robot."
+122,What is a particular type of artificial neural network called?,Autoencoders are a particular type of artificial neural network that are divided into two parts: the encoder and the decoder.
+123,Ahmed Rashid looks at how to make a what?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at how to make a tree."
+124,What is a set of rules used to classify objects in a data set?,Association rules are a set of rules that can be used to classify objects in a data set.
+125,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common: they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one"
+126,What type of variable is created when the original variable cannot be used?,A Dummy Variable is a variable that is created when the original variable cannot be used.
+127,Farai Sevenzo looks at how what is changing the way we live?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things (IoT) is changing the way we live."
+128,What is the name of the mathematician that deals with the structure of data?,Graph theory is a branch of mathematics that deals with the structure of data.
+129,What kind of models are used to train machine learning algorithms?,Generative models are an important part of artificial intelligence and have been used for many years to train machine learning algorithms.
+130,"What is the name of the new type of living robot created by scientists at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of living robot, a Xenobot."
+131,What is the most popular form of technology?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular forms of technology in the world.
+132,What is a piece of computer equipment used to process data like images and video?,A graphics processing unit (GPU) is a piece of computer equipment that is used to process data like images and video.
+133,What is a variable that is created when the original variable cannot be used?,A Dummy Variable is a variable that is created when the original variable cannot be used.
+134,What does Ahmed Rashid explain why it is so important?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid explains why big data is so important."
+135,"In this lesson, we will learn how to write code using what type of sugar?","In this lesson, we are going to learn how to write code using sugar."
+136,Research and Markets has added what report to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing-research) has announced the addition of the ""Green Computing - Research and Markets"" report to their offering."
+137,What is the branch of science that deals with the analysis of large amounts of data called?,Data Science is a branch of science that deals with the analysis of large amounts of data.
+138,What does Ahmed Rashid look at in a series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of the tree."
+139,What type of information is stored in a database?,
+140,What is the term for a variable that is created when the original Variable cannot be used?,A Dummy Variable is a variable that is created when the original Variable cannot be used.
+141,Graph theory is a branch of mathematics that deals with the relationship between data and people?,Graph theory is a branch of mathematics that deals with the relationship between data and people.
+142,What do we learn about in this lesson?,"In this lesson, we are going to learn about sugar coding and how to use it."
+143,What is the name of the report that Research and Markets has added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global...) has announced the addition of the ""Green Computing"" report to their offering."
+144,What test did DeepMind pass for the first time?,"An artificial intelligence (AI) called DeepMind has passed the Turing Test for the first time, the BBC reports."
+145,"In this paper, we show how to train an AI that can predict the likelihood of a given outcome?","In this paper, we show how to train an artificial intelligence (AI) model that can predict the likelihood of a given outcome."
+146,"In this lesson, we will learn how to use what to solve common computer science problems?",In this lesson we are going to learn how to use a tree to solve some common problems in computer science.
+147,Hash Trees and Merkle Trees are part of what blockchain technology?,Hash Trees and Merkle Trees are part of the Blockchain technology.
+148,What is AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the hottest technologies in the world of technology.
+149,What issue does Ahmed Rashid look at in a series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data issues facing Africa."
+150,What is a branch of science that deals with the analysis of large volumes of data?,Data Science is a branch of science that deals with the analysis of large volumes of data.
+151,What is AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world of technology.
+152,What is a type of artificial neural network that is used to learn encodings from unlabeled data?,Autoencoders are a type of artificial neural network that are used to learn encodings from unlabeled data.
+153,What will you learn about in this tutorial?,"In this tutorial, you will learn about sugar coding and how to use it in your coding."
+154,Graph theory is a branch of mathematics that deals with the relationship between people and information?,Graph theory is a branch of mathematics that deals with the relationship between information and people.
+155,What type of learning is supervised?,"They can be grouped into: Supervised, Unsupervised, Semi-supervised."
+156,What does Ahmed Rashid look at in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in machine learning."
+157,What is the term for a piece of computer equipment that is used to process data?,A Graphics Processing Unit (GPU) is a piece of computer equipment that is used to process data.
+158,What is a technique that allows to train an algorithm in a way?,"Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private or local)."
+159,What is a technique that allows to train an algorithm in a way?,"Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local)."
+160,In this lesson we will learn how to use what to solve some common problems?,In this lesson we are going to learn how to use a tree to solve some common problems.
+161,What does Ahmed Rashid look at in his series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of decision."
+162,What is a device that uses a table of rules to manipulate symbols on a data tape called?,A Turing Machine is a device that uses a table of rules to manipulate symbols on a data tape.
+163,In what language will we learn how to solve a factorial with two Facts and a Rule?,In this lesson we are going to learn how to solve a factorial with two Facts and a Rule in Prolog.
+164,Hash Trees and Merkle Trees are two types of data structures that can be used in Blockchain technology?,Hash Trees and Merkle Trees are two types of data structures that can be used in Blockchain technology.
+165,What technology is changing the way we live?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things is changing the way we live."
+166,"What is the name of the robot created by scientists at the University of California, Los Angeles?","Scientists at the University of California, Los Angeles, have created a new type of living robot."
+167,What is a computer program that can perform repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet and simulates the behavior that a person would have, doing the same thing, but automatically."
+168,Ahmedou Ould-Abdallah looks at one of the most common problems faced by those working in the film and television industry.,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by those working in the film and television industry:"
+169,What is a machine that is capable of performing any computation?,A Turing machine is a machine that is capable of performing any computation (that a computer is capable of performing this theoretical model).
+170,What is the name of the method used in Step 2?,"Step 2: Put in a frying pan a little butter, a spoonful of flour and..."
+171,There are many different types of what?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one"
+172,"In this paper, we show how to train what to predict the likelihood of a problem being solved?","In this paper, we show how to train an artificial intelligence (AI) model to predict the likelihood of a problem being solved."
+173,What revolution does Ahmed Rashid examine?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution."
+174,What is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement.
+175,What type of scientist can extract useful information from large volumes of data?,There is a growing demand for data scientists who are able to extract useful information from large volumes of data.
+176,Hash Trees and Merkle Trees are two types of data structures that are used in blockchain technology.,Hash Trees and Merkle Trees are two types of data structures that are used in Blockchain technology.
+177,What is the name of the living robot created by scientists at the University of California?,"Scientists at the University of California, Los Angeles, have created a new type of living robot called a  Xenobot."
+178,What is the name of the type of artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoder.
+179,What type of challenge does Ahmed Rashid look at?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at some of the big data challenges facing the industry."
+180,What is a mathematical function that transforms data into an alphabetic code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into an alphabetic code of fixed length.
+181,What is a mathematical function that transforms a set of data into an alphanumeric code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into a alphanumeric code of fixed length.
+182,In what program can you solve a factorial with two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in Prolog.
+183,"What is a Data structure that relates a value called ""key"" to one or more other elements?","A Hash Table is a Data structure that relates a value called ""key"" to one or more other elements."
+184,What is the name of the report that Research and Markets has added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the ""Green Computing - Research and Markets"" report to their offering."
+185,Ahmedou Ould-Abdallah looks at some ideas behind what?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at some of the ideas behind metaverses."
+186,What is the name of the algorithm used to make croquettes?,Algorithm for making croquettes: Step 1: Chop the ham into small pieces.
+187,What is a computer program that performs repetitive tasks on the internet called?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behaviour that a person would have, doing the same thing but automatically."
+188,Farai Sevenzo looks at one of the most common problems faced by African journalists: what?,"In our series of letters from African journalists, filmmaker and columnist Farai Sevenzo looks at one of the most common problems faced by African journalists:"
+189,What is the term for a piece of computer hardware that is used to process data?,A graphics processing unit (GPU) is a piece of computer hardware that is used to process data.
+190,What is it called when computing makes responsible use of resources?,Green Computing refers to computing that makes responsible use of resources.
+191,What is a computer program that performs repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet or simulates the behaviour that a person would have, doing the same thing but automatically."
+192,What test does Ahmedou Ould-Abdallah look at?,"In our series of letters from African journalists, film-maker and columnist Ahmedou Ould-Abdallah looks at the Turing Test."
+193,"What is a technique that allows to train an algorithm in a way, using its own data and only shares it with other users?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), and only shares it with other users."
+194,What does Farai Sevenzo call the internet of things?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things is changing the way we live."
+195,What is a computer program that performs repetitive tasks on the internet called?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet and simulates the behavior that a person would have, doing the same thing but automatically."
+196,"In this class, we will learn how to use what to solve common computer science problems?",In this class we are going to learn how to use a tree to solve some common problems in computer science.
+197,Ahmedou Ould-Abdallah looks at some of the ideas behind what?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at some of the ideas behind metaverses."
+198,What test did DeepMind pass for the first time?,An artificial intelligence (AI) called DeepMind has passed the Turing Test for the first time.
+199,What is a variable called that is created when the original variables cannot be used?,A Dummy Variable is a variable that is created when the original variables cannot be used.
+200,Big data is a type of what?,There are two main types of data: smart and big.
+201,What are there many different types of?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have one thing in common - they all have"
+202,This paper describes how to train an AI model.,This paper describes how to train an artificial intelligence (AI) model.
+203,What is a formal model of computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model) according to its complexity.
+204,"What is a technique called that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), and only shares this model with other users."
+205,"What is the name of the new type of robot created at the University of California, Berkeley?","Scientists at the University of California, Berkeley, have created a new type of robot."
+206,Big data and what other type of data is there?,There are two main types of data: big data and smart data.
+207,What type of models are important in computer science?,Generative models are an important part of computer science.
+208,In what language are we going to learn how to solve a factorial?,In this lesson we are going to learn how to solve a factorial in Prolog.
+209,What is a system that has a computational power equivalent to theUniversal Turing Machine?,A Turing Complete system is one that has a computational power equivalent to theUniversal Turing Machine.
+210,What type of computer equipment is used to process data?,A graphics processing unit (GPU) is a piece of computer equipment used to process data.
+211,What does Ahmedou Ould-Abdallah look at?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the Turing Test."
+212,What is changing the way we live?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) is changing the way we live."
+213,What is another name for AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular technologies in the world today.
+214,Graph theory is a branch of mathematics that deals with the relationship between information and people.,Graph theory is a branch of mathematics that deals with the relationship between information and people.
+215,What is a formal model of computation that can perform any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of doing this theoretical model).
+216,What type of system has a computational power equivalent to the Universal Turing machine?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing machine.
+217,What is a type of artificial neural network?,Autoencoders are a type of artificial neural network that is divided into two parts: the encoder and the decoder.
+218,In this course we will learn how to use what to solve some common problems?,In this course we are going to learn how to use a tree to solve some common problems.
+219,What does AR stand for?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular forms of technology in the world today.
+220,What is the second part of an artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoding decoder.
+221,What is a mathematical function that transforms data into an alphanumeric code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into an alphanumeric code of fixed length.
+222,What is one of the most common problems faced by African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at one of the most common problems faced by African journalists:"
+223,What type of system has a computational power equivalent to the Universal Turing Machines?,A Turing Complete system is one that has a computational power equivalent to the Universal Turing Machines.
+224,What does Ahmed Rashid look at in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the problem of ""overfitting"" in computer science."
+225,What does Ahmed Rashid look at in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the Turing Test."
+226,What does Ahmed Rashid look at in a series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of decisions."
+227,Ahmedou Ould-Abdallah looks at what technology that is changing the way we live and work?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) is changing the way we live and work."
+228,In which part of the text will we learn how to solve a factorial?,In this lesson we are going to learn how to solve a factorial with two Facts and a Rule in Prolog.
+229,What is the most popular form of technology in the world?,Augmented Reality (AR) and Virtual Reality (VR) are two of the most popular forms of technology in the world today.
+230,What is a sequence of instructions to solve a problem?,Sequence of instructions to solve a problem.
+231,What does Ahmed Rashid say is important in artificial intelligence?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in artificial intelligence."
+232,Hash Trees and Merkle Trees are two types of Blockchain technology.,Hash Trees and Merkle Trees are two types of Blockchain technology.
+233,"What does Ahmed Rashid call the ""overfitting"" of AI?","In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in artificial intelligence (AI)."
+234,There are many different types of what?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have"
+235,What is a mathematical function that transforms a set of data into an alphabetic code of fixed length?,A Hash Function or Summary Function is a mathematical function that transforms a set of data into an alphabetic code of fixed length.
+236,What is a set of rules that can be used to classify data?,Association rules are a set of rules that can be used to classify data sets.
+237,What term has been gaining popularity in recent years?,The term Data Science has been gaining popularity in recent years.
+238,What does Ahmed Rashid look at the future of?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the future of metaverses."
+239,Ahmedou Ould-Abdallah looks at the future of what?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the future of metaverses."
+240,What report has Research and Markets added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing-research) has announced the addition of the ""Green Computing"" report to their offering."
+241,There are many different types of what type of agent?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all all have one thing in common - they all have one thing in common - they all have one thing in common - they all have"
+242,Graph theory is a branch of mathematics that deals with the relationship between data and information.,Graph theory is a branch of mathematics that deals with the relationship between data and information.
+243,What type of neural network is used to learn encodings from unlabelled data?,Autoencoders are a type of artificial neural network that are used to learn encodings from unlabelled data.
+244,Ahmed Rashid looks at what revolution in Africa?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution and how it is changing our lives."
+245,In what program will we learn how to solve a factorial with two Facts and a Rule?,In this lesson we are going to learn how to solve a factorial with two Facts and a Rule in PROLOG.
+246,What is the name of the living robot created by scientists at the University of California?,"Scientists at the University of California, Los Angeles, have created a new type of living robot called a xenobot."
+247,In this course we will learn how to use what to solve common problems?,In this course we are going to learn how to use a tree to solve some common problems.
+248,Graph theory is a branch of mathematics that deals with data structures.,Graph theory is a branch of mathematics that deals with data structures.
+249,What report has Research and Markets added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing-research) has announced the addition of the ""Green Computing - Research and Markets"" report to their offering."
+250,What is a device that uses a table of rules to manipulate symbols on a data tape?,A Turing Machine is a device that uses a table of rules to manipulate symbols on a data tape.
+251,In what programming language will I show you how to solve a factorial?,In this tutorial I will show you how to solve a factorial in Prolog.
+252,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in the data?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in the data."
+253,What is the name of the type of artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoder
+254,What type of models are an important part of artificial intelligence research?,Generative models are an important part of artificial intelligence research.
+255,What is a mathematical function that transforms a set of data into a code of fixed length?,A Hash Function or Summary Function is a mathematical function that transforms a set of data into a code of fixed length.
+256,What is a Data structure that relates a value called a key to one or more other elements?,"A Hash Table is a Data structure that relates a value called ""key"" to one or more other elements."
+257,There are many different types of what?,"There are many different types of intelligent agents, but they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have one thing in common - they all have a"
+258,What is the name of the type of artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two part: the encoder and the decoder.
+259,What is the name of the report that Research and Markets has added to their offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the ""Green Computing"" report to their offering."
+260,"In this paper, we show how to train an AI model to predict the outcome of a problem?","In this paper, we show how to train an artificial intelligence (AI) model to predict the outcome of a problem."
+261,What is a mathematical function that transforms a set of data into a fixed length code?,A Hash Function is a mathematical function that transforms a set of data into a alphanumeric code of fixed length.
+262,What type of variable is created when a categorical variable can't be used?,A Dummy Variable is a variable that is created when a categorical variable cannot be used.
+263,What does Ahmed Rashid think is important in computer science?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in computer science."
+264,What is the name of the report that Research and Markets has added?,"Research and Markets (http://www.researchandmarkets.com/reports/global...) has announced the addition of the ""Green Computing"" report to their offering."
+265,"In this paper, we show how to train an artificial intelligence (AI) model that can predict the likelihood of a given outcome?","In this paper, we show how to train an artificial intelligence (AI) model that can predict the likelihood of a given outcome."
+266,What could be used to make bank transfers without a central computer?,"If we talk about bank transfers, these could be done without the need for a centralized computer (a bank)."
+267,What type of system has computing power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computing power equivalent to the Universal Turing Machine.
+268,"What is a data structure that relates avalue called ""key"" to one or more other elements?","A Hash Table is a data structure that relates avalue called ""key"" to one or more other elements."
+269,What does Farai Sevenzo look at?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things (IoT) is changing the way we live and work."
+270,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to find a pattern in data?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in data."
+271,"What is a data structure that relates a value called ""key"" to one or more other elements?","A Hash Table is a data structure that relates a value called ""key"" to one or more other elements."
+272,What does Ahmedou Ould-Abdallah think could change the way we live?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) could change the way we live."
+273,Farai Sevenzo looks at the future of what technology?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at the future of metaverse technology."
+274,What is another name for a mathematical function that transforms a set of data into an alphanumeric code of fixed length?,A Hash Function or Summary Function is a mathematical function that transforms a set of data into an alphanumeric code of fixed length.
+275,What type of models are used to train machine learning algorithms?,Generative models are an important part of artificial intelligence and have been used for many years to train machine learning algorithms.
+276,What is a type of machine learning in which a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement ( positive or negative).
+277,In what program can you solve a factorial using two Facts and a Rule?,In this tutorial I will show you how to solve a factorial with two Facts and a Rule in Prolog.
+278,What does Ahmed Rashid look at in his series of letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the tree of decisions."
+279,"In this course, we will learn how to use what to solve common computer science problems?",In this course we are going to learn how to use a tree to solve some common problems in computer science.
+280,What test has DeepMind passed for the first time?,An artificial intelligence (AI) system called DeepMind has passed the Turing Test for the first time.
+281,What is a particular type of artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two part: the encoder and the decoder.
+282,What is it called when a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement.
+283,What is it called when a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by a algorithm is followed by a reinforcement (positive or negative).
+284,What does this paper describe how to train?,This paper describes how to train an artificial intelligence (AI) model that can predict the outcome of a clinical trial.
+285,In which language will we learn how to solve a factorial with two Facts and a Rule?,In this lesson we are going to learn how to solve a factorial with two Facts and a Rule in the Prolog language.
+286,Hash Trees and Merkle Trees are two types of data structures used in Blockchain.,Hash Trees and Merkle Trees are two types of data structures used in Blockchain.
+287,"What is a data structure that relates a value called ""key"" to one or more other Elements?","A Hash Table is a data structure that relates a value called ""key"" to one or more other Elements."
+288,Which branch of computer science deals with data structures?,Graph theory is a branch of computer science that deals with data structures.
+289,What is a data structure that relates a value called a key to one or more elements?,"A Hash Table is a data structure that relates a value called ""key"" to one or more element."
+290,Hash Trees and Merkle Trees are two types of blockchain technology.,Hash Trees and Merkle Trees are two types of Blockchain technology.
+291,What are a new type of decision tree?,association rules are a new type of decision tree.
+292,What is one of the problems faced by African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at one of the most common problems faced by African journalists:"
+293,What does Ahmedou Ould-Abdallah look at?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at the meaning of sugar."
+294,What test has DeepMind passed for the first time?,"An artificial intelligence (AI) system called DeepMind has passed the Turing Test for the first time, according to BBC News."
+295,What is another name for virtual reality?,Augmented Reality (AR) and Virtual Reality (VR) are two of the newest technologies in the world of technology.
+296,"Along with big data, what is the other type of data?",There are two main types of data: smart data and big data.
+297,What is booming in the world of?,The world of data science is booming.
+298,Ahmed Rashid looks at what revolution in the world?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the big data revolution and how it is changing our world."
+299,What is the hierarchy of a christmas tree?,The hierarchy of a Christmas tree is an interesting concept.
+300,What type of variable is created when the original variable cannot be used?,A Dummy Variable is a variable that is created when the originalvariable cannot be used.
+301,What is a set of rules that govern classification of objects in data sets?,Association rules are a set of rules that govern the classification of objects in data sets.
+302,What type of variable is created when the original variable cannot be used?,"A Dummy Variable is a variable that is created when the original variable cannot be used, such as a categorical variable."
+303,Ahmedou Ould-Abdallah looks at what is changing our lives?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things (IoT) is changing our lives."
+304,"In this lesson, we are going to learn about what?","In this lesson, we are going to learn about sugar coding."
+305,What does Ahmed Rashid discuss in his letters?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of overfitting in artificial intelligence."
+306,What is a branch of science that deals with the analysis and management of large amounts of data?,Data Science is a branch of science that deals with the analysis and management of large amounts of data.
+307,What is the name of the report that Research and Markets has added to its offering?,"Research and Markets (http://www.researchandmarkets.com/reports/global-green-computing) has announced the addition of the ""Green Computing"" report to its offering."
+308,Hash Trees and Merkle Trees are two types of data structures used in the blockchain technology?,Hash Trees and Merkle Trees are two types of data structures used in the Blockchain technology.
+309,What test has DeepMind passed?,"An artificial intelligence (AI) system called DeepMind has passed the Turing Test for the first time, according to BBC News."
+310,What transforms a set of data into anumeric code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into anumeric code of fixed length.
+311,What is a piece of computer hardware that is used to process data called?,A Graphics Processing Unit (GPU) is a piece of computer hardware that is used to process data.
+312,What is a computer program that can perform repetitive tasks?,"A bot is a computer program capable of performing repetitive tasks and usually operates on the Internet and simulates the behaviour that a person would have, doing the same thing but automatically."
+313,What does Ahmedou Ould-Abdallah call sugar?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at some of the most popular letters from the continent."
+314,What type of system has a computational power equal to the Universal Turing Machine?,A Turing Complete system is one that has a computational power equal to the Universal Turing Machine.
+315,"In this lesson, we will learn about what?","In this lesson, we are going to learn about sugar coding."
+316,What is another name for AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the newest technologies in the world of entertainment.
+317,Farai Sevenzo looks at the future of what?,"In our series of letters from African journalists, filmmaker and columnist Farai Sevenzo looks at the future of metaverses."
+318,What are rules of association?,Association rules are a set of rules that can be used to classify objects in a data set.

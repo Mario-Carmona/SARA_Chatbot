@@ -90,22 +90,18 @@ def obtenerValidationDataset(dataset, train_dataset):
 
 def generarDatasetAdulto(dataset):
 
-    def calculateElements(groups_datasets, calc_columns=False):
+    def calculateElements(groups_datasets, num_columns=1):
         num = 0
         for i in groups_datasets:
-            num_columns = len(i.columns.values)
             num_rows = len(i.Topic.to_list())
-            if calc_columns:
-                num += num_columns * num_rows
-            else:
-                num += num_rows
+            num += num_columns * num_rows
         
         return num
 
     def traducirES_EN(groups_datasets):
         print(bcolors.WARNING + "Realizando traducción a Inglés..." + bcolors.RESET)
 
-        progress_bar = tqdm(range(calculateElements(groups_datasets, True)))
+        progress_bar = tqdm(range(calculateElements(groups_datasets, 2)))
         
         new_groups_datasets = []
 
