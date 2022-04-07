@@ -41,19 +41,17 @@ def split(cadena, subcadena):
 
     print("\""+cadena+"\"")
 
-    inicio = 0
     aux = cadena.find(subcadena)
     print(aux)
     while aux != -1:
-        print(cadena[inicio:aux+1])
-        lista.append(cadena[inicio:aux+1])
-        inicio = aux+2
-        cadena = cadena[inicio:]
+        print(cadena[:aux+1])
+        lista.append(cadena[:aux+1])
+        cadena = cadena[aux+2:]
         print("\""+cadena+"\"")
         aux = cadena.find(subcadena)
         print(aux)
     
-    lista.append(cadena[inicio:])
+    lista.append(cadena)
 
     print(lista)
 
