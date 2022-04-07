@@ -55,7 +55,6 @@ def obtenerTrainDataset(groups_datasets, train_split):
 
     train_dataset = pd.concat(lista)
 
-    train_dataset = train_dataset.drop(columns=["Unnamed: 0"])
     train_dataset = train_dataset.sample(
         frac=1,
         random_state=0,
