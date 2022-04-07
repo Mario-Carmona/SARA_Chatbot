@@ -90,52 +90,6 @@ def obtenerValidationDataset(dataset, train_dataset):
 
 def generarDatasetAdulto(dataset):
 
-    auth_key = "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx"
-    translator = deepl.Translator(auth_key)
-    
-
-    configSum = AutoConfig.from_pretrained(
-        WORKDIR + "google/pegasus-xsum/config.json"
-    )
-
-    tokenizerSum = AutoTokenizer.from_pretrained(
-        WORKDIR + "google/pegasus-xsum",
-        config=WORKDIR + "google/pegasus-xsum/tokenizer_config.json",
-        use_fast=True
-    )
-
-    
-
-    modelSum = PegasusForConditionalGeneration.from_pretrained(
-        WORKDIR + "google/pegasus-xsum",
-        from_tf=bool(".ckpt" in "google/pegasus-xsum"),
-        config=configSum,
-        torch_dtype=torch.float16
-    ).to(device)
-
-    
-
-
-
-
-    configGenQues = AutoConfig.from_pretrained(
-        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/config.json"
-    )
-
-    tokenizerGenQues = AutoTokenizer.from_pretrained(
-        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
-        config=WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/tokenizer_config.json",
-        use_fast=True
-    )
-
-    modelGenQues = T5ForConditionalGeneration.from_pretrained(
-        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
-        from_tf=bool(".ckpt" in "mrm8488/t5-base-finetuned-question-generation-ap"),
-        config=configGenQues,
-        torch_dtype=torch.float16
-    ).to(device)
-
-
     def calculateElements(groups_datasets, calc_columns=False):
         num = 0
         for i in groups_datasets:
@@ -170,7 +124,6 @@ def generarDatasetAdulto(dataset):
         print(bcolors.OK + "Terminada traducción" + bcolors.RESET)
 
         return new_groups_datasets
-
 
     def summarization(groups_datasets):
 
@@ -207,8 +160,6 @@ def generarDatasetAdulto(dataset):
         print(bcolors.OK + "Terminado resumen" + bcolors.RESET)
 
         return new_groups_datasets
-
-
 
     def generateQuestions(groups_datasets):
 
@@ -252,7 +203,53 @@ def generarDatasetAdulto(dataset):
         return new_groups_datasets
 
     
+    print(bcolors.WARNING + "Cargando modelos..." + bcolors.RESET)
+
+
+    auth_key = "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx"
+    translator = deepl.Translator(auth_key)
     
+    # ---------------------------------------
+
+    configSum = AutoConfig.from_pretrained(
+        WORKDIR + "google/pegasus-xsum/config.json"
+    )
+
+    tokenizerSum = AutoTokenizer.from_pretrained(
+        WORKDIR + "google/pegasus-xsum",
+        config=WORKDIR + "google/pegasus-xsum/tokenizer_config.json",
+        use_fast=True
+    )
+
+    modelSum = PegasusForConditionalGeneration.from_pretrained(
+        WORKDIR + "google/pegasus-xsum",
+        from_tf=bool(".ckpt" in "google/pegasus-xsum"),
+        config=configSum,
+        torch_dtype=torch.float16
+    ).to(device)
+
+    # ---------------------------------------
+
+    configGenQues = AutoConfig.from_pretrained(
+        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/config.json"
+    )
+
+    tokenizerGenQues = AutoTokenizer.from_pretrained(
+        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
+        config=WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/tokenizer_config.json",
+        use_fast=True
+    )
+
+    modelGenQues = T5ForConditionalGeneration.from_pretrained(
+        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
+        from_tf=bool(".ckpt" in "mrm8488/t5-base-finetuned-question-generation-ap"),
+        config=configGenQues,
+        torch_dtype=torch.float16
+    ).to(device)
+
+
+    print(bcolors.OK + "Modelos cargados" + bcolors.RESET)
+
 
 
     groups = dataset.groupby(dataset.Topic)
