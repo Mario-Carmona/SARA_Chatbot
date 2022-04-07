@@ -339,7 +339,7 @@ if __name__ == "__main__":
         "target": validation_dataset.Answer.to_list()
     })
 
-    dir = os.path.join(args.result_dir, f"split_{args.train_split}")
+    dir = os.path.join(args.result_dir, f"split_{args.dataset_type}_{args.train_split}")
     if not os.path.exists(dir):
         os.mkdir(dir)
 
