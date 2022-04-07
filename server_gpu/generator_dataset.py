@@ -42,7 +42,7 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
     for i in dataset.Text.to_list():
         batch = tokenizerSum(i, truncation=True, padding="longest", return_tensors="pt")
         
-        print(batch)
+        print(batch['input_ids'].shape)
 
         if(batch['input_ids'].shape[1] <= 50):
             frases = i.split('. ')
@@ -150,8 +150,8 @@ def generarDatasetAdulto(dataset):
 
     groups_datasets = [summarization(i, configSum, tokenizerSum, modelSum, device) for i in groups_datasets]
 
-    context = groups_datasets[0].Text.to_list()[0]
-    answer = groups_datasets[0].Topic.to_list()[0]
+    context = groups_datasets[0].Text.to_list()[1]
+    answer = groups_datasets[0].Topic.to_list()[1]
 
     print(get_question(answer, context))
 
