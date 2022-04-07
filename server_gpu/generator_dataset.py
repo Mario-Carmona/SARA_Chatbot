@@ -296,7 +296,6 @@ if __name__ == "__main__":
         groups_datasets = generarDatasetAdulto(dataset)
 
     total_dataset = pd.concat(groups_datasets)
-    total_dataset.drop(columns=["Unnamed: 0"])
 
     train_dataset = obtenerTrainDataset(groups_datasets, args.train_split)
 
