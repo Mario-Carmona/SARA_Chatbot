@@ -322,13 +322,29 @@ if __name__ == "__main__":
 
     train_dataset = obtenerTrainDataset(groups_datasets, args.train_split)
 
+    train_s_t = pd.DataFrame({
+        "source": train_dataset.Question.to_list(),
+        "target": train_dataset.Answer.to_list()
+    })
+
     validation_dataset = obtenerValidationDataset(total_dataset, train_dataset)
+
+    validation_s_t = pd.DataFrame({
+        "source": validation_dataset.Question.to_list(),
+        "target": validation_dataset.Answer.to_list()
+    })
 
     dir = os.path.join(args.result_dir, f"split_{args.train_split}")
     if not os.path.exists(dir):
         os.mkdir(dir)
 
-    train_dataset.to_csv(f"{dir}/train.csv")
-    validation_dataset.to_csv(f"{dir}/validation.csv")
+    train_dataset.to_csv(f"{dir}/train_resume.csv")
+    train_s_t.to_csv(f"{dir}/train.csv")
+    validation_dataset.to_csv(f"{dir}/validation_resume.csv")
+    validation_s_t.to_csv(f"{dir}/validation.csv")
+
+
+
+
 
 
