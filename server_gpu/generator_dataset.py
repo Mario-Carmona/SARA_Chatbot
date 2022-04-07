@@ -42,8 +42,6 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
     for i in dataset.Text.to_list():
         batch = tokenizerSum(i, truncation=True, padding="longest", return_tensors="pt")
         
-        print(batch['input_ids'].shape)
-
         if(batch['input_ids'].shape[1] <= 50):
             frases = i.split('. ')
             for pos in range(len(frases)-1):
@@ -156,6 +154,7 @@ def generarDatasetAdulto(dataset):
     context = groups_datasets[0].Text.to_list()[1]
     answer = groups_datasets[0].Topic.to_list()[1]
 
+    print(context)
     print(get_question(answer, context))
 
 
