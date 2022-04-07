@@ -45,6 +45,7 @@ def split(cadena, subcadena):
         lista.append(cadena[inicio:aux+1])
         inicio = aux+2
         cadena = cadena[inicio:]
+        aux = cadena.find(subcadena)
     
     lista.append(cadena[inicio:])
 
