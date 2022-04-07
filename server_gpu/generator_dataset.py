@@ -70,7 +70,7 @@ def summarization(dataset, configSum, tokenizerSum, modelSum, device):
         tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
         text += unique(tgt_text)
 
-        print(text)
+    print(text)
         
     topic = dataset.Topic.to_list()[0] * len(text)
 
