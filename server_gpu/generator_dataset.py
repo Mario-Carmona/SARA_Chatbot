@@ -188,6 +188,8 @@ def generarDatasetAdulto(dataset):
         question = []
 
         for topic, text in zip(dataset.Topic.to_list(), dataset.Text.to_list()):
+            print(topic)
+            print(text)
             input_text = "answer: %s  context: %s </s>" % (topic, text)
             features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
             output = modelGenQues.generate(
@@ -199,10 +201,16 @@ def generarDatasetAdulto(dataset):
             result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(len(output))]
             result = unique([i[10:] for i in result])
 
+            print(result)
             answer += [text] * len(result)
+            print(answer)
             question += result
+            print(question)
 
         topic = [dataset.Topic.to_list()[0]] * len(answer)
+        print(topic)
+
+        a = input("--->")
 
         dataset = pd.DataFrame({
             "Topic": topic,
