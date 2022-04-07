@@ -170,7 +170,7 @@ def generarDatasetAdulto(dataset):
     context = groups_datasets[0].Text.to_list()[1]
     answer = groups_datasets[0].Topic.to_list()[1]
 
-
+    """
     def get_question(answer, context, max_length=64):
         input_text = "answer: %s  context: %s </s>" % (answer, context)
         features = tokenizer([input_text], return_tensors='pt').to(device)
@@ -180,6 +180,7 @@ def generarDatasetAdulto(dataset):
                     max_length=max_length)
 
         return tokenizer.decode(output[0])
+    """
 
 
     input_text = "answer: %s  context: %s </s>" % (answer, context)
