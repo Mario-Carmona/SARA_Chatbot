@@ -159,10 +159,10 @@ def generarContent(context, past_user_inputs, generated_responses):
     content = ""
 
     for entry, answer, entry_EN, answer_EN in zip(context["entry"], context["answer"], past_user_inputs, generated_responses):
-        content += f"[USER]: {entry}\n"
+        content += f"\n[USER]: {entry}\n"
         content += f"[USER (EN)]: {entry_EN}\n"
         content += f"[BOT (EN)]: {answer_EN}\n"
-        content += f"[BOT]: {answer}\n\n"
+        content += f"[BOT]: {answer}\n"
     
     return content
 
@@ -178,7 +178,7 @@ def save_conversation(context, past_user_inputs, generated_responses, edad, date
     date_fin = datetime.today().strftime('%Y-%m-%d %H:%M:%S')
 
     cur.execute(
-        """INSERT INTO Conversations (content, edad, date_ini, date_fin) 
+        """INSERT INTO Conversations (edad, date_ini, date_fin, content) 
             VALUES (
                 %s,
                 %s,
@@ -187,10 +187,10 @@ def save_conversation(context, past_user_inputs, generated_responses, edad, date
             )
         """,
         (
-            content, 
             edad, 
             date_ini,
-            date_fin
+            date_fin,
+            content
         )
     )
 

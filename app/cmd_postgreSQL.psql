@@ -25,13 +25,13 @@ LANGUAGE PLPGSQL IMMUTABLE;
 CREATE TABLE Conversations (
     id BIGSERIAL,
     verified BOOL DEFAULT 'false',
-    content TEXT NOT NULL,
     edad age NOT NULL,
     date_ini TIMESTAMP NOT NULL,
     date_fin TIMESTAMP NOT NULL,
     duration TIME GENERATED ALWAYS AS (
         calc_duration(date_ini, date_fin)
     ) STORED,
+    content TEXT NOT NULL,
     PRIMARY KEY (id)
 );
 
