@@ -156,6 +156,8 @@ def train(**kwargs):
         optimizer, eval_loss, start_epoch = load_checkpt(kwargs['base_path']+kwargs["checkpoint_path"], optimizer)
         print(f"Loading model from checkpoint with start epoch: {start_epoch} and loss: {eval_loss}")
         logging.info(f"Model loaded from saved checkpoint with start epoch: {start_epoch} and loss: {eval_loss}")
+    else:
+        start_epoch = 0
     
 
     train_model(start_epoch, eval_loss, (train_dl, valid_dl), optimizer, kwargs['base_path']+kwargs["checkpoint_path"], kwargs['base_path']+kwargs["best_model"])
