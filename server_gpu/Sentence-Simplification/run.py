@@ -158,6 +158,7 @@ def train(**kwargs):
         logging.info(f"Model loaded from saved checkpoint with start epoch: {start_epoch} and loss: {eval_loss}")
     else:
         start_epoch = 0
+        eval_loss = float('inf')
     
 
     train_model(start_epoch, eval_loss, (train_dl, valid_dl), optimizer, kwargs['base_path']+kwargs["checkpoint_path"], kwargs['base_path']+kwargs["best_model"])
