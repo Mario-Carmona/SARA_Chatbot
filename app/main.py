@@ -10,7 +10,6 @@ import requests
 import psycopg2
 from datetime import datetime
 import pytz
-import asyncio
 
 from pydantic import BaseModel
 

@@ -4,3 +4,4 @@ uvicorn[standard]
 jinja2
 pydantic
 psycopg2-binary
+pytz
