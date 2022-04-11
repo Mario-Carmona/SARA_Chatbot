@@ -10,7 +10,7 @@
 
     "data_dir": "server_gpu/datasets/v1/split_0.7/",
     "train_dataset": "train_2.csv",
-    "validation_dataset": "val_2.csv",
+    "validation_dataset": "validation_2.csv",
     "task": "conversational",
     "max_source_length": 128,
     "max_target_length": 128,
