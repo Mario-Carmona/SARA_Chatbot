@@ -189,12 +189,24 @@ def preprocess_function(examples):
     return model_inputs
 
 
+import pandas
+
+aux = pandas.read_csv(finetuning_args.train_dataset)
+
+print(len(aux["source"].to_list()))
+
+aux2 = aux.dropna()
+
+print(len(aux2["source"].to_list()))
+
+
+"""
 tokenized_datasets = datasets.map(preprocess_function, batched=True)
 
 
 print(tokenized_datasets)
 
-"""
+
 
 tokenized_datasets = tokenized_datasets.remove_columns(["Unnamed: 0", "source", "target"])
 
