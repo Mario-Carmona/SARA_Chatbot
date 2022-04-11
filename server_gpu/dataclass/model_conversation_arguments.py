@@ -31,10 +31,11 @@ class ModelConverArguments(ProyectArguments):
         }
     )
 
-    model_conver = ProyectArguments.workdir + model_conver
-    model_conver_config = ProyectArguments.workdir + model_conver_config
-    model_conver_tokenizer = ProyectArguments.workdir + model_conver_tokenizer
-    model_conver_tokenizer_config = ProyectArguments.workdir + model_conver_tokenizer_config
+    def __init__(self):
+        self.model_conver = self.workdir + self.model_conver
+        self.model_conver_config = self.workdir + self.model_conver_config
+        self.model_conver_tokenizer = self.workdir + self.model_conver_tokenizer
+        self.model_conver_tokenizer_config = self.workdir + self.model_conver_tokenizer_config
 
     def __post_init__(self):
         assert os.path.exists(self.model_conver), "`model_conver` debe ser un directorio existente."
