@@ -501,6 +501,7 @@ if __name__ == "__main__":
 
     # Obtención del dataset de training
     train_dataset = obtenerTrainDataset(groups_datasets, generate_args.train_split)
+    train_dataset = train_dataset.dropna()
 
     # Generación del dataset de training con el formato para el entrenamiento
     train_s_t = pd.DataFrame({
@@ -510,6 +511,7 @@ if __name__ == "__main__":
 
     # Obtención del dataset de validation
     validation_dataset = obtenerValidationDataset(total_dataset, train_dataset)
+    validation_dataset = validation_dataset.dropna()
 
     # Generación del dataset de validation con el formato para el entrenamiento
     validation_s_t = pd.DataFrame({
