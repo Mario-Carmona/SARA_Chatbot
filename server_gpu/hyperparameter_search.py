@@ -84,7 +84,10 @@ training_args.output_dir = WORKDIR + training_args.output_dir
 
 check_output_dir(training_args)
 
+# Ruta donde instalar las extensiones de Pytorch
+os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about
 
 
 # Setup logging
@@ -233,7 +236,6 @@ def compute_metrics(eval_pred: EvalPrediction):
 
 trainer = Seq2SeqTrainer(
     model_init=model_init,
-    model=modelConver,
     args=training_args,
     train_dataset=tokenized_datasets["train"],
     eval_dataset=tokenized_datasets["validation"],
