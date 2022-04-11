@@ -7,6 +7,9 @@
     "ngrok_config_path": "server_gpu/ngrok.yml",
 
 
+    "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
+
+
     "model_conver": "facebook/blenderbot-3B",
     "model_conver_config": "facebook/blenderbot-3B/config.json",
     "model_conver_tokenizer": "facebook/blenderbot-3B",
