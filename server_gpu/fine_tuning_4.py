@@ -91,29 +91,29 @@ check_output_dir(training_args)
 logging.basicConfig(
     format="%(asctime)s - %(levelname)s - %(name)s -   %(message)s",
     datefmt="%m/%d/%Y %H:%M:%S",
-    level=logging.INFO if finetuning_args.local_rank in [-1, 0] else logging.WARN,
+    level=logging.INFO if training_args.local_rank in [-1, 0] else logging.WARN,
 )
 logger.warning(
     "Process rank: %s, device: %s, n_gpu: %s, distributed training: %s, 16-bits training: %s",
-    finetuning_args.local_rank,
-    finetuning_args.device,
-    finetuning_args.n_gpu,
-    bool(finetuning_args.parallel_mode == ParallelMode.DISTRIBUTED),
-    finetuning_args.fp16,
+    training_args.local_rank,
+    training_args.device,
+    training_args.n_gpu,
+    bool(training_args.parallel_mode == ParallelMode.DISTRIBUTED),
+    training_args.fp16,
 )
 # Set the verbosity to info of the Transformers logger (on main process only):
-if is_main_process(finetuning_args.local_rank):
+if is_main_process(training_args.local_rank):
     transformers.utils.logging.set_verbosity_info()
     transformers.utils.logging.enable_default_handler()
     transformers.utils.logging.enable_explicit_format()
-logger.info("Training/evaluation parameters %s", finetuning_args)
+logger.info("Training/evaluation parameters %s", training_args)
 
 
 
 
 
 # Set seed before initializing model.
-set_seed(finetuning_args.seed)
+set_seed(training_args.seed)
 
 
 
@@ -162,7 +162,7 @@ modelConver = BlenderbotForConditionalGeneration.from_pretrained(
 
 
 # set num_beams for evaluation
-if finetuning_args.eval_beams == 0:
+if finetuning_args.eval_beams is None:
     finetuning_args.eval_beams = modelConver.config.num_beams
 
 
@@ -235,7 +235,7 @@ trainer = Seq2SeqTrainer(
 )
 
 
-trainer.train(resume_from_checkpoint=finetuning_args.resume_from_checkpoint)
+trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
 
 
 """
