@@ -160,7 +160,7 @@ modelConver = BlenderbotForConditionalGeneration.from_pretrained(
 
 
 # set num_beams for evaluation
-if finetuning_args.eval_beams is None:
+if finetuning_args.eval_beams == 0:
     finetuning_args.eval_beams = modelConver.config.num_beams
 
 

@@ -7,8 +7,8 @@ from transformers import Seq2SeqTrainingArguments
 
 
 @dataclass
-class FinetuningArguments(ModelConverArguments, GenerateArguments, 
-                          Seq2SeqTrainingArguments):
+class FinetuningArguments(Seq2SeqTrainingArguments, ModelConverArguments, 
+                          GenerateArguments):
     data_dir: str = field(
         metadata={
             "help": "The input data dir. Should contain the .tsv files (or other data files) for the task."
@@ -50,37 +50,31 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments,
         }
     )
     n_train: int = field(
-        default=-1, 
         metadata={
             "help": "# training examples. -1 means use all."
         }
     )
     n_val: int = field(
-        default=-1, 
         metadata={
             "help": "# validation examples. -1 means use all."
         }
     )
     src_lang: str = field(
-        default=None, 
         metadata={
             "help": "Source language id for translation."
         }
     )
     tgt_lang: str = field(
-        default=None, 
         metadata={
             "help": "Target language id for translation."
         }
     )
     eval_beams: int = field(
-        default=None, 
         metadata={
             "help": "# num_beams to use for evaluation."
         }
     )
     ignore_pad_token_for_loss: bool = field(
-        default=True,
         metadata={
             "help": "If only pad tokens should be ignored. This assumes that `config.pad_token_id` is defined."
         }
