@@ -84,6 +84,10 @@ training_args.output_dir = WORKDIR + training_args.output_dir
 
 check_output_dir(training_args)
 
+# Ruta donde instalar las extensiones de Pytorch
+os.environ["TORCH_EXTENSIONS_DIR"] = WORKDIR + "torch_extensions"
+
+os.environ["TOKENIZERS_PARALLELISM"] = "false"  # To avoid warnings about
 
 
 

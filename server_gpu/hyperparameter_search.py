@@ -250,7 +250,7 @@ trainer = Seq2SeqTrainer(
 best_trial = trainer.hyperparameter_search(
     direction="minimize", 
     backend="ray", 
-    n_trials=10
+    n_trials=2
 )
 
 print(best_trial)
