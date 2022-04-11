@@ -194,9 +194,6 @@ def preprocess_function(examples):
 tokenized_datasets = datasets.map(preprocess_function, batched=True)
 
 
-print(tokenized_datasets)
-
-
 
 tokenized_datasets = tokenized_datasets.remove_columns(["Unnamed: 0", "source", "target"])
 
@@ -204,7 +201,13 @@ tokenized_datasets.set_format("torch")
 
 
 
-
+def model_init():
+    return BlenderbotForConditionalGeneration.from_pretrained(
+        finetuning_args.model_conver,
+        from_tf=bool(".ckpt" in finetuning_args.model_conver),
+        config=configConver,
+        torch_dtype=torch.float16
+    )
 
 
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizerConver, model=modelConver)
@@ -229,6 +232,7 @@ def compute_metrics(eval_pred: EvalPrediction):
 
 
 trainer = Seq2SeqTrainer(
+    model_init=model_init,
     model=modelConver,
     args=training_args,
     train_dataset=tokenized_datasets["train"],
