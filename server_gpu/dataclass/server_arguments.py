@@ -44,9 +44,8 @@ class ServerArguments(ModelConverArguments, DeeplArguments,
         }
     )
 
-    def __init__(self):
-        self.ngrok_path = self.workdir + self.ngrok_path
-        self.ngrok_config_path = self.workdir + self.ngrok_config_path
+    ngrok_path = ModelConverArguments.workdir + ngrok_path
+    ngrok_config_path = ModelConverArguments.workdir + ngrok_config_path
 
     def __post_init__(self):
         assert os.path.exists(self.ngrok_path), "`ngrok_path` debe ser un archivo existente."
