@@ -52,5 +52,5 @@ class ServerArguments(ModelConverArguments, DeeplArguments,
 
         assert os.path.exists(self.ngrok_path), "`ngrok_path` debe ser un archivo existente."
 
-        assert os.path.exists(self.ngrok_config_path), "`ngrok_config_path` debe ser un directorio existente."
+        assert os.path.exists(self.ngrok_config_path), "`ngrok_config_path` debe ser un archivo existente."
         assert self.ngrok_config_path.split(".")[-1] == "yml", "`ngrok_config_path` debe ser un archivo YAML."
