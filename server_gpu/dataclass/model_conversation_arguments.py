@@ -1,7 +1,7 @@
 
 import os
 from dataclasses import dataclass, field
-from project_arguments import ProyectArguments
+from dataclass.project_arguments import ProyectArguments
 
 
 @dataclass
