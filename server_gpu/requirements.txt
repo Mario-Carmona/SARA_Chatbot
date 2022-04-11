@@ -13,3 +13,4 @@ sacrebleu
 protobuf
 deepl
 nltk
+ray[tune]
