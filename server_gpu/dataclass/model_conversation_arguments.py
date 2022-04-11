@@ -11,25 +11,21 @@ class ModelConverArguments(ProyectArguments):
     """
     
     model_conver: str = field(
-        default=None,
         metadata={
             "help": "Ruta a la carpeta del modelo"
         }
     )
     model_conver_config: str = field(
-        default=None,
         metadata={
             "help": "Ruta al archivo de configuración del modelo"
         }
     )
     model_conver_tokenizer: str = field(
-        default=None,
         metadata={
             "help": "Ruta a la carpeta del tokenizer del modelo"
         }
     )
     model_conver_tokenizer_config: str = field(
-        default=None,
         metadata={
             "help": "Ruta al archivo de configuración del tokenizer del modelo"
         }

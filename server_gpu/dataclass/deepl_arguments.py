@@ -10,7 +10,6 @@ class DeeplArguments:
     """
     
     auth_key_deepl: str = field(
-        default=None,
         metadata={
             "help": "Clave de autenticación para la API de DeepL"
         }
