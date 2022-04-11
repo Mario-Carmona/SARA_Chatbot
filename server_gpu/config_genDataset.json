@@ -1,0 +1,26 @@
+{
+    "workdir": "/mnt/homeGPU/mcarmona/",
+    "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
+
+
+    "model_genQuestion": "mrm8488/t5-base-finetuned-question-generation-ap",
+    "model_genQuestion_config": "mrm8488/t5-base-finetuned-question-generation-ap/config.json",
+    "model_genQuestion_tokenizer": "mrm8488/t5-base-finetuned-question-generation-ap",
+    "model_genQuestion_tokenizer_config": "mrm8488/t5-base-finetuned-question-generation-ap/tokenizer_config.json",
+
+    "model_summary": "google/pegasus-xsum",
+    "model_summary_config": "google/pegasus-xsum/config.json",
+    "model_summary_tokenizer": "google/pegasus-xsum",
+    "model_summary_tokenizer_config": "google/pegasus-xsum/tokenizer_config.json",
+
+
+    "seed": 0,
+    "limit_summary": 50,
+    "max_length_question": 64,
+    "num_beams_summary": 8,
+    "num_beams_question": 4,
+    "dataset_file": "server_gpu/datasets/v1/datasetV1.csv",
+    "result_dir": "server_gpu/datasets/v1",
+    "train_split": 0.7,
+    "dataset_type": "Adulto"
+}

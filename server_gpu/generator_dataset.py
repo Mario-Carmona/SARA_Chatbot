@@ -1,72 +1,158 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import argparse
-import pandas as pd
-import sys
-import os
-import deepl
-from tqdm.auto import tqdm
+""" Script para generar datasets para el entrenamiento """
 
+# General
+import os
+from pathlib import Path
+from tqdm.auto import tqdm
+from color import bcolors
+from typing import List
+
+# Configuración
+import sys
+import argparse
+from dataclass.generate_dataset_arguments import GenerateDatasetArguments
+from dataclass.project_arguments import ProyectArguments
+from dataclass.model_arguments import ModelArguments
+from transformers import HfArgumentParser
+
+# Datos
+import pandas as pd
+from pandas import DataFrame
+
+# Modelos
 import torch
 
-from transformers import AutoConfig, AutoTokenizer, MarianMTModel, PegasusForConditionalGeneration, TranslationPipeline, SummarizationPipeline
-from transformers import T5ForConditionalGeneration, AutoTokenizer
+from transformers import (
+    AutoConfig, 
+    AutoTokenizer, 
+    PegasusForConditionalGeneration,
+    T5ForConditionalGeneration
+)
+
+import deepl
+
+# -------------------------------------------------------------------------#
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "config_file", 
+    type = str,
+    help = "El formato del archivo debe ser 'config.json'"
+)
+
+try:
+    args = parser.parse_args()
+    assert args.config_file.split('.')[-1] == "json"
+except:
+    parser.print_help()
+    sys.exit(0)
+
+BASE_PATH = Path(__file__).resolve().parent
+CONFIG_FILE = args.config_file
 
 
-class bcolors:
-    OK = '\033[92m' #GREEN
-    WARNING = '\033[93m' #YELLOW
-    FAIL = '\033[91m' #RED
-    RESET = '\033[0m' #RESET COLOR
+parser = HfArgumentParser(
+    (
+        ProyectArguments,
+        ModelArguments,
+        GenerateDatasetArguments
+    )
+)
 
+project_args, model_args, generate_args= parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
-WORKDIR = "/mnt/homeGPU/mcarmona/"
-
-local_rank = int(os.getenv("LOCAL_RANK", "0"))
+WORKDIR = project_args.workdir
+SEED = generate_args.seed
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 
 
+def unique(lista: List[str]):
+    """ 
+    Función para eliminar elementos repetidos en una lista 
+    
+    Args:
+        lista (List[str])
 
+    Returns:
+        List[str]
+    """
 
-def unique(lista):
     lista_set = set(lista)
     unique_list = list(lista_set)
+
     return unique_list
 
-def split(cadena, subcadena):
+
+def split(cadena: str, subcadena: str):
+    """
+    Función para dividir una cadena mediante una subcadena
+
+    Args:
+        cadena (str)
+        subcadena (str)
+    
+    Returns:
+        List[str]
+    """
+
+    # Lista que contendrá las divisiones de la cadena
     lista = []
 
-    aux = cadena.find(subcadena)
-    while aux != -1:
-        lista.append(cadena[:aux+1])
-        cadena = cadena[aux+2:]
-        aux = cadena.find(subcadena)
+    # Se busca la subcadena
+    posSubCad = cadena.find(subcadena)
+    # Mientras se siga encontrando la subcadena se sigue dividiendo la cadena
+    while posSubCad != -1:
+        # Se añade la sección dividida a la lista
+        lista.append(cadena[:posSubCad+1])
+        cadena = cadena[posSubCad+2:]
+        posSubCad = cadena.find(subcadena)
     
     lista.append(cadena)
 
     return lista
 
 
-def obtenerTrainDataset(groups_datasets, train_split):
+def obtenerTrainDataset(groups_datasets: List[DataFrame], train_split: float):
+    """
+    Función para obtener el dataset de training a partir de un
+    dataset general y el porcentaje de contenido que se debe extraer
+    del dataset
 
+    Args:
+        groups_datasets (List[DataFrame])
+        train_split (float)
+    
+    Returns:
+        DataFrame
+    """
+
+    # Lista que contendrá la partición de training de cada dataset
     lista = []
 
+    # Obtención de las particiones de training de cada dataset, de esta 
+    # forma el dataset para training mantendrá la proporción de datos de 
+    # cada Topic que existe en el dataset original
     for dataset in groups_datasets:
         lista.append(dataset.sample(
             frac=train_split,
-            random_state=0,
+            random_state=SEED,
             axis=0,
             ignore_index=True
         ))
 
+    # Unión de las particiones de training
     train_dataset = pd.concat(lista)
 
+    # Barajar el dataset de training
     train_dataset = train_dataset.sample(
         frac=1,
-        random_state=0,
+        random_state=SEED,
         axis=0,
         ignore_index=True
     )
@@ -74,13 +160,28 @@ def obtenerTrainDataset(groups_datasets, train_split):
     return train_dataset
 
 
-def obtenerValidationDataset(dataset, train_dataset):
+def obtenerValidationDataset(dataset: DataFrame, train_dataset: DataFrame):
+    """
+    Función para obtener el dataset de validation a partir de un
+    dataset general y el dataset de training
+
+    Args:
+        dataset (DataFrame)
+        train_dataset (DataFrame)
+    
+    Returns:
+        DataFrame
+    """
+
+    # Obtener la diferencia entre el dataset completo y el dataset de training
     validation_dataset = pd.merge(dataset, train_dataset, how='outer', indicator='Exist')
     validation_dataset = validation_dataset.loc[validation_dataset['Exist'] != 'both']
     validation_dataset = validation_dataset.drop(["Exist"], axis=1)
+    
+    # Barajar el dataset de validation
     validation_dataset = validation_dataset.sample(
         frac=1,
-        random_state=0,
+        random_state=SEED,
         axis=0,
         ignore_index=True
     )
@@ -88,9 +189,30 @@ def obtenerValidationDataset(dataset, train_dataset):
     return validation_dataset
     
 
-def generarDatasetAdulto(dataset):
+def generarDatasetAdulto(dataset: DataFrame):
+    """
+    Función para generar el conjunto de datasets para Adultos
 
-    def calculateElements(groups_datasets, num_columns=1):
+    Args:
+        dataset (DataFrame)
+    
+    Returns:
+        List[DataFrame]
+    """
+
+    def calculateElements(groups_datasets: List[DataFrame], num_columns: int=1):
+        """
+        Función para calcular el número de elementos en base a las 
+        filas y a las columnas indicadas
+
+        Args:
+            groups_datasets (List[DataFrame])
+            num_columns (int)
+        
+        Returns:
+            int
+        """
+
         num = 0
         for i in groups_datasets:
             num_rows = len(i.Topic.to_list())
@@ -98,61 +220,112 @@ def generarDatasetAdulto(dataset):
         
         return num
 
+
     def traducirES_EN(groups_datasets):
+        """
+        Función para traducir del Español al Inglés una lista de dataframes
+
+        Args:
+            groups_datasets (List[DataFrame])
+        
+        Returns:
+            List[DataFrame]
+        """
+
         print(bcolors.WARNING + "Realizando traducción a Inglés..." + bcolors.RESET)
 
+        # Creación de la barra de progreso
         progress_bar = tqdm(range(calculateElements(groups_datasets, 2)))
         
+        # Lista que contendrá los datasets después de la traducción
         new_groups_datasets = []
 
+        # Traducción del contenido de cada dataset
         for dataset in groups_datasets:
+            # Dataset que tendrá sus columnas traducidas
             new_dataset = {}
 
+            # La primera columna se copia sin traducir
             new_dataset[dataset.columns.values[0]] = dataset[dataset.columns.values[0]].to_list()
+            # Traducción y guardado del resto de columnas
             for column in dataset.columns.values[1:]:
                 lista = []
                 for text in dataset[column].to_list():
                     lista.append(translator.translate_text(text, target_lang="EN-US").text)
+                    # Actualización de la barra de progreso
                     progress_bar.update(1)
                 new_dataset[column] = lista
 
+            # Guardado del dataset traducido
             new_groups_datasets.append(pd.DataFrame(new_dataset))
 
         print(bcolors.OK + "Terminada traducción" + bcolors.RESET)
 
         return new_groups_datasets
 
+
+    def generarResumenes(text):
+        """
+        Función para generar los posibles resumenes de un texto
+
+        Args:
+            text (str)
+        
+        Returns:
+            List[str]
+        """
+
+        # Obtener los tokens del texto
+        batch = tokenizerSum(text, padding="longest", return_tensors="pt")
+        
+        # Si el número de tokens es menor al límite para resumir, se divide el texto
+        # en las distinas frases que lo componen; sino se procede a generar los
+        # resúmenes a partir del texto
+        if(batch['input_ids'].shape[1] <= generate_args.limit_summary):
+            resumenes = split(text, ". ")
+        else:
+            batch.to(device)
+            translated = modelSum.generate(**batch, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+            tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+            # Eliminación de las frases repetidas
+            resumenes = unique(tgt_text)
+
+        return resumenes
+
+
     def summarization(groups_datasets):
+        """
+        Función para generar las respuestas en base al resumen de los textos de los datasets
+
+        Args:
+            groups_datasets (List[DataFrame])
+        
+        Returns:
+            List[DataFrame]
+        """
 
         print(bcolors.WARNING + "Realizando resumen del texto..." + bcolors.RESET)
 
+        # Creación de la barra de progreso
         progress_bar = tqdm(range(calculateElements(groups_datasets)))
 
+        # Lista que contendrá los datasets después de la obtención de los resúmenes
         new_groups_datasets = []
 
+        # Generación de los resúmenes del contenido de cada dataset
         for dataset in groups_datasets:
             subject = []
             text = []
 
-            for i, j in zip(dataset.Text.to_list(), dataset.Subject.to_list()):
-                batch = tokenizerSum(i, padding="longest", return_tensors="pt")
-                
-                if(batch['input_ids'].shape[1] <= 50):
-                    frases = split(i, ". ")
-                    text += frases
-                    subject += [j] * len(frases)
-                else:
-                    batch.to(device)
-                    translated = modelSum.generate(**batch, num_beams=configSum.num_beams, num_return_sequences=configSum.num_beams)
-                    tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
-                    aux = unique(tgt_text)
-                    text += aux
-                    subject += [j] * len(aux)
-                
+            for i, j in zip(dataset.Text.to_list(), dataset.Subject.to_list()):                
+                resumenes = generarResumenes(i)
+                text += resumenes
+                subject += [j] * len(resumenes)
                 progress_bar.update(1)
                 
             topic = [dataset.Topic.to_list()[0]] * len(text)
 
+            # Guardado del dataset tras la generación de resúmenes
             new_groups_datasets.append(pd.DataFrame({
                 "Topic": topic,
                 "Subject": subject,
@@ -163,7 +336,46 @@ def generarDatasetAdulto(dataset):
 
         return new_groups_datasets
 
+
+    def generarQuestions(subject, text):
+        """
+        Función para generar las preguntas hacia un sujeto sobre una cierta respuesta  
+
+        Args:
+            subject (str)
+            text (str)
+        
+        Returns:
+            List[str]
+        """
+        
+        # Formatear texto de entrada
+        input_text = "answer: %s  context: %s </s>" % (subject, text)
+        # Obtención de las preguntas
+        features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
+        output = modelGenQues.generate(
+            input_ids=features['input_ids'], 
+            attention_mask=features['attention_mask'],
+            max_length=generate_args.max_length_question,
+            num_beams=generate_args.num_beams_question, num_return_sequences=generate_args.num_beams_question
+        )
+        result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(len(output))]
+        # Eliminación de las preguntas repetidas
+        result = unique([i[10:] for i in result])
+
+        return result
+
+
     def generateQuestions(groups_datasets):
+        """
+        Función para generar las preguntas de las respuestas 
+
+        Args:
+            groups_datasets (List[DataFrame])
+        
+        Returns:
+            List[DataFrame]
+        """
 
         print(bcolors.WARNING + "Realizando generación de preguntas..." + bcolors.RESET)
 
@@ -177,16 +389,7 @@ def generarDatasetAdulto(dataset):
             subject_list = []
 
             for subject, text in zip(dataset.Subject.to_list(), dataset.Text.to_list()):
-                input_text = "answer: %s  context: %s </s>" % (subject, text)
-                features = tokenizerGenQues(input_text, return_tensors='pt').to(device)
-                output = modelGenQues.generate(
-                    input_ids=features['input_ids'], 
-                    attention_mask=features['attention_mask'],
-                    max_length=64,
-                    num_beams=4, num_return_sequences=4
-                )
-                result = [tokenizerGenQues.decode(output[i], skip_special_tokens=True) for i in range(len(output))]
-                result = unique([i[10:] for i in result])
+                result = generarQuestions(subject, text)
 
                 answer += [text] * len(result)
                 question += result
@@ -210,44 +413,48 @@ def generarDatasetAdulto(dataset):
     
     print(bcolors.WARNING + "Cargando modelos..." + bcolors.RESET)
 
+    # ---------------------------------------
+    # ----- Traductor
 
-    auth_key = "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx"
+    auth_key = project_args.auth_key_deepl
     translator = deepl.Translator(auth_key)
     
     # ---------------------------------------
+    # ----- Modelo summarization
 
     configSum = AutoConfig.from_pretrained(
-        WORKDIR + "google/pegasus-xsum/config.json"
+        WORKDIR + model_args.model_summary_config
     )
 
     tokenizerSum = AutoTokenizer.from_pretrained(
-        WORKDIR + "google/pegasus-xsum",
-        config=WORKDIR + "google/pegasus-xsum/tokenizer_config.json",
+        WORKDIR + model_args.model_summary_tokenizer,
+        config=WORKDIR + model_args.model_summary_tokenizer_config,
         use_fast=True
     )
 
     modelSum = PegasusForConditionalGeneration.from_pretrained(
-        WORKDIR + "google/pegasus-xsum",
-        from_tf=bool(".ckpt" in "google/pegasus-xsum"),
+        WORKDIR + model_args.model_summary,
+        from_tf=bool(".ckpt" in model_args.model_summary),
         config=configSum,
         torch_dtype=torch.float16
     ).to(device)
 
     # ---------------------------------------
+    # ----- Modelo generate question
 
     configGenQues = AutoConfig.from_pretrained(
-        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/config.json"
+        WORKDIR + model_args.model_genQuestion_config
     )
 
     tokenizerGenQues = AutoTokenizer.from_pretrained(
-        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
-        config=WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap/tokenizer_config.json",
+        WORKDIR + model_args.model_genQuestion_tokenizer,
+        config=WORKDIR + model_args.model_genQuestion_tokenizer_config,
         use_fast=True
     )
 
     modelGenQues = T5ForConditionalGeneration.from_pretrained(
-        WORKDIR + "mrm8488/t5-base-finetuned-question-generation-ap",
-        from_tf=bool(".ckpt" in "mrm8488/t5-base-finetuned-question-generation-ap"),
+        WORKDIR + model_args.model_genQuestion,
+        from_tf=bool(".ckpt" in model_args.model_genQuestion),
         config=configGenQues,
         torch_dtype=torch.float16
     ).to(device)
@@ -257,16 +464,19 @@ def generarDatasetAdulto(dataset):
 
 
 
+    # División del dataset en base al campo Topic
     groups = dataset.groupby(dataset.Topic)
-
     groups_values = dataset.Topic.to_list()
-
     groups_datasets = [groups.get_group(value) for value in groups_values]
 
+    # Traducción de los datasets al Inglés
     groups_datasets = traducirES_EN(groups_datasets)
 
+    # Generación de las distintas respuestas mediante el resumen de los
+    # textos de los distintos datasets
     groups_datasets = summarization(groups_datasets)
 
+    # Generación de las preguntas a las respuestas obtenidas en el paso anterior
     groups_datasets = generateQuestions(groups_datasets)
 
     return groups_datasets
@@ -274,82 +484,47 @@ def generarDatasetAdulto(dataset):
 
 
 
-
 if __name__ == "__main__":
 
-    WORKDIR = "/mnt/homeGPU/mcarmona/"
+    # Lectura del dataset
+    dataset = pd.read_csv(generate_args.dataset_file)
 
-    parser = argparse.ArgumentParser()
-
-    parser.add_argument(
-        "dataset_file", 
-        type = str,
-        help = "El formato del archivo debe ser \'archivo.csv\'"
-    )
-
-    parser.add_argument(
-        "result_dir", 
-        type = str,
-        help = "Debe ser un directorio existe"
-    )
-
-    parser.add_argument(
-        "train_split", 
-        type = float,
-        help = "De ser un flotante mayor que 0 y menor que 1"
-    )
-
-    parser.add_argument(
-        "dataset_type", 
-        type = str,
-        help = "Debe ser algunas de las siguientes cadenas: 'Niño', 'Adulto'"
-    )
-
-    try:
-        args = parser.parse_args()
-        assert args.dataset_file.split('.')[-1] == "csv"
-        assert os.path.exists(args.result_dir)
-        assert args.train_split > 0.0 and args.train_split < 1.0
-        assert args.dataset_type in ["Niño", "Adulto"]
-    except:
-        parser.print_help()
-        sys.exit(0)
-
-
-    dataset = pd.read_csv(args.dataset_file)
-
+    # Eliminación de una columna que se añade al guardar el archivo CSV
     dataset = dataset.drop(columns=["Unnamed: 0"])
 
-    if args.dataset_type == "Adulto":
+    # Obtención de la lista de datasets organizados por la columna Topic
+    if generate_args.dataset_type == "Adulto":
         groups_datasets = generarDatasetAdulto(dataset)
 
+    # Unión de todos los datasets
     total_dataset = pd.concat(groups_datasets)
 
-    train_dataset = obtenerTrainDataset(groups_datasets, args.train_split)
+    # Obtención del dataset de training
+    train_dataset = obtenerTrainDataset(groups_datasets, generate_args.train_split)
 
+    # Generación del dataset de training con el formato para el entrenamiento
     train_s_t = pd.DataFrame({
         "source": train_dataset.Question.to_list(),
         "target": train_dataset.Answer.to_list()
     })
 
+    # Obtención del dataset de validation
     validation_dataset = obtenerValidationDataset(total_dataset, train_dataset)
 
+    # Generación del dataset de validation con el formato para el entrenamiento
     validation_s_t = pd.DataFrame({
         "source": validation_dataset.Question.to_list(),
         "target": validation_dataset.Answer.to_list()
     })
 
-    dir = os.path.join(args.result_dir, f"split_{args.dataset_type}_{args.train_split}")
+    # Directorio donde guardar los resultados
+    dir = os.path.join(generate_args.result_dir, f"split_{generate_args.dataset_type}_{generate_args.train_split}")
+    # Creación del directorio en caso de que no exista
     if not os.path.exists(dir):
         os.mkdir(dir)
 
+    # Guardado de todos los datasets en el directorio de destino
     train_dataset.to_csv(f"{dir}/train_resume.csv")
     train_s_t.to_csv(f"{dir}/train.csv")
     validation_dataset.to_csv(f"{dir}/validation_resume.csv")
     validation_s_t.to_csv(f"{dir}/validation.csv")
-
-
-
-
-
-

@@ -1,31 +1,55 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os
-from typing import List
-import requests
-from pathlib import Path
-import argparse
-import sys
+""" Script para iniciar el servidor GPU """
 
-from project_arguments import ProyectArguments
-from model_arguments import ModelArguments
-from generate_arguments import GenerateArguments
+# General
+import os
+from pathlib import Path
+from typing import List
+from color import bcolors
+
+# Configuración
+import sys
+import argparse
+from dataclass.project_arguments import ProyectArguments
+from dataclass.model_arguments import ModelArguments
+from dataclass.generate_arguments import GenerateArguments
 from transformers import HfArgumentParser
 
-from pydantic import BaseModel
-
+# Despliegue servidor
 from fastapi import FastAPI
-from fastapi.responses import PlainTextResponse
 import uvicorn
-
 from pyngrok import ngrok, conf
 
+# Gestión peticiones
+import requests
+from pydantic import BaseModel
+from fastapi.responses import PlainTextResponse
+
+# Modelos
 import torch
 
 from transformers import set_seed
-from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, MarianMTModel, BlenderbotForConditionalGeneration, TranslationPipeline, ConversationalPipeline, Conversation
+from transformers import (
+    AutoConfig, 
+    AutoTokenizer, 
+    AutoModelForSeq2SeqLM, 
+    MarianMTModel, 
+    BlenderbotForConditionalGeneration, 
+    TranslationPipeline, 
+    ConversationalPipeline, 
+    Conversation
+)
 
+import deepl
+
+# -------------------------------------------------------------------------#
+
+class Entry(BaseModel):
+    entry: str
+    past_user_inputs: List[str]
+    generated_responses: List[str]
 
 
 
@@ -44,23 +68,6 @@ except:
     parser.print_help()
     sys.exit(0)
 
-
-
-class bcolors:
-    OK = '\033[92m' #GREEN
-    WARNING = '\033[93m' #YELLOW
-    FAIL = '\033[91m' #RED
-    RESET = '\033[0m' #RESET COLOR
-
-class Entry(BaseModel):
-    entry: str
-    past_user_inputs: List[str]
-    generated_responses: List[str]
-
-
-
-
-
 BASE_PATH = Path(__file__).resolve().parent
 CONFIG_FILE = args.config_file
 
@@ -73,9 +80,7 @@ parser = HfArgumentParser(
     )
 )
 
-
 project_args, model_args, generate_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
-
 
 WORKDIR = project_args.workdir
 
@@ -127,6 +132,8 @@ modelConver = BlenderbotForConditionalGeneration.from_pretrained(
 )
 
 # ----------------------------------------------
+
+"""
 
 configTrans_ES_EN = AutoConfig.from_pretrained(
     WORKDIR + model_args.model_trans_ES_EN_config
@@ -182,6 +189,8 @@ en_es_translator = TranslationPipeline(
     device=local_rank
 )
 
+"""
+
 # ----------------------------------------------
 
 pipelineConversation = ConversationalPipeline(
@@ -195,16 +204,15 @@ pipelineConversation = ConversationalPipeline(
 
 os.system("nvidia-smi")
 
-
+auth_key = "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx"
+translator = deepl.Translator(auth_key)
 
 
 
 
 def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_responses: List[str]):
 
-    entry_EN = es_en_translator(
-        entry
-    )[0]["translation_text"]
+    entry_EN = translator.translate_text(entry, target_lang="EN-US").text
 
     print(entry_EN)
 
@@ -229,9 +237,7 @@ def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_resp
 
     print(answer_EN)
 
-    answer = en_es_translator(
-        answer_EN
-    )[0]["translation_text"]
+    answer = translator.translate_text(answer_EN, target_lang="ES").text
 
     print(answer)
 
