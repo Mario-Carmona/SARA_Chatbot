@@ -13,7 +13,6 @@ from datasets import load_dataset, load_metric
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
-
 from transformers import Seq2SeqTrainingArguments
 
 from transformers import DataCollatorForSeq2Seq
@@ -70,11 +69,12 @@ CONFIG_FILE = args.config_file
 
 parser = HfArgumentParser(
     (
-        FinetuningArguments
+        FinetuningArguments,
+        Seq2SeqTrainingArguments
     )
 )
 
-finetuning_args, = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
+finetuning_args, training_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 
 WORKDIR = finetuning_args.workdir
@@ -204,26 +204,6 @@ tokenized_datasets.set_format("torch")
 data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizerConver, model=modelConver)
 
 
-training_args = Seq2SeqTrainingArguments(
-    output_dir=finetuning_args.output_dir,
-    overwrite_output_dir=finetuning_args.overwrite_output_dir,
-    evaluation_strategy=finetuning_args.evaluation_strategy,
-    num_train_epochs=finetuning_args.num_train_epochs,
-    log_level=finetuning_args.log_level,
-    logging_strategy=finetuning_args.logging_strategy,
-    save_strategy=finetuning_args.save_strategy,
-    load_best_model_at_end=finetuning_args.load_best_model_at_end,
-    metric_for_best_model=finetuning_args.metric_for_best_model,
-    greater_is_better=finetuning_args.greater_is_better,
-    debug=finetuning_args.debug,
-    per_device_train_batch_size=finetuning_args.per_device_train_batch_size,
-    per_device_eval_batch_size=finetuning_args.per_device_eval_batch_size,
-    fp16=finetuning_args.fp16,
-    fp16_opt_level=finetuning_args.fp16_opt_level,
-    half_precision_backend=finetuning_args.half_precision_backend,
-    dataloader_drop_last=finetuning_args.dataloader_drop_last,
-    learning_rate=finetuning_args.learning_rate
-)
 
 
 
