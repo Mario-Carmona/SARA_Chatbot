@@ -42,15 +42,14 @@ class ServerArguments(ModelConverArguments, DeeplArguments,
         metadata={
             "help": "Clave de autenticación para la API de DeepL"
         }
-    )
+    )  
 
-    def __init__(self):
-        ModelConverArguments.__init__(self)
+    def __post_init__(self):
+        ModelConverArguments.__post_init__(self)
 
         self.ngrok_path = self.workdir + self.ngrok_path
         self.ngrok_config_path = self.workdir + self.ngrok_config_path
 
-    def __post_init__(self):
         assert os.path.exists(self.ngrok_path), "`ngrok_path` debe ser un archivo existente."
 
         assert os.path.exists(self.ngrok_config_path), "`ngrok_config_path` debe ser un directorio existente."
