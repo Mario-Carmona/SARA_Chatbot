@@ -12,9 +12,7 @@ from color import bcolors
 # Configuración
 import sys
 import argparse
-from dataclass.project_arguments import ProyectArguments
-from dataclass.model_arguments import ModelArguments
-from dataclass.generate_arguments import GenerateArguments
+from dataclass.server_arguments import ServerArguments
 from transformers import HfArgumentParser
 
 # Despliegue servidor
@@ -74,15 +72,13 @@ CONFIG_FILE = args.config_file
 
 parser = HfArgumentParser(
     (
-        ProyectArguments, 
-        ModelArguments, 
-        GenerateArguments
+        ServerArguments
     )
 )
 
-project_args, model_args, generate_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
+server_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
-WORKDIR = project_args.workdir
+WORKDIR = server_args.workdir
 
 
 
@@ -113,20 +109,20 @@ set_seed(0)
 # download model & vocab.
 
 configConver = AutoConfig.from_pretrained(
-    WORKDIR + model_args.model_conver_config
+    server_args.model_conver_config
 )
 
 
 tokenizerConver = AutoTokenizer.from_pretrained(
-    WORKDIR + model_args.model_conver_tokenizer,
-    config=WORKDIR + model_args.model_conver_tokenizer_config,
+    server_args.model_conver_tokenizer,
+    config=server_args.model_conver_tokenizer_config,
     use_fast=True
 )
 
 
 modelConver = BlenderbotForConditionalGeneration.from_pretrained(
-    WORKDIR + model_args.model_conver,
-    from_tf=bool(".ckpt" in model_args.model_conver),
+    server_args.model_conver,
+    from_tf=bool(".ckpt" in server_args.model_conver),
     config=configConver,
     torch_dtype=torch.float16
 )
@@ -224,13 +220,13 @@ def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_resp
 
     pipelineConversation(
         conversation,
-        do_sample=generate_args.do_sample,
-        temperature=generate_args.temperature,
-        top_p=generate_args.top_p,
-        max_time=generate_args.max_time,
-        max_length=generate_args.max_length,
-        min_length=generate_args.min_length,
-        use_cache=generate_args.use_cache
+        do_sample=server_args.do_sample,
+        temperature=server_args.temperature,
+        top_p=server_args.top_p,
+        max_time=server_args.max_time,
+        max_length=server_args.max_length,
+        min_length=server_args.min_length,
+        use_cache=server_args.use_cache
     )
 
     answer_EN = conversation.generated_responses[-1]
@@ -258,7 +254,7 @@ def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_resp
 
 def send_public_URL():
     print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
-    url = project_args.controller_url
+    url = server_args.controller_url
     headers = {'content-type': 'application/json'}
     response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
     print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))
@@ -294,11 +290,11 @@ def adulto():
 
 if __name__ == "__main__":
 
-    port = eval(os.environ.get("PORT", project_args.port))
+    port = eval(os.environ.get("PORT", server_args.port))
 
     pyngrok_config = conf.PyngrokConfig(
-        ngrok_path=WORKDIR + project_args.ngrok_path,
-        config_path=WORKDIR + project_args.ngrok_config_path
+        ngrok_path=server_args.ngrok_path,
+        config_path=server_args.ngrok_config_path
     )
 
     global public_url
