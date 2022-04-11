@@ -22,7 +22,7 @@
 
     "output_dir": "result_finetuning/v1",
     "overwrite_output_dir": true,
-    "resume_from_checkpoint": "result_finetuning/v1/last-checkpoint",
+    "resume_from_checkpoint": false,
 
     "do_train": true,
     "do_eval": false,
