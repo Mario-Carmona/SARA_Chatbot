@@ -503,7 +503,6 @@
 501,What is the term for computing that makes responsible use of resources?,Green Computing refers to computing that makes responsible use of resources.
 502,"What is a technique called that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local)."
 503,What is a particular type of artificial neural network?,Autoencoders are a particular type of artificial neural network that is divided into two parts: the encoder and the decoding decoder.
-504,What type of data does a website contain?,
 505,What is AR?,Augmented Reality (AR) and Virtual Reality (VR) are two of the newest technologies in the world of entertainment.
 506,"In this lesson, we are going to learn how to write code using what?","In this lesson, we are going to learn how to write code using sugar."
 507,What are rules of association?,Association rules are a set of rules that govern the classification of objects in a data set.
@@ -534,7 +533,6 @@
 532,"What is a technique that allows to train an algorithm in a way, using its own data but only shares it with other users?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local), but only shares it with other users."
 533,What does Ahmed Rashid say is important in artificial intelligence?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in artificial intelligence (AI)."
 534,What is it called when a set of data is transformed into an alphabetic code of fixed length?,A Hash Function is a mathematical function that transforms a set of data into an alphabetic code of fixed length.
-535,What type of data is stored in a database?,
 536,Hash Trees and Merkle Trees are two types of data structures that can be used in blockchain technology?,Hash Trees and Merkle Trees are two types of data structures that can be used in Blockchain technology.
 537,Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in data?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at one of the most common problems faced by African journalists - failure to identify a pattern in data."
 538,What is a type of machine learning where a decision made by an algorithm is followed by a reinforcement?,Reinforcement learning is a type of machine learning whereby a decision made by an algorithm is followed by a reinforcement.
@@ -604,7 +602,6 @@
 602,What is the term for a system that has computing power equivalent to the Universal Turing Machine?,A Turing Complete system is one that has a computing power equivalent to the Universal Turing Machine.
 603,What does Ahmed Rashid talk about in his letters to African journalists?,"In our series of letters from African journalists, film-maker and columnist Ahmed Rashid looks at the importance of ""overfitting"" in computer science."
 604,"What is a technique that allows to train an algorithm in a way, using its own data?","Federated Learning is a technique that allows to train an algorithm in a way, using its own data (private and local)."
-605,What type of data is stored in the database?,
 606,What does Farai Sevenzo look at the future of?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at the future of metaverses."
 607,What type of data is big data?,There are two main types of data: smart and big.
 608,What technology is changing the way we live?,"In our series of letters from African journalists, filmmaker and columnist Ahmedou Ould-Abdallah looks at how the internet of things is changing the way we live."
