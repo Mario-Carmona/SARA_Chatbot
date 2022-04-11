@@ -195,10 +195,10 @@ aux = pandas.read_csv(finetuning_args.train_dataset)
 aux2 = pandas.read_csv(finetuning_args.validation_dataset)
 
 aux = aux.dropna()
-aux = aux.remove_columns(["Unnamed: 0"])
+aux = aux.drop( columns=["Unnamed: 0"])
 
 aux2 = aux2.dropna()
-aux2 = aux2.remove_columns(["Unnamed: 0"])
+aux2 = aux2.drop( columns=["Unnamed: 0"])
 
 aux.to_csv(f"./datasets/v1/split_0.7/train_2.csv")
 aux2.to_csv(f"./datasets/v1/split_0.7/validation_2.csv")
