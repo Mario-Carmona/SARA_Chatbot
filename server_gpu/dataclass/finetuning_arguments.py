@@ -3,12 +3,10 @@ import os
 from dataclasses import dataclass, field
 from dataclass.model_conversation_arguments import ModelConverArguments
 from dataclass.generate_arguments import GenerateArguments
-from transformers import Seq2SeqTrainingArguments
 
 
 @dataclass
-class FinetuningArguments(ModelConverArguments, GenerateArguments, 
-                          Seq2SeqTrainingArguments):
+class FinetuningArguments(ModelConverArguments, GenerateArguments):
     data_dir: str = field(
         metadata={
             "help": "The input data dir. Should contain the .tsv files (or other data files) for the task."
