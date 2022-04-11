@@ -86,7 +86,6 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
 
     def __post_init__(self):
         ModelConverArguments.__post_init__(self)
-        Seq2SeqTrainingArguments.__post_init__(self)
 
         self.output_dir = self.workdir + self.output_dir
 
