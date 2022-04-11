@@ -87,8 +87,6 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
     def __post_init__(self):
         ModelConverArguments.__post_init__(self)
 
-        self.output_dir = self.workdir + self.output_dir
-
         self.data_dir = self.workdir + self.data_dir
         self.train_dataset = self.data_dir + self.train_dataset
         self.validation_dataset = self.data_dir + self.validation_dataset

@@ -79,8 +79,10 @@ finetuning_args, training_args = parser.parse_json_file(json_file=str(BASE_PATH/
 
 WORKDIR = finetuning_args.workdir
 
+training_args.output_dir = WORKDIR + training_args.output_dir
 
-check_output_dir(finetuning_args)
+
+check_output_dir(training_args)
 
 
 
