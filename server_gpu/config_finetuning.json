@@ -8,9 +8,9 @@
     "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
 
 
-    "data_dir": "datasets/v1/split_0.8/",
-    "train_dataset": "train_EN.csv",
-    "validation_dataset": "val_EN.csv",
+    "data_dir": "server_gpu/datasets/v1/split_0.7/",
+    "train_dataset": "train_2.csv",
+    "validation_dataset": "val_2.csv",
     "task": "conversational",
     "max_source_length": 128,
     "max_target_length": 128,
