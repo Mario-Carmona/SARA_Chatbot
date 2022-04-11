@@ -147,8 +147,7 @@ for p in extra_model_params:
 
 tokenizerConver = AutoTokenizer.from_pretrained(
     finetuning_args.model_conver_tokenizer,
-    config=finetuning_args.model_conver_tokenizer_config,
-    use_fast=True
+    config=finetuning_args.model_conver_tokenizer_config
 )
 
 
