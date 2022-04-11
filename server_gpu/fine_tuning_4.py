@@ -147,7 +147,8 @@ for p in extra_model_params:
 
 tokenizerConver = AutoTokenizer.from_pretrained(
     finetuning_args.model_conver_tokenizer,
-    config=finetuning_args.model_conver_tokenizer_config
+    config=finetuning_args.model_conver_tokenizer_config,
+    use_fast=True
 )
 
 
@@ -179,10 +180,10 @@ datasets = load_dataset("csv", data_files=data_files)
 def preprocess_function(examples):
     inputs = [example for example in examples["source"]]
     targets = [example for example in examples["target"]]
-    model_inputs = tokenizerConver(inputs, max_length=finetuning_args.max_source_length, truncation=True, padding="max_length")
+    model_inputs = tokenizerConver(inputs, max_length=finetuning_args.max_source_length, truncation=True, padding="max_length",is_split_into_words=True)
 
     with tokenizerConver.as_target_tokenizer():
-        labels = tokenizerConver(targets, max_length=finetuning_args.max_target_length, truncation=True, padding="max_length")
+        labels = tokenizerConver(targets, max_length=finetuning_args.max_target_length, truncation=True, padding="max_length",is_split_into_words=True)
 
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
