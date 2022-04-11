@@ -31,11 +31,8 @@ import torch
 from transformers import set_seed
 from transformers import (
     AutoConfig, 
-    AutoTokenizer, 
-    AutoModelForSeq2SeqLM, 
-    MarianMTModel, 
-    BlenderbotForConditionalGeneration, 
-    TranslationPipeline, 
+    AutoTokenizer,
+    BlenderbotForConditionalGeneration,
     ConversationalPipeline, 
     Conversation
 )
@@ -77,8 +74,6 @@ parser = HfArgumentParser(
 )
 
 server_args, = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
-
-print(server_args)
 
 WORKDIR = server_args.workdir
 
@@ -128,66 +123,6 @@ modelConver = BlenderbotForConditionalGeneration.from_pretrained(
     config=configConver,
     torch_dtype=torch.float16
 )
-
-# ----------------------------------------------
-
-"""
-
-configTrans_ES_EN = AutoConfig.from_pretrained(
-    WORKDIR + model_args.model_trans_ES_EN_config
-)
-
-tokenizerTrans_ES_EN = AutoTokenizer.from_pretrained(
-    WORKDIR + model_args.model_trans_ES_EN_tokenizer,
-    config=WORKDIR + model_args.model_trans_ES_EN_tokenizer_config,
-    use_fast=True
-)
-
-modelTrans_ES_EN = MarianMTModel.from_pretrained(
-    WORKDIR + model_args.model_trans_ES_EN,
-    from_tf=bool(".ckpt" in model_args.model_trans_ES_EN),
-    config=configTrans_ES_EN,
-    torch_dtype=torch.float16
-)
-
-# ----------------------------------------------
-
-configTrans_EN_ES = AutoConfig.from_pretrained(
-    WORKDIR + model_args.model_trans_EN_ES_config
-)
-
-tokenizerTrans_EN_ES = AutoTokenizer.from_pretrained(
-    WORKDIR + model_args.model_trans_EN_ES_tokenizer,
-    config=WORKDIR + model_args.model_trans_EN_ES_tokenizer_config,
-    use_fast=True
-)
-
-modelTrans_EN_ES = MarianMTModel.from_pretrained(
-    WORKDIR + model_args.model_trans_EN_ES,
-    from_tf=bool(".ckpt" in model_args.model_trans_EN_ES),
-    config=configTrans_EN_ES,
-    torch_dtype=torch.float16
-)
-
-# ----------------------------------------------
-
-es_en_translator = TranslationPipeline(
-    model=modelTrans_ES_EN,
-    tokenizer=tokenizerTrans_ES_EN,
-    framework="pt",
-    device=local_rank
-)
-
-# ----------------------------------------------
-
-en_es_translator = TranslationPipeline(
-    model=modelTrans_EN_ES,
-    tokenizer=tokenizerTrans_EN_ES,
-    framework="pt",
-    device=local_rank
-)
-
-"""
 
 # ----------------------------------------------
 

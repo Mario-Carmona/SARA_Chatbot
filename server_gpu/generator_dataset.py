@@ -15,7 +15,7 @@ import sys
 import argparse
 from dataclass.generate_dataset_arguments import GenerateDatasetArguments
 from dataclass.project_arguments import ProyectArguments
-from dataclass.model_arguments import ModelArguments
+from server_gpu.extra.model_arguments import ModelArguments
 from transformers import HfArgumentParser
 
 # Datos
