@@ -20,3 +20,4 @@
 18,What is a formal model of computation that can perform any computation?,A Turing machine is a formal model of computation capable of performing any computation (that a computer is capable of performing this theoretical model).
 19,What type of learning can they be classified into?,"They can be grouped into: Supervised, Unsupervised, Semi-supervised."
 20,What does Farai Sevenzo call the internet?,"In our series of letters from African journalists, film-maker and columnist Farai Sevenzo looks at how the internet of things is changing the way we live."
+21,What is a Data structure that relates a value called key to one or more other elements?,"A Hash Table is a Data structure that relates a value called ""key"" to one or more other elements."
