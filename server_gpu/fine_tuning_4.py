@@ -180,10 +180,10 @@ datasets = load_dataset("csv", data_files=data_files)
 def preprocess_function(examples):
     inputs = [example for example in examples["source"]]
     targets = [example for example in examples["target"]]
-    model_inputs = tokenizerConver(inputs, max_length=finetuning_args.max_source_length, truncation=True, padding="max_length",is_split_into_words=True)
+    model_inputs = tokenizerConver(inputs, max_length=finetuning_args.max_source_length, truncation=True, padding="max_length")
 
     with tokenizerConver.as_target_tokenizer():
-        labels = tokenizerConver(targets, max_length=finetuning_args.max_target_length, truncation=True, padding="max_length",is_split_into_words=True)
+        labels = tokenizerConver(targets, max_length=finetuning_args.max_target_length, truncation=True, padding="max_length")
 
     model_inputs["labels"] = labels["input_ids"]
     return model_inputs
@@ -192,12 +192,10 @@ def preprocess_function(examples):
 import pandas
 
 aux = pandas.read_csv(finetuning_args.train_dataset)
+aux2 = pandas.read_csv(finetuning_args.validation_dataset)
 
-print(len(aux["source"].to_list()))
-
-aux2 = aux.dropna()
-
-print(len(aux2["source"].to_list()))
+print(aux.isnull())
+print(aux2.isnull())
 
 
 """
