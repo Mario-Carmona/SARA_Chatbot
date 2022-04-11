@@ -10,6 +10,7 @@ class ProyectArguments:
     """
 
     workdir: str = field(
+        default="./",
         metadata={
             "help": "Directorio de trabajo del proyecto"
         }
