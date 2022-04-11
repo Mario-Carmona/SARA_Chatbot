@@ -194,8 +194,11 @@ import pandas
 aux = pandas.read_csv(finetuning_args.train_dataset)
 aux2 = pandas.read_csv(finetuning_args.validation_dataset)
 
-print(aux.isnull())
-print(aux2.isnull())
+aux = aux.dropna()
+aux2 = aux2.dropna()
+
+aux.to_csv(f"./datasets/v1/split_0.7/train_2.csv")
+aux2.to_csv(f"./datasets/v1/split_0.7/validation_2.csv")
 
 
 """
