@@ -76,7 +76,7 @@ parser = HfArgumentParser(
     )
 )
 
-server_args = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
+server_args, = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 print(server_args)
 
