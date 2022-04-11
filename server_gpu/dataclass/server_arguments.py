@@ -1,9 +1,9 @@
 
 import os
 from dataclasses import dataclass, field
-from model_conversation_arguments import ModelConverArguments
-from deepl_arguments import DeeplArguments
-from generate_arguments import GenerateArguments
+from dataclass.model_conversation_arguments import ModelConverArguments
+from dataclass.deepl_arguments import DeeplArguments
+from dataclass.generate_arguments import GenerateArguments
 
 
 @dataclass
