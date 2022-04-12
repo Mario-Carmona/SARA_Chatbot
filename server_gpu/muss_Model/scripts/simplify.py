@@ -6,8 +6,16 @@
 
 import argparse
 
-from muss.simplify import ALLOWED_MODEL_NAMES, simplify_sentences
+from muss.simplify import simplify_sentences
 from muss.utils.helpers import read_lines
+
+
+ALLOWED_MODEL_NAMES = [
+    'muss_en_wikilarge_mined',
+    'muss_en_mined',
+    'muss_fr_mined',
+    'muss_es_mined',
+]
 
 
 if __name__ == '__main__':
