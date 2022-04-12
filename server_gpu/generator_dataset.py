@@ -242,7 +242,7 @@ def save_dataset_EN(groups_datasets):
     total_dataset = pd.concat(groups_datasets)
     total_dataset = total_dataset.dropna()
     name_file = '.'.join(generate_args.dataset_file.split('.')[:-1]) + "_EN.csv"
-    train_dataset.to_csv(name_file)
+    total_dataset.to_csv(name_file)
 
 
 def save_dataset_train_valid(groups_datasets, dir):
