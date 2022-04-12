@@ -152,7 +152,8 @@ tokenizerConver = AutoTokenizer.from_pretrained(
 modelConver = BlenderbotForConditionalGeneration.from_pretrained(
     finetuning_args.model_conver,
     from_tf=bool(".ckpt" in finetuning_args.model_conver),
-    config=configConver
+    config=configConver,
+    torch_dtype=torch.float16
 )
 
 

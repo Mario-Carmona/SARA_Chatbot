@@ -43,7 +43,7 @@
     "per_device_eval_batch_size": 4,
     "gradient_accumulation_steps": 16,
 
-    "fp16": true,
+    "fp16": false,
     "fp16_opt_level": "O1",
     "half_precision_backend": "auto",
 
