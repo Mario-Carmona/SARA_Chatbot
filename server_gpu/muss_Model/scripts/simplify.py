@@ -6,7 +6,7 @@
 
 import argparse
 
-from muss_Model.muss.simplify import simplify_sentences
+from muss.simplify import simplify_sentences
 from muss.utils.helpers import read_lines
 
 
