@@ -39,9 +39,9 @@
 
     "debug": "underflow_overflow",
 
-    "per_device_train_batch_size": 1,
-    "per_device_eval_batch_size": 1,
-    "gradient_accumulation_steps": 4,
+    "per_device_train_batch_size": 4,
+    "per_device_eval_batch_size": 4,
+    "gradient_accumulation_steps": 16,
     "gradient_checkpointing": true,
 
     "fp16": true,
