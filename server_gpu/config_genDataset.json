@@ -15,6 +15,8 @@
     "model_summary_tokenizer": "google/pegasus-xsum",
     "model_summary_tokenizer_config": "google/pegasus-xsum/tokenizer_config.json",
 
+    "model_simplify": "muss_en_wikilarge_mined",
+
 
     "seed": 0,
     "limit_summary": 50,
@@ -25,6 +27,5 @@
     "dataset_file": "server_gpu/datasets/v1/datasetV1.csv",
     "translated": false,
     "result_dir": "server_gpu/datasets/v1",
-    "train_split": 0.7,
-    "dataset_type": "Adulto"
+    "train_split": 0.7
 }

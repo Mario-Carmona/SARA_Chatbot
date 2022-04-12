@@ -10,7 +10,7 @@ from dataclass.model_genQuestion_arguments import ModelGenQuestionArguments
 
 @dataclass
 class GenerateDatasetArguments(ModelSumArguments, ModelGenQuestionArguments,
-                               DeeplArguments):
+                               ModelSimplifyArguments, DeeplArguments):
     """
     Argumentos relacionados con la generación de datasets para el entrenamiento
     """
@@ -65,15 +65,11 @@ class GenerateDatasetArguments(ModelSumArguments, ModelGenQuestionArguments,
             "help": "Porcentaje de training obtenido del dataset"
         }
     )
-    dataset_type: str = field(
-        metadata={
-            "help": "Tipo de generación del dataset"
-        }
-    )
 
     def __post_init__(self):
         ModelSumArguments.__post_init__(self)
         ModelGenQuestionArguments.__post_init__(self)
+        ModelSimplifyArguments.__post_init__(self)
 
         self.dataset_file = self.workdir + self.dataset_file
         self.result_dir = self.workdir + self.result_dir
@@ -92,5 +88,3 @@ class GenerateDatasetArguments(ModelSumArguments, ModelGenQuestionArguments,
         assert os.path.exists(self.result_dir), "`result_dir` debe ser un directorio existente."
 
         assert 0.0 < self.train_split and self.train_split < 1.0, "`train_split` debe estar en el rango (0,1)."
-
-        assert self.dataset_type in ["Niño", "Adulto"], "`dataset_type` debe tener alguno de los siguientes valores: 'Niño', 'Adulto'."
