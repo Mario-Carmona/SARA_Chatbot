@@ -233,5 +233,7 @@ trainer = Seq2SeqTrainer(
 )
 
 
+torch.cuda.amp.autocast
+
 trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
 
