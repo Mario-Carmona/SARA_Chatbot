@@ -152,8 +152,7 @@ tokenizerConver = AutoTokenizer.from_pretrained(
 modelConver = BlenderbotForConditionalGeneration.from_pretrained(
     finetuning_args.model_conver,
     from_tf=bool(".ckpt" in finetuning_args.model_conver),
-    config=configConver,
-    torch_dtype=torch.float16
+    config=configConver
 )
 
 
@@ -233,7 +232,6 @@ trainer = Seq2SeqTrainer(
 )
 
 
-torch.cuda.amp.autocast
 
 trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
 
