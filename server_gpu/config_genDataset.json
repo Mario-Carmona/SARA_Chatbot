@@ -27,5 +27,5 @@
     "dataset_file": "server_gpu/datasets/v1/datasetV1.csv",
     "translated": false,
     "result_dir": "server_gpu/datasets/v1",
-    "train_split": 0.7
+    "train_split": 0.8
 }
