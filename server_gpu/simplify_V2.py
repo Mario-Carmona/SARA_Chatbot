@@ -6,16 +6,9 @@
 
 import argparse
 
-from mussModel.muss.simplify import simplify_sentences
-from muss.utils.helpers import read_lines
+from mussModel.muss.simplify import ALLOWED_MODEL_NAMES, simplify_sentences
+from mussModel.muss.utils.helpers import read_lines
 
-
-ALLOWED_MODEL_NAMES = [
-    'muss_en_wikilarge_mined',
-    'muss_en_mined',
-    'muss_fr_mined',
-    'muss_es_mined',
-]
 
 
 
