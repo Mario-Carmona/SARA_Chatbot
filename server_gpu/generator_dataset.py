@@ -500,7 +500,7 @@ def simplify(groups_datasets):
     
     """
 
-    print(bcolors.WARNING + "Realizando generación de preguntas..." + bcolors.RESET)
+    print(bcolors.WARNING + "Realizando simplificación..." + bcolors.RESET)
 
     progress_bar = tqdm(range(calculateElements(groups_datasets)))
 
@@ -524,6 +524,10 @@ def simplify(groups_datasets):
             "Question": question,
             "Answer": answer
         }))
+
+    print(bcolors.OK + "Terminada simplificación" + bcolors.RESET)
+
+    return new_groups_datasets
 
 
 def generarDatasetAdulto(groups_datasets: List[DataFrame], dir: str):
