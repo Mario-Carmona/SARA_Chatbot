@@ -36,6 +36,8 @@ import deepl
 
 # -------------------------------------------------------------------------#
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
 parser = argparse.ArgumentParser()
 
 parser.add_argument(
