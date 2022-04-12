@@ -9,12 +9,12 @@ import os
 import shutil
 import sys
 
-from muss.utils.helpers import run_command, create_directory_or_skip
-from muss.preprocessing import replace_lrb_rrb_file, normalize_punctuation
-from muss.utils.resources import download_and_extract, add_newline_at_end_of_file, git_clone, download
-from muss.resources.paths import get_dataset_dir, get_data_filepath, PHASES, LASER_DIR
-from muss.resources.datasets import apply_line_function_to_dataset
-from muss.text import normalize_unicode, word_detokenize
+from SentenceSimplification.muss.utils.helpers import run_command, create_directory_or_skip
+from SentenceSimplification.muss.preprocessing import replace_lrb_rrb_file, normalize_punctuation
+from SentenceSimplification.muss.utils.resources import download_and_extract, add_newline_at_end_of_file, git_clone, download
+from SentenceSimplification.muss.resources.paths import get_dataset_dir, get_data_filepath, PHASES, LASER_DIR
+from SentenceSimplification.muss.resources.datasets import apply_line_function_to_dataset
+from SentenceSimplification.muss.text import normalize_unicode, word_detokenize
 
 
 def prepare_wikilarge():

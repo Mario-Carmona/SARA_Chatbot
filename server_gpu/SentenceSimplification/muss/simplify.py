@@ -7,11 +7,11 @@
 import shutil
 import re
 
-from muss.preprocessors import get_preprocessors
-from muss.utils.helpers import write_lines, read_lines, get_temp_filepath
-from muss.simplifiers import get_fairseq_simplifier, get_preprocessed_simplifier
-from muss.resources.paths import MODELS_DIR
-from muss.utils.resources import download_and_extract
+from SentenceSimplification.muss.preprocessors import get_preprocessors
+from SentenceSimplification.muss.utils.helpers import write_lines, read_lines, get_temp_filepath
+from SentenceSimplification.muss.simplifiers import get_fairseq_simplifier, get_preprocessed_simplifier
+from SentenceSimplification.muss.resources.paths import MODELS_DIR
+from SentenceSimplification.muss.utils.resources import download_and_extract
 
 
 # Models are the best of each experiment according to validation SARI score

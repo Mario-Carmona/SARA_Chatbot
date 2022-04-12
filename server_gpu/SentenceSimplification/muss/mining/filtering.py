@@ -11,9 +11,9 @@ from tqdm import tqdm
 import numpy as np
 from sklearn.preprocessing import QuantileTransformer
 
-from muss.text import get_named_entities, to_sentences
-from muss.feature_extraction import get_log_ranks, get_levenshtein_distance
-from muss.utils.helpers import failsafe_division
+from SentenceSimplification.muss.text import get_named_entities, to_sentences
+from SentenceSimplification.muss.feature_extraction import get_log_ranks, get_levenshtein_distance
+from SentenceSimplification.muss.utils.helpers import failsafe_division
 
 
 def is_contained(source, simplification):

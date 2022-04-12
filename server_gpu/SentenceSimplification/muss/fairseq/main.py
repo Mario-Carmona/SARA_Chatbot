@@ -12,16 +12,16 @@ import nevergrad as ng
 import numpy as np
 from submitit.helpers import DelayedSubmission
 
-from muss.evaluation.general import evaluate_simplifier, get_easse_report, get_orig_and_refs_sents
-from muss.evaluation.utils import combine_metrics
-from muss.fairseq.base import fairseq_preprocess, fairseq_train, get_fairseq_exp_dir
-from muss.resources.datasets import has_lines_in_common
-from muss.preprocessors import get_preprocessors, get_preprocessor_by_name
-from muss.resources.datasets import create_preprocessed_dataset
-from muss.resources.paths import get_data_filepath, get_dataset_dir
-from muss.simplifiers import get_fairseq_simplifier, get_preprocessed_simplifier
-from muss.utils.submitit import get_job_id
-from muss.utils.helpers import print_running_time, add_dicts
+from SentenceSimplification.muss.evaluation.general import evaluate_simplifier, get_easse_report, get_orig_and_refs_sents
+from SentenceSimplification.muss.evaluation.utils import combine_metrics
+from SentenceSimplification.muss.fairseq.base import fairseq_preprocess, fairseq_train, get_fairseq_exp_dir
+from SentenceSimplification.muss.resources.datasets import has_lines_in_common
+from SentenceSimplification.muss.preprocessors import get_preprocessors, get_preprocessor_by_name
+from SentenceSimplification.muss.resources.datasets import create_preprocessed_dataset
+from SentenceSimplification.muss.resources.paths import get_data_filepath, get_dataset_dir
+from SentenceSimplification.muss.simplifiers import get_fairseq_simplifier, get_preprocessed_simplifier
+from SentenceSimplification.muss.utils.submitit import get_job_id
+from SentenceSimplification.muss.utils.helpers import print_running_time, add_dicts
 
 
 def check_dataset(dataset):

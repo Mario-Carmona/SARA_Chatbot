@@ -16,16 +16,16 @@ import numpy as np
 import sentencepiece as spm
 from fairseq.data.encoders.gpt2_bpe_utils import get_encoder
 
-from muss.feature_extraction import (
+from SentenceSimplification.muss.feature_extraction import (
     get_lexical_complexity_score,
     get_levenshtein_similarity,
     get_dependency_tree_depth,
     get_replace_only_levenshtein_similarity,
 )
-from muss.resources.paths import VARIOUS_DIR, RESOURCES_DIR
-from muss.utils.resources import download
-from muss.text import remove_multiple_whitespaces, extract_special_tokens
-from muss.utils.helpers import (
+from SentenceSimplification.muss.resources.paths import VARIOUS_DIR, RESOURCES_DIR
+from SentenceSimplification.muss.utils.resources import download
+from SentenceSimplification.muss.text import remove_multiple_whitespaces, extract_special_tokens
+from SentenceSimplification.muss.utils.helpers import (
     write_lines_in_parallel,
     yield_lines_in_parallel,
     add_dicts,

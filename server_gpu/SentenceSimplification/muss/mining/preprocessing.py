@@ -13,12 +13,12 @@ from tqdm import tqdm
 import numpy as np
 import faiss
 
-from muss.preprocessing import normalize_punctuation
-from muss.text import yield_sentence_concatenations, normalize_unicode
-from muss.kenlm import get_kenlm_log_prob
-from muss.utils.helpers import batch_items, log_action, yield_lines
-from muss.resources.paths import RESOURCES_DIR
-from muss.mining.nn_search import cached_count_lines
+from SentenceSimplification.muss.preprocessing import normalize_punctuation
+from SentenceSimplification.muss.text import yield_sentence_concatenations, normalize_unicode
+from SentenceSimplification.muss.kenlm import get_kenlm_log_prob
+from SentenceSimplification.muss.utils.helpers import batch_items, log_action, yield_lines
+from SentenceSimplification.muss.resources.paths import RESOURCES_DIR
+from SentenceSimplification.muss.mining.nn_search import cached_count_lines
 
 
 def yield_json_documents_from_compressed(compressed_path):

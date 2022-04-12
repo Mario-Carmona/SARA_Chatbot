@@ -6,8 +6,8 @@
 
 import argparse
 
-from mussModel.muss.simplify import ALLOWED_MODEL_NAMES, simplify_sentences
-from mussModel.muss.utils.helpers import read_lines
+from SentenceSimplification.muss.simplify import ALLOWED_MODEL_NAMES, simplify_sentences
+from SentenceSimplification.muss.utils.helpers import read_lines
 
 
 
