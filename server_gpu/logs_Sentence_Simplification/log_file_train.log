@@ -1,0 +1,124 @@
+2022-04-08 11:58:28,322:INFO: Epoch: 0 | iter: 10000 | avg. train loss: 0.000890946798864723 | time elapsed: 2568.8884842395782
+2022-04-08 15:42:26,321:INFO: Epoch: 0 | iter: 10000 | avg. train loss: 0.00022387789894758985 | time elapsed: 2517.7169513702393
+2022-04-08 16:24:12,887:INFO: Epoch: 0 | iter: 20000 | avg. train loss: 0.0001732726839342129 | time elapsed: 5024.282762765884
+2022-04-08 17:06:00,713:INFO: Epoch: 0 | iter: 30000 | avg. train loss: 0.00011973287997400624 | time elapsed: 7532.109191656113
+2022-04-08 18:36:05,834:INFO: Completed Epoch: 0 | avg. eval loss: 0.00409 | blue score: 0.39088659693392336| Sari score: 0.47292750878952117 | time elapsed: 4252.071777582169
+2022-04-08 18:36:05,860:INFO: New best model found
+2022-04-08 19:32:27,738:INFO: Epoch: 0 | iter: 10000 | avg. train loss: 0.00016556703741133175 | time elapsed: 2529.7993669509888
+2022-04-08 20:14:30,195:INFO: Epoch: 0 | iter: 20000 | avg. train loss: 0.013812596153909467 | time elapsed: 5052.256240844727
+2022-04-08 20:56:43,659:INFO: Epoch: 0 | iter: 30000 | avg. train loss: 1.6975491368535615e-05 | time elapsed: 7585.7207906246185
+2022-04-08 22:26:36,380:INFO: Completed Epoch: 0 | avg. eval loss: 0.00733 | blue score: 0.6191120708919386| Sari score: 0.4642078896352804 | time elapsed: 4197.683167695999
+2022-04-08 22:26:36,389:INFO: New best model found
+2022-04-08 22:27:46,205:INFO: Checkpoint saved successfully with time: 69.81654644012451
+2022-04-08 23:11:10,502:INFO: Epoch: 1 | iter: 10000 | avg. train loss: 6.547299548029576e-06 | time elapsed: 2604.0817818641663
+2022-04-08 23:54:38,356:INFO: Epoch: 1 | iter: 20000 | avg. train loss: 1.747570934975853e-05 | time elapsed: 5211.936189174652
+2022-04-09 00:38:09,171:INFO: Epoch: 1 | iter: 30000 | avg. train loss: 1.0374820890550822e-05 | time elapsed: 7822.750785589218
+2022-04-09 02:08:03,241:INFO: Completed Epoch: 1 | avg. eval loss: 0.02033 | blue score: 0.39357747083374783| Sari score: 0.47463248093505084 | time elapsed: 4197.404916524887
+2022-04-09 02:08:37,986:INFO: Checkpoint saved successfully with time: 34.74014592170715
+2022-04-09 02:52:00,622:INFO: Epoch: 2 | iter: 10000 | avg. train loss: 2.4370260279537864e-05 | time elapsed: 2602.2844359874725
+2022-04-09 03:35:24,745:INFO: Epoch: 2 | iter: 20000 | avg. train loss: 7.761815052952819e-06 | time elapsed: 5206.407044172287
+2022-04-09 04:18:49,384:INFO: Epoch: 2 | iter: 30000 | avg. train loss: 1.5067110968853272e-06 | time elapsed: 7811.046112060547
+2022-04-09 05:48:18,584:INFO: Completed Epoch: 2 | avg. eval loss: 0.01657 | blue score: 0.46914369233198405| Sari score: 0.4750938774373932 | time elapsed: 4170.300051450729
+2022-04-09 05:48:53,403:INFO: Checkpoint saved successfully with time: 34.814196825027466
+2022-04-09 06:32:20,300:INFO: Epoch: 3 | iter: 10000 | avg. train loss: 4.809142995455531e-06 | time elapsed: 2606.6987397670746
+2022-04-09 07:15:49,123:INFO: Epoch: 3 | iter: 20000 | avg. train loss: 8.022453227533166e-06 | time elapsed: 5215.522062778473
+2022-04-09 07:59:09,695:INFO: Epoch: 3 | iter: 30000 | avg. train loss: 2.5728879237996057e-07 | time elapsed: 7816.093670368195
+2022-04-09 09:28:36,666:INFO: Completed Epoch: 3 | avg. eval loss: 0.01405 | blue score: 0.42817906095731634| Sari score: 0.47565891233543856 | time elapsed: 4166.204889535904
+2022-04-09 09:29:11,594:INFO: Checkpoint saved successfully with time: 34.92336297035217
+2022-04-09 10:12:39,853:INFO: Epoch: 4 | iter: 10000 | avg. train loss: 1.702743241042065e-06 | time elapsed: 2608.051805973053
+2022-04-09 10:56:10,554:INFO: Epoch: 4 | iter: 20000 | avg. train loss: 5.017819357848481e-06 | time elapsed: 5218.75239610672
+2022-04-09 11:39:14,451:INFO: Epoch: 4 | iter: 30000 | avg. train loss: 9.927536564206877e-06 | time elapsed: 7802.649452924728
+2022-04-09 14:43:03,999:INFO: Model loaded from saved checkpoint with start epoch: 4 and loss: 0.014050522599419494
+2022-04-09 15:17:21,691:INFO: Epoch: 4 | iter: 10000 | avg. train loss: 1.0393375274453039e-06 | time elapsed: 2057.684403181076
+2022-04-09 15:51:12,028:INFO: Epoch: 4 | iter: 20000 | avg. train loss: 4.755286702348172e-07 | time elapsed: 4088.021858692169
+2022-04-09 16:25:36,247:INFO: Epoch: 4 | iter: 30000 | avg. train loss: 2.3212739579944967e-06 | time elapsed: 6152.24075627327
+2022-04-09 17:51:14,762:INFO: Completed Epoch: 4 | avg. eval loss: 0.01525 | blue score: 0.5607242524437301| Sari score: 0.4795198551267925 | time elapsed: 4187.9140820503235
+2022-04-09 17:51:50,213:INFO: Checkpoint saved successfully with time: 35.445725202560425
+2022-04-09 18:26:15,105:INFO: Epoch: 5 | iter: 10000 | avg. train loss: 1.0538682812946716e-06 | time elapsed: 2064.656067609787
+2022-04-09 19:00:38,846:INFO: Epoch: 5 | iter: 20000 | avg. train loss: 8.893266585439426e-07 | time elapsed: 4128.397394895554
+2022-04-09 19:35:02,610:INFO: Epoch: 5 | iter: 30000 | avg. train loss: 8.446721364373467e-07 | time elapsed: 6192.161837816238
+2022-04-09 21:00:50,706:INFO: Completed Epoch: 5 | avg. eval loss: 0.00538 | blue score: 0.5508376788765978| Sari score: 0.4955775494775332 | time elapsed: 4197.5989763736725
+2022-04-09 21:00:50,712:INFO: New best model found
+2022-04-09 21:01:58,116:INFO: Checkpoint saved successfully with time: 67.40418195724487
+2022-04-09 21:36:53,250:INFO: Epoch: 6 | iter: 10000 | avg. train loss: 1.7929779627960833e-05 | time elapsed: 2094.9353518486023
+2022-04-09 22:11:24,905:INFO: Epoch: 6 | iter: 20000 | avg. train loss: 9.347129517658864e-07 | time elapsed: 4166.590110301971
+2022-04-09 22:45:57,942:INFO: Epoch: 6 | iter: 30000 | avg. train loss: 6.181857981028667e-07 | time elapsed: 6239.627330541611
+2022-04-10 00:11:51,497:INFO: Completed Epoch: 6 | avg. eval loss: 0.00121 | blue score: 0.3869503853716932| Sari score: 0.47631429217414734 | time elapsed: 4198.317825078964
+2022-04-10 00:11:51,504:INFO: New best model found
+2022-04-10 00:13:06,199:INFO: Checkpoint saved successfully with time: 74.69474792480469
+2022-04-10 00:47:49,437:INFO: Epoch: 7 | iter: 10000 | avg. train loss: 3.7558195134944526e-06 | time elapsed: 2083.0405220985413
+2022-04-10 01:22:30,592:INFO: Epoch: 7 | iter: 20000 | avg. train loss: 1.4292895650968618e-06 | time elapsed: 4164.195531368256
+2022-04-10 01:56:59,977:INFO: Epoch: 7 | iter: 30000 | avg. train loss: 1.0525485787631789e-07 | time elapsed: 6233.580417633057
+2022-04-10 03:22:50,587:INFO: Completed Epoch: 7 | avg. eval loss: 0.00256 | blue score: 0.4195502909615284| Sari score: 0.48862778679814034 | time elapsed: 4194.404551029205
+2022-04-10 03:23:33,147:INFO: Checkpoint saved successfully with time: 42.554094552993774
+2022-04-10 03:58:40,820:INFO: Epoch: 8 | iter: 10000 | avg. train loss: 2.735465685293606e-07 | time elapsed: 2107.4767055511475
+2022-04-10 04:33:40,579:INFO: Epoch: 8 | iter: 20000 | avg. train loss: 7.153883848562645e-07 | time elapsed: 4207.235146999359
+2022-04-10 05:08:39,111:INFO: Epoch: 8 | iter: 30000 | avg. train loss: 1.677891956305365e-06 | time elapsed: 6305.767109155655
+2022-04-10 06:34:23,899:INFO: Completed Epoch: 8 | avg. eval loss: 0.04132 | blue score: 0.5348977378316964| Sari score: 0.4647593376143908 | time elapsed: 4178.293059587479
+2022-04-10 06:35:00,253:INFO: Checkpoint saved successfully with time: 36.34930658340454
+2022-04-10 07:10:15,513:INFO: Epoch: 9 | iter: 10000 | avg. train loss: 9.979410688758182e-07 | time elapsed: 2115.067004919052
+2022-04-10 07:45:05,691:INFO: Epoch: 9 | iter: 20000 | avg. train loss: 1.2857549582211634e-05 | time elapsed: 4205.2443726062775
+2022-04-10 08:20:03,481:INFO: Epoch: 9 | iter: 30000 | avg. train loss: 2.1395820599487066e-07 | time elapsed: 6303.035209178925
+2022-04-10 09:45:37,958:INFO: Completed Epoch: 9 | avg. eval loss: 0.01516 | blue score: 0.46364267827757955| Sari score: 0.4726644702092533 | time elapsed: 4161.095965147018
+2022-04-10 09:46:13,934:INFO: Checkpoint saved successfully with time: 35.971415758132935
+2022-04-10 10:18:40,104:INFO: Epoch: 10 | iter: 10000 | avg. train loss: 3.7337495594100095e-06 | time elapsed: 1945.9607467651367
+2022-04-10 10:49:44,795:INFO: Epoch: 10 | iter: 20000 | avg. train loss: 5.265605050089023e-07 | time elapsed: 3810.652245283127
+2022-04-10 11:20:53,491:INFO: Epoch: 10 | iter: 30000 | avg. train loss: 4.356582143014253e-07 | time elapsed: 5679.348317861557
+2022-04-10 12:44:36,562:INFO: Completed Epoch: 10 | avg. eval loss: 0.02418 | blue score: 0.4160967135151463| Sari score: 0.5046950480477406 | time elapsed: 4161.9521951675415
+2022-04-10 12:45:12,104:INFO: Checkpoint saved successfully with time: 35.53793406486511
+2022-04-10 13:16:21,857:INFO: Epoch: 11 | iter: 10000 | avg. train loss: 1.0801648111708123e-05 | time elapsed: 1869.5576367378235
+2022-04-10 13:47:32,047:INFO: Epoch: 11 | iter: 20000 | avg. train loss: 3.1995994475015427e-06 | time elapsed: 3739.7477157115936
+2022-04-10 14:18:42,534:INFO: Epoch: 11 | iter: 30000 | avg. train loss: 2.774959987871639e-07 | time elapsed: 5610.234383106232
+2022-04-10 15:42:20,158:INFO: Completed Epoch: 11 | avg. eval loss: 0.01546 | blue score: 0.5095367045023141| Sari score: 0.5013071389930351 | time elapsed: 4159.364564418793
+2022-04-10 15:42:59,281:INFO: Checkpoint saved successfully with time: 39.11525869369507
+2022-04-10 16:15:01,296:INFO: Epoch: 12 | iter: 10000 | avg. train loss: 4.92502551483948e-07 | time elapsed: 1921.8147246837616
+2022-04-10 16:46:57,665:INFO: Epoch: 12 | iter: 20000 | avg. train loss: 2.3112233926352853e-07 | time elapsed: 3838.183212518692
+2022-04-10 17:18:55,685:INFO: Epoch: 12 | iter: 30000 | avg. train loss: 2.4188807313465685e-07 | time elapsed: 5756.203244447708
+2022-04-10 18:43:04,352:INFO: Completed Epoch: 12 | avg. eval loss: 0.02380 | blue score: 0.46668317263566494| Sari score: 0.4390227423099247 | time elapsed: 4164.457258939743
+2022-04-10 18:43:39,381:INFO: Checkpoint saved successfully with time: 35.02419948577881
+2022-04-10 19:15:42,078:INFO: Epoch: 13 | iter: 10000 | avg. train loss: 1.8961270701047715e-07 | time elapsed: 1922.5017249584198
+2022-04-10 19:47:47,751:INFO: Epoch: 13 | iter: 20000 | avg. train loss: 7.046533466632946e-07 | time elapsed: 3848.17488694191
+2022-04-10 20:19:47,981:INFO: Epoch: 13 | iter: 30000 | avg. train loss: 2.3711763490837996e-07 | time elapsed: 5768.404855251312
+2022-04-10 21:43:57,241:INFO: Completed Epoch: 13 | avg. eval loss: 0.02515 | blue score: 0.39814555686819963| Sari score: 0.4636983320807878 | time elapsed: 4164.333740949631
+2022-04-10 21:44:32,104:INFO: Checkpoint saved successfully with time: 34.85484790802002
+2022-04-10 22:16:32,099:INFO: Epoch: 14 | iter: 10000 | avg. train loss: 1.3241547494900784e-07 | time elapsed: 1919.8445661067963
+2022-04-10 22:48:33,936:INFO: Epoch: 14 | iter: 20000 | avg. train loss: 1.7028062105431103e-07 | time elapsed: 3841.6817886829376
+2022-04-10 23:20:40,515:INFO: Epoch: 14 | iter: 30000 | avg. train loss: 3.516803874616198e-07 | time elapsed: 5768.261070251465
+2022-04-11 00:45:02,417:INFO: Completed Epoch: 14 | avg. eval loss: 0.02965 | blue score: 0.47003748108025356| Sari score: 0.4901046362579493 | time elapsed: 4178.011122703552
+2022-04-11 00:45:36,824:INFO: Checkpoint saved successfully with time: 34.40270161628723
+2022-04-11 01:17:44,610:INFO: Epoch: 15 | iter: 10000 | avg. train loss: 7.203610698932163e-08 | time elapsed: 1927.585956811905
+2022-04-11 01:49:49,335:INFO: Epoch: 15 | iter: 20000 | avg. train loss: 5.806939707351501e-07 | time elapsed: 3852.3103637695312
+2022-04-11 02:21:53,566:INFO: Epoch: 15 | iter: 30000 | avg. train loss: 2.8650400671499465e-07 | time elapsed: 5776.541479110718
+2022-04-11 03:46:40,550:INFO: Completed Epoch: 15 | avg. eval loss: 0.03148 | blue score: 0.4977653595931991| Sari score: 0.47128257973637244 | time elapsed: 4198.687948465347
+2022-04-11 03:47:16,980:INFO: Checkpoint saved successfully with time: 36.426594257354736
+2022-04-11 04:19:35,202:INFO: Epoch: 16 | iter: 10000 | avg. train loss: 1.9905786990373104e-07 | time elapsed: 1938.0258972644806
+2022-04-11 04:51:42,961:INFO: Epoch: 16 | iter: 20000 | avg. train loss: 2.1723323652128581e-07 | time elapsed: 3865.784514904022
+2022-04-11 05:23:50,846:INFO: Epoch: 16 | iter: 30000 | avg. train loss: 3.1623234636766863e-07 | time elapsed: 5793.670189380646
+2022-04-11 06:48:48,987:INFO: Completed Epoch: 16 | avg. eval loss: 0.04361 | blue score: 0.3425104857140777| Sari score: 0.47139025342276264 | time elapsed: 4213.639600038528
+2022-04-11 06:49:25,245:INFO: Checkpoint saved successfully with time: 36.25080919265747
+2022-04-11 07:23:49,717:INFO: Epoch: 17 | iter: 10000 | avg. train loss: 1.7327017341306645e-07 | time elapsed: 2064.2714087963104
+2022-04-11 07:58:14,979:INFO: Epoch: 17 | iter: 20000 | avg. train loss: 1.5757543562974377e-07 | time elapsed: 4129.532873392105
+2022-04-11 08:32:41,524:INFO: Epoch: 17 | iter: 30000 | avg. train loss: 1.6284546138106446e-07 | time elapsed: 6196.078052282333
+2022-04-11 09:40:29,034:INFO: Model loaded from saved checkpoint with start epoch: 17 and loss: 0.04361101993333093
+2022-04-11 10:14:54,548:INFO: Epoch: 17 | iter: 10000 | avg. train loss: 2.202184210546381e-07 | time elapsed: 2065.503373861313
+2022-04-11 10:49:10,518:INFO: Epoch: 17 | iter: 20000 | avg. train loss: 1.3933923600504543e-06 | time elapsed: 4121.4735543727875
+2022-04-11 11:23:25,119:INFO: Epoch: 17 | iter: 30000 | avg. train loss: 4.258488728291318e-08 | time elapsed: 6176.074208021164
+2022-04-11 12:49:17,544:INFO: Completed Epoch: 17 | avg. eval loss: 0.04317 | blue score: 0.45917268253661625| Sari score: 0.45638494281605635 | time elapsed: 4206.062245845795
+2022-04-11 12:49:17,550:INFO: New best model found
+2022-04-11 12:50:54,899:INFO: Checkpoint saved successfully with time: 97.34959936141968
+2022-04-11 13:25:11,386:INFO: Epoch: 18 | iter: 10000 | avg. train loss: 2.2995174210329473e-07 | time elapsed: 2056.2547006607056
+2022-04-11 13:59:33,204:INFO: Epoch: 18 | iter: 20000 | avg. train loss: 5.609110828599731e-07 | time elapsed: 4118.072493314743
+2022-04-11 14:33:49,956:INFO: Epoch: 18 | iter: 30000 | avg. train loss: 1.844350920065653e-07 | time elapsed: 6174.824641227722
+2022-04-11 16:00:45,235:INFO: Model loaded from saved checkpoint with start epoch: 18 and loss: 0.043171907720725544
+2022-04-11 16:35:33,104:INFO: Epoch: 18 | iter: 10000 | avg. train loss: 1.363379531064199e-07 | time elapsed: 2087.8569185733795
+2022-04-11 17:09:47,183:INFO: Epoch: 18 | iter: 20000 | avg. train loss: 1.8142254619093413e-07 | time elapsed: 4141.936394929886
+2022-04-11 17:44:03,586:INFO: Epoch: 18 | iter: 30000 | avg. train loss: 1.5509170984661986e-07 | time elapsed: 6198.33842253685
+2022-04-11 19:09:47,284:INFO: Completed Epoch: 18 | avg. eval loss: 0.03846 | blue score: 0.5983916210567599| Sari score: 0.4873378205905928 | time elapsed: 4191.010312795639
+2022-04-11 19:09:47,297:INFO: New best model found
+2022-04-11 19:11:10,775:INFO: Checkpoint saved successfully with time: 83.47836256027222
+2022-04-11 19:45:43,460:INFO: Epoch: 19 | iter: 10000 | avg. train loss: 9.950968331660598e-07 | time elapsed: 2072.451570034027
+2022-04-11 20:20:15,563:INFO: Epoch: 19 | iter: 20000 | avg. train loss: 1.9576793451617392e-07 | time elapsed: 4144.554270982742
+2022-04-11 20:54:31,030:INFO: Epoch: 19 | iter: 30000 | avg. train loss: 2.2102079103208266e-07 | time elapsed: 6200.02153468132
+2022-04-11 22:21:01,731:INFO: Completed Epoch: 19 | avg. eval loss: 0.03782 | blue score: 0.38729253779199735| Sari score: 0.4918643885915793 | time elapsed: 4244.451234102249
+2022-04-11 22:21:01,735:INFO: New best model found
+2022-04-11 22:22:16,901:INFO: Checkpoint saved successfully with time: 75.16671323776245

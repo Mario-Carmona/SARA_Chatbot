@@ -2,9 +2,15 @@
 import os
 from dataclasses import dataclass, field
 
+from dataclass.model_summary_arguments import ModelSumArguments
+from dataclass.model_simplify_arguments import ModelSimplifyArguments
+from dataclass.deepl_arguments import DeeplArguments
+from dataclass.model_genQuestion_arguments import ModelGenQuestionArguments
+
 
 @dataclass
-class GenerateDatasetArguments:
+class GenerateDatasetArguments(ModelSumArguments, ModelGenQuestionArguments,
+                               DeeplArguments):
     """
     Argumentos relacionados con la generación de datasets para el entrenamiento
     """
@@ -17,6 +23,11 @@ class GenerateDatasetArguments:
     limit_summary: int = field(
         metadata={
             "help": "Mínimo número de tokens necesario para realizar el resumen"
+        }
+    )
+    max_length_summary: int = field(
+        metadata={
+            "help": "Máxima longitud en tokens de las preguntas"
         }
     )
     max_length_question: int = field(
@@ -39,6 +50,11 @@ class GenerateDatasetArguments:
             "help": "Archivo CSV que contiene el dataset"
         }
     )
+    translated: bool = field(
+        metadata={
+            "help": "Indica si `dataset_file` es un archivo traducido"
+        }
+    )
     result_dir: str = field(
         metadata={
             "help": "Directorio destino de los archivos generados"
@@ -56,6 +72,12 @@ class GenerateDatasetArguments:
     )
 
     def __post_init__(self):
+        ModelSumArguments.__post_init__(self)
+        ModelGenQuestionArguments.__post_init__(self)
+
+        self.dataset_file = self.workdir + self.dataset_file
+        self.result_dir = self.workdir + self.result_dir
+
         assert self.limit_summary >= 0, "`limit_summary` debe ser un entero positivo."
 
         assert self.max_length_question >= 0, "`max_length_question` debe ser un entero positivo."

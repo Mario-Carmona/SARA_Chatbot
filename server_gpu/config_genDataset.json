@@ -1,5 +1,7 @@
 {
     "workdir": "/mnt/homeGPU/mcarmona/",
+
+
     "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
 
 
@@ -16,10 +18,12 @@
 
     "seed": 0,
     "limit_summary": 50,
+    "max_length_summary": 64,
     "max_length_question": 64,
-    "num_beams_summary": 8,
-    "num_beams_question": 4,
+    "num_beams_summary": 1,
+    "num_beams_question": 1,
     "dataset_file": "server_gpu/datasets/v1/datasetV1.csv",
+    "translated": false,
     "result_dir": "server_gpu/datasets/v1",
     "train_split": 0.7,
     "dataset_type": "Adulto"

@@ -14,8 +14,6 @@ from typing import List
 import sys
 import argparse
 from dataclass.generate_dataset_arguments import GenerateDatasetArguments
-from dataclass.project_arguments import ProyectArguments
-from server_gpu.extra.model_arguments import ModelArguments
 from transformers import HfArgumentParser
 
 # Datos
@@ -57,18 +55,17 @@ CONFIG_FILE = args.config_file
 
 parser = HfArgumentParser(
     (
-        ProyectArguments,
-        ModelArguments,
         GenerateDatasetArguments
     )
 )
 
-project_args, model_args, generate_args= parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
-
-WORKDIR = project_args.workdir
-SEED = generate_args.seed
+generate_args, = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
+
+
+
+
 
 
 
@@ -141,7 +138,7 @@ def obtenerTrainDataset(groups_datasets: List[DataFrame], train_split: float):
     for dataset in groups_datasets:
         lista.append(dataset.sample(
             frac=train_split,
-            random_state=SEED,
+            random_state=generate_args.seed,
             axis=0,
             ignore_index=True
         ))
@@ -152,7 +149,7 @@ def obtenerTrainDataset(groups_datasets: List[DataFrame], train_split: float):
     # Barajar el dataset de training
     train_dataset = train_dataset.sample(
         frac=1,
-        random_state=SEED,
+        random_state=generate_args.seed,
         axis=0,
         ignore_index=True
     )
@@ -181,13 +178,20 @@ def obtenerValidationDataset(dataset: DataFrame, train_dataset: DataFrame):
     # Barajar el dataset de validation
     validation_dataset = validation_dataset.sample(
         frac=1,
-        random_state=SEED,
+        random_state=generate_args.seed,
         axis=0,
         ignore_index=True
     )
 
     return validation_dataset
-    
+
+
+def save_dataset(groups_datasets):
+    total_dataset = pd.concat(groups_datasets)
+    total_dataset = total_dataset.dropna()
+    name_file = '.'.join(generate_args.dataset_file.split('.')[:-1]) + "_EN.csv"
+    train_dataset.to_csv(name_file)
+
 
 def generarDatasetAdulto(dataset: DataFrame):
     """
@@ -285,7 +289,7 @@ def generarDatasetAdulto(dataset: DataFrame):
             resumenes = split(text, ". ")
         else:
             batch.to(device)
-            translated = modelSum.generate(**batch, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+            translated = modelSum.generate(**batch, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
             tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
             # Eliminación de las frases repetidas
             resumenes = unique(tgt_text)
@@ -416,25 +420,25 @@ def generarDatasetAdulto(dataset: DataFrame):
     # ---------------------------------------
     # ----- Traductor
 
-    auth_key = project_args.auth_key_deepl
+    auth_key = generate_args.auth_key_deepl
     translator = deepl.Translator(auth_key)
     
     # ---------------------------------------
     # ----- Modelo summarization
 
     configSum = AutoConfig.from_pretrained(
-        WORKDIR + model_args.model_summary_config
+        generate_args.model_summary_config
     )
 
     tokenizerSum = AutoTokenizer.from_pretrained(
-        WORKDIR + model_args.model_summary_tokenizer,
-        config=WORKDIR + model_args.model_summary_tokenizer_config,
+        generate_args.model_summary_tokenizer,
+        config=generate_args.model_summary_tokenizer_config,
         use_fast=True
     )
 
     modelSum = PegasusForConditionalGeneration.from_pretrained(
-        WORKDIR + model_args.model_summary,
-        from_tf=bool(".ckpt" in model_args.model_summary),
+        generate_args.model_summary,
+        from_tf=bool(".ckpt" in generate_args.model_summary),
         config=configSum,
         torch_dtype=torch.float16
     ).to(device)
@@ -443,18 +447,18 @@ def generarDatasetAdulto(dataset: DataFrame):
     # ----- Modelo generate question
 
     configGenQues = AutoConfig.from_pretrained(
-        WORKDIR + model_args.model_genQuestion_config
+        generate_args.model_genQuestion_config
     )
 
     tokenizerGenQues = AutoTokenizer.from_pretrained(
-        WORKDIR + model_args.model_genQuestion_tokenizer,
-        config=WORKDIR + model_args.model_genQuestion_tokenizer_config,
+        generate_args.model_genQuestion_tokenizer,
+        config=generate_args.model_genQuestion_tokenizer_config,
         use_fast=True
     )
 
     modelGenQues = T5ForConditionalGeneration.from_pretrained(
-        WORKDIR + model_args.model_genQuestion,
-        from_tf=bool(".ckpt" in model_args.model_genQuestion),
+        generate_args.model_genQuestion,
+        from_tf=bool(".ckpt" in generate_args.model_genQuestion),
         config=configGenQues,
         torch_dtype=torch.float16
     ).to(device)
@@ -469,8 +473,11 @@ def generarDatasetAdulto(dataset: DataFrame):
     groups_values = dataset.Topic.to_list()
     groups_datasets = [groups.get_group(value) for value in groups_values]
 
-    # Traducción de los datasets al Inglés
-    groups_datasets = traducirES_EN(groups_datasets)
+    if not generate_args.translated:
+        # Traducción de los datasets al Inglés
+        groups_datasets = traducirES_EN(groups_datasets)
+
+        save_dataset(groups_datasets)
 
     # Generación de las distintas respuestas mediante el resumen de los
     # textos de los distintos datasets
