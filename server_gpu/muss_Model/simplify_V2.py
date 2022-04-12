@@ -18,6 +18,7 @@ ALLOWED_MODEL_NAMES = [
 ]
 
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Simplify a file line by line.')
     parser.add_argument('filepath', type=str, help='File containing the source sentences, one sentence per line.')
