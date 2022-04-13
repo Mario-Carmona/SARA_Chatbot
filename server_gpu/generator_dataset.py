@@ -127,13 +127,8 @@ print(bcolors.OK + "Modelos cargados" + bcolors.RESET)
 
 
 
-def removeEmptyRow(groups_datasets: List[DataFrame]):
-    new_groups_datasets = []
-
-    for dataset in groups_datasets:
-        new_groups_datasets.append(dataset.dropna())
-    
-    return new_groups_datasets
+def removeEmpty(lista: List[str]):
+    return [i for i in lista if i != ""]
 
 
 def unique(lista: List[str]):
@@ -419,6 +414,7 @@ def summarization(groups_datasets):
         for i, j in zip(dataset.Text.to_list(), dataset.Subject.to_list()):                
             with torch.no_grad():
                 resumenes = generarResumenes(i)
+            resumenes = removeEmpty(resumenes)
             text += resumenes
             subject += [j] * len(resumenes)
             progress_bar.update(1)
@@ -491,6 +487,7 @@ def generateQuestions(groups_datasets):
         for subject, text in zip(dataset.Subject.to_list(), dataset.Text.to_list()):
             with torch.no_grad():
                 result = generarQuestions(subject, text)
+            result = removeEmpty(result)
 
             answer += [text] * len(result)
             question += result
@@ -531,8 +528,9 @@ def simplify(groups_datasets):
             with torch.no_grad():
                 a_simplify, q_simplify = simplify_sentences([a, q], model_name=generate_args.model_simplify)
             
-            answer.append(a_simplify)
-            question.append(q_simplify)
+            if a_simplify != "" and q_simplify != "":
+                answer.append(a_simplify)
+                question.append(q_simplify)
 
             progress_bar.update(1)
 
@@ -577,8 +575,6 @@ def generarDatasetNiño(groups_datasets: List[DataFrame], dir: str):
 
     groups_datasets = simplify(groups_datasets)
 
-    groups_datasets = removeEmptyRow(groups_datasets)
-
     save_dataset_train_valid(groups_datasets, dir)
 
 
@@ -601,20 +597,14 @@ if __name__ == "__main__":
         # Traducción de los datasets al Inglés
         groups_datasets = traducirES_EN(groups_datasets)
 
-        groups_datasets = removeEmptyRow(groups_datasets)
-
         save_dataset_EN(groups_datasets)
 
     # Generación de las distintas respuestas mediante el resumen de los
     # textos de los distintos datasets
     groups_datasets = summarization(groups_datasets)
 
-    groups_datasets = removeEmptyRow(groups_datasets)
-
     # Generación de las preguntas a las respuestas obtenidas en el paso anterior
     groups_datasets = generateQuestions(groups_datasets)
-
-    groups_datasets = removeEmptyRow(groups_datasets)
 
     # Directorio donde guardar los resultados
     dirAdulto = os.path.join(generate_args.result_dir, f"split_{generate_args.train_split}_Adulto")
