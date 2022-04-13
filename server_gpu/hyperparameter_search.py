@@ -160,7 +160,6 @@ ray.init(local_mode=True)
 # download model & vocab.
 configConver = AutoConfig.from_pretrained(
     finetuning_args.model_conver_config,
-    finetuning_task=task_name,
     task_specific_params={
         finetuning_args.task: {
             "do_sample": finetuning_args.do_sample,
