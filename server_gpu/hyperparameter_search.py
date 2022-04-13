@@ -8,6 +8,9 @@ import sys
 import os
 import logging
 from typing import Dict, Tuple, List, Callable, Iterable
+from ray import tune
+from ray.tune.schedulers import PopulationBasedTraining
+from ray.tune import CLIReporter
 
 from datasets import load_dataset, load_metric
 
@@ -120,6 +123,33 @@ set_seed(training_args.seed)
 
 
 
+smoke_test = True
+
+
+task_name = "conversational"
+
+num_samples = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Load pretrained model and tokenizer
@@ -129,6 +159,7 @@ set_seed(training_args.seed)
 # download model & vocab.
 configConver = AutoConfig.from_pretrained(
     finetuning_args.model_conver_config,
+    finetuning_task=task_name,
     task_specific_params={
         finetuning_args.task: {
             "do_sample": finetuning_args.do_sample,
@@ -247,10 +278,65 @@ trainer = Seq2SeqTrainer(
 
 #trainer.train(resume_from_checkpoint=training_args.resume_from_checkpoint)
 
+
+tune_config = {
+    "per_device_train_batch_size": 16,
+    "per_device_eval_batch_size": 16,
+    "num_train_epochs": tune.choice([2, 3, 4, 5]),
+    "max_steps": 1 if smoke_test else -1,  # Used for smoke test.
+}
+
+scheduler = PopulationBasedTraining(
+    time_attr="training_iteration",
+    metric="eval_acc",
+    mode="max",
+    perturbation_interval=1,
+    hyperparam_mutations={
+        "weight_decay": tune.uniform(0.0, 0.3),
+        "learning_rate": tune.uniform(1e-5, 5e-5),
+        "per_device_train_batch_size": [16, 32, 64],
+    })
+
+reporter = CLIReporter(
+    parameter_columns={
+        "weight_decay": "w_decay",
+        "learning_rate": "lr",
+        "per_device_train_batch_size": "train_bs/gpu",
+        "num_train_epochs": "num_epochs"
+    },
+    metric_columns=[
+        "eval_acc", "eval_loss", "epoch", "training_iteration"
+    ])
+
+
+
+best_trial = trainer.hyperparameter_search(
+    hp_space=lambda _: tune_config,
+    backend="ray",
+    n_trials=num_samples,
+    resources_per_trial={
+        "cpu": 1,
+        "gpu": 1
+    },
+    scheduler=scheduler,
+    keep_checkpoints_num=1,
+    checkpoint_score_attr="training_iteration",
+    stop={"training_iteration": 1} if smoke_test else None,
+    progress_reporter=reporter,
+    local_dir="./ray_results/",
+    name="tune_transformer_pbt",
+    log_to_file=True)
+
+
+
+
+
+"""
 best_trial = trainer.hyperparameter_search(
     direction="minimize", 
     backend="ray", 
     n_trials=2
 )
+"""
 
 print(best_trial)

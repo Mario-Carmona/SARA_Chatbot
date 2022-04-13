@@ -29,6 +29,8 @@
     "do_train": true,
     "do_eval": false,
 
+    "max_steps": -1,
+
     "evaluation_strategy": "epoch",
     "num_train_epochs": 2,
     "log_level": "info",
