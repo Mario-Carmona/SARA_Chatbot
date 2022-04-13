@@ -380,9 +380,7 @@ def generarResumenes(text):
         tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
 
         # Eliminación de las frases repetidas
-        
         resumenes = unique(tgt_text)
-        print(resumenes)
 
     return resumenes
 
