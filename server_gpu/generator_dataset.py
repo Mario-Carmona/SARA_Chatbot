@@ -9,6 +9,7 @@ from pathlib import Path
 from tqdm.auto import tqdm
 from color import bcolors
 from typing import List
+import numpy as np
 
 # Configuración
 import sys
@@ -371,10 +372,14 @@ def generarResumenes(text):
         resumenes = split(text, ". ")
     else:
         batch.to(device)
-        translated = modelSum.generate(**batch, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
-        tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+        resumenes = []
+        for i in np.linspace(0.0,1.0,num=generate_args.num_beams_summary+1)[1:]:
+            translated = modelSum.generate(**batch, temperature=i, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+            tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+            resumenes += tgt_text
+
         # Eliminación de las frases repetidas
-        resumenes = unique(tgt_text)
+        resumenes = unique(resumenes)
 
     return resumenes
 
@@ -404,7 +409,8 @@ def summarization(groups_datasets):
         text = []
 
         for i, j in zip(dataset.Text.to_list(), dataset.Subject.to_list()):                
-            resumenes = generarResumenes(i)
+            with torch.no_grad():
+                resumenes = generarResumenes(i)
             text += resumenes
             subject += [j] * len(resumenes)
             progress_bar.update(1)
@@ -475,7 +481,8 @@ def generateQuestions(groups_datasets):
         subject_list = []
 
         for subject, text in zip(dataset.Subject.to_list(), dataset.Text.to_list()):
-            result = generarQuestions(subject, text)
+            with torch.no_grad():
+                result = generarQuestions(subject, text)
 
             answer += [text] * len(result)
             question += result
@@ -513,7 +520,8 @@ def simplify(groups_datasets):
         question = []
 
         for a, q in zip(dataset.Answer.to_list(), dataset.Question.to_list()):
-            a_simplify, q_simplify = simplify_sentences([a, q], model_name=generate_args.model_simplify)
+            with torch.no_grad():
+                a_simplify, q_simplify = simplify_sentences([a, q], model_name=generate_args.model_simplify)
             
             answer.append(a_simplify)
             question.append(q_simplify)
