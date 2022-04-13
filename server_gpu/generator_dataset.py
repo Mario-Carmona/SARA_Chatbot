@@ -374,7 +374,7 @@ def generarResumenes(text):
         batch.to(device)
         resumenes = []
         for i in np.linspace(0.0,1.0,num=generate_args.num_beams_summary+1)[1:]:
-            translated = modelSum.generate(**batch, temperature=i, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+            translated = modelSum.generate(**batch, temperature=i, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=1)
             tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
             resumenes += tgt_text
 
