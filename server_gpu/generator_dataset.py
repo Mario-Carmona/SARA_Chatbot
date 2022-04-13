@@ -127,6 +127,14 @@ print(bcolors.OK + "Modelos cargados" + bcolors.RESET)
 
 
 
+def removeEmptyRow(groups_datasets: List[DataFrame]):
+    new_groups_datasets = []
+
+    for dataset in groups_datasets:
+        new_groups_datasets.append(dataset.dropna())
+    
+    return new_groups_datasets
+
 
 def unique(lista: List[str]):
     """ 
@@ -247,7 +255,6 @@ def obtenerValidationDataset(dataset: DataFrame, train_dataset: DataFrame):
 
 def save_dataset_EN(groups_datasets):
     total_dataset = pd.concat(groups_datasets)
-    total_dataset = total_dataset.dropna()
     name_file = '.'.join(generate_args.dataset_file.split('.')[:-1]) + "_EN.csv"
     total_dataset.to_csv(name_file)
 
@@ -258,7 +265,6 @@ def save_dataset_train_valid(groups_datasets, dir):
 
     # Obtención del dataset de training
     train_dataset = obtenerTrainDataset(groups_datasets, generate_args.train_split)
-    train_dataset = train_dataset.dropna()
 
     # Generación del dataset de training con el formato para el entrenamiento
     train_s_t = pd.DataFrame({
@@ -268,7 +274,6 @@ def save_dataset_train_valid(groups_datasets, dir):
 
     # Obtención del dataset de validation
     validation_dataset = obtenerValidationDataset(total_dataset, train_dataset)
-    validation_dataset = validation_dataset.dropna()
 
     # Generación del dataset de validation con el formato para el entrenamiento
     validation_s_t = pd.DataFrame({
@@ -572,6 +577,8 @@ def generarDatasetNiño(groups_datasets: List[DataFrame], dir: str):
 
     groups_datasets = simplify(groups_datasets)
 
+    groups_datasets = removeEmptyRow(groups_datasets)
+
     save_dataset_train_valid(groups_datasets, dir)
 
 
@@ -594,14 +601,20 @@ if __name__ == "__main__":
         # Traducción de los datasets al Inglés
         groups_datasets = traducirES_EN(groups_datasets)
 
+        groups_datasets = removeEmptyRow(groups_datasets)
+
         save_dataset_EN(groups_datasets)
 
     # Generación de las distintas respuestas mediante el resumen de los
     # textos de los distintos datasets
     groups_datasets = summarization(groups_datasets)
 
+    groups_datasets = removeEmptyRow(groups_datasets)
+
     # Generación de las preguntas a las respuestas obtenidas en el paso anterior
     groups_datasets = generateQuestions(groups_datasets)
+
+    groups_datasets = removeEmptyRow(groups_datasets)
 
     # Directorio donde guardar los resultados
     dirAdulto = os.path.join(generate_args.result_dir, f"split_{generate_args.train_split}_Adulto")
