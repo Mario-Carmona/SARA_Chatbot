@@ -311,6 +311,7 @@ reporter = CLIReporter(
 
 
 best_trial = trainer.hyperparameter_search(
+    direction="minimize",
     hp_space=lambda _: tune_config,
     backend="ray",
     n_trials=num_samples,
@@ -318,14 +319,11 @@ best_trial = trainer.hyperparameter_search(
         "cpu": 1,
         "gpu": 1
     },
-    scheduler=scheduler,
     keep_checkpoints_num=1,
     checkpoint_score_attr="training_iteration",
     stop={"training_iteration": 1} if smoke_test else None,
-    progress_reporter=reporter,
     local_dir="./ray_results/",
-    name="tune_transformer_pbt",
-    log_to_file=True)
+    name="tune_transformer_pbt")
 
 
 
