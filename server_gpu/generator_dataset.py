@@ -523,13 +523,18 @@ def simplify(groups_datasets):
     new_groups_datasets = []
 
     for dataset in groups_datasets:
-        answer = simplify_sentences(dataset.Answer.to_list(), model_name=generate_args.model_simplify)
-        question = simplify_sentences(dataset.Question.to_list(), model_name=generate_args.model_simplify)
+        answer = []
+        question = []
 
-        progress_bar.update(len(dataset.Answer.to_list()))
+        for a, q in zip(dataset.Answer.to_list(), dataset.Question.to_list()):
+            with torch.no_grad():
+                a_simplify, q_simplify = simplify_sentences([a, q], model_name=generate_args.model_simplify)
+            
+            if a_simplify != "" and q_simplify != "":
+                answer.append(a_simplify)
+                question.append(q_simplify)
 
-        answer = removeEmpty(answer)
-        question = removeEmpty(question)
+            progress_bar.update(1)
 
         if len(question) != 0:
             new_groups_datasets.append(pd.DataFrame({
