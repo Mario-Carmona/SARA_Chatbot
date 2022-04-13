@@ -6,6 +6,7 @@
 # General
 import os
 from pathlib import Path
+import re
 from tqdm.auto import tqdm
 from color import bcolors
 from typing import List
@@ -373,11 +374,16 @@ def generarResumenes(text):
     if(batch['input_ids'].shape[1] <= generate_args.limit_summary):
         resumenes = split(text, ". ")
     else:
+        resumenes = []
+
         batch.to(device)
-        translated = modelSum.generate(**batch, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
-        tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+        for i in [0.5,1.0]:
+            translated = modelSum.generate(**batch, temperature=i, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+            tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
+            resumenes += tgt_text
 
         # Eliminación de las frases repetidas
+        print(resumenes)
         resumenes = unique(tgt_text)
 
     return resumenes
