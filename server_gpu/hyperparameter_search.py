@@ -132,7 +132,7 @@ task_name = "conversational"
 num_samples = 1
 
 
-ray.init()
+ray.init(local_mode=True)
 
 
 
