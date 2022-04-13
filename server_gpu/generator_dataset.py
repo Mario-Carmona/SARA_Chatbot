@@ -421,12 +421,13 @@ def summarization(groups_datasets):
             
         topic = [dataset.Topic.to_list()[0]] * len(text)
 
-        # Guardado del dataset tras la generación de resúmenes
-        new_groups_datasets.append(pd.DataFrame({
-            "Topic": topic,
-            "Subject": subject,
-            "Text": text
-        }))
+        if len(text) != 0:
+            # Guardado del dataset tras la generación de resúmenes
+            new_groups_datasets.append(pd.DataFrame({
+                "Topic": topic,
+                "Subject": subject,
+                "Text": text
+            }))
 
     print(bcolors.OK + "Terminado resumen" + bcolors.RESET)
 
@@ -497,12 +498,13 @@ def generateQuestions(groups_datasets):
 
         topic = [dataset.Topic.to_list()[0]] * len(answer)
 
-        new_groups_datasets.append(pd.DataFrame({
-            "Topic": topic,
-            "Subject": subject_list,
-            "Question": question,
-            "Answer": answer
-        }))
+        if len(question) != 0:
+            new_groups_datasets.append(pd.DataFrame({
+                "Topic": topic,
+                "Subject": subject_list,
+                "Question": question,
+                "Answer": answer
+            }))
 
     print(bcolors.OK + "Terminada generación de preguntas" + bcolors.RESET)
 
@@ -534,12 +536,13 @@ def simplify(groups_datasets):
 
             progress_bar.update(1)
 
-        new_groups_datasets.append(pd.DataFrame({
-            "Topic": dataset.Topic.to_list(),
-            "Subject": dataset.Subject.to_list(),
-            "Question": question,
-            "Answer": answer
-        }))
+        if len(question) != 0:
+            new_groups_datasets.append(pd.DataFrame({
+                "Topic": dataset.Topic.to_list(),
+                "Subject": dataset.Subject.to_list(),
+                "Question": question,
+                "Answer": answer
+            }))
 
     print(bcolors.OK + "Terminada simplificación" + bcolors.RESET)
 
