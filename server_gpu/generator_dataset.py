@@ -375,19 +375,14 @@ def generarResumenes(text):
     if(batch['input_ids'].shape[1] <= generate_args.limit_summary):
         resumenes = split(text, ". ")
     else:
-        resumenes = []
-        for i in range(0,generate_args.num_beams_summary):
-            set_seed(i)
-            
-            batch = tokenizerSum(text, padding="longest", return_tensors="pt")
-            batch.to(device)
-            translated = modelSum.generate(**batch, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=1)
-            tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
-            resumenes += tgt_text
+        batch.to(device)
+        translated = modelSum.generate(**batch, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+        tgt_text = tokenizerSum.batch_decode(translated, skip_special_tokens=True)
 
         # Eliminación de las frases repetidas
+        
+        resumenes = unique(tgt_text)
         print(resumenes)
-        resumenes = unique(resumenes)
 
     return resumenes
 

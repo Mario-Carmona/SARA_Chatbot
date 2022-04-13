@@ -19,10 +19,10 @@
 
 
     "seed": 0,
-    "limit_summary": 50,
+    "limit_summary": 1,
     "max_length_summary": 64,
     "max_length_question": 64,
-    "num_beams_summary": 3,
+    "num_beams_summary": 1,
     "num_beams_question": 1,
     "dataset_file": "server_gpu/datasets/v1/datasetV1_EN.csv",
     "translated": true,
