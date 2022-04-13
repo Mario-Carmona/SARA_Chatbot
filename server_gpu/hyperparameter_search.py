@@ -8,6 +8,7 @@ import sys
 import os
 import logging
 from typing import Dict, Tuple, List, Callable, Iterable
+import ray
 from ray import tune
 from ray.tune.schedulers import PopulationBasedTraining
 from ray.tune import CLIReporter
@@ -131,7 +132,7 @@ task_name = "conversational"
 num_samples = 1
 
 
-
+ray.init()
 
 
 
