@@ -132,7 +132,7 @@ task_name = "conversational"
 num_samples = 1
 
 
-
+ray.init()
 
 
 
@@ -280,7 +280,7 @@ trainer = Seq2SeqTrainer(
 tune_config = {
     "per_device_train_batch_size": 16,
     "per_device_eval_batch_size": 16,
-    "num_train_epochs": tune.choice([2, 3, 4, 5]),
+    "num_train_epochs": tune.choice([2,3]),
     "max_steps": 1 if smoke_test else -1,  # Used for smoke test.
 }
 
@@ -317,9 +317,6 @@ best_trial = trainer.hyperparameter_search(
         "cpu": 1,
         "gpu": 1
     },
-    keep_checkpoints_num=1,
-    checkpoint_score_attr="training_iteration",
-    stop={"training_iteration": 1} if smoke_test else None,
     local_dir="./ray_results/",
     name="tune_transformer_pbt")
 
