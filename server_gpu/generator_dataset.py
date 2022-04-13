@@ -31,6 +31,8 @@ from transformers import (
     T5ForConditionalGeneration
 )
 
+from transformers import set_seed
+
 from SentenceSimplification.muss.simplify import simplify_sentences
 
 import deepl
@@ -38,6 +40,8 @@ import deepl
 # -------------------------------------------------------------------------#
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+
+set_seed(0)
 
 parser = argparse.ArgumentParser()
 
@@ -372,7 +376,9 @@ def generarResumenes(text):
         resumenes = split(text, ". ")
     else:
         resumenes = []
-        for i in np.linspace(0.0,1.0,num=generate_args.num_beams_summary+1)[1:]:
+        for i in range(0,generate_args.num_beams_summary):
+            set_seed(i)
+            
             batch = tokenizerSum(text, padding="longest", return_tensors="pt")
             batch.to(device)
             translated = modelSum.generate(**batch, temperature=i, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=1)
