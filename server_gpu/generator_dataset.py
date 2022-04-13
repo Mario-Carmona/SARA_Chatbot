@@ -98,8 +98,7 @@ tokenizerSum = AutoTokenizer.from_pretrained(
 modelSum = PegasusForConditionalGeneration.from_pretrained(
     generate_args.model_summary,
     from_tf=bool(".ckpt" in generate_args.model_summary),
-    config=configSum,
-    torch_dtype=torch.float16
+    config=configSum
 ).to(device)
 
 # ---------------------------------------
@@ -118,8 +117,7 @@ tokenizerGenQues = AutoTokenizer.from_pretrained(
 modelGenQues = T5ForConditionalGeneration.from_pretrained(
     generate_args.model_genQuestion,
     from_tf=bool(".ckpt" in generate_args.model_genQuestion),
-    config=configGenQues,
-    torch_dtype=torch.float16
+    config=configGenQues
 ).to(device)
 
 
