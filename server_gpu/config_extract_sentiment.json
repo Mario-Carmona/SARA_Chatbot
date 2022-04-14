@@ -1,0 +1,15 @@
+{
+    "list_sentiment": [
+        "excited",
+        "confident",
+        "joyful",
+        "proud",
+        "trusting",
+        "faithful",
+        "hopeful",
+        "prepared"
+    ],
+    "num_samples": 200,
+    "train_split": 0.7,
+    "result_file": "datasets/v2/sentiments"
+}
