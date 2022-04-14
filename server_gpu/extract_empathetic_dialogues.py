@@ -57,8 +57,11 @@ if __name__ == "__main__":
     lista_datasets_valid = []
 
     for sentiment in args.list_sentiment:
+        print(sentiment)
         dataset_train_sentiment = dataset_train.loc[dataset_train['Sentiment'] == sentiment]
         dataset_valid_sentiment = dataset_valid.loc[dataset_valid['Sentiment'] == sentiment]
+        print(dataset_train_sentiment)
+        aux = input("-->")
 
         num_elems_train = min(num_elems_per_sentiment*args.train_split, len(dataset_train_sentiment.Sentiment.to_list()))
 
