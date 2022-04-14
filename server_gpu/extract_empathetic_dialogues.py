@@ -20,6 +20,6 @@ if __name__ == "__main__":
 
     dataset = load_dataset("empathetic_dialogues")
 
-    print(dataset["train"])
+    print(dataset["train"]['conv_id'])
 
 
