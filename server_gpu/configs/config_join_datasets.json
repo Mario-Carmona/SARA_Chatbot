@@ -1,0 +1,9 @@
+{
+    "workdir": "/mnt/homeGPU/mcarmona/",
+
+    "list_datasets": [
+
+    ],
+    "result_file": "datasets/v2/join.csv",
+    "remove_source_files": false
+}

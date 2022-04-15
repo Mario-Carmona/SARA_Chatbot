@@ -1,4 +1,6 @@
 {
+    "workdir": "/mnt/homeGPU/mcarmona/",
+
     "list_sentiment": [
         "excited",
         "confident",
@@ -11,5 +13,5 @@
     ],
     "num_samples": 200,
     "train_split": 0.7,
-    "result_file": "datasets/v2/sentiments"
+    "result_file": "datasets/v2"
 }
