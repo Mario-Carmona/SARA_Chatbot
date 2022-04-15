@@ -4,13 +4,22 @@
 import pandas as pd
 import argparse
 import os
-import pathlib
 import sys
 import Path
 
 from dataclass.join_datasets_arguments import JoinDatasetsArguments
 from transformers import HfArgumentParser
 
+
+
+def join_datasets(list_datasets, remove_source_files):
+    result_dataset = pd.concat([pd.read_csv(dataset) for dataset in list_datasets])
+    
+    if remove_source_files:
+        for dataset_path in list_datasets:
+            os.remove(dataset_path)
+    
+    return result_dataset
 
 
 if __name__ == "__main__":
@@ -42,16 +51,7 @@ if __name__ == "__main__":
     join_args, = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 
-    lista = []
+    join_dataset = join_datasets(join_args.list_datasets, join_args.remove_source_files)
 
-    for dataset_path in join_args.list_datasets:
-        dataset = pd.read_csv(dataset_path)
-        lista.append(dataset)
+    join_dataset.to_csv(join_args.join_dataset_file)
 
-    result_dataset = pd.concat(lista)
-
-    result_dataset.to_csv(join_args.result_file)
-
-    if join_args.remove_source_files:
-        for dataset_path in join_args.list_datasets:
-            os.remove(dataset_path)

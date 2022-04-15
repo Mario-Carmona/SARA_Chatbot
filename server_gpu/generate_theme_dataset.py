@@ -14,7 +14,7 @@ import numpy as np
 # Configuración
 import sys
 import argparse
-from dataclass.generate_dataset_arguments import GenerateDatasetArguments
+from dataclass.theme_dataset_arguments import ThemeDatasetArguments
 from transformers import HfArgumentParser
 
 # Datos
@@ -37,11 +37,11 @@ from SentenceSimplification.muss.simplify import simplify_sentences
 
 import deepl
 
+from split_dataset import (
+    split_by_topic
+)
+
 # -------------------------------------------------------------------------#
-
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
-
-set_seed(0)
 
 parser = argparse.ArgumentParser()
 
@@ -64,7 +64,7 @@ CONFIG_FILE = args.config_file
 
 parser = HfArgumentParser(
     (
-        GenerateDatasetArguments
+        ThemeDatasetArguments
     )
 )
 
@@ -72,7 +72,9 @@ generate_args, = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
+set_seed(generate_args.seed)
 
 print(bcolors.WARNING + "Cargando modelos..." + bcolors.RESET)
 
@@ -175,118 +177,10 @@ def split(cadena: str, subcadena: str):
     return lista
 
 
-def obtenerTrainDataset(groups_datasets: List[DataFrame], train_split: float):
-    """
-    Función para obtener el dataset de training a partir de un
-    dataset general y el porcentaje de contenido que se debe extraer
-    del dataset
-
-    Args:
-        groups_datasets (List[DataFrame])
-        train_split (float)
-    
-    Returns:
-        DataFrame
-    """
-
-    # Lista que contendrá la partición de training de cada dataset
-    lista = []
-
-    # Obtención de las particiones de training de cada dataset, de esta 
-    # forma el dataset para training mantendrá la proporción de datos de 
-    # cada Topic que existe en el dataset original
-    for dataset in groups_datasets:
-        lista.append(dataset.sample(
-            frac=train_split,
-            random_state=generate_args.seed,
-            axis=0,
-            ignore_index=True
-        ))
-
-    # Unión de las particiones de training
-    train_dataset = pd.concat(lista)
-
-    # Barajar el dataset de training
-    train_dataset = train_dataset.sample(
-        frac=1,
-        random_state=generate_args.seed,
-        axis=0,
-        ignore_index=True
-    )
-
-    return train_dataset
-
-
-def obtenerValidationDataset(dataset: DataFrame, train_dataset: DataFrame):
-    """
-    Función para obtener el dataset de validation a partir de un
-    dataset general y el dataset de training
-
-    Args:
-        dataset (DataFrame)
-        train_dataset (DataFrame)
-    
-    Returns:
-        DataFrame
-    """
-
-    # Obtener la diferencia entre el dataset completo y el dataset de training
-    validation_dataset = pd.merge(dataset, train_dataset, how='outer', indicator='Exist')
-    validation_dataset = validation_dataset.loc[validation_dataset['Exist'] != 'both']
-    validation_dataset = validation_dataset.drop(["Exist"], axis=1)
-    
-    # Barajar el dataset de validation
-    validation_dataset = validation_dataset.sample(
-        frac=1,
-        random_state=generate_args.seed,
-        axis=0,
-        ignore_index=True
-    )
-
-    return validation_dataset
-
-
 def save_dataset_EN(groups_datasets):
     total_dataset = pd.concat(groups_datasets)
-    name_file = '.'.join(generate_args.dataset_file.split('.')[:-1]) + "_EN.csv"
-    total_dataset.to_csv(name_file)
-
-
-def save_dataset_train_valid(groups_datasets, dir):
-    # Unión de todos los datasets
-    total_dataset = pd.concat(groups_datasets)
-
-    # Obtención del dataset de training
-    train_dataset = obtenerTrainDataset(groups_datasets, generate_args.train_split)
-
-    # Generación del dataset de training con el formato para el entrenamiento
-    train_s_t = pd.DataFrame({
-        "source": train_dataset.Question.to_list(),
-        "target": train_dataset.Answer.to_list()
-    })
-
-    # Obtención del dataset de validation
-    validation_dataset = obtenerValidationDataset(total_dataset, train_dataset)
-
-    # Generación del dataset de validation con el formato para el entrenamiento
-    validation_s_t = pd.DataFrame({
-        "source": validation_dataset.Question.to_list(),
-        "target": validation_dataset.Answer.to_list()
-    })
-
-    # Guardado de todos los datasets en el directorio de destino
-    train_dataset.to_csv(f"{dir}/train_resume.csv")
-    train_s_t.to_csv(f"{dir}/train.csv")
-    validation_dataset.to_csv(f"{dir}/validation_resume.csv")
-    validation_s_t.to_csv(f"{dir}/validation.csv")
-
-
-def split_by_topic(dataset: DataFrame):
-    groups = dataset.groupby(dataset.Topic)
-    groups_values = dataset.Topic.to_list()
-    groups_datasets = [groups.get_group(value) for value in groups_values]
-
-    return groups_datasets
+    filename = '.'.join(generate_args.initial_dataset_file.split('.')[:-1]) + "_EN.csv"
+    total_dataset.to_csv(filename)
 
 
 def calculateElements(groups_datasets: List[DataFrame], num_columns: int=1):
@@ -545,47 +439,8 @@ def simplify(groups_datasets):
     return new_groups_datasets
 
 
-def generarDatasetAdulto(groups_datasets: List[DataFrame], dir: str):
-    """
-    Función para generar el conjunto de datasets para Adultos
 
-    Args:
-        dataset (DataFrame)
-        dir (str)
-    
-    Returns:
-        List[DataFrame]
-    """
-
-    save_dataset_train_valid(groups_datasets, dir)
-
-
-def generarDatasetNiño(groups_datasets: List[DataFrame], dir: str):
-    """
-    Función para generar el conjunto de datasets para Niños
-
-    Args:
-        dataset (DataFrame)
-        dir (str)
-    
-    Returns:
-        List[DataFrame]
-    """
-
-    groups_datasets = simplify(groups_datasets)
-
-    save_dataset_train_valid(groups_datasets, dir)
-
-
-
-
-
-
-if __name__ == "__main__":
-
-    # Lectura del dataset
-    dataset = pd.read_csv(generate_args.dataset_file)
-
+def generate_theme_dataset(dataset):
     # Eliminación de una columna que se añade al guardar el archivo CSV
     dataset = dataset.drop(columns=["Unnamed: 0"])
 
@@ -605,18 +460,22 @@ if __name__ == "__main__":
     # Generación de las preguntas a las respuestas obtenidas en el paso anterior
     groups_datasets = generateQuestions(groups_datasets)
 
-    # Directorio donde guardar los resultados
-    dirAdulto = os.path.join(generate_args.result_dir, f"split_{generate_args.train_split}_Adulto")
-    # Creación del directorio en caso de que no exista
-    if not os.path.exists(dirAdulto):
-        os.mkdir(dirAdulto)
+    adult_dataset = pd.concat(groups_datasets)
 
-    generarDatasetAdulto(groups_datasets, dirAdulto)
+    groups_datasets = simplify(groups_datasets)
 
-    dirNiño = os.path.join(generate_args.result_dir, f"split_{generate_args.train_split}_Niño")
-    # Creación del directorio en caso de que no exista
-    if not os.path.exists(dirNiño):
-        os.mkdir(dirNiño)
+    child_dataset = pd.concat(groups_datasets)
 
-    generarDatasetNiño(groups_datasets, dirNiño)
+    return adult_dataset, child_dataset
 
+
+
+if __name__ == "__main__":
+
+    # Lectura del dataset
+    dataset = pd.read_csv(generate_args.initial_dataset_file)
+
+    adult_dataset, child_dataset = generate_theme_dataset(dataset)
+
+    adult_dataset.to_csv(os.path.join(generate_args.theme_result_dir, generate_args.adult_dataset_file))
+    child_dataset.to_csv(os.path.join(generate_args.theme_result_dir, generate_args.child_dataset_file))
