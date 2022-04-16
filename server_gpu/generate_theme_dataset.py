@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-""" Script para generar datasets para el entrenamiento """
+## 
+# @file generate_theme_dataset.py
+#
+# @brief Script para la generación de datasets temáticos
+# 
+# @section libraries_main Libraries/Modules
 
 # General
 import os
