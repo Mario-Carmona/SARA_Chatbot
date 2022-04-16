@@ -20,11 +20,15 @@ if __name__ == "__main__":
     # Lectura del dataset
     dataset = pd.read_csv(args.dataset_file)
 
+    # Eliminación de una columna que se añade al guardar el archivo CSV
+    dataset = dataset.drop(columns=["Unnamed: 0"])
+
     # Ordenar el dataset en base a la columna Topic
     dataset = dataset.sort_values('Topic')
 
-    # Eliminación de una columna que se añade al guardar el archivo CSV
-    dataset = dataset.drop(columns=["Unnamed: 0"])
+    new_dataset = pd.DataFrame({})
+    for column in dataset.columns.values:
+        dataset[column] = dataset[column].to_list()
 
     # Guardar el dataset tras su ordenación
     dataset.to_csv(args.dataset_file)
