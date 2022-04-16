@@ -22,6 +22,7 @@ if __name__ == "__main__":
 
     # Eliminación de una columna que se añade al guardar el archivo CSV
     dataset = dataset.drop(columns=["Unnamed: 0"])
+    print(dataset)
 
     # Ordenar el dataset en base a la columna Topic
     dataset = dataset.sort_values('Topic')
