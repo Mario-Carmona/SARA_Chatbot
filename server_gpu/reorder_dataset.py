@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
     new_dataset = pd.DataFrame({})
     for column in dataset.columns.values:
-        dataset[column] = dataset[column].to_list()
+        new_dataset[column] = dataset[column].to_list()
 
     # Guardar el dataset tras su ordenación
-    dataset.to_csv(args.dataset_file)
+    new_dataset.to_csv(args.dataset_file)
