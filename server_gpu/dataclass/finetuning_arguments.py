@@ -77,12 +77,6 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
             "help": "# num_beams to use for evaluation."
         }
     )
-    ignore_pad_token_for_loss: bool = field(
-        default=True,
-        metadata={
-            "help": "If only pad tokens should be ignored. This assumes that `config.pad_token_id` is defined."
-        }
-    )
 
     def __post_init__(self):
         ModelConverArguments.__post_init__(self)
