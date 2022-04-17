@@ -295,10 +295,6 @@ def summarization(groups_datasets):
 
     print(bcolors.WARNING + "Realizando resumen del texto..." + bcolors.RESET)
 
-    print(f"Número: {calculateElements(groups_datasets)}")
-    for i in groups_datasets:
-        print(i)
-
     # Creación de la barra de progreso
     progress_bar = tqdm(range(calculateElements(groups_datasets)))
 
@@ -453,14 +449,8 @@ def generate_theme_dataset(dataset):
     # Eliminación de una columna que se añade al guardar el archivo CSV
     dataset = dataset.drop(columns=["Unnamed: 0"])
 
-    print(dataset)
-    aux = input("---->")
-
     # División del dataset en base al campo Topic
     groups_datasets = split_by_topic(dataset)
-
-    print(groups_datasets)
-    aux = input("---->")
 
     if not generate_args.translated:
         # Traducción de los datasets al Inglés
