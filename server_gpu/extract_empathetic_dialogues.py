@@ -56,7 +56,8 @@ def extract_dataset_sentiment(list_sentiment, num_samples, seed):
     total_dataset = pd.concat(lista_datasets)
     
     for i in range(len(total_dataset)):
-        print(len(total_dataset.iloc[i,:]))
+        if len(total_dataset.iloc[i,:]) != 4:
+            print(len(total_dataset.iloc[i,:]))
     
 
     return total_dataset
