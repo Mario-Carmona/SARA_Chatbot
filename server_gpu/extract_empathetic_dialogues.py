@@ -54,9 +54,6 @@ def extract_dataset_sentiment(list_sentiment, num_samples, seed):
         lista_datasets.append(dataset_sentiment)
 
     total_dataset = pd.concat(lista_datasets)
-    
-    print(len(total_dataset))
-    
 
     return total_dataset
 
@@ -93,3 +90,12 @@ if __name__ == "__main__":
     dataset = extract_dataset_sentiment(extract_args.list_sentiment, extract_args.num_samples, extract_args.seed)
 
     dataset.to_csv(extract_args.attitude_dataset_file)
+
+    
+
+    dataset = pd.read_csv(extract_args.attitude_dataset_file)
+
+    print(len(dataset))
+    for i in range(len(dataset)):
+        if len(dataset.iloc[i,:]) != 4:
+            print(len(dataset.iloc[i,:]))
