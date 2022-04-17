@@ -47,12 +47,12 @@ class SplitDatasetArguments(ProyectArguments):
             self.split_result_dir = os.path.join(self.workdir, self.split_result_dir)
 
             assert os.path.exists(self.split_dataset_file), "`split_dataset_file` debe ser un archivo existente."
-            assert self.split_dataset_file.aplit('.')[-1] == 'csv', "`split_dataset_file` debe ser un archivo CSV"
+            assert self.split_dataset_file.split('.')[-1] == 'csv', "`split_dataset_file` debe ser un archivo CSV"
 
         assert 0.0 < self.train_split and self.train_split < 1.0, "`train_split` debe estar en el rango (0,1)."
 
         assert os.path.exists(self.split_result_dir), "`split_result_dir` debe ser un directorio existente."
 
-        assert self.train_dataset_file.aplit('.')[-1] == 'csv', "`train_dataset_file` debe ser un archivo CSV"
+        assert self.train_dataset_file.split('.')[-1] == 'csv', "`train_dataset_file` debe ser un archivo CSV"
 
-        assert self.valid_dataset_file.aplit('.')[-1] == 'csv', "`valid_dataset_file` debe ser un archivo CSV"
+        assert self.valid_dataset_file.split('.')[-1] == 'csv', "`valid_dataset_file` debe ser un archivo CSV"

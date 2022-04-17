@@ -76,6 +76,6 @@ class AttitudeDatasetArguments(ProyectArguments):
 
         assert self.num_samples >= 0, "`num_samples` debe ser un entero positivo."
 
-        dir = '/'.join(self.attitude_dataset_file.aplit('/')[:-1])
+        dir = '/'.join(self.attitude_dataset_file.split('/')[:-1])
         assert os.path.exists(dir), "`attitude_dataset_file` debe estar en un directorio existente."
-        assert self.attitude_dataset_file.aplit('.')[-1] == 'csv', "`attitude_dataset_file` debe ser un archivo CSV"
+        assert self.attitude_dataset_file.split('.')[-1] == 'csv', "`attitude_dataset_file` debe ser un archivo CSV"
