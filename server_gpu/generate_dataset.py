@@ -12,10 +12,16 @@ from extract_empathetic_dialogues import extract_dataset_sentiment, clean_trash_
 from join_datasets import join_datasets
 from split_dataset import split_dataset
 from generate_finetuning_dataset import obtain_finetuning_dataset
+from reorder_dataset import ordenar_dataset
 
 from dataclass.generate_dataset_arguments import GenerateDatasetArguments
 from transformers import HfArgumentParser
 
+
+
+def save_dataset(dataset, archivo):
+    dataset.to_csv(archivo)
+    ordenar_dataset(archivo)
 
 
 if __name__ == "__main__":
@@ -53,15 +59,15 @@ if __name__ == "__main__":
     adult_dataset, child_dataset = generate_theme_dataset(dataset_initial)
 
     adult_dataset_path = os.path.join(generate_args.theme_result_dir, generate_args.adult_dataset_file)
-    adult_dataset.to_csv(adult_dataset_path)
+    save_dataset(adult_dataset, adult_dataset_path)
 
     child_dataset_path = os.path.join(generate_args.theme_result_dir, generate_args.child_dataset_file)
-    child_dataset.to_csv(child_dataset_path)
+    save_dataset(child_dataset, child_dataset_path)
     
 
     sentiment_dataset = extract_dataset_sentiment(generate_args.list_sentiment, generate_args.num_samples, generate_args.seed)
 
-    sentiment_dataset.to_csv(generate_args.attitude_dataset_file)
+    save_dataset(sentiment_dataset, generate_args.attitude_dataset_file)
 
     clean_trash_csv(generate_args.attitude_dataset_file)
 
@@ -75,7 +81,7 @@ if __name__ == "__main__":
         join_dataset = join_datasets(new_list_datasets, generate_args.remove_source_files)
 
         new_filename = generate_args.join_dataset_file.split('.')[0] + cadena + ".csv"
-        join_dataset.to_csv(new_filename)
+        save_dataset(join_dataset, new_filename)
 
 
         train_dataset, valid_dataset = split_dataset(join_dataset, generate_args.train_split, generate_args.seed)
@@ -83,8 +89,8 @@ if __name__ == "__main__":
         dir_path = os.path.join(generate_args.split_result_dir, f"split_{generate_args.train_split}" + cadena)
         os.mkdir(dir_path)
 
-        train_dataset.to_csv(os.path.join(dir_path, generate_args.train_dataset_file))
-        valid_dataset.to_csv(os.path.join(dir_path, generate_args.valid_dataset_file))
+        save_dataset(train_dataset, os.path.join(dir_path, generate_args.train_dataset_file))
+        save_dataset(valid_dataset, os.path.join(dir_path, generate_args.valid_dataset_file))
 
 
         train_s_t, validation_s_t = obtain_finetuning_dataset(train_dataset, valid_dataset)

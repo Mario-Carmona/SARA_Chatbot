@@ -6,19 +6,9 @@ import argparse
 
 
 
-if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        'dataset_file', 
-        type=str, 
-        help=''
-    )
-    args = parser.parse_args()
-
-
+def ordenar_dataset(archivo):
     # Lectura del dataset
-    dataset = pd.read_csv(args.dataset_file)
+    dataset = pd.read_csv(archivo)
 
     # Eliminación de una columna que se añade al guardar el archivo CSV
     dataset = dataset.drop(columns=["Unnamed: 0"])
@@ -31,4 +21,17 @@ if __name__ == "__main__":
         new_dataset[column] = dataset[column].to_list()
 
     # Guardar el dataset tras su ordenación
-    new_dataset.to_csv(args.dataset_file)
+    new_dataset.to_csv(archivo)
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        'dataset_file', 
+        type=str, 
+        help=''
+    )
+    args = parser.parse_args()
+
+    ordenar_dataset(args.dataset_file)
