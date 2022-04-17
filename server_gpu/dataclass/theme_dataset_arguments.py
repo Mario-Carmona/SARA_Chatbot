@@ -78,6 +78,7 @@ class ThemeDatasetArguments(ModelSumArguments, ModelGenQuestionArguments,
         ModelSimplifyArguments.__post_init__(self)
         
         self.initial_dataset_file = os.path.join(self.workdir, self.initial_dataset_file)
+        self.theme_result_dir = os.path.join(self.workdir, self.theme_result_dir)
 
         assert self.limit_summary >= 0, "`limit_summary` debe ser un entero positivo."
 
