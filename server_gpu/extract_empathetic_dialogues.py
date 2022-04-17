@@ -93,9 +93,9 @@ if __name__ == "__main__":
 
     
 
-    dataset = pd.read_csv(extract_args.attitude_dataset_file)
+    dataset2 = pd.read_csv(extract_args.attitude_dataset_file)
 
-    print(len(dataset))
-    for i in range(len(dataset)):
-        if len(dataset.iloc[i,:]) != 4:
-            print(len(dataset.iloc[i,:]))
+    print(len(dataset2))
+    for i in range(len(dataset2)):
+        if len(dataset2.iloc[i,:]) != 4:
+            print(len(dataset2.iloc[i,:]))
