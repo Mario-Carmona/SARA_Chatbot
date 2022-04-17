@@ -7,6 +7,8 @@ import pandas as pd
 import sys
 import os
 
+from extract_empathetic_dialogues import clean_trash_csv
+
 
 
 def obtain_finetuning_dataset(train_dataset, valid_dataset):
@@ -59,4 +61,7 @@ if __name__ == "__main__":
     dir = os.path.join(BASE_PATH,'/'.join(args.train_dataset.split('/')[:-1]))
 
     train_s_t.to_csv(os.path.join(dir,"train.csv"))
+    clean_trash_csv(os.path.join(dir,"train.csv"))
+
     validation_s_t.to_csv(os.path.join(dir,"validation.csv"))
+    clean_trash_csv(os.path.join(dir,"validation.csv"))

@@ -97,5 +97,7 @@ if __name__ == "__main__":
         train_s_t, validation_s_t = obtain_finetuning_dataset(train_dataset, valid_dataset)
 
         train_s_t.to_csv(os.path.join(dir_path, "train.csv"))
-        validation_s_t.to_csv(os.path.join(dir_path, "validation.csv"))
+        clean_trash_csv(os.path.join(dir_path, "train.csv"))
 
+        validation_s_t.to_csv(os.path.join(dir_path, "validation.csv"))
+        clean_trash_csv(os.path.join(dir_path, "validation.csv"))
