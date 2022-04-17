@@ -15,9 +15,6 @@ from transformers import HfArgumentParser
 def modify_dataset(dataset):
     dataset = dataset.rename(columns={"Sentiment":"Subject"})
 
-    for i in dataset.iloc[:]:
-        print(len(i))
-
     return dataset
 
 
@@ -57,6 +54,9 @@ def extract_dataset_sentiment(list_sentiment, num_samples, seed):
         lista_datasets.append(dataset_sentiment)
 
     total_dataset = pd.concat(lista_datasets)
+    
+    for i in dataset.iloc[:]:
+        print(len(i))
 
     return total_dataset
 
