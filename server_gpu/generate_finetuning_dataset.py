@@ -63,5 +63,5 @@ if __name__ == "__main__":
     train_s_t.to_csv(os.path.join(dir,"train.csv"))
     clean_trash_csv(os.path.join(dir,"train.csv"))
 
-    validation_s_t.to_csv(os.path.join(dir,"validation.csv"))
-    clean_trash_csv(os.path.join(dir,"validation.csv"))
+    validation_s_t.to_csv(os.path.join(dir,"validation.csv"), 3)
+    clean_trash_csv(os.path.join(dir,"validation.csv"), 3)

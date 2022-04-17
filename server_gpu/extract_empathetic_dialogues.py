@@ -18,13 +18,13 @@ def modify_dataset(dataset):
     return dataset
 
 
-def clean_trash_csv(archivo):
+def clean_trash_csv(archivo, num_columns = 5):
     with open(archivo) as f:
         lineas = f.readlines()
 
     new_lineas = []
     for linea in lineas:
-        if len(linea.split(',')) == 5:
+        if len(linea.split(',')) == num_columns:
             new_lineas.append(linea)
 
     with open(archivo, 'w') as f:
