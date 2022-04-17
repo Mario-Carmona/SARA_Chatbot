@@ -97,6 +97,8 @@ def split_by_topic(dataset: DataFrame):
 
 
 def split_dataset(dataset, train_split, seed):
+    dataset = dataset.drop(columns=["Unnamed: 0"])
+    
     train_dataset = obtenerTrainDataset(
         split_by_topic(dataset), 
         train_split,

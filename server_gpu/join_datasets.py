@@ -13,7 +13,13 @@ from transformers import HfArgumentParser
 
 
 def join_datasets(list_datasets, remove_source_files):
-    result_dataset = pd.concat([pd.read_csv(dataset) for dataset in list_datasets])
+    lista = []
+    for i in list_datasets:
+        dataset = pd.read_csv(i)
+        dataset = dataset.drop(columns=["Unnamed: 0"])
+        lista.append(dataset)
+
+    result_dataset = pd.concat(lista)
     
     if remove_source_files:
         for dataset_path in list_datasets:
