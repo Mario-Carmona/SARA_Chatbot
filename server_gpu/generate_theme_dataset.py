@@ -459,6 +459,9 @@ def generate_theme_dataset(dataset):
     # División del dataset en base al campo Topic
     groups_datasets = split_by_topic(dataset)
 
+    print(groups_datasets)
+    aux = input("---->")
+
     if not generate_args.translated:
         # Traducción de los datasets al Inglés
         groups_datasets = traducirES_EN(groups_datasets)
