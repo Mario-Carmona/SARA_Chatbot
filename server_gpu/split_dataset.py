@@ -90,8 +90,11 @@ def obtenerValidationDataset(dataset: DataFrame, train_dataset: DataFrame, seed:
 
 def split_by_topic(dataset: DataFrame):
     groups = dataset.groupby(dataset.Topic)
+    """
     groups_values = dataset.Topic.to_list()
     groups_datasets = [groups.get_group(value) for value in groups_values]
+    """
+    groups_datasets = list(groups)
 
     return groups_datasets
 
