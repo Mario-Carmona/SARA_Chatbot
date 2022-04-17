@@ -8,7 +8,7 @@ import pandas as pd
 import os
 
 from generate_theme_dataset import generate_theme_dataset
-from extract_empathetic_dialogues import extract_dataset_sentiment
+from extract_empathetic_dialogues import extract_dataset_sentiment, clean_trash_csv
 from join_datasets import join_datasets
 from split_dataset import split_dataset
 from generate_finetuning_dataset import obtain_finetuning_dataset
@@ -62,6 +62,8 @@ if __name__ == "__main__":
     sentiment_dataset = extract_dataset_sentiment(generate_args.list_sentiment, generate_args.num_samples, generate_args.seed)
 
     sentiment_dataset.to_csv(generate_args.attitude_dataset_file)
+
+    clean_trash_csv(generate_args.attitude_dataset_file)
 
     generate_args.list_datasets.append(generate_args.attitude_dataset_file)
 

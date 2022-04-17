@@ -18,6 +18,19 @@ def modify_dataset(dataset):
     return dataset
 
 
+def clean_trash_csv(archivo):
+    with open(archivo) as f:
+        lineas = f.readlines()
+
+    new_lineas = []
+    for linea in lineas:
+        if len(linea.split(',')) == 5:
+            new_lineas.append(linea)
+
+    with open(archivo, 'w') as f:
+        f.writelines(new_lineas)
+
+
 def extract_dataset_sentiment(list_sentiment, num_samples, seed):
     dataset = load_dataset("empathetic_dialogues")
 
@@ -92,14 +105,5 @@ if __name__ == "__main__":
     dataset.to_csv(extract_args.attitude_dataset_file)
 
     
-    with open(extract_args.attitude_dataset_file) as f:
-        lineas = f.readlines()
-
-    new_lineas = []
-    for linea in lineas:
-        if len(linea.split(',')) == 5:
-            new_lineas.append(linea)
-
-    with open(extract_args.attitude_dataset_file, 'w') as f:
-        f.writelines(new_lineas)
+    clean_trash_csv(extract_args.attitude_dataset_file)
 
