@@ -88,10 +88,10 @@ class ThemeDatasetArguments(ModelSumArguments, ModelGenQuestionArguments,
         assert self.num_beams_question >= 0, "`num_beams_question` debe ser un entero positivo."
 
         assert os.path.exists(self.initial_dataset_file), "`initial_dataset_file` debe ser un archivo existente."
-        assert self.initial_dataset_file.aplit('.')[-1] == 'csv', "`initial_dataset_file` debe ser un archivo CSV"
+        assert self.initial_dataset_file.split('.')[-1] == 'csv', "`initial_dataset_file` debe ser un archivo CSV"
 
         assert os.path.exists(self.theme_result_dir), "`theme_result_dir` debe ser un directorio existente."
 
-        assert self.adult_dataset_file.aplit('.')[-1] == 'csv', "`adult_dataset_file` debe ser un archivo CSV"
+        assert self.adult_dataset_file.split('.')[-1] == 'csv', "`adult_dataset_file` debe ser un archivo CSV"
         
-        assert self.child_dataset_file.aplit('.')[-1] == 'csv', "`child_dataset_file` debe ser un archivo CSV"
+        assert self.child_dataset_file.split('.')[-1] == 'csv', "`child_dataset_file` debe ser un archivo CSV"
