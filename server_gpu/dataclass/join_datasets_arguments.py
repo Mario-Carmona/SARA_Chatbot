@@ -29,6 +29,8 @@ class JoinDatasetsArguments(ProyectArguments):
 
     def __post_init__(self):
         self.join_dataset_file = os.path.join(self.workdir, self.join_dataset_file)
+        for i, dataset_path in enumerate(self.list_datasets):
+            self.list_datasets[i] = os.path.join(self.workdir, dataset_path)
 
         assert len(self.list_datasets) > 0, "`list_datasets` debe ser una lista con al menos un elemento"
         for dataset_path in self.list_datasets:
