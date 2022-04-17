@@ -10,12 +10,6 @@ import os
 from dataclass.split_dataset_arguments import SplitDatasetArguments
 from transformers import HfArgumentParser
 
-from utils import (
-    obtenerTrainDataset, 
-    obtenerValidationDataset,
-    split_by_topic
-)
-
 from pandas import DataFrame
 from typing import List
 
