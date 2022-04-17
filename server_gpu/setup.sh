@@ -14,3 +14,5 @@ export TFHUB_CACHE_DIR=.
 export HOME=/mnt/homeGPU/mcarmona
 
 pip install -r requirements.txt
+
+ulimit -Sn 10000
