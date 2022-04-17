@@ -92,10 +92,14 @@ if __name__ == "__main__":
     dataset.to_csv(extract_args.attitude_dataset_file)
 
     
+    with open(extract_args.attitude_dataset_file) as f:
+        lineas = f.readlines()
 
-    dataset2 = pd.read_csv(extract_args.attitude_dataset_file)
+    new_lineas = []
+    for linea in lineas:
+        if len(linea.split(',')) != 5:
+            new_lineas.append(linea)
 
-    print(len(dataset2))
-    for i in range(len(dataset2)):
-        if len(dataset2.iloc[i,:]) != 4:
-            print(len(dataset2.iloc[i,:]))
+    with open(extract_args.attitude_dataset_file, 'w') as f:
+        f.writelines(new_lineas)
+
