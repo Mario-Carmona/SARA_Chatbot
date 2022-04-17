@@ -57,6 +57,7 @@ def extract_dataset_sentiment(list_sentiment, num_samples, seed):
     
     for i in total_dataset.index:
         print(len(total_dataset.iloc[i,:]))
+    
 
     return total_dataset
 
