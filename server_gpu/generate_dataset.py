@@ -87,7 +87,8 @@ if __name__ == "__main__":
         train_dataset, valid_dataset = split_dataset(join_dataset, generate_args.train_split, generate_args.seed)
 
         dir_path = os.path.join(generate_args.split_result_dir, f"split_{generate_args.train_split}" + cadena)
-        os.mkdir(dir_path)
+        if not os.path.exists(dir_path):
+            os.mkdir(dir_path)
 
         save_dataset(train_dataset, os.path.join(dir_path, generate_args.train_dataset_file))
         save_dataset(valid_dataset, os.path.join(dir_path, generate_args.valid_dataset_file))
