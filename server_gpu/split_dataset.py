@@ -145,7 +145,7 @@ if __name__ == "__main__":
     split_args, = parser.parse_json_file(json_file=str(BASE_PATH/CONFIG_FILE))
 
 
-    dataset = pd.read_csv(args.split_dataset_file)
+    dataset = pd.read_csv(split_args.split_dataset_file)
 
     train_dataset, valid_dataset = split_dataset(
         dataset, 
