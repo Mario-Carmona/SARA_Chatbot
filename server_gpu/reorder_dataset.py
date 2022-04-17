@@ -24,7 +24,7 @@ if __name__ == "__main__":
     dataset = dataset.drop(columns=["Unnamed: 0"])
 
     # Ordenar el dataset en base a la columna Topic
-    dataset = dataset.sort_values('Topic')
+    dataset = dataset.sort_values(dataset.columns.values[0])
 
     new_dataset = pd.DataFrame({})
     for column in dataset.columns.values:

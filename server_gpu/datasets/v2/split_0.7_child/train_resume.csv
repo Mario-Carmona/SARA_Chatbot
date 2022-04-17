@@ -1,114 +1,41 @@
-,Unnamed: 0,Topic,Subject,Question,Answer
-0,2,Variables dummy,Definición de variables dummy,What exactly is a dummy variable?,"The researchers at the University of Oxford have written about the effect of a dummy variable on a study in the paper ""Effects of a dummy variable on a study""."
-1,1,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is the name of the tool that you use to find out how to use a site?,It is a great tool to help you learn how to use a website.
-2,26982,Actitud,confident,I feel I can do things on my own. I didn't always feel this way_comma_ so it's nice I am empowered now and can accomplish things on my own.,My resolve I guess? Nothing changed for the better but inside me at least I know I can do it on my own because it's 1000 times better than the alternative. I'll do whatever it takes.
-3,11572,Actitud,faithful,When I am in nature I feel good that this world is exactly as it should be. Everything is moving a long to Gods desires.,Why do cities make you feel that way?
-4,58332,Actitud,excited,Gareth Bale played his best in the champion's league final. I was thrilled after I watched his game.,Have you watched champion's league final?
-5,2,Función Hash,Definición de función hash,What is the definition of a hash function?,A Hash Function is a mathematical function that transforms a set of data into an alphanumeric code of fixed length.
-6,1,Función Hash,Definición de función hash,What is the definition of a hash function?,A hash function is a function that converts one or more input elements into another element.
-7,11036,Actitud,confident,I was very sure I was getting the promotion I asked for.,I knew I was going to get the promotion I was up for.
-8,1,Modelos generativos,Ejemplo de modelos generativos,What is an example of a model-based learning method?,Image-based learning is a promising new way to train computers.
-9,4,Metaverso,Ejemplo de metaverso,What is the name of the report published by the European Commission?,"The European Commission has published a report on the ""breakthrough"" technology of machine testing."
-10,2,Prolog,Definición de Prolog,What is the name of the European Research Award-winning project?,"The PROLOG project has been awarded the European Union's highest research award, the European Research Award (Eredo), for its work on artificial intelligence."
-11,5,Aprendizaje por refuerzo,Funcionalidad del aprendizaje por refuerzo,What is the main function of aprendizaje?,This paper shows how to train an unsupervised learning algorithm group.
-12,2,Bot,Definición de bot,What is the definition of a bot?,A bot is a software application that is programmed to perform certain tasks.
-13,49483,Actitud,proud,My daughter got is going to university. I'm so happy. ,Thank you_comma_ I'm so proud
-14,64737,Actitud,faithful,god has done so much for me in my life. i owe everything to him,and i know he's going to come back for me and take me away from this place
-15,6499,Actitud,trusting,I trust my wife with my life,thats a good bond how long have you been together? 
-16,2,Algoritmo,Definición de agente inteligente,What is the name of the algorithm?,The algorithm is a set of instructions that is used to solve problems.
-17,6,Blockchain,Ejemplo de blockchain,What is the name of the technology used in the banking sector?,The use of blockchain technology in the banking sector has been growing in recent years.
-18,14784,Actitud,faithful,I have always  been faithful to my girlfiend of almost 3 years,So many people cheat nowadays. That's good to hear!
-19,14062,Actitud,excited,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!
-20,6117,Actitud,trusting,When my dad wanted to help me get a car_comma_ I trusted him. I knew he would help me a lot,That is nice of him_comma_ that is a good dad right there!
-21,0,Tabla Hash,Definición de tabla hash,What exactly is a tabla hash?,A hash table is a popular way to store information.
-22,3838,Actitud,trusting,When I was a little kid I used to put my faith in everybody.  I learned later on_comma_ as I matured that you can't rely on other people too much because only you know what is best for you in life while everyone else will try to use you if they see you doing too well in life,I understand. Do you like Tony Montana in the movie Scarface?
-23,0,Árbol de Merkle,Definición de árbol de Merkle,What exactly is a hash tree?,"Hash trees are a great way to store data, but they can be difficult to use."
-24,8804,Actitud,trusting,My nephew is learning how to drive and asked to use my car to take the driving test this weekend. ,Yeah. I feel he wont let me down. 
-25,14062,Actitud,excited,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!
-26,0,Aprendizaje automático,Definición de aprendizaje automático,What does machine learning mean to you?,"The BBC's artificial intelligence expert, Sue Perkins, explains how the system works."
-27,37039,Actitud,proud,My grandson just graduated high school. He was developmentally slow so we were amazed that he actaully graduated a year early!,You must be so proud. That really is a great accomplishment that he has made. Is he going to college?
-28,8804,Actitud,trusting,My nephew is learning how to drive and asked to use my car to take the driving test this weekend. ,Yeah. I feel he wont let me down. 
-29,62642,Actitud,hopeful,I borrowed some money from my friend. I've a confidence I'll repay this month to him.,What a good friend to lend you money in your time of need. You should thank him and take him to dinner after everything is sorted.
-30,8831,Actitud,excited,I can't even fall asleep waiting to go on our vacation. ,Oh_comma_ well that is a fine thing indeed! I would be  jumping up and down!
-31,2,Ciencia de datos,Definición de ciencia de datos,What is the PhD program topic at the University of Bristol?,The University of Bristol offers a data science PhD.
-32,35077,Actitud,trusting,My co-worker is in charge of finishing up our big project. I am putting all my faith in them.,I have a co-worker putting the finishing touches on a big project and work_comma_ and I am really putting all my faith in him.
-33,31842,Actitud,excited,I'm excited for Red Dead Redemption 2 to come out.  Even though it's a couple months away,No worries_comma_ we all have our hobbies!
-34,17001,Actitud,faithful,Some one owed me some money,I thought he would not pay back after a long time
-35,0,Autoencoder,Definición de autoencoder,What is the project's goal?,"In this project, the research group is developing an autoencoder to read audio signals."
-36,31049,Actitud,proud,My son won first place at his first spelling bee.,That's great!  Sounds like he's a smart kid!
-37,11593,Actitud,trusting,I have faith that I will get pregnant soon. Why is it so hard? Isn't that what a women's body is built to do?,Yeah_comma_ more people are having these issues these days. I think it may be true that someone may be poisoning us through the water and food or something! It is a scary world!
-38,3141,Actitud,joyful,When my first child was born I have never experienced so much happiness in my life.,Thank you! It is hard at times tho when getting little sleep.
-39,20271,Actitud,joyful,I've had family visiting for the past couple of days_comma_ some cousins and an uncle and aunt that I haven't seen a long time. It's always great to be reunited with family_comma_ especially after you get over that first initial weird social hump of feeling each other out after not having spoken for a long time. It's crazy to see how much the younger cousins have physically changed! Anyway_comma_ it's been a blast playing games and catching up with them.,wow thats great
-40,4,Ciencia de datos,Ejemplo de ciencia de datos,What is the main new approach of the NCA?,The UK's National Crime Agency (NCA) has developed a new way to identify cyber threats. It uses machine learning to find patterns in data.
-41,14,Algoritmo,Ejemplo de algoritmo,What is the Google algorithm that is used?,"Google has been accused of giving its own products and services better search results than other companies, such as Yahoo and Bing."
-42,0,Reglas de asociación,Ejemplo de reglas de asociación,What is the name of the rule that says that the person who bought the book from the seller will be the user.,"The idea behind the idea is that if a user buys a book, the book will be given to the user who bought it from the seller."
-43,43708,Actitud,proud,Nephew playing football this year,That's exciting!  I hope he's doing well in school!
-44,1,Autoencoder,Definición de autoencoder,What is the name of the new method developed?,A novel method for learning autoencoders has been developed.
-45,2,Smart data,Definición de smart data,What is the term used to describe data that is ready to be used but not yet ready for use?,"The term ""smart data"" is used to describe data that is ready to be used, but which is not yet ready for use."
-46,3725,Actitud,prepared,I had been grinding at home trying to build my website when this girl I hadn't heard from since high school called. She said she was in town and wanted to catch up.  Deciding I needed a break from work I turned off my laptop_comma_ threw on some fresh khakis and air nikes and 2 condoms just in case.  Turned out it's always better safe than sorry.,They're known to cause erectile dysfunction? There's chemicals in the laces_comma_ dude! A conspiracy I tell you! Done by OBAMA!
-47,21771,Actitud,confident,i went in knowing i was going to do great on that test,Awesome! So happy for you my friend
-48,0,Big data,Definición de big data,What does big data mean?,"In our series of letters from African journalists, Ahmed Rashid looks at the big data revolution."
-49,49728,Actitud,joyful,I am going to eat some BBQ later.  I am so happy for it.,That sounds so good and the perfect way to spend a Sunday.
-50,7517,Actitud,hopeful,I just got a new manager at work. She is really young but seems to be full of good ideals.,I plan to steer clear. I'm going to relocate in January so I just need to lay low. I hope she does a great job.
-51,11281,Actitud,proud,I was happy when my brother graduated college. I was just happy for him,I was happy when my brother finished college. He really did deserve it
-52,76569,Actitud,faithful,I feel this way because I have hope that I will get into grad school.,That sounds interesting_comma_ when do you learn if you got in?
-53,2,Autoencoder,Definición de autoencoder,What is the name of the autoencoder developed by Cambridge University?,The Cambridge University Press has developed an autoencoder for computer science.
-54,63366,Actitud,trusting,I went skydiving. I had to trust in the tandem partner I had to not kill me.,That's so awesome. I don't think I would have the courage now. Will you do it again?
-55,0,Subajuste,Definición de subajuste,What is the machine learning problem name?,"In this article, I will talk about a little-known machine learning problem."
-56,0,Prolog,Definición de Prolog,What language is Vine currently working on with Le Gall?,"The BBC's science correspondent, Jeremy Vine, is working with Pierre-Yves Le Gall, a French computer scientist, to develop a language for artificial intelligence."
-57,6791,Actitud,hopeful,I have a promotion coming up in the next few weeks. I am hopeful that I will get a raise,that's awesome! I hope you will get a promotion. what do you do for work?
-58,11852,Actitud,hopeful,I recently applied for a job at a new company. Getting this job would but such a step up for me and my family. It would really be great if I got it.,Well I hope you get it. Good luck!
-59,65984,Actitud,trusting,When I had many problems or I was sad_comma_ I knew God was with me and the things were going to improve.,Can you facetime them?
-60,27622,Actitud,excited,I'm going to building a gaming pc. This is my first time.,Wow. It can be difficult to put together but finding the parts is a lot of fun.
-61,60349,Actitud,trusting,If I'm going to be in a relationship I need girl I can depend on_comma_ not some effed up crazy damaged goods type of girl,Yes_comma_ glad you agree....I was an idiot and mistook a deadly combo of pity and infatuation for love...but now I know what to avoid and what I want so I'm thankful
-62,50022,Actitud,hopeful,I'm meeting a girl for a date at the zoo this afternoon.,What's your favorite exhibit at the zoo?
-63,6499,Actitud,trusting,I trust my wife with my life,thats a good bond how long have you been together? 
-64,2,Árbol de decisión,Definición de árbol de decisión,What is the name of the tree?,The tree is a very important part of any learning process.
-65,6117,Actitud,trusting,When my dad wanted to help me get a car_comma_ I trusted him. I knew he would help me a lot,That is nice of him_comma_ that is a good dad right there!
-66,2345,Actitud,joyful,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.
-67,19,Algoritmo,Clasificación de los algoritmos,What is the title of the paper describing the algorithm classification?,"In this paper, we explain the algorithm classification."
-68,1,Grafo,Definición de grafo,What is the definition of a graph?,"A graph is a representation of a system or set, by means of graphical schemes."
-69,4107,Actitud,excited,I have plans so go to the beach with my wife for a week next month.,I have plans so go to the beach with my wife for a week next month
-70,5076,Actitud,joyful,I'm happy my package just arrived,im glad it came earlier
-71,3,Modelo,Definición de modelo,What is the definition of a model?,AI is a branch of science that aims to improve the way we think about and use data.
-72,2,Máquina de Turing,Definición de máquina de Turing,What was the machine's name and what was its work?,"The BBC's science correspondent, Jeremy Vine, went to Bletchley Park during World War Two to see how the machine worked."
-73,27622,Actitud,excited,I'm going to building a gaming pc. This is my first time.,Wow. It can be difficult to put together but finding the parts is a lot of fun.
-74,44745,Actitud,prepared,ready to leave this hood ,That sounds like a plan.
-75,5983,Actitud,joyful,I recently received my teaching certificate,thats so awesome good for you 
-76,41360,Actitud,faithful,I was on a business trip last week spending some time at a local bar. There was a girl who was being flirty with me. I had to tell her that I was married and I couldn't play with her.,Last week on a business trip I spent some time at the bar. There was this girl who was really flirty with me. I had to tell her that I couldn't play with her because I was married.
-77,2,Realidad aumentada,Ejemplo de realidad aumentada,What exactly is augmented reality?,"Augmented reality is when you use your computer, smartphone or tablet to view the world around you."
-78,71283,Actitud,trusting,I let my son drive the car for the first time.,You must be so proud of him!
-79,3,Realidad aumentada,Definición de realidad aumentada,What is the definition of augmented reality?,The Augmented Reality Association (ARA) is a non-profit organisation that promotes the use of augmented reality in the hospitality industry.
-80,3,Máquina de Turing,Definición de máquina de Turing,What is the name of Alan Turing's machine?,"The BBC's science correspondent, Richard Black, has been to the University of Cambridge to see what it is like to work with a Turing machine."
-81,9,Algoritmo,Input del algoritmo,What is the algoritm's name?,A cooking class is an opportunity for students to learn how to cook.
-82,15778,Actitud,hopeful,I pray American will be great again.,Me too_comma_ he's so real. He loves what I love. MMA_comma_ poker_comma_ guns_comma_ WWE_comma_ hahahah
-83,0,Sugar code,Definición de sugar code,What is a sugar code definition?,"In this video, you will learn how to use sugar to write code."
-84,0,Computación Ecológica,Definición de computación Ecológica,What is the name of the project that the GPC is working on?,The Green Computing Project (GPC) at the University of Cambridge is helping people learn more about green computers and how they can use them.
-85,39085,Actitud,excited,I am super hype for the new super smash bros_comma_ it looks so so good!,It comes out in December right? It would make a good holiday present!
-86,47358,Actitud,prepared,im ready for next week!,what's happening next week?
-87,6238,Actitud,confident,I started my driving class last week. I'll finish the class within a month and drive the car without any help of others.,Are you going to buy a car?
-88,0,Ciencia de datos,Ventajas de la ciencia de datos,What does it mean to use data to change the way we work?,The use of data to improve the way we work has become an important part of many companies.
-89,56574,Actitud,joyful,I cant believe my daughter performed so well in the recital. She practiced so hard for it,I cant believe my daughter performed so well in the recital.
-90,5,Ciencia de datos,Expertos en ciencia de datos,What is a computer scientist? A computer scientist uses data to solve problems.,Data science is a branch of computer science that uses data to make things work.
-91,70931,Actitud,prepared,Getting ready to file quarterly taxes and I have been very diligent with organization this year so I am prepared,I bought a big rubbermaid portable file box that has folders 
-92,25720,Actitud,confident,This is gonna be a good year at school for me. Its going to be better than all the rest!,Thats a good outlook to have! What year are you on 1st_comma_ 2nd? 
-93,2,Blockchain,Definición de blockchain,What new technology is being used to help businesses manage their digital resources?,A new technology is being used to help companies manage their assets.
-94,49728,Actitud,joyful,I am going to eat some BBQ later.  I am so happy for it.,That sounds so good and the perfect way to spend a Sunday.
-95,2221,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,Wow_comma_ that sounds like a fun and interesting time_comma_ but it sounds like there are a high chance for things to go south and be a huge mess
-96,69586,Actitud,faithful,When the guy I'm now married to and I met for the first time I was actually dating someone else. I thought that my now husband would just be a really good friend to me. I stayed with my ex-boyfriend for a while after_comma_ and even when I knew I wanted to date my now husband I never did anything to betray my ex.,Well that's good. Sounds like it all worked out pretty well.
-97,44470,Actitud,hopeful,We are wanting to buy a new house in the next year. I'm really hoping that it works out for us. We have needed something a little bigger for a while now.,Yes. I have 4 kids and we are living in a 3 bedroom and 1 bathroom right now. We definitely need another bathroom. lol
-98,42265,Actitud,excited,I was cooking some food recently. I made a hard to make recipe and it worked!,That is trivia. When i am hyped_comma_ i cook lasagna. I know that is hard to cook_comma_ but i mastered it all on my own
-99,4909,Actitud,excited,Recently we decided to rescue another kitten. We were so thrilled to be adding another furry member to our family and save a life.,That is great! Adopt_comma_ don't shop! Always a great motto!
-100,94,Actitud,confident,I recently went surfing and surfed waves everyone else was afraid to. I was the man_comma_,Yes_comma_ I've been surfing for ever. Only three of us in the water. 
-101,30156,Actitud,trusting,I was working on a boat_comma_ and I had to hope that my friend didn't screw something up while I had my hands in the engine.,Gosh I hate it when I have to work on complicated parts in my boat engine_comma_ when my friend is helping me.
-102,3,Realidad aumentada,Definición de realidad aumentada,What exactly is augmented reality?,The Augmented Reality Association (ARA) is a non-profit organization. Its purpose is to promote the use of augmented reality.
-103,32324,Actitud,trusting,I knew my dad would help me with my test. He was good at math,I knew my dad would help me with my test. He was good with math
-104,51514,Actitud,proud,I was held my head high when my mother received her Master's Degree after getting a GED after high school.,You know she inspires me. She always reminds me of what hard work can do for you.
-105,2,Grafo,Definición de grafo,What is the definition of a graph?,A graph is a set of objects that can be arranged in a way that is mathematically possible.
-106,15667,Actitud,excited,I am going to meet up with a special friend I haven't seen for  years,That's pretty cool. I don't see my friends much since I moved.
-107,0,Turing completo,Definición de turing completo,What is a Turing complete computer system?,"In this video, Dr. John-Paul Sartre explains why a Turing Complete system is a good idea, and why it is not."
-108,4,Algoritmo,Características de los algoritmos,What is a computer program that uses instructions or rules to solve problems?,An algorithm is a computer program that uses instructions or rules to solve problems.
-109,3407,Actitud,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,"I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,4|5|5_5|5|5,
+,Unnamed: 0.1,Topic,Subject,Question,Answer
+0,477,Actitud,faithful,I had a girl try to hook up with me_comma_ but i didnt do anything because I love my wife.,This attractive girl at the bar was trying to get me to go home with her the other night
+1,273,Actitud,joyful,I felt this way after the birth of my son.,What did you name him?
+2,272,Actitud,proud,My school is low income_comma_ but we score in the top 5% statewide.,Yep. We get looked down on so much_comma_ but I think some schools are gonna rethink their attitudes now.
+3,271,Actitud,joyful,Get to hang out and play cards with my girlfriend and her parents. Her parents are actually pretty laid back and fun to be around_comma_ so I'm looking forward to it. Glad I don't have to deal with overbearing in-laws like some people.,That's good. Were you nervous at first?
+4,270,Actitud,excited,I was so thrilled to get concert tickets for a surprise show. It will be so fun!,The Strokes are playing this show on the fly in a month. It's so cool!
+5,269,Actitud,joyful,I cant believe my daughter performed so well in the recital. She practiced so hard for it,I cant believe my daughter performed so well in the recital.
+6,266,Actitud,excited,I felt this way when my father bought me a Super Nintendo for  my 9th birthday. We were very poor so it was unexpected!,You still remember what you got for it?  It must have been memorable!  What was it?
+7,466,Actitud,hopeful,Vacation trip coming up hope it's awesome,Yeah I know!  It's going to be awesome!  Enjoy your day_comma_ friend!
+8,262,Actitud,trusting,My partner and I both work 24-hour shifts and tend to alternate shifts (I'll be at home hwen she's at work and she'll be at home when I'm at work). This can lead to some insecurities sometimes because not only are we away from each other alot_comma_ but we have a lot of time by ourselves where anyone could come over if they want to. I feel so lucky knowing that my wife has my best interest in mind. ,Ahh! We both enjoy it. Thanks for the thank you_comma_ though! :) 
+9,261,Actitud,hopeful,I am confident my brother will beat his cancer.,I am confident my brother will beat this cancer.
+10,260,Actitud,proud,I won first place in the marathon last weekend. I trained hard and deserved the win,That's pretty awesome. Do you usually run marathons?
+11,258,Actitud,excited,I am so full of anticipation!  School starts on Monday!,that's a long time. You should be used to it
+12,257,Actitud,trusting,I am waiting on my friend to come over. They are bringing me a medicine for my pet.,I'm sorry. That must make you sad.
+13,256,Actitud,confident,I remember going to State Football Championship. I told my teammates on the bus before we got off that if anybody isn't ready to leave this field with the trophy stay on the bus. The whole bus was quiet. The bus driver looked at me and said I think you guys need the listen to him he doesn't look like he's playing. We eventually won that game . ,WE won 60 - 3 
+14,255,Actitud,prepared,College is starting in 3 weeks_comma_ and I have my apartment all settled_comma_ my classes picked out_comma_ and my student loans scheduled. I feel like I'm on track to start the semester in a way where I'm not hurried or confused_comma_ and it feels good.,Hey... that's okay. I'm 28 and just now about to finish my 4-year degree. My brother finished his at 36. There's always a reason for the path you take. Maybe it led to better things. Don't ever just consider yourself a statistic. Good luck!
+15,254,Actitud,proud,I got all A's in my last semester.,Thanks! Yes_comma_ I think I did my best anyway.
+16,252,Actitud,confident,I know I can make a lotta money on here if I keep working.,Well keep looking something is out there for you
+17,467,Actitud,confident,I'm about to ask someone that I like out on a date. I'm pretty confident that she will say yes.,So there's a girl that I've been talking to lately... I'm thinking about asking her out.
+18,274,Actitud,confident,My friend speaks 4 languages. I'm sure they'll get that interpreter job at the embassy.,Yea. English of course_comma_ then French_comma_ Spanisha and Chinese.
+19,275,Actitud,confident,I have to make a tuna casserole for tomorrow.  I am sure I can do it well.,I bet it will be great - I've always loved a good tuna casserole!
+20,276,Actitud,faithful,When my spouse was out of town for work_comma_ a friend stopped by to visit. This friend offered to kiss me_comma_ but I declined and asked the friend to leave. I only have interest in my spouse in this way.,I said no and made the friend leave. I only like my spouse.
+21,277,Actitud,proud,My little boy got on the bus this morning. He made me so happy for him.,That's so sweet. 
+22,311,Actitud,faithful,I had a girl try to hook up with me_comma_ but i didnt do anything because I love my wife.,This attractive girl at the bar was trying to get me to go home with her the other night
+23,310,Actitud,joyful,i am so happy that i am going to be a grandma,Yep. Happy and healthy is a blessing
+24,308,Actitud,excited,I felt this way when my father bought me a Super Nintendo for  my 9th birthday. We were very poor so it was unexpected!,You still remember what you got for it?  It must have been memorable!  What was it?
+25,306,Actitud,excited,My spouse bought me a diamond necklace for my birthday.,Yes I was_comma_ I felt love and appreciated. 
+26,298,Actitud,hopeful,I'm trying to save up money to buy a home by next year. If all goes well It can happen.,I am so excited. I'm thinking of all the things I want to do to it and I don't even know what it looks like yet.
+27,297,Actitud,excited,I was so thrilled to get concert tickets for a surprise show. It will be so fun!,The Strokes are playing this show on the fly in a month. It's so cool!
+28,295,Actitud,prepared,I went into that interviewing knowing i could answer any question they threw at me,yea im sure i'll get the job
+29,294,Actitud,joyful,Going to disney world in december!,Oh that's exciting! Have you gone before?
+30,247,Actitud,excited,Gareth Bale played his best in the champion's league final. I was thrilled after I watched his game.,Have you watched champion's league final?
+31,292,Actitud,trusting,The first time I went on a motorcycle_comma_ I was scared. But I knew my husband wouldn't do anything to hurt me. I trusted him with my life.,It must be nice to have that kind of trust for someone_comma_ and motorcycles can be fun!
+32,289,Actitud,joyful,My company will give us a bonus because the quarter was good. I am happy.,I just went on a vaction with my kids. Its was so relaxing. Have fun
+33,288,Actitud,faithful,One day my neighbor helped me in a risky situation. So I'm loyal to their family always.,Yeah_comma_ They helped me in the risky situation when I was alone.
+34,465,Actitud,prepared,I have been training for months for the race.,I'm sure all the work will be worth it in the end!
+35,286,Actitud,proud,Finally got some yard work done _comma_ Love the smell of fresh cut grass.,I like getting things done in the yard_comma_but I feel so dirty afterwards.
+36,285,Actitud,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,"I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,4|5|5_5|5|5,
 hit:558_conv:1117,2,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,64,That sounds like a fun trip. I love camping.,4|5|5_5|5|5,
 hit:558_conv:1117,3,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,184,Yep as long as the weather is nice_comma_ it's fun. It's too hot right now though,4|5|5_5|5|5,
 hit:558_conv:1117,4,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,64,I'm glad the weather seems to be holding up. I live in Florida and it is always hot.,4|5|5_5|5|5,
@@ -201,182 +128,157 @@ hit:577_conv:1154,2,furious, A driver brushed my car with his car and did not st
 hit:577_conv:1154,3,furious, A driver brushed my car with his car and did not stop to apologize and fix my car,166,i wish i can locate him and make him pay for what he did. but i will prefer to brush his face with a punch ,4|3|3_5|5|5,
 hit:577_conv:1154,4,furious, A driver brushed my car with his car and did not stop to apologize and fix my car,178,Please do not do that. just forgive him and hope that it does not happen again,4|3|3_5|5|5,
 hit:578_conv:1156,1,surprised,For my 30th birthday my friends threw me an unexpected party that was a lot of fun.,184,For my 30th birthday my friends threw me an unexpected party that was a lot of fun."
-110,6,Trabajo,Trabajo,What do you do?,I am a chatbot to promote learning about AI. Are you interested in learning about any aspect of AI?
-111,3823,Actitud,prepared,One year we had a scary hurricane warning_comma_ but thankfully with plenty of time to get ready for it. So I got batteries_comma_ beer_comma_ non-perishable foods. I was totally ready!,Wouldn't you know it totally missed my city. I was a little let down to be honest_comma_ though glad we were safe.
-112,0,Modelo,Definición de modelo,What is the definition of a machine learning model?,A machine learning model is a file that has been trained to recognize certain types of patterns.
-113,69757,Actitud,confident,I recently decided to start blogging again and feel pretty good about it. I used to have a decent sized audience_comma_ so hopefully I can build it back up.,I'm sure if you can let people know that you're back blogging_comma_ they'd come back to see what you're up to now!  What do you blog about?
-114,55,Actitud,joyful,I was very happy to get my new job,oh wow. we're practically neighbors.
-115,33016,Actitud,prepared,We had a big storm last summer_comma_ so this year I bought a ton of supplies in case we lost power or had flooding. Last year our basement got very damaged. ,Yeah its all repaired now. I also bought lots of food in case we loose power.
-116,3725,Actitud,prepared,I had been grinding at home trying to build my website when this girl I hadn't heard from since high school called. She said she was in town and wanted to catch up.  Deciding I needed a break from work I turned off my laptop_comma_ threw on some fresh khakis and air nikes and 2 condoms just in case.  Turned out it's always better safe than sorry.,They're known to cause erectile dysfunction? There's chemicals in the laces_comma_ dude! A conspiracy I tell you! Done by OBAMA!
-117,0,Metadatos,Definición de metadatos,What exactly is metadata?,Metadata is a very important part of software development.
-118,26941,Actitud,hopeful,I am feeling more positive about the future today. I am really trying to hold on to that feeling no matter what. It's hard!,That is good!  Why have you been feeling down about the future before?
-119,65264,Actitud,trusting,i felt trusting when my dad and my mon care for me,Well as a fellow human being_comma_ I agree that when parents care for their children_comma_ it creates a lifelasting bond between the two parties.
-120,74999,Actitud,faithful,I've failed a lot of diets in the past_comma_ but this time I've been able to stay dedicated for the past four months. I'm seeing great progress now!,Yeah_comma_ that sounds like a really good idea!
-121,30419,Actitud,hopeful,My husband and I are going to couples counseling. I am really positive that we can fix things and be happy.,Oh no. I'm sorry to hear you are going through a rough patch.
-122,2,Turing completo,Definición de turing completo,What is the name of the computer system developed by researchers at the University of Bristol?,"A computer system that could be used to ""Turing complete"" has been developed by researchers at the University of Bristol."
-123,1,Xenobot,Historia de xenobot,What is the name of the robot that can swim and talk?,A robot that can swim and talk has been developed in the US.
-124,7517,Actitud,hopeful,I just got a new manager at work. She is really young but seems to be full of good ideals.,I plan to steer clear. I'm going to relocate in January so I just need to lay low. I hope she does a great job.
-125,1,Aprendizaje federado,Definición de aprendizaje federado,What is the name of the new way of learning at the University of Cambridge?,"The University of Cambridge has developed a new way of learning, called Federated Learning."
-126,27441,Actitud,confident,My friend speaks 4 languages. I'm sure they'll get that interpreter job at the embassy.,Yea. English of course_comma_ then French_comma_ Spanisha and Chinese.
-127,1,Modelo,Definición de modelo,What is the goal of the project?,The aim of this project is to develop a new type of data analytics: a model.
-128,17,Algoritmo,Historia del algoritmo,What does John Sudworth think?,"Dr John Sudworth, the BBC's science correspondent, looks at the history of algorithms."
-129,2,Agente inteligente,Definición de agente inteligente,What does it mean to be an intelligent agent?,Intelligent agents are the technology's future.
-130,46413,Actitud,prepared,when I had my test to get a new certification at work_comma_ I felt great about it because I had workd really hard and studied.,I had my test for a new certification at work.  I really wasn't that nervous for it though.
-131,2,Saludo,Saludo,What's your name?,My name is Sara. What would you like to talk about?
-132,46413,Actitud,prepared,when I had my test to get a new certification at work_comma_ I felt great about it because I had workd really hard and studied.,I had my test for a new certification at work.  I really wasn't that nervous for it though.
-133,1,Saludo,Saludo,What is your name?,"My name is Sara, and what is yours?"
-134,30156,Actitud,trusting,I was working on a boat_comma_ and I had to hope that my friend didn't screw something up while I had my hands in the engine.,Gosh I hate it when I have to work on complicated parts in my boat engine_comma_ when my friend is helping me.
-135,14784,Actitud,faithful,I have always  been faithful to my girlfiend of almost 3 years,So many people cheat nowadays. That's good to hear!
-136,2,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is a good reward if you do well?,"Researchers at the University of California, Berkeley, have found a way to help children learn. When they do well, they get a reward."
-137,4,Metaverso,Ejemplo de metaverso,What is the name of the European Commission report?,"The European Commission has published a report on machine testing ""breakthrough"" technology."
-138,8,Algoritmo,Características de los algoritmos,What is the purpose of this paper?,The purpose of this paper is to show how to design algorithms for the number of points distribution problem in a series of triplets.
-139,3,Metaverso,Definición de metaverso,What does metaverso mean?,"The University of California, Los Angeles (UCLA) has developed a new technology called Metaverse."
-140,51514,Actitud,proud,I was held my head high when my mother received her Master's Degree after getting a GED after high school.,You know she inspires me. She always reminds me of what hard work can do for you.
-141,1,Ciencia de datos,Definición de ciencia de datos,What is the data science term?,Data science is a science that uses information to solve problems.
-142,58586,Actitud,prepared,I'm looking forward to presenting to my client_comma_ I spent a lot of time on that powerpoint,I'm looking forward to presenting to my client_comma_ I spent a lot of time on that powerpoint
-143,71479,Actitud,faithful,I fully trust in my intuition and dreams.  They have gotten me this far and I'm going all the way to the top,These days I'm trusting my intuition and following my gut to achieve my goals.  They've gotten me this far and haven't let me down yet
-144,5,Algoritmo,Características de los algoritmos,What is an algorithm idea?,"An algorithm is a set of rules, or ideas, that can be used to solve problems."
-145,72360,Actitud,confident,Going to a job interview soon and I think I got this!,It is great to be confident. I am sure you will knock the interview out of the park!
-146,26941,Actitud,hopeful,I am feeling more positive about the future today. I am really trying to hold on to that feeling no matter what. It's hard!,That is good!  Why have you been feeling down about the future before?
-147,8,Algoritmo,Características de los algoritmos,What is the aim of this paper?,The aim of this paper is to show how to design algorithms for the problem of the distribution of the number of points of a series of triplets.
-148,5076,Actitud,joyful,I'm happy my package just arrived,im glad it came earlier
-149,71030,Actitud,faithful,i have faith my brother will do alright,Well at least you were able to introduce him to your friend. I hope everything works out for him!
-150,1,Metadatos,Definición de metadatos,What is the definition of metadata?,Metadata is a word that has been used by many people to describe data.
-151,2,Reglas de asociación,Definición de reglas de asociación,What are the organization rules?,"In this paper, we will look at decision trees and association rules."
-152,2,Big data,Uso de big data,What is the term for the collection and analysis of large amounts of data?,Big Data is the collection and analysis of large amounts of data.
-153,3,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is a computer graphics processing unit?,"A graphics processing unit (GPU) or graphics processor is a part of a computer. It is used to do graphics work, such as making graphics on a video game, or to make 3D graphics on a computer program."
-154,26174,Actitud,excited,Just got a house for 10k. It's really broken down_comma_ but I hope it'll be nice after we fix it up.,thats cool.  i hope it works out for you
-155,25102,Actitud,proud,I watched two of my daughters as they graduated from high school.,Oh_comma_ that's wonderful!  Tell them congratulations for me! You must be bursting with pride!  
-156,66467,Actitud,faithful,I am very faithful to my employer.,My employer provides me with lots of training and support so I have become very faithful to them.
-157,29850,Actitud,proud,I had a big final exam that I studied really hard for. I passed with an A and finished with a 4.0 for the semester. I couldnt be happier.,I did. I even ended up with a 4.0 for the whole semester. I was very happy I was able to achieve that.
-158,2,Modelo,Definición de modelo,What is the definition of a model?,This paper describes how to train an artificial intelligence model to predict the likelihood of a given event.
-159,10618,Actitud,confident,I interviewed for a job.  I know I gave great answers to their questions and walked away feeling like I had the job.,I interviewed for a job.  I know I gave great answers to their questions and walked away feeling like the job was mine.
-160,26550,Actitud,proud,My dog learned all of his tricks!,Oh great. That is so fun . My baby died a few years ago. But he was over 14 _comma_ so. 
-161,4134,Actitud,confident,I'm about to ask someone that I like out on a date. I'm pretty confident that she will say yes.,So there's a girl that I've been talking to lately... I'm thinking about asking her out.
-162,6,Blockchain,Ejemplo de blockchain,What is the technology that is used in the banking industry?,The use of blockchain technology in the banking industry has increased in recent years.
-163,49280,Actitud,prepared,I@ve done lots of research for an interview tis week,I have an interview this week
-164,0,Algoritmo,Ejemplo de algoritmo,What is an algorithm?,"An algorithm is a computer program. It can do something that a human can not, for example, make a recipe."
-165,72360,Actitud,confident,Going to a job interview soon and I think I got this!,It is great to be confident. I am sure you will knock the interview out of the park!
-166,76211,Actitud,excited,I've never had a lust for life like I do these days.  I literally wake up every day stoked that I'm living my dreams and can't wait to see how much money I can make,Yes you have no idea...still grinding it out everyday but it's totally worth it
-167,75141,Actitud,proud,My son just graduated from college. I cannot believe how fast time went.,Awesome. That is a huge accomplishment.
-168,2,Turing completo,Definición de turing completo,What is the name of the computer system that the University of Bristol has developed?,"A computer system that could be used to ""Turing complete"" has been developed, but no-one has used it yet."
-169,1,Algoritmo,Clasificación de los algoritmos,What is one of the main functions of computer systems?,The following are some of the main functions of computer systems.
-170,19561,Actitud,confident,I have my physics test tomorrow that I have been studying 10 days for_comma_ Never felt so ready in my life.,I have a physics test tomorrow. I think I can say that after 10 days of nonstop studying and copious amounts of adderall_comma_ I am finally ready.
-171,2,Subajuste,Definición de subajuste,What exactly is a subajustment?,"When a system does not work properly, it is called underfitting."
-172,18557,Actitud,joyful,I was pretty happy to find out I was having a girl,I had her 7 months ago
-173,42373,Actitud,joyful,I'm very proud of my daughters.,I am very proud of my daughters.
-174,71030,Actitud,faithful,i have faith my brother will do alright,Well at least you were able to introduce him to your friend. I hope everything works out for him!
-175,1,Computación Ecológica,Definición de computación Ecológica,What is the name of the initiative that promotes the use of green computing?,The World Green Computing Council (WGC) has launched a new initiative to promote the use of green computing in the world.
-176,0,Variables dummy,Definición de variables dummy,What is the dummy variable name?,The following table lists all the comments the committee made.
-177,3,Bot,Ejemplo de bot,What is a bot?,A bot is a computer program that can play video games.
-178,47804,Actitud,prepared,Last week when I was coming back to my home_comma_ a man approached me. But_comma_ I had a gun. I felt I was ready.,I had a gun. I felt I was ready. If anything would have happened_comma_ I could have used it.
-179,2,Bot,Definición de bot,What is a bot definition?,A bot is a computer program. It is made to do certain things.
-180,71479,Actitud,faithful,I fully trust in my intuition and dreams.  They have gotten me this far and I'm going all the way to the top,These days I'm trusting my intuition and following my gut to achieve my goals.  They've gotten me this far and haven't let me down yet
-181,43499,Actitud,hopeful,I am hoping the Eagles can win it all again this season!,Why do you like the eagles?
-182,32209,Actitud,hopeful,I am feeling this way in hopes that I get into grad school.,I really hope I get accepted into grad school.
-183,27818,Actitud,hopeful,Nephew plays football.  I hope he does great this year!,Yeah this is true!  I'll definitely take your advice! Thank you so much!
-184,31049,Actitud,proud,My son won first place at his first spelling bee.,That's great!  Sounds like he's a smart kid!
-185,10,Algoritmo,Clasificación de los algoritmos,What is the classification of data by?,In this paper we will discuss the classification of data by the following criteria:
-186,65264,Actitud,trusting,i felt trusting when my dad and my mon care for me,Well as a fellow human being_comma_ I agree that when parents care for their children_comma_ it creates a lifelasting bond between the two parties.
-187,63774,Actitud,trusting,I wanted to go out but needed someone to watch my kids. No one had ever babysat before. I let my sister watch them because I knew she would do a good job. ,Oh that's so great - and now you can feel comfortable leaving them with her more often!
-188,2,Función Hash,Definición de función hash,What exactly is a hash function?,A Hash function is a mathematical function. It can be used to get a certain number of information.
-189,1,Blockchain,Ejemplo de blockchain,What is the technology that allows information to be transferred between computers?,Blockchain technology allows information to be transferred between computers.
-190,36506,Actitud,prepared,I went into that interviewing knowing i could answer any question they threw at me,yea im sure i'll get the job
-191,1,Smart data,Definición de smart data,What is the name of the new type of data collection system?,"The British government has announced that it will be introducing a new type of data collection system called Smart Data, which will be able to collect a lot of data in a short time, but will also be able to analyse it."
-192,60140,Actitud,proud,My little boy got on the bus this morning. He made me so happy for him.,That's so sweet. 
-193,1,Variables dummy,Definición de variables dummy,What is the definition of a variable dummy?,This article will show you how to create a dummy variable in Python.
-194,4,Bot,Tipos de bot,What is a bot?,Bots are software programs designed to monitor and control other people's online activities.
-195,47715,Actitud,excited,i cant wait for next week!,What's going on next week?
-196,2345,Actitud,joyful,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.
-197,2,Test de Turing,Definición de test de Turing,What test did it pass?,The BBC reported that a machine called DeepMind had passed the test for the first time.
-198,3,Modelos generativos,Definición de modelos generativos,What is the current model that we present?,We present an unsupervised learning model for large-scale data sets.
-199,3,Xenobot,Definición de xenobot,"What is the name of the xenobot that can swim, fly and crawl?","A team of scientists at the University of California, Berkeley, has developed a xenobot that can swim, fly and crawl."
-200,4,Blockchain,Definición de blockchain,What is the definition of blockchain?,The Blockchain Foundation is a non-profit organisation that promotes the adoption of Blockchain technology.
-201,47358,Actitud,prepared,im ready for next week!,what's happening next week?
-202,72622,Actitud,hopeful,Getting a colonoscopy done.  I hope it turns out okay,My appointment is coming up
-203,70152,Actitud,joyful,I remember as a child when I got my Nintendo 64 how happy and excited I was. Best christmas memory I have.,Yea _comma_ I still play it sometimes for funs sake.
-204,9041,Actitud,excited,My brother and a bunch of our friends planned to go to a 15-person cottage in July. I could not wait for all the fun and games we would experience!,It's very close to a lake_comma_ it probably takes a two minute hike down through a patch of trees and tall grass to get there.
-205,0,Modelos generativos,Definición de modelos generativos,What is the definition of a model that is used to train computers?,Generative models are a new way of training computers.
-206,56599,Actitud,faithful,I was invited to church this last weekend. I went and felt very optimistic in the church.,I went to church with a friend recently.
-207,2,Big data,Uso de big data,What is the definition of data collection and analysis?,Big data is the collection and analysis of large amounts of information.
-208,4,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is a new kind of artificial intelligence term?,A new type of artificial intelligence is being developed to predict people's future behavior.
-209,40034,Actitud,confident,I have to make a tuna casserole for tomorrow.  I am sure I can do it well.,I bet it will be great - I've always loved a good tuna casserole!
-210,2,Modelos generativos,Definición de modelos generativos,What is the name of the paper that describes the use of ofrative models to train computer systems to discriminate between real and artificial examples?,This paper describes the use ofrative models to train computer systems to discriminate between real and artificial examples.
-211,22149,Actitud,confident,I went in to the interview knowing that I had what it takes to land the job. I had prepared to the fullest extent and had all the skills they were looking for.,Nice! You sound like you prepared very well
-212,3321,Actitud,joyful,I felt so happy seeing my high school friends last month. We were at our reunion,True! All those old memories started rushing in
-213,1164,Actitud,confident,We recently went on vacation with some friends to Disney world.  They had never been before and we are annual passholders so we have been several times over the last year.,We had a really good time on our vacation a couple of weeks ago.
-214,2,Sobreajuste,Definición de sobreajuste,What exactly is a sobreajuste?,A new study shows that neural networks can be overfitted.
-215,75141,Actitud,proud,My son just graduated from college. I cannot believe how fast time went.,Awesome. That is a huge accomplishment.
-216,14986,Actitud,faithful,3,A key to a long relationship is persistence_comma_ so keep at it! 
-217,50022,Actitud,hopeful,I'm meeting a girl for a date at the zoo this afternoon.,What's your favorite exhibit at the zoo?
-218,3,Internet de las Cosas (IoT),Ejemplo de Internet de las Cosas (IoT),What is the internet's name?,"The University of California, Berkeley is developing a new type of shoe."
-219,46864,Actitud,confident,For some reason if I get a good pump at the gym early in the morning_comma_ I feel like I can tackle any task on my to-do list for the day.,That's awesome. do you usually exercise in the mornings?
-220,69386,Actitud,confident,I remember going to State Football Championship. I told my teammates on the bus before we got off that if anybody isn't ready to leave this field with the trophy stay on the bus. The whole bus was quiet. The bus driver looked at me and said I think you guys need the listen to him he doesn't look like he's playing. We eventually won that game . ,WE won 60 - 3 
-221,43499,Actitud,hopeful,I am hoping the Eagles can win it all again this season!,Why do you like the eagles?
-222,63774,Actitud,trusting,I wanted to go out but needed someone to watch my kids. No one had ever babysat before. I let my sister watch them because I knew she would do a good job. ,Oh that's so great - and now you can feel comfortable leaving them with her more often!
-223,5272,Actitud,prepared,I'm spent all summer getting ready to write my thesis. I can't wait to get time to start.,I spent all summer getting ready to write my thesis. I can't wait to get time to start.
-224,2,Autoencoder,Definición de autoencoder,What is the name of the autoencoder developed by the University of Cambridge?,The University of Cambridge has developed an autoencoder for the Cambridge University Press.
-225,0,Test de Turing,Definición de test de Turing,What is the name of the team working with Nick Thorpe to test the theory that machines can understand human speech?,"The BBC's science correspondent, Nick Thorpe, has been working with Alan Turing, to test how well a computer could understand human speech."
-226,2,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the definition of a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer hardware that handles computer graphics operations.
-227,32869,Actitud,joyful,Took the kiddos to the lake,That sound fun! I love to eat fresh fish!
-228,2,Árbol de Merkle,Definición de árbol de Merkle,What does the Merkle tree look like?,The Merkle tree is a distributed ledger system. It can be used to store large amounts of information.
-229,5,Trabajo,Trabajo,What do you do for a living?,I am responsible for promoting learning about AI through conversations.
-230,2,Tabla Hash,Definición de tabla hash,What exactly is a tabla hash?,A hash table is an important tool when looking for data.
-231,14,Algoritmo,Ejemplo de algoritmo,What is the name of the algorithm used by Google?,Google has been accused of manipulating its search results to favour its own products and services over those of rivals such as Yahoo and Bing.
-232,0,Realidad aumentada,Definición de realidad aumentada,What is the definition of augmented reality?,The BBC's science and technology correspondent Nick Thorpe explains how augmented reality can be used to create new forms of media.
-233,10111,Actitud,trusting,I can tell my best friend anything!,I usually ask her for advice and tell her embarrassing stories because she never snitches!
-234,35399,Actitud,proud,I won first place in the marathon last weekend. I trained hard and deserved the win,That's pretty awesome. Do you usually run marathons?
-235,58279,Actitud,excited,A new skating rink is being built. Should be done in time for Winter skating!,That's great! I may look it up and go to their grand opening as well.
-236,3,Xenobot,Definición de xenobot,"What is the xenobot's name? It can fly, swim and crawl.","A team of scientists at the University of California, Berkeley, has created a robot that can move around and swim."
-237,33205,Actitud,excited,I really had a fun time at our county fair a couple of days ago.,I took the family to our county fair a couple of days ago.
-238,0,Xenobot,Definición de xenobot,What is the name of the robot that was created from a living frog embryo?,A robot that has been designed from scratch from a living frog embryo has been unveiled at the European Society for the Study of Reproduction (ESSR) conference in Berlin.
-239,65309,Actitud,trusting,My partner and I both work 24-hour shifts and tend to alternate shifts (I'll be at home hwen she's at work and she'll be at home when I'm at work). This can lead to some insecurities sometimes because not only are we away from each other alot_comma_ but we have a lot of time by ourselves where anyone could come over if they want to. I feel so lucky knowing that my wife has my best interest in mind. ,Ahh! We both enjoy it. Thanks for the thank you_comma_ though! :) 
-240,2220,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,My friend is having a drink and paint party. I've only been to one before but it was pretty fun. I can't wait.
-241,1,Blockchain,Ejemplo de blockchain,What is the name of the technology that allows the transfer of information between computers?,Blockchain is a technology that allows the transfer of information between computers.
-242,11572,Actitud,faithful,When I am in nature I feel good that this world is exactly as it should be. Everything is moving a long to Gods desires.,Why do cities make you feel that way?
-243,72947,Actitud,hopeful,I'm going to see a film tonight and I am really crossing my fingers its good.,I think it's called the Happytime Murders. Some murder mystery/comedy with puppets.
-244,4,Trabajo,Trabajo,What is your occupation?,I am a chatbot in charge of fostering learning about AI.
-245,73954,Actitud,prepared,It was my first time taking the DMV test. I went there rather early and aced the test.,Yes it was even though I was a bit nervous.
-246,32018,Actitud,joyful,i got a surprise gift in the mail,one time on my birthday i never expect much to me is just a regular day _comma_ then i get a package in the mail it was copic markers my friend mailed them to me from another state i was so happy
-247,58332,Actitud,excited,Gareth Bale played his best in the champion's league final. I was thrilled after I watched his game.,Have you watched champion's league final?
-248,15,Algoritmo,Ejemplo de algoritmo,What is the name of the algorithm that Facebook uses to determine what you want?,Facebook has said that it uses Edgerank to find out what you are interested in on the website.
-249,2,Sobreajuste,Definición de sobreajuste,What is the definition of sobreajuste?,A new study suggests that a neural network can be overfitted.
-250,3,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the definition of a graphics processing unit?,"A graphics processing unit (GPU) or graphics processor is a coprocessor dedicated to graphics processing or floating point operations, to lighten the workload of the central processor/CPU in applications such as video games or interactive 3D applications."
-251,2,Árbol de Merkle,Definición de árbol de Merkle,What is the definition of the Merkle tree?,"The Merkle tree is a distributed ledger system that can be used to store, manage, and retrieve large amounts of data."
-252,68237,Actitud,confident,I know I can make a lotta money on here if I keep working.,Well keep looking something is out there for you
-253,0,Agente inteligente,Definición de agente inteligente,What is the project's goal?,"The project's goal is to develop intelligent agents to produce high-quality, efficient and safe food."
-254,62281,Actitud,proud,I got all A's in my last semester.,Thanks! Yes_comma_ I think I did my best anyway.
-255,20235,Actitud,prepared,College is starting in 3 weeks_comma_ and I have my apartment all settled_comma_ my classes picked out_comma_ and my student loans scheduled. I feel like I'm on track to start the semester in a way where I'm not hurried or confused_comma_ and it feels good.,Hey... that's okay. I'm 28 and just now about to finish my 4-year degree. My brother finished his at 36. There's always a reason for the path you take. Maybe it led to better things. Don't ever just consider yourself a statistic. Good luck!
-256,69386,Actitud,confident,I remember going to State Football Championship. I told my teammates on the bus before we got off that if anybody isn't ready to leave this field with the trophy stay on the bus. The whole bus was quiet. The bus driver looked at me and said I think you guys need the listen to him he doesn't look like he's playing. We eventually won that game . ,WE won 60 - 3 
-257,29853,Actitud,trusting,I am waiting on my friend to come over. They are bringing me a medicine for my pet.,I'm sorry. That must make you sad.
-258,39537,Actitud,excited,I am so full of anticipation!  School starts on Monday!,that's a long time. You should be used to it
-259,2,Agente inteligente,Definición de agente inteligente,What is the definition of an intelligent agent?,Intelligent agents are the future of technology.
-260,35399,Actitud,proud,I won first place in the marathon last weekend. I trained hard and deserved the win,That's pretty awesome. Do you usually run marathons?
-261,40718,Actitud,hopeful,I am confident my brother will beat his cancer.,I am confident my brother will beat this cancer.
-262,65309,Actitud,trusting,My partner and I both work 24-hour shifts and tend to alternate shifts (I'll be at home hwen she's at work and she'll be at home when I'm at work). This can lead to some insecurities sometimes because not only are we away from each other alot_comma_ but we have a lot of time by ourselves where anyone could come over if they want to. I feel so lucky knowing that my wife has my best interest in mind. ,Ahh! We both enjoy it. Thanks for the thank you_comma_ though! :) 
-263,0,Árbol de decisión,Definición de árbol de decisión,What is a decision tree structure?,A decision tree diagram is an important tool when making decisions.
-264,2,Reglas de asociación,Definición de reglas de asociación,What is the definition of association rules?,In this paper we will look at the use of association rules in decision trees.
-265,1,Sobreajuste,Definición de sobreajuste,What is the definition of sobreajuste?,This video shows how to overfitting a computer model.
-266,1777,Actitud,excited,I felt this way when my father bought me a Super Nintendo for  my 9th birthday. We were very poor so it was unexpected!,You still remember what you got for it?  It must have been memorable!  What was it?
-267,4,Blockchain,Definición de blockchain,What is the blockchain definition?,The Blockchain Foundation is a non-profit organization to promote the use of blockchain technology.
-268,1,Máquina de Turing,Definición de máquina de Turing,What is the name of the lecture by Alan Turing?,"On the 80th anniversary of the Turing machine's creation, the University of California, Berkeley, is marking the occasion with a series of lectures by computer scientist Alan Turing, who was the man who first proposed the idea of a computer."
-269,56574,Actitud,joyful,I cant believe my daughter performed so well in the recital. She practiced so hard for it,I cant believe my daughter performed so well in the recital.
-270,28072,Actitud,excited,I was so thrilled to get concert tickets for a surprise show. It will be so fun!,The Strokes are playing this show on the fly in a month. It's so cool!
-271,42691,Actitud,joyful,Get to hang out and play cards with my girlfriend and her parents. Her parents are actually pretty laid back and fun to be around_comma_ so I'm looking forward to it. Glad I don't have to deal with overbearing in-laws like some people.,That's good. Were you nervous at first?
-272,35267,Actitud,proud,My school is low income_comma_ but we score in the top 5% statewide.,Yep. We get looked down on so much_comma_ but I think some schools are gonna rethink their attitudes now.
-273,34695,Actitud,joyful,I felt this way after the birth of my son.,What did you name him?
-274,27441,Actitud,confident,My friend speaks 4 languages. I'm sure they'll get that interpreter job at the embassy.,Yea. English of course_comma_ then French_comma_ Spanisha and Chinese.
-275,40034,Actitud,confident,I have to make a tuna casserole for tomorrow.  I am sure I can do it well.,I bet it will be great - I've always loved a good tuna casserole!
-276,68890,Actitud,faithful,When my spouse was out of town for work_comma_ a friend stopped by to visit. This friend offered to kiss me_comma_ but I declined and asked the friend to leave. I only have interest in my spouse in this way.,I said no and made the friend leave. I only like my spouse.
-277,60140,Actitud,proud,My little boy got on the bus this morning. He made me so happy for him.,That's so sweet. 
-278,15,Algoritmo,Ejemplo de algoritmo,What is the name of the algorithm that Facebook uses to find out what you're interested in?,Facebook has revealed that it is using Edgerank to find out what you're most likely to be interested in on the site.
-279,1,Metaverso,Definición de metaverso,What does Richard Black mean by this?,"Richard Black, the BBC's technology correspondent, explains what the metaverse is."
-280,17298,Actitud,joyful,I care a lot about all the little birds in my neighborhood. I am a sensitive soul and I just want to help every critter I see.,i dont want them to suffer either
-281,72947,Actitud,hopeful,I'm going to see a film tonight and I am really crossing my fingers its good.,I think it's called the Happytime Murders. Some murder mystery/comedy with puppets.
-282,1,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What is the term for the Internet of Things?,The Internet of Things (IoT) is a growing trend in the technology industry.
-283,2,Modelos generativos,Definición de modelos generativos,What is the name of the paper that describes how ofrative models are used to train computer systems to distinguish between real and fake examples?,The purpose of this paper is to train computer systems to distinguish between real and artificial examples.
-284,41778,Actitud,faithful,I feel very committed to my work. No matter how I feel_comma_ I have to press on and complete it. It's been a rough week and my will power is very strong to still work through all this,yes. It's been a rough week and my will power is very strong to still work through all this
-285,3407,Actitud,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,"I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,4|5|5_5|5|5,
+37,284,Actitud,faithful,I feel very committed to my work. No matter how I feel_comma_ I have to press on and complete it. It's been a rough week and my will power is very strong to still work through all this,yes. It's been a rough week and my will power is very strong to still work through all this
+38,281,Actitud,hopeful,I'm going to see a film tonight and I am really crossing my fingers its good.,I think it's called the Happytime Murders. Some murder mystery/comedy with puppets.
+39,280,Actitud,joyful,I care a lot about all the little birds in my neighborhood. I am a sensitive soul and I just want to help every critter I see.,i dont want them to suffer either
+40,291,Actitud,joyful,I won a year of unlimited pizza. I'm so psyched.,It will save you a lot of money too
+41,246,Actitud,joyful,i got a surprise gift in the mail,one time on my birthday i never expect much to me is just a regular day _comma_ then i get a package in the mail it was copic markers my friend mailed them to me from another state i was so happy
+42,245,Actitud,prepared,It was my first time taking the DMV test. I went there rather early and aced the test.,Yes it was even though I was a bit nervous.
+43,243,Actitud,hopeful,I'm going to see a film tonight and I am really crossing my fingers its good.,I think it's called the Happytime Murders. Some murder mystery/comedy with puppets.
+44,204,Actitud,excited,My brother and a bunch of our friends planned to go to a 15-person cottage in July. I could not wait for all the fun and games we would experience!,It's very close to a lake_comma_ it probably takes a two minute hike down through a patch of trees and tall grass to get there.
+45,203,Actitud,joyful,I remember as a child when I got my Nintendo 64 how happy and excited I was. Best christmas memory I have.,Yea _comma_ I still play it sometimes for funs sake.
+46,202,Actitud,hopeful,Getting a colonoscopy done.  I hope it turns out okay,My appointment is coming up
+47,201,Actitud,prepared,im ready for next week!,what's happening next week?
+48,470,Actitud,proud,I got all A's in my last semester.,Thanks! Yes_comma_ I think I did my best anyway.
+49,196,Actitud,joyful,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.
+50,195,Actitud,excited,i cant wait for next week!,What's going on next week?
+51,471,Actitud,trusting,I have faith that I will get pregnant soon. Why is it so hard? Isn't that what a women's body is built to do?,Yeah_comma_ more people are having these issues these days. I think it may be true that someone may be poisoning us through the water and food or something! It is a scary world!
+52,206,Actitud,faithful,I was invited to church this last weekend. I went and felt very optimistic in the church.,I went to church with a friend recently.
+53,192,Actitud,proud,My little boy got on the bus this morning. He made me so happy for him.,That's so sweet. 
+54,187,Actitud,trusting,I wanted to go out but needed someone to watch my kids. No one had ever babysat before. I let my sister watch them because I knew she would do a good job. ,Oh that's so great - and now you can feel comfortable leaving them with her more often!
+55,186,Actitud,trusting,i felt trusting when my dad and my mon care for me,Well as a fellow human being_comma_ I agree that when parents care for their children_comma_ it creates a lifelasting bond between the two parties.
+56,184,Actitud,proud,My son won first place at his first spelling bee.,That's great!  Sounds like he's a smart kid!
+57,183,Actitud,hopeful,Nephew plays football.  I hope he does great this year!,Yeah this is true!  I'll definitely take your advice! Thank you so much!
+58,182,Actitud,hopeful,I am feeling this way in hopes that I get into grad school.,I really hope I get accepted into grad school.
+59,181,Actitud,hopeful,I am hoping the Eagles can win it all again this season!,Why do you like the eagles?
+60,180,Actitud,faithful,I fully trust in my intuition and dreams.  They have gotten me this far and I'm going all the way to the top,These days I'm trusting my intuition and following my gut to achieve my goals.  They've gotten me this far and haven't let me down yet
+61,178,Actitud,prepared,Last week when I was coming back to my home_comma_ a man approached me. But_comma_ I had a gun. I felt I was ready.,I had a gun. I felt I was ready. If anything would have happened_comma_ I could have used it.
+62,190,Actitud,prepared,I went into that interviewing knowing i could answer any question they threw at me,yea im sure i'll get the job
+63,312,Actitud,faithful,I was married to my wife for thirty years_comma_ and even though she has passed I can't bring myself to date anyone else.,Well_comma_ if that's how you feel then maybe it is best if you stay in the dugout and don't play the field. No shame in that.
+64,209,Actitud,confident,I have to make a tuna casserole for tomorrow.  I am sure I can do it well.,I bet it will be great - I've always loved a good tuna casserole!
+65,212,Actitud,joyful,I felt so happy seeing my high school friends last month. We were at our reunion,True! All those old memories started rushing in
+66,242,Actitud,faithful,When I am in nature I feel good that this world is exactly as it should be. Everything is moving a long to Gods desires.,Why do cities make you feel that way?
+67,240,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,My friend is having a drink and paint party. I've only been to one before but it was pretty fun. I can't wait.
+68,239,Actitud,trusting,My partner and I both work 24-hour shifts and tend to alternate shifts (I'll be at home hwen she's at work and she'll be at home when I'm at work). This can lead to some insecurities sometimes because not only are we away from each other alot_comma_ but we have a lot of time by ourselves where anyone could come over if they want to. I feel so lucky knowing that my wife has my best interest in mind. ,Ahh! We both enjoy it. Thanks for the thank you_comma_ though! :) 
+69,237,Actitud,excited,I really had a fun time at our county fair a couple of days ago.,I took the family to our county fair a couple of days ago.
+70,468,Actitud,joyful,I felt so happy seeing my high school friends last month. We were at our reunion,True! All those old memories started rushing in
+71,235,Actitud,excited,A new skating rink is being built. Should be done in time for Winter skating!,That's great! I may look it up and go to their grand opening as well.
+72,234,Actitud,proud,I won first place in the marathon last weekend. I trained hard and deserved the win,That's pretty awesome. Do you usually run marathons?
+73,233,Actitud,trusting,I can tell my best friend anything!,I usually ask her for advice and tell her embarrassing stories because she never snitches!
+74,211,Actitud,confident,I went in to the interview knowing that I had what it takes to land the job. I had prepared to the fullest extent and had all the skills they were looking for.,Nice! You sound like you prepared very well
+75,227,Actitud,joyful,Took the kiddos to the lake,That sound fun! I love to eat fresh fish!
+76,222,Actitud,trusting,I wanted to go out but needed someone to watch my kids. No one had ever babysat before. I let my sister watch them because I knew she would do a good job. ,Oh that's so great - and now you can feel comfortable leaving them with her more often!
+77,221,Actitud,hopeful,I am hoping the Eagles can win it all again this season!,Why do you like the eagles?
+78,220,Actitud,confident,I remember going to State Football Championship. I told my teammates on the bus before we got off that if anybody isn't ready to leave this field with the trophy stay on the bus. The whole bus was quiet. The bus driver looked at me and said I think you guys need the listen to him he doesn't look like he's playing. We eventually won that game . ,WE won 60 - 3 
+79,219,Actitud,confident,For some reason if I get a good pump at the gym early in the morning_comma_ I feel like I can tackle any task on my to-do list for the day.,That's awesome. do you usually exercise in the mornings?
+80,217,Actitud,hopeful,I'm meeting a girl for a date at the zoo this afternoon.,What's your favorite exhibit at the zoo?
+81,216,Actitud,faithful,3,A key to a long relationship is persistence_comma_ so keep at it! 
+82,215,Actitud,proud,My son just graduated from college. I cannot believe how fast time went.,Awesome. That is a huge accomplishment.
+83,213,Actitud,confident,We recently went on vacation with some friends to Disney world.  They had never been before and we are annual passholders so we have been several times over the last year.,We had a really good time on our vacation a couple of weeks ago.
+84,223,Actitud,prepared,I'm spent all summer getting ready to write my thesis. I can't wait to get time to start.,I spent all summer getting ready to write my thesis. I can't wait to get time to start.
+85,313,Actitud,hopeful,Nephew plays football.  I hope he does great this year!,Yeah this is true!  I'll definitely take your advice! Thank you so much!
+86,314,Actitud,excited,I can't wait until Halloween. I love scaring the little kids who come to my house_comma_ muhahah!,Ha! I've always loved the more festive Dia de los Muertos approach to the day rather than scare or gore! What's your favorite Halloween film?
+87,315,Actitud,proud,I watched two of my daughters as they graduated from high school.,Oh_comma_ that's wonderful!  Tell them congratulations for me! You must be bursting with pride!  
+88,454,Actitud,faithful,I just celebrated 25 years at my job.,You should've made them buy another cake!
+89,414,Actitud,prepared,I am having some financial issues. I am selling almost everything before the bailiff come.,I am having some financial issues. I am selling almost everything before the bailiff come.
+90,413,Actitud,confident,I want to lose weight and i'm sure i can do it,You can. It will take some persistence. How's it going so far?
+91,411,Actitud,prepared,Getting ready to file quarterly taxes and I have been very diligent with organization this year so I am prepared,How much stuff did you have to go through?
+92,408,Actitud,prepared,I've got all my fishing gear packed up. I'm ready for tomorrow morning.,I've got all my fishing gear packed up. I'm ready for tomorrow morning.
+93,407,Actitud,faithful,I have been with my car insurance company for 30 years.,I have been with my car insurance company for 30 years.
+94,406,Actitud,trusting,When I had many problems or I was sad_comma_ I knew God was with me and the things were going to improve.,Can you facetime them?
+95,405,Actitud,confident,I knew it was going to be a good weekend last week. I just had a good feeling,ok
+96,416,Actitud,confident, I knew I was going to pass my final. I studied all week,I was confident about my final test. I had studied all week hard
+97,403,Actitud,trusting,I let my son drive the car for the first time.,You must be so proud of him!
+98,400,Actitud,proud,My niece is visiting and we have a pool.  She has not had access to a pool for most of her childhood ad does not know how to swim.  She is figuring it out very quickly though and her confidence is increasing as her skills do.  It's very exciting to watch her skills and confidence soar and she feels it too.,My niece can't swim but has is staying with us for a bit and we have a pool.  Her skills are increasing and her confidence is soaring!
+99,397,Actitud,excited,I'm excited for Red Dead Redemption 2 to come out.  Even though it's a couple months away,No worries_comma_ we all have our hobbies!
+100,395,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,Wow_comma_ that sounds like a fun and interesting time_comma_ but it sounds like there are a high chance for things to go south and be a huge mess
+101,392,Actitud,hopeful,Getting a colonoscopy done.  I hope it turns out okay,My appointment is coming up
+102,391,Actitud,joyful,Took the kiddos to the lake,That sound fun! I love to eat fresh fish!
+103,390,Actitud,faithful,I was on a business trip last week spending some time at a local bar. There was a girl who was being flirty with me. I had to tell her that I was married and I couldn't play with her.,Last week on a business trip I spent some time at the bar. There was this girl who was really flirty with me. I had to tell her that I couldn't play with her because I was married.
+104,388,Actitud,proud,My daughter win a medal for dancing in a competition. I glad to see her as a dancer.,I'm impressed_comma_ where did she win the medal?
+105,386,Actitud,confident,I think I did very well in my work and will have a fantastic design to show my boss! I put so much effort into this it can't possibly be bad,That is a smart move by you.
+106,402,Actitud,joyful,Get to hang out and play cards with my girlfriend and her parents. Her parents are actually pretty laid back and fun to be around_comma_ so I'm looking forward to it. Glad I don't have to deal with overbearing in-laws like some people.,That's good. Were you nervous at first?
+107,385,Actitud,trusting,I can tell my best friend anything!,I usually ask her for advice and tell her embarrassing stories because she never snitches!
+108,418,Actitud,trusting,I went skydiving. I had to trust in the tandem partner I had to not kill me.,That's so awesome. I don't think I would have the courage now. Will you do it again?
+109,422,Actitud,proud,My school is low income_comma_ but we score in the top 5% statewide.,Yep. We get looked down on so much_comma_ but I think some schools are gonna rethink their attitudes now.
+110,451,Actitud,trusting,The first time I went on a motorcycle_comma_ I was scared. But I knew my husband wouldn't do anything to hurt me. I trusted him with my life.,It must be nice to have that kind of trust for someone_comma_ and motorcycles can be fun!
+111,449,Actitud,proud,My niece is visiting and we have a pool.  She has not had access to a pool for most of her childhood ad does not know how to swim.  She is figuring it out very quickly though and her confidence is increasing as her skills do.  It's very exciting to watch her skills and confidence soar and she feels it too.,My niece can't swim but has is staying with us for a bit and we have a pool.  Her skills are increasing and her confidence is soaring!
+112,448,Actitud,hopeful,I borrowed some money from my friend. I've a confidence I'll repay this month to him.,What a good friend to lend you money in your time of need. You should thank him and take him to dinner after everything is sorted.
+113,446,Actitud,prepared,We went through hurricane irma last year. We got everything we needed and put metal shutter on all the windows and decided to stay. , i must have been terrifying_comma_ I am glad you both made it through it
+114,445,Actitud,excited,A new skating rink is being built. Should be done in time for Winter skating!,That's great! I may look it up and go to their grand opening as well.
+115,444,Actitud,excited,I can't even fall asleep waiting to go on our vacation. ,Oh_comma_ well that is a fine thing indeed! I would be  jumping up and down!
+116,443,Actitud,joyful,I will be seeing my son tomorrow after  a month.,My son comes back tomorrow!
+117,442,Actitud,prepared,I'm spent all summer getting ready to write my thesis. I can't wait to get time to start.,I spent all summer getting ready to write my thesis. I can't wait to get time to start.
+118,420,Actitud,trusting,I am waiting on my friend to come over. They are bringing me a medicine for my pet.,I'm sorry. That must make you sad.
+119,440,Actitud,trusting,I let people so much in my life and they ended up betraying my confidence i had in them.,I can sympathize with you. I've had a lot of betrayal in the past. The ONLY thing to do is to continue looking for trustworthy individuals. 
+120,435,Actitud,prepared,Getting ready to file quarterly taxes and I have been very diligent with organization this year so I am prepared,How much stuff did you have to go through?
+121,434,Actitud,proud,I was held my head high when my mother received her Master's Degree after getting a GED after high school.,Yes_comma_ it is great! Even better she just received her Master's Degree at the tender age of 50!
+122,433,Actitud,confident,I recently went surfing and surfed waves everyone else was afraid to. I was the man_comma_,Yes_comma_ I've been surfing for ever. Only three of us in the water. 
+123,431,Actitud,hopeful,Before I do feel that I will not make it in life_comma_ but later I felt expectant of my future,I expected something good_comma_ that was why things are working well for me now
+124,427,Actitud,joyful,i am so happy that i am going to be a grandma,Yep. Happy and healthy is a blessing
+125,426,Actitud,faithful,I am very faithful to my employer.,My employer provides me with lots of training and support so I have become very faithful to them.
+126,424,Actitud,faithful,god has done so much for me in my life. i owe everything to him,and i know he's going to come back for me and take me away from this place
+127,423,Actitud,faithful,When my spouse was out of town for work_comma_ a friend stopped by to visit. This friend offered to kiss me_comma_ but I declined and asked the friend to leave. I only have interest in my spouse in this way.,I said no and made the friend leave. I only like my spouse.
+128,438,Actitud,hopeful,I am confident my brother will beat his cancer.,I am confident my brother will beat this cancer.
+129,472,Actitud,faithful,I'm hoping I can reach diamond next season in overwatch. I've been practicing a ridiculous amount,I would say it's my favorite fps now by a mile. Cod became fecal matter 5 or 6 years ago. I'm hoping I can finally stop being a pleb and hit diamond next season
+130,384,Actitud,prepared,Last week when I was coming back to my home_comma_ a man approached me. But_comma_ I had a gun. I felt I was ready.,I had a gun. I felt I was ready. If anything would have happened_comma_ I could have used it.
+131,380,Actitud,prepared,I knew I was going to pass my drivers test. I just knew I would do well,I knew I was going to pass my drivers test. I knew I would do well
+132,460,Actitud,proud,I just got a steam cleaner and used it for the first time yesterday. My carpets came out so clean!,I was in the market for a steam cleaner and did tons of research til I chose the best one.
+133,461,Actitud,trusting,If I'm going to be in a relationship I need girl I can depend on_comma_ not some effed up crazy damaged goods type of girl,Yes_comma_ glad you agree....I was an idiot and mistook a deadly combo of pity and infatuation for love...but now I know what to avoid and what I want so I'm thankful
+134,341,Actitud,proud,my daughter passed her drivers test on the first try,really scary.
+135,337,Actitud,hopeful,I'll be getting a raise in February.,It'll be around 25%.
+136,336,Actitud,proud,my daughter passed her drivers test on the first try,really scary.
+137,334,Actitud,hopeful,I recently applied for a job at a new company. Getting this job would but such a step up for me and my family. It would really be great if I got it.,Well I hope you get it. Good luck!
+138,333,Actitud,excited,I have plans so go to the beach with my wife for a week next month.,I have plans so go to the beach with my wife for a week next month
+139,332,Actitud,confident,I started my driving class last week. I'll finish the class within a month and drive the car without any help of others.,Are you going to buy a car?
+140,346,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,My friend is having a drink and paint party. I've only been to one before but it was pretty fun. I can't wait.
+141,331,Actitud,excited,I am going to meet up with a special friend I haven't seen for  years,That's pretty cool. I don't see my friends much since I moved.
+142,328,Actitud,confident,I have my physics test tomorrow that I have been studying 10 days for_comma_ Never felt so ready in my life.,I have a physics test tomorrow. I think I can say that after 10 days of nonstop studying and copious amounts of adderall_comma_ I am finally ready.
+143,327,Actitud,trusting,My daughter has grown up so much. She is finally able tobabysit her younger siblings,my daughter has matured so well
+144,325,Actitud,prepared,I am all packed for my vacation.  I don't believe I have forgotten anything for the trip but you never know.,I'm leaving for my vacation soon.  I have everything all packed and ready to go.
+145,324,Actitud,faithful,I have been with my car insurance company for 30 years.,I have been with my car insurance company for 30 years.
+146,320,Actitud,confident,I had to take my final exam for a class last semester. I studied really hard for this exam. I went in sure that I was going to do great on it. I ended up getting the highest score in my class!,hard work pays off 
+147,319,Actitud,joyful,I recently received my teaching certificate,thats so awesome good for you 
+148,318,Actitud,hopeful,that i will find a better job ,I am staying very positive that this year even if it is coming close to an end I will find a better job! 
+149,317,Actitud,prepared,I think I got everything I need for my job interview tomorrow. I got my fancy clothes and answers prepared for common questions they usually throw at u.,I think I got everything I need for my job interview tomorrow. I got my fancy clothes and answers prepared for common questions they usually throw at u.
+150,330,Actitud,proud,My brother is getting married. I am so happy for him,I am not_comma_ I did not want to jinx it
+151,381,Actitud,joyful,I remember as a child when I got my Nintendo 64 how happy and excited I was. Best christmas memory I have.,Yea _comma_ I still play it sometimes for funs sake.
+152,348,Actitud,proud,My daughter win a medal for dancing in a competition. I glad to see her as a dancer.,I'm impressed_comma_ where did she win the medal?
+153,350,Actitud,confident,For some reason if I get a good pump at the gym early in the morning_comma_ I feel like I can tackle any task on my to-do list for the day.,That's awesome. do you usually exercise in the mornings?
+154,379,Actitud,proud,It makes me feel good when I see my friends realizing their dreams.,Some people get jealous when other people are doing well_comma_ so you are truely a good friend
+155,378,Actitud,hopeful,I am hoping to win the lottery this week!,I am hoping as well
+156,377,Actitud,confident,i went in knowing i was going to do great on that test,Awesome! So happy for you my friend
+157,375,Actitud,faithful,I would never cheat on my wife like my brother cheated on his wife,Cheating  on your spouse is a despicable thing to do.
+158,373,Actitud,excited,Just got a house for 10k. It's really broken down_comma_ but I hope it'll be nice after we fix it up.,thats cool.  i hope it works out for you
+159,372,Actitud,prepared,When I went into labor with my son_comma_ it was quite the ordeal. He was coming way too early and we had to rush to get him out. Thankfully_comma_ I had everything already packed beforehand!,Is he healthy?
+160,368,Actitud,joyful,I'm very proud of my daughters.,I am very proud of my daughters.
+161,367,Actitud,faithful,When the guy I'm now married to and I met for the first time I was actually dating someone else. I thought that my now husband would just be a really good friend to me. I stayed with my ex-boyfriend for a while after_comma_ and even when I knew I wanted to date my now husband I never did anything to betray my ex.,Well that's good. Sounds like it all worked out pretty well.
+162,349,Actitud,prepared,I have been training for months for the race.,I'm sure all the work will be worth it in the end!
+163,456,Actitud,prepared,One year we had a scary hurricane warning_comma_ but thankfully with plenty of time to get ready for it. So I got batteries_comma_ beer_comma_ non-perishable foods. I was totally ready!,Wouldn't you know it totally missed my city. I was a little let down to be honest_comma_ though glad we were safe.
+164,364,Actitud,excited,I will finally be getting a new phone soon_comma_ and I can't wait because my old one is almost dead.,I have a lot of anticipation in me right now. I will finally be able to get a new phone after all these years.
+165,362,Actitud,faithful,Getting married this fall,It's lovely. Be a happy couple. live long together!
+166,361,Actitud,hopeful,I just applied for a new job.  After the interview_comma_ I'm very optimistic that I will get the position,I do!  I'm feeling very optimistic about it
+167,459,Actitud,prepared,I am having some financial issues. I am selling almost everything before the bailiff come.,I am having some financial issues. I am selling almost everything before the bailiff come.
+168,357,Actitud,faithful,I feel very committed to my work. No matter how I feel_comma_ I have to press on and complete it. It's been a rough week and my will power is very strong to still work through all this,yes. It's been a rough week and my will power is very strong to still work through all this
+169,355,Actitud,excited,I am so full of anticipation!  School starts on Monday!,that's a long time. You should be used to it
+170,353,Actitud,excited,I've never had a lust for life like I do these days.  I literally wake up every day stoked that I'm living my dreams and can't wait to see how much money I can make,Yes you have no idea...still grinding it out everyday but it's totally worth it
+171,351,Actitud,excited,I can't wait until Halloween. I love scaring the little kids who come to my house_comma_ muhahah!,Ha! I've always loved the more festive Dia de los Muertos approach to the day rather than scare or gore! What's your favorite Halloween film?
+172,365,Actitud,trusting,I like my new manager. He is so kind and a good listener. I feel that I can trust him with any issue that I have.,I hate that too. Most of the managers are like that. They never listen and they can be rude.
+173,174,Actitud,faithful,i have faith my brother will do alright,Well at least you were able to introduce him to your friend. I hope everything works out for him!
+174,453,Actitud,confident,We recently went on vacation with some friends to Disney world.  They had never been before and we are annual passholders so we have been several times over the last year.,We had a really good time on our vacation a couple of weeks ago.
+175,86,Actitud,prepared,im ready for next week!,what's happening next week?
+176,96,Actitud,faithful,When the guy I'm now married to and I met for the first time I was actually dating someone else. I thought that my now husband would just be a really good friend to me. I stayed with my ex-boyfriend for a while after_comma_ and even when I knew I wanted to date my now husband I never did anything to betray my ex.,Well that's good. Sounds like it all worked out pretty well.
+177,97,Actitud,hopeful,We are wanting to buy a new house in the next year. I'm really hoping that it works out for us. We have needed something a little bigger for a while now.,Yes. I have 4 kids and we are living in a 3 bedroom and 1 bathroom right now. We definitely need another bathroom. lol
+178,98,Actitud,excited,I was cooking some food recently. I made a hard to make recipe and it worked!,That is trivia. When i am hyped_comma_ i cook lasagna. I know that is hard to cook_comma_ but i mastered it all on my own
+179,99,Actitud,excited,Recently we decided to rescue another kitten. We were so thrilled to be adding another furry member to our family and save a life.,That is great! Adopt_comma_ don't shop! Always a great motto!
+180,100,Actitud,confident,I recently went surfing and surfed waves everyone else was afraid to. I was the man_comma_,Yes_comma_ I've been surfing for ever. Only three of us in the water. 
+181,101,Actitud,trusting,I was working on a boat_comma_ and I had to hope that my friend didn't screw something up while I had my hands in the engine.,Gosh I hate it when I have to work on complicated parts in my boat engine_comma_ when my friend is helping me.
+182,36,Actitud,proud,My son won first place at his first spelling bee.,That's great!  Sounds like he's a smart kid!
+183,103,Actitud,trusting,I knew my dad would help me with my test. He was good at math,I knew my dad would help me with my test. He was good with math
+184,104,Actitud,proud,I was held my head high when my mother received her Master's Degree after getting a GED after high school.,You know she inspires me. She always reminds me of what hard work can do for you.
+185,106,Actitud,excited,I am going to meet up with a special friend I haven't seen for  years,That's pretty cool. I don't see my friends much since I moved.
+186,34,Actitud,faithful,Some one owed me some money,I thought he would not pay back after a long time
+187,109,Actitud,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,"I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,4|5|5_5|5|5,
 hit:558_conv:1117,2,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,64,That sounds like a fun trip. I love camping.,4|5|5_5|5|5,
 hit:558_conv:1117,3,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,184,Yep as long as the weather is nice_comma_ it's fun. It's too hot right now though,4|5|5_5|5|5,
 hit:558_conv:1117,4,prepared,I once had to go camping it didn't have the right equipment. So I went to the store and bought a new tent and sleeping bag.,64,I'm glad the weather seems to be holding up. I live in Florida and it is always hot.,4|5|5_5|5|5,
@@ -469,195 +371,293 @@ hit:577_conv:1154,2,furious, A driver brushed my car with his car and did not st
 hit:577_conv:1154,3,furious, A driver brushed my car with his car and did not stop to apologize and fix my car,166,i wish i can locate him and make him pay for what he did. but i will prefer to brush his face with a punch ,4|3|3_5|5|5,
 hit:577_conv:1154,4,furious, A driver brushed my car with his car and did not stop to apologize and fix my car,178,Please do not do that. just forgive him and hope that it does not happen again,4|3|3_5|5|5,
 hit:578_conv:1156,1,surprised,For my 30th birthday my friends threw me an unexpected party that was a lot of fun.,184,For my 30th birthday my friends threw me an unexpected party that was a lot of fun."
-286,260,Actitud,proud,Finally got some yard work done _comma_ Love the smell of fresh cut grass.,I like getting things done in the yard_comma_but I feel so dirty afterwards.
-287,1,Árbol,Definición de árbol,What is the definition of arbol?,In this article we will talk about the different types of data structures and how they can be used in the web.
-288,35433,Actitud,faithful,One day my neighbor helped me in a risky situation. So I'm loyal to their family always.,Yeah_comma_ They helped me in the risky situation when I was alone.
-289,18510,Actitud,joyful,My company will give us a bonus because the quarter was good. I am happy.,I just went on a vaction with my kids. Its was so relaxing. Have fun
-290,16,Algoritmo,Ejemplo de algoritmo de recomendación,What is one way to get people to like your content?,"In the world of social media, recommendation algorithms are not the only way to get people to like your content."
-291,20679,Actitud,joyful,I won a year of unlimited pizza. I'm so psyched.,It will save you a lot of money too
-292,63372,Actitud,trusting,The first time I went on a motorcycle_comma_ I was scared. But I knew my husband wouldn't do anything to hurt me. I trusted him with my life.,It must be nice to have that kind of trust for someone_comma_ and motorcycles can be fun!
-293,1,Ciencia de datos,Definición de ciencia de datos,What is the term for data science?,Data science is a branch of science that uses data to solve problems.
-294,28250,Actitud,joyful,Going to disney world in december!,Oh that's exciting! Have you gone before?
-295,36506,Actitud,prepared,I went into that interviewing knowing i could answer any question they threw at me,yea im sure i'll get the job
-296,1,Árbol de decisión,Definición de árbol de decisión,What is the name of the prediction model used in artificial intelligence?,"A decision tree is a prediction model used in many fields including artificial intelligence, economics and computer science."
-297,28072,Actitud,excited,I was so thrilled to get concert tickets for a surprise show. It will be so fun!,The Strokes are playing this show on the fly in a month. It's so cool!
-298,63706,Actitud,hopeful,I'm trying to save up money to buy a home by next year. If all goes well It can happen.,I am so excited. I'm thinking of all the things I want to do to it and I don't even know what it looks like yet.
-299,5,Algoritmo,Características de los algoritmos,What is the idea of an algorithm?,The idea of an algorithm is to create a set of rules that can be used to solve problems.
-300,2,Prolog,Definición de Prolog,What is the name of the project that has been awarded the European Research Award?,"The PROLOG project has been awarded the European Union's prestigious R&D award, the European Research Award (Eredo), for its contribution to artificial intelligence."
-301,1,Reglas de asociación,Definición de reglas de asociación,What is the definition of a grouping rule?,The association rule is a set of rules that govern the way items are grouped and stored.
-302,3,Blockchain,Definición de blockchain,What is the blockchain definition?,The Blockchain Foundation is a non-profit organization to promote the use of blockchain technology.
-303,1,Bot,Definición de bot,What is a bot definition?,A bot is a computer program that does the same thing over and over.
-304,2,Metadatos,Definición de metadatos,What is the definition of metadata?,Metadata is a collection of information that accompanies data.
-305,2,Variables dummy,Definición de variables dummy,What is the term for variables dummy?,"The effect of a dummy variable on the outcome of a study is discussed in the paper ""Effects of a dummy variable on a study"" by the researchers at the University of Oxford."
-306,71584,Actitud,excited,My spouse bought me a diamond necklace for my birthday.,Yes I was_comma_ I felt love and appreciated. 
-307,0,Blockchain,Blockchain example,What type of technology is expected to be the global market's fastest growing segment?,The telecommunications industry is expected to grow at the fastest rate in the global blockchain market.
-308,1777,Actitud,excited,I felt this way when my father bought me a Super Nintendo for  my 9th birthday. We were very poor so it was unexpected!,You still remember what you got for it?  It must have been memorable!  What was it?
-309,0,Sobreajuste,Definición de sobreajuste,What does overfitting mean?,The term 'overfitting' is a common term in machine learning. It means that the model is too complex for humans to understand.
-310,4448,Actitud,joyful,i am so happy that i am going to be a grandma,Yep. Happy and healthy is a blessing
-311,38260,Actitud,faithful,I had a girl try to hook up with me_comma_ but i didnt do anything because I love my wife.,This attractive girl at the bar was trying to get me to go home with her the other night
-312,19807,Actitud,faithful,I was married to my wife for thirty years_comma_ and even though she has passed I can't bring myself to date anyone else.,Well_comma_ if that's how you feel then maybe it is best if you stay in the dugout and don't play the field. No shame in that.
-313,27818,Actitud,hopeful,Nephew plays football.  I hope he does great this year!,Yeah this is true!  I'll definitely take your advice! Thank you so much!
-314,22137,Actitud,excited,I can't wait until Halloween. I love scaring the little kids who come to my house_comma_ muhahah!,Ha! I've always loved the more festive Dia de los Muertos approach to the day rather than scare or gore! What's your favorite Halloween film?
-315,25102,Actitud,proud,I watched two of my daughters as they graduated from high school.,Oh_comma_ that's wonderful!  Tell them congratulations for me! You must be bursting with pride!  
-316,2,Metaverso,Definición de metaverso,What is the definition of a metaverse?,The idea of a metaverse is a new way of exploring the universe.
-317,18011,Actitud,prepared,I think I got everything I need for my job interview tomorrow. I got my fancy clothes and answers prepared for common questions they usually throw at u.,I think I got everything I need for my job interview tomorrow. I got my fancy clothes and answers prepared for common questions they usually throw at u.
-318,13350,Actitud,hopeful,that i will find a better job ,I am staying very positive that this year even if it is coming close to an end I will find a better job! 
-319,5983,Actitud,joyful,I recently received my teaching certificate,thats so awesome good for you 
-320,41471,Actitud,confident,I had to take my final exam for a class last semester. I studied really hard for this exam. I went in sure that I was going to do great on it. I ended up getting the highest score in my class!,hard work pays off 
-321,0,Smart data,Definición de smart data,What is a smart data definition?,Smart data is a technology that makes information more useful by using information.
-322,2,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is a computer graphics processing unit?,A graphics processing unit (GPU) is a special part of a computer. It is used to make graphics.
-323,2,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What is the term for the use of sensors and actuators in the home?,The use of sensors and actuators in the home is increasing.
-324,37995,Actitud,faithful,I have been with my car insurance company for 30 years.,I have been with my car insurance company for 30 years.
-325,12230,Actitud,prepared,I am all packed for my vacation.  I don't believe I have forgotten anything for the trip but you never know.,I'm leaving for my vacation soon.  I have everything all packed and ready to go.
-326,10,Algoritmo,Clasificación de los algoritmos,What information is classified by?,"In this paper, the data will be classified according to the following criteria."
-327,42686,Actitud,trusting,My daughter has grown up so much. She is finally able tobabysit her younger siblings,my daughter has matured so well
-328,19561,Actitud,confident,I have my physics test tomorrow that I have been studying 10 days for_comma_ Never felt so ready in my life.,I have a physics test tomorrow. I think I can say that after 10 days of nonstop studying and copious amounts of adderall_comma_ I am finally ready.
-329,1,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the term for a graphics processing unit?,"GPU- accelerated computing is the use of a graphics processing unit (GPU) in conjunction with a CPU to accelerate the performance of deep learning, analytics and engineering applications."
-330,47479,Actitud,proud,My brother is getting married. I am so happy for him,I am not_comma_ I did not want to jinx it
-331,15667,Actitud,excited,I am going to meet up with a special friend I haven't seen for  years,That's pretty cool. I don't see my friends much since I moved.
-332,6238,Actitud,confident,I started my driving class last week. I'll finish the class within a month and drive the car without any help of others.,Are you going to buy a car?
-333,4107,Actitud,excited,I have plans so go to the beach with my wife for a week next month.,I have plans so go to the beach with my wife for a week next month
-334,11852,Actitud,hopeful,I recently applied for a job at a new company. Getting this job would but such a step up for me and my family. It would really be great if I got it.,Well I hope you get it. Good luck!
-335,16,Algoritmo,Ejemplo de algoritmo de recomendación,What can you do to make people like your content?,"In the social media world, algorithms are not the only way to get people to like your content."
-336,69903,Actitud,proud,my daughter passed her drivers test on the first try,really scary.
-337,52608,Actitud,hopeful,I'll be getting a raise in February.,It'll be around 25%.
-338,2,Ciencia de datos,Definición de ciencia de datos,What is the topic of the PhD program at the University of Bristol?,The University of Bristol is offering a PhD in data science.
-339,2,Árbol de decisión,Definición de árbol de decisión,What is the tree's name?,The tree is an important part of learning though.
-340,13,Algoritmo,Partes del algoritmo,What is the function of an algorithm?,An algorithm is a kind of computer program. It uses instructions to solve problems.
-341,69903,Actitud,proud,my daughter passed her drivers test on the first try,really scary.
-342,1,Árbol de Merkle,Definición de árbol de Merkle,What is the definition of a Merkle hash tree?,"A Merkle hash tree is a tree of data structures, binary or otherwise, with the labels or values of its child nodes."
-343,0,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the name of the computer chip that is used for computing?,The GPU is a type of computer chip that is used for computing.
-344,1,Realidad aumentada,Definición de realidad aumentada,What is the definition of augmented reality?,"The BBC's technology correspondent, Chris McGrath, explains how augmented reality can be used to enhance our daily lives."
-345,3,Árbol,Definición de árbol,What is a tree definition?,"In computer science, a tree is a structure of data."
-346,2220,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,My friend is having a drink and paint party. I've only been to one before but it was pretty fun. I can't wait.
-347,2,Modelo,Definición de modelo,What is a model definition?,This paper shows how to train an artificial intelligence model to predict what will happen in the future.
-348,52822,Actitud,proud,My daughter win a medal for dancing in a competition. I glad to see her as a dancer.,I'm impressed_comma_ where did she win the medal?
-349,49643,Actitud,prepared,I have been training for months for the race.,I'm sure all the work will be worth it in the end!
-350,46864,Actitud,confident,For some reason if I get a good pump at the gym early in the morning_comma_ I feel like I can tackle any task on my to-do list for the day.,That's awesome. do you usually exercise in the mornings?
-351,22137,Actitud,excited,I can't wait until Halloween. I love scaring the little kids who come to my house_comma_ muhahah!,Ha! I've always loved the more festive Dia de los Muertos approach to the day rather than scare or gore! What's your favorite Halloween film?
-352,1,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is the name of the tool that is used to learn how to use a website?,This is a very useful tool for learning how to use a website.
-353,76211,Actitud,excited,I've never had a lust for life like I do these days.  I literally wake up every day stoked that I'm living my dreams and can't wait to see how much money I can make,Yes you have no idea...still grinding it out everyday but it's totally worth it
-354,2,Algoritmo,Definición de agente inteligente,What is the algorithm's name?,An algorithm is a set of instructions. They are used to solve problems.
-355,39537,Actitud,excited,I am so full of anticipation!  School starts on Monday!,that's a long time. You should be used to it
-356,1,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What exactly is the Internet of Things?,The Internet of Things (IoT) is an important technology in technology.
-357,41778,Actitud,faithful,I feel very committed to my work. No matter how I feel_comma_ I have to press on and complete it. It's been a rough week and my will power is very strong to still work through all this,yes. It's been a rough week and my will power is very strong to still work through all this
-358,1,Metaverso,Definición de metaverso,What does Richard Black explain about the metaverse?,"The BBC's technology correspondent, Richard Black, explains the meaning of the metaverse."
-359,0,Árbol,Definición de árbol,What is the definition of a directory tree?,"A directory tree is a collection of data structures, usually consisting of a row of characters, which are arranged in a hierarchy."
-360,2,Smart data,Definición de smart data,What is the term used to describe data that is not yet ready for use but can be used?,"The term ""smart data"" is used for data that is ready to be used, but does not yet need to be used."
-361,60447,Actitud,hopeful,I just applied for a new job.  After the interview_comma_ I'm very optimistic that I will get the position,I do!  I'm feeling very optimistic about it
-362,28292,Actitud,faithful,Getting married this fall,It's lovely. Be a happy couple. live long together!
-363,2,Tabla Hash,Definición de tabla hash,What is the definition of tabla hash?,The hash table is a very useful tool for searching for data.
-364,16148,Actitud,excited,I will finally be getting a new phone soon_comma_ and I can't wait because my old one is almost dead.,I have a lot of anticipation in me right now. I will finally be able to get a new phone after all these years.
-365,28817,Actitud,trusting,I like my new manager. He is so kind and a good listener. I feel that I can trust him with any issue that I have.,I hate that too. Most of the managers are like that. They never listen and they can be rude.
-366,2,Xenobot,Definición de xenobot,What is the definition of xenobot?,"Meet the Xenobots, the latest in a long line of living robots."
-367,69586,Actitud,faithful,When the guy I'm now married to and I met for the first time I was actually dating someone else. I thought that my now husband would just be a really good friend to me. I stayed with my ex-boyfriend for a while after_comma_ and even when I knew I wanted to date my now husband I never did anything to betray my ex.,Well that's good. Sounds like it all worked out pretty well.
-368,42373,Actitud,joyful,I'm very proud of my daughters.,I am very proud of my daughters.
-369,2,Subajuste,Definición de subajuste,What is the definition of a subajustment?,The failure of a system to work properly is called underfitting.
-370,0,Máquina de Turing,Definición de máquina de Turing,What is the name of the machine that is the most important in computer science?,The Turing machine and the complexity of its solutions are two of the most important topics in computer science.
-371,1,Subajuste,Causa de subajuste,What is the name of the condition that a 3D printer must be maintained?,We have been using a 3D printer for many years and have been finding that it is a very expensive machine to maintain.
-372,12020,Actitud,prepared,When I went into labor with my son_comma_ it was quite the ordeal. He was coming way too early and we had to rush to get him out. Thankfully_comma_ I had everything already packed beforehand!,Is he healthy?
-373,26174,Actitud,excited,Just got a house for 10k. It's really broken down_comma_ but I hope it'll be nice after we fix it up.,thats cool.  i hope it works out for you
-374,11,Algoritmo,Input del algoritmo,What is the name of the command that specifies the steps to be taken when a given command is executed?,The following example shows how to use the following commands to specify the steps to be taken when a given command is executed.
-375,30659,Actitud,faithful,I would never cheat on my wife like my brother cheated on his wife,Cheating  on your spouse is a despicable thing to do.
-376,1,Aprendizaje federado,Definición de aprendizaje federado,What is the new way of learning in the University of Cambridge?,A new way of learning has been developed at the University of Cambridge.
-377,21771,Actitud,confident,i went in knowing i was going to do great on that test,Awesome! So happy for you my friend
-378,32048,Actitud,hopeful,I am hoping to win the lottery this week!,I am hoping as well
-379,50575,Actitud,proud,It makes me feel good when I see my friends realizing their dreams.,Some people get jealous when other people are doing well_comma_ so you are truely a good friend
-380,31430,Actitud,prepared,I knew I was going to pass my drivers test. I just knew I would do well,I knew I was going to pass my drivers test. I knew I would do well
-381,70152,Actitud,joyful,I remember as a child when I got my Nintendo 64 how happy and excited I was. Best christmas memory I have.,Yea _comma_ I still play it sometimes for funs sake.
-382,1,Bot,Definición de bot,What is the definition of a bot?,A bot is a computer program capable of performing repetitive tasks.
-383,0,Función Hash,Definición de función hash,What is a cryptographic hash function?,This page explains how to use a hash function in Python. It uses the Python programming language.
-384,47804,Actitud,prepared,Last week when I was coming back to my home_comma_ a man approached me. But_comma_ I had a gun. I felt I was ready.,I had a gun. I felt I was ready. If anything would have happened_comma_ I could have used it.
-385,10111,Actitud,trusting,I can tell my best friend anything!,I usually ask her for advice and tell her embarrassing stories because she never snitches!
-386,41811,Actitud,confident,I think I did very well in my work and will have a fantastic design to show my boss! I put so much effort into this it can't possibly be bad,That is a smart move by you.
-387,2,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What is the definition of sensors and actuators in the home?,The use of actuators and sensors in the home is growing.
-388,52822,Actitud,proud,My daughter win a medal for dancing in a competition. I glad to see her as a dancer.,I'm impressed_comma_ where did she win the medal?
-389,1,Prolog,Definición de Prolog,What is the name of the tutorial that shows you how to solve a factorial in Prolog?,"In this tutorial, I will show you how to solve a factorial in the Prolog language."
-390,41360,Actitud,faithful,I was on a business trip last week spending some time at a local bar. There was a girl who was being flirty with me. I had to tell her that I was married and I couldn't play with her.,Last week on a business trip I spent some time at the bar. There was this girl who was really flirty with me. I had to tell her that I couldn't play with her because I was married.
-391,32869,Actitud,joyful,Took the kiddos to the lake,That sound fun! I love to eat fresh fish!
-392,72622,Actitud,hopeful,Getting a colonoscopy done.  I hope it turns out okay,My appointment is coming up
-393,17,Algoritmo,Historia del algoritmo,What does John Sudworth look at?,"The BBC's science correspondent, Dr John Sudworth, looks at the history of algorithms."
-394,2,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is a reward for doing well?,"Researchers at the University of California, Berkeley, have developed a way to teach children to learn by giving them a reward for doing well."
-395,2221,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,Wow_comma_ that sounds like a fun and interesting time_comma_ but it sounds like there are a high chance for things to go south and be a huge mess
-396,2,Máquina de Turing,Definición de máquina de Turing,What was the name of the machine that was seen at Bletchley Park?,"The BBC's science correspondent, Jeremy Vine, has been to the World War Two code-breaking centre at Bletchley Park to see the Turing machine."
-397,31842,Actitud,excited,I'm excited for Red Dead Redemption 2 to come out.  Even though it's a couple months away,No worries_comma_ we all have our hobbies!
-398,1,Computación Ecológica,Definición de computación Ecológica,What is the purpose of this project to promote green computing use?,World Green Computing Council The World Green Computing Council (WGC) is an international organization.
-399,13,Algoritmo,Partes del algoritmo,What is the name of the part of an algorithm?,An algorithm is a computer program that uses a set of instructions to solve a problem.
-400,24252,Actitud,proud,My niece is visiting and we have a pool.  She has not had access to a pool for most of her childhood ad does not know how to swim.  She is figuring it out very quickly though and her confidence is increasing as her skills do.  It's very exciting to watch her skills and confidence soar and she feels it too.,My niece can't swim but has is staying with us for a bit and we have a pool.  Her skills are increasing and her confidence is soaring!
-401,4,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is the term for a new type of artificial intelligence?,A new type of artificial intelligence is being developed that can predict the future behaviour of people.
-402,42691,Actitud,joyful,Get to hang out and play cards with my girlfriend and her parents. Her parents are actually pretty laid back and fun to be around_comma_ so I'm looking forward to it. Glad I don't have to deal with overbearing in-laws like some people.,That's good. Were you nervous at first?
-403,71283,Actitud,trusting,I let my son drive the car for the first time.,You must be so proud of him!
-404,2,Realidad aumentada,Ejemplo de realidad aumentada,What is the concept of Augmented Reality?,"Augmented reality is the idea that your smartphone, tablet or computer can be used to view the world around you."
-405,54219,Actitud,confident,I knew it was going to be a good weekend last week. I just had a good feeling,ok
-406,65984,Actitud,trusting,When I had many problems or I was sad_comma_ I knew God was with me and the things were going to improve.,Can you facetime them?
-407,37995,Actitud,faithful,I have been with my car insurance company for 30 years.,I have been with my car insurance company for 30 years.
-408,42881,Actitud,prepared,I've got all my fishing gear packed up. I'm ready for tomorrow morning.,I've got all my fishing gear packed up. I'm ready for tomorrow morning.
-409,3,Árbol,Definición de árbol,What is the definition of a tree?,A tree is a structure of data that is not empty or null.
-410,2,Blockchain,Definición de blockchain,What is the name of the new technology being used to help businesses manage their digital assets?,A new technology is being used to help businesses manage their digital assets.
-411,70934,Actitud,prepared,Getting ready to file quarterly taxes and I have been very diligent with organization this year so I am prepared,How much stuff did you have to go through?
-412,3,Máquina de Turing,Definición de máquina de Turing,What is the name of the machine that Alan Turing developed?,"The BBC's science correspondent, Richard Black, has been to the University of Cambridge to see the Turing machine, a machine developed by Alan Turing in the 1950s."
-413,8199,Actitud,confident,I want to lose weight and i'm sure i can do it,You can. It will take some persistence. How's it going so far?
-414,39018,Actitud,prepared,I am having some financial issues. I am selling almost everything before the bailiff come.,I am having some financial issues. I am selling almost everything before the bailiff come.
-415,2,Árbol,Definición de árbol,What is a tree definition?,"In this course, we will learn how to use trees in different ways."
-416,20386,Actitud,confident, I knew I was going to pass my final. I studied all week,I was confident about my final test. I had studied all week hard
-417,3,Modelo,Definición de modelo,What is a model definition?,AI is a science that is trying to improve how we use and think about data.
-418,63366,Actitud,trusting,I went skydiving. I had to trust in the tandem partner I had to not kill me.,That's so awesome. I don't think I would have the courage now. Will you do it again?
-419,4,Internet de las Cosas (IoT),Ejemplo de Internet de las Cosas (IoT),What is Garageio?,Garageio is a new app that allows you to control your garage from home by connecting to the app.
-420,29853,Actitud,trusting,I am waiting on my friend to come over. They are bringing me a medicine for my pet.,I'm sorry. That must make you sad.
-421,1,Agente inteligente,Definición de agente inteligente,What is the definition of an intelligent agent?,"An intelligent agent is an entity capable of perceiving its environment, processing such perceptions and responding or acting in its environment rationally, i.e., tending to maximize an expected result."
-422,35267,Actitud,proud,My school is low income_comma_ but we score in the top 5% statewide.,Yep. We get looked down on so much_comma_ but I think some schools are gonna rethink their attitudes now.
-423,68890,Actitud,faithful,When my spouse was out of town for work_comma_ a friend stopped by to visit. This friend offered to kiss me_comma_ but I declined and asked the friend to leave. I only have interest in my spouse in this way.,I said no and made the friend leave. I only like my spouse.
-424,64737,Actitud,faithful,god has done so much for me in my life. i owe everything to him,and i know he's going to come back for me and take me away from this place
-425,2,Metadatos,Definición de metadatos,What exactly is metadata?,Metadata is the information that goes along with data.
-426,66467,Actitud,faithful,I am very faithful to my employer.,My employer provides me with lots of training and support so I have become very faithful to them.
-427,4448,Actitud,joyful,i am so happy that i am going to be a grandma,Yep. Happy and healthy is a blessing
-428,2,Test de Turing,Definición de test de Turing,What test did DeepMind pass?,The BBC reports that a machine called DeepMind has passed the Turing test for the first time.
-429,1,Test de Turing,Definición de test de Turing,What is the name of the test that is used to test the intelligence of machines?,"The BBC's science correspondent, Richard Galpin, explains how the Turing test is used to test the intelligence of machines."
-430,4,Internet de las Cosas (IoT),Ejemplo de Internet de las Cosas (IoT),What is Garageio?,Garageio is a new app that allows you to monitor and control your garage from home by connecting to the app.
-431,873,Actitud,hopeful,Before I do feel that I will not make it in life_comma_ but later I felt expectant of my future,I expected something good_comma_ that was why things are working well for me now
-432,0,Grafo,Definición de grafo,What does grafo mean?,Graph theory is a branch of mathematics that studies how information is related to people.
-433,94,Actitud,confident,I recently went surfing and surfed waves everyone else was afraid to. I was the man_comma_,Yes_comma_ I've been surfing for ever. Only three of us in the water. 
-434,51512,Actitud,proud,I was held my head high when my mother received her Master's Degree after getting a GED after high school.,Yes_comma_ it is great! Even better she just received her Master's Degree at the tender age of 50!
-435,70934,Actitud,prepared,Getting ready to file quarterly taxes and I have been very diligent with organization this year so I am prepared,How much stuff did you have to go through?
-436,1,Big data,Definición de big data,What is the definition of big data?,"The term 'big data' has been around for a long time, but has now become more common."
-437,4,Bot,Tipos de bot,What is a bot?,Bots are computer programs that people use to control other people on the Internet.
-438,40718,Actitud,hopeful,I am confident my brother will beat his cancer.,I am confident my brother will beat this cancer.
-439,2,Grafo,Definición de grafo,What is a graph definition?,"In mathematics, a graph is a set of objects that can be put together in a certain way."
-440,10130,Actitud,trusting,I let people so much in my life and they ended up betraying my confidence i had in them.,I can sympathize with you. I've had a lot of betrayal in the past. The ONLY thing to do is to continue looking for trustworthy individuals. 
-441,1,Tabla Hash,Definición de tabla hash,What is the definition of tabla hash?,A hash table is a data structure that associates keys or keys with values.
-442,5272,Actitud,prepared,I'm spent all summer getting ready to write my thesis. I can't wait to get time to start.,I spent all summer getting ready to write my thesis. I can't wait to get time to start.
-443,3909,Actitud,joyful,I will be seeing my son tomorrow after  a month.,My son comes back tomorrow!
-444,8831,Actitud,excited,I can't even fall asleep waiting to go on our vacation. ,Oh_comma_ well that is a fine thing indeed! I would be  jumping up and down!
-445,58279,Actitud,excited,A new skating rink is being built. Should be done in time for Winter skating!,That's great! I may look it up and go to their grand opening as well.
-446,67492,Actitud,prepared,We went through hurricane irma last year. We got everything we needed and put metal shutter on all the windows and decided to stay. , i must have been terrifying_comma_ I am glad you both made it through it
-447,3,Modelos generativos,Definición de modelos generativos,What is the name of the model we present?,We present a generative model for unsupervised learning of large-scale data sets.
-448,62642,Actitud,hopeful,I borrowed some money from my friend. I've a confidence I'll repay this month to him.,What a good friend to lend you money in your time of need. You should thank him and take him to dinner after everything is sorted.
-449,24252,Actitud,proud,My niece is visiting and we have a pool.  She has not had access to a pool for most of her childhood ad does not know how to swim.  She is figuring it out very quickly though and her confidence is increasing as her skills do.  It's very exciting to watch her skills and confidence soar and she feels it too.,My niece can't swim but has is staying with us for a bit and we have a pool.  Her skills are increasing and her confidence is soaring!
-450,7,Algoritmo,Características de los algoritmos,What does Jeremy Hobson think?,"The BBC's science correspondent, Jeremy Hobson, looks at the challenges faced by scientists trying to use technology to predict what will happen in the future."
-451,63372,Actitud,trusting,The first time I went on a motorcycle_comma_ I was scared. But I knew my husband wouldn't do anything to hurt me. I trusted him with my life.,It must be nice to have that kind of trust for someone_comma_ and motorcycles can be fun!
-452,2,Metaverso,Definición de metaverso,What exactly is a metaverse?,A metaverse is a new way for people to explore the world.
-453,1164,Actitud,confident,We recently went on vacation with some friends to Disney world.  They had never been before and we are annual passholders so we have been several times over the last year.,We had a really good time on our vacation a couple of weeks ago.
-454,71053,Actitud,faithful,I just celebrated 25 years at my job.,You should've made them buy another cake!
-455,1,Turing completo,Definición de turing completo,What was the name of Alan Turing's work?,Alan Turing was a British computer scientist who developed the complete Turing complete.
-456,3823,Actitud,prepared,One year we had a scary hurricane warning_comma_ but thankfully with plenty of time to get ready for it. So I got batteries_comma_ beer_comma_ non-perishable foods. I was totally ready!,Wouldn't you know it totally missed my city. I was a little let down to be honest_comma_ though glad we were safe.
-457,2,Xenobot,Definición de xenobot,What exactly is a xenobot?,Xenobots are the latest in a long line of living machines.
-458,2,Árbol,Definición de árbol,What is the definition of a tree?,In this course we will be learning how to use a tree in a variety of ways.
-459,39018,Actitud,prepared,I am having some financial issues. I am selling almost everything before the bailiff come.,I am having some financial issues. I am selling almost everything before the bailiff come.
-460,67246,Actitud,proud,I just got a steam cleaner and used it for the first time yesterday. My carpets came out so clean!,I was in the market for a steam cleaner and did tons of research til I chose the best one.
-461,60349,Actitud,trusting,If I'm going to be in a relationship I need girl I can depend on_comma_ not some effed up crazy damaged goods type of girl,Yes_comma_ glad you agree....I was an idiot and mistook a deadly combo of pity and infatuation for love...but now I know what to avoid and what I want so I'm thankful
-462,12,Algoritmo,Input del algoritmo,What is the name of the algorithm that is used to find the search results?,The world wide web is a large and complex place. The web is a big part of our lives.
-463,18,Algoritmo,Historia del algoritmo,What is the name of the film that celebrates Euclid?,"The ancient Greek mathematician Euclid is celebrated in the film The Big Bang Theory, which opens in the UK on Friday."
-464,7,Algoritmo,Características de los algoritmos,What does Jeremy Hobson look at?,"The BBC's science correspondent, Jeremy Hobson, looks at the challenges faced by researchers trying to develop algorithms for predicting the behaviour of natural disasters."
-465,49643,Actitud,prepared,I have been training for months for the race.,I'm sure all the work will be worth it in the end!
-466,21849,Actitud,hopeful,Vacation trip coming up hope it's awesome,Yeah I know!  It's going to be awesome!  Enjoy your day_comma_ friend!
-467,4134,Actitud,confident,I'm about to ask someone that I like out on a date. I'm pretty confident that she will say yes.,So there's a girl that I've been talking to lately... I'm thinking about asking her out.
-468,3321,Actitud,joyful,I felt so happy seeing my high school friends last month. We were at our reunion,True! All those old memories started rushing in
-469,4,Ciencia de datos,Ejemplo de ciencia de datos,What is the main focus of the NCA's new approach?,"The UK's National Crime Agency (NCA) has developed a new approach to identifying cyber threats, using machine learning to identify patterns in data."
-470,62281,Actitud,proud,I got all A's in my last semester.,Thanks! Yes_comma_ I think I did my best anyway.
-471,11593,Actitud,trusting,I have faith that I will get pregnant soon. Why is it so hard? Isn't that what a women's body is built to do?,Yeah_comma_ more people are having these issues these days. I think it may be true that someone may be poisoning us through the water and food or something! It is a scary world!
-472,63559,Actitud,faithful,I'm hoping I can reach diamond next season in overwatch. I've been practicing a ridiculous amount,I would say it's my favorite fps now by a mile. Cod became fecal matter 5 or 6 years ago. I'm hoping I can finally stop being a pleb and hit diamond next season
-473,70029,Actitud,proud,I won a teaching award last year for my work with at-risk youth. ,It's nice to be recognized. What do you do for a living?
-474,21849,Actitud,hopeful,Vacation trip coming up hope it's awesome,Yeah I know!  It's going to be awesome!  Enjoy your day_comma_ friend!
-475,0,Aprendizaje por refuerzo,Definición de aprendizaje por refuerzo,What does reinforcement learning mean?,This paper describes how software development can use reinforcement learning.
-476,0,Aprendizaje federado,Ejemplo de aprendizaje federado,What is the project name?,"University of California, Los Angeles researchers have developed a way to train artificial intelligence models for use in hospitals."
-477,38260,Actitud,faithful,I had a girl try to hook up with me_comma_ but i didnt do anything because I love my wife.,This attractive girl at the bar was trying to get me to go home with her the other night
+188,111,Actitud,prepared,One year we had a scary hurricane warning_comma_ but thankfully with plenty of time to get ready for it. So I got batteries_comma_ beer_comma_ non-perishable foods. I was totally ready!,Wouldn't you know it totally missed my city. I was a little let down to be honest_comma_ though glad we were safe.
+189,33,Actitud,excited,I'm excited for Red Dead Redemption 2 to come out.  Even though it's a couple months away,No worries_comma_ we all have our hobbies!
+190,95,Actitud,excited,I'm going to a drink and paint party tomorrow. It should be pretty fun!,Wow_comma_ that sounds like a fun and interesting time_comma_ but it sounds like there are a high chance for things to go south and be a huge mess
+191,113,Actitud,confident,I recently decided to start blogging again and feel pretty good about it. I used to have a decent sized audience_comma_ so hopefully I can build it back up.,I'm sure if you can let people know that you're back blogging_comma_ they'd come back to see what you're up to now!  What do you blog about?
+192,115,Actitud,prepared,We had a big storm last summer_comma_ so this year I bought a ton of supplies in case we lost power or had flooding. Last year our basement got very damaged. ,Yeah its all repaired now. I also bought lots of food in case we loose power.
+193,58,Actitud,hopeful,I recently applied for a job at a new company. Getting this job would but such a step up for me and my family. It would really be great if I got it.,Well I hope you get it. Good luck!
+194,32,Actitud,trusting,My co-worker is in charge of finishing up our big project. I am putting all my faith in them.,I have a co-worker putting the finishing touches on a big project and work_comma_ and I am really putting all my faith in him.
+195,30,Actitud,excited,I can't even fall asleep waiting to go on our vacation. ,Oh_comma_ well that is a fine thing indeed! I would be  jumping up and down!
+196,118,Actitud,hopeful,I am feeling more positive about the future today. I am really trying to hold on to that feeling no matter what. It's hard!,That is good!  Why have you been feeling down about the future before?
+197,119,Actitud,trusting,i felt trusting when my dad and my mon care for me,Well as a fellow human being_comma_ I agree that when parents care for their children_comma_ it creates a lifelasting bond between the two parties.
+198,120,Actitud,faithful,I've failed a lot of diets in the past_comma_ but this time I've been able to stay dedicated for the past four months. I'm seeing great progress now!,Yeah_comma_ that sounds like a really good idea!
+199,121,Actitud,hopeful,My husband and I are going to couples counseling. I am really positive that we can fix things and be happy.,Oh no. I'm sorry to hear you are going through a rough patch.
+200,29,Actitud,hopeful,I borrowed some money from my friend. I've a confidence I'll repay this month to him.,What a good friend to lend you money in your time of need. You should thank him and take him to dinner after everything is sorted.
+201,473,Actitud,proud,I won a teaching award last year for my work with at-risk youth. ,It's nice to be recognized. What do you do for a living?
+202,124,Actitud,hopeful,I just got a new manager at work. She is really young but seems to be full of good ideals.,I plan to steer clear. I'm going to relocate in January so I just need to lay low. I hope she does a great job.
+203,126,Actitud,confident,My friend speaks 4 languages. I'm sure they'll get that interpreter job at the embassy.,Yea. English of course_comma_ then French_comma_ Spanisha and Chinese.
+204,28,Actitud,trusting,My nephew is learning how to drive and asked to use my car to take the driving test this weekend. ,Yeah. I feel he wont let me down. 
+205,27,Actitud,proud,My grandson just graduated high school. He was developmentally slow so we were amazed that he actaully graduated a year early!,You must be so proud. That really is a great accomplishment that he has made. Is he going to college?
+206,114,Actitud,joyful,I was very happy to get my new job,oh wow. we're practically neighbors.
+207,94,Actitud,joyful,I am going to eat some BBQ later.  I am so happy for it.,That sounds so good and the perfect way to spend a Sunday.
+208,37,Actitud,trusting,I have faith that I will get pregnant soon. Why is it so hard? Isn't that what a women's body is built to do?,Yeah_comma_ more people are having these issues these days. I think it may be true that someone may be poisoning us through the water and food or something! It is a scary world!
+209,38,Actitud,joyful,When my first child was born I have never experienced so much happiness in my life.,Thank you! It is hard at times tho when getting little sleep.
+210,60,Actitud,excited,I'm going to building a gaming pc. This is my first time.,Wow. It can be difficult to put together but finding the parts is a lot of fun.
+211,61,Actitud,trusting,If I'm going to be in a relationship I need girl I can depend on_comma_ not some effed up crazy damaged goods type of girl,Yes_comma_ glad you agree....I was an idiot and mistook a deadly combo of pity and infatuation for love...but now I know what to avoid and what I want so I'm thankful
+212,62,Actitud,hopeful,I'm meeting a girl for a date at the zoo this afternoon.,What's your favorite exhibit at the zoo?
+213,63,Actitud,trusting,I trust my wife with my life,thats a good bond how long have you been together? 
+214,474,Actitud,hopeful,Vacation trip coming up hope it's awesome,Yeah I know!  It's going to be awesome!  Enjoy your day_comma_ friend!
+215,65,Actitud,trusting,When my dad wanted to help me get a car_comma_ I trusted him. I knew he would help me a lot,That is nice of him_comma_ that is a good dad right there!
+216,57,Actitud,hopeful,I have a promotion coming up in the next few weeks. I am hopeful that I will get a raise,that's awesome! I hope you will get a promotion. what do you do for work?
+217,66,Actitud,joyful,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.,My dogs passed away 2 years ago. My family adopted me one this past weekend on my birthday.
+218,54,Actitud,trusting,I went skydiving. I had to trust in the tandem partner I had to not kill me.,That's so awesome. I don't think I would have the courage now. Will you do it again?
+219,52,Actitud,faithful,I feel this way because I have hope that I will get into grad school.,That sounds interesting_comma_ when do you learn if you got in?
+220,69,Actitud,excited,I have plans so go to the beach with my wife for a week next month.,I have plans so go to the beach with my wife for a week next month
+221,70,Actitud,joyful,I'm happy my package just arrived,im glad it came earlier
+222,51,Actitud,proud,I was happy when my brother graduated college. I was just happy for him,I was happy when my brother finished college. He really did deserve it
+223,50,Actitud,hopeful,I just got a new manager at work. She is really young but seems to be full of good ideals.,I plan to steer clear. I'm going to relocate in January so I just need to lay low. I hope she does a great job.
+224,73,Actitud,excited,I'm going to building a gaming pc. This is my first time.,Wow. It can be difficult to put together but finding the parts is a lot of fun.
+225,74,Actitud,prepared,ready to leave this hood ,That sounds like a plan.
+226,75,Actitud,joyful,I recently received my teaching certificate,thats so awesome good for you 
+227,39,Actitud,joyful,I've had family visiting for the past couple of days_comma_ some cousins and an uncle and aunt that I haven't seen a long time. It's always great to be reunited with family_comma_ especially after you get over that first initial weird social hump of feeling each other out after not having spoken for a long time. It's crazy to see how much the younger cousins have physically changed! Anyway_comma_ it's been a blast playing games and catching up with them.,wow thats great
+228,92,Actitud,confident,This is gonna be a good year at school for me. Its going to be better than all the rest!,Thats a good outlook to have! What year are you on 1st_comma_ 2nd? 
+229,91,Actitud,prepared,Getting ready to file quarterly taxes and I have been very diligent with organization this year so I am prepared,I bought a big rubbermaid portable file box that has folders 
+230,89,Actitud,joyful,I cant believe my daughter performed so well in the recital. She practiced so hard for it,I cant believe my daughter performed so well in the recital.
+231,87,Actitud,confident,I started my driving class last week. I'll finish the class within a month and drive the car without any help of others.,Are you going to buy a car?
+232,173,Actitud,joyful,I'm very proud of my daughters.,I am very proud of my daughters.
+233,130,Actitud,prepared,when I had my test to get a new certification at work_comma_ I felt great about it because I had workd really hard and studied.,I had my test for a new certification at work.  I really wasn't that nervous for it though.
+234,85,Actitud,excited,I am super hype for the new super smash bros_comma_ it looks so so good!,It comes out in December right? It would make a good holiday present!
+235,82,Actitud,hopeful,I pray American will be great again.,Me too_comma_ he's so real. He loves what I love. MMA_comma_ poker_comma_ guns_comma_ WWE_comma_ hahahah
+236,46,Actitud,prepared,I had been grinding at home trying to build my website when this girl I hadn't heard from since high school called. She said she was in town and wanted to catch up.  Deciding I needed a break from work I turned off my laptop_comma_ threw on some fresh khakis and air nikes and 2 condoms just in case.  Turned out it's always better safe than sorry.,They're known to cause erectile dysfunction? There's chemicals in the laces_comma_ dude! A conspiracy I tell you! Done by OBAMA!
+237,47,Actitud,confident,i went in knowing i was going to do great on that test,Awesome! So happy for you my friend
+238,78,Actitud,trusting,I let my son drive the car for the first time.,You must be so proud of him!
+239,49,Actitud,joyful,I am going to eat some BBQ later.  I am so happy for it.,That sounds so good and the perfect way to spend a Sunday.
+240,76,Actitud,faithful,I was on a business trip last week spending some time at a local bar. There was a girl who was being flirty with me. I had to tell her that I was married and I couldn't play with her.,Last week on a business trip I spent some time at the bar. There was this girl who was really flirty with me. I had to tell her that I couldn't play with her because I was married.
+241,43,Actitud,proud,Nephew playing football this year,That's exciting!  I hope he's doing well in school!
+242,25,Actitud,excited,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!
+243,116,Actitud,prepared,I had been grinding at home trying to build my website when this girl I hadn't heard from since high school called. She said she was in town and wanted to catch up.  Deciding I needed a break from work I turned off my laptop_comma_ threw on some fresh khakis and air nikes and 2 condoms just in case.  Turned out it's always better safe than sorry.,They're known to cause erectile dysfunction? There's chemicals in the laces_comma_ dude! A conspiracy I tell you! Done by OBAMA!
+244,59,Actitud,trusting,When I had many problems or I was sad_comma_ I knew God was with me and the things were going to improve.,Can you facetime them?
+245,18,Actitud,faithful,I have always  been faithful to my girlfiend of almost 3 years,So many people cheat nowadays. That's good to hear!
+246,142,Actitud,prepared,I'm looking forward to presenting to my client_comma_ I spent a lot of time on that powerpoint,I'm looking forward to presenting to my client_comma_ I spent a lot of time on that powerpoint
+247,156,Actitud,faithful,I am very faithful to my employer.,My employer provides me with lots of training and support so I have become very faithful to them.
+248,143,Actitud,faithful,I fully trust in my intuition and dreams.  They have gotten me this far and I'm going all the way to the top,These days I'm trusting my intuition and following my gut to achieve my goals.  They've gotten me this far and haven't let me down yet
+249,163,Actitud,prepared,I@ve done lots of research for an interview tis week,I have an interview this week
+250,145,Actitud,confident,Going to a job interview soon and I think I got this!,It is great to be confident. I am sure you will knock the interview out of the park!
+251,146,Actitud,hopeful,I am feeling more positive about the future today. I am really trying to hold on to that feeling no matter what. It's hard!,That is good!  Why have you been feeling down about the future before?
+252,148,Actitud,joyful,I'm happy my package just arrived,im glad it came earlier
+253,15,Actitud,trusting,I trust my wife with my life,thats a good bond how long have you been together? 
+254,149,Actitud,faithful,i have faith my brother will do alright,Well at least you were able to introduce him to your friend. I hope everything works out for him!
+255,14,Actitud,faithful,god has done so much for me in my life. i owe everything to him,and i know he's going to come back for me and take me away from this place
+256,3,Actitud,faithful,When I am in nature I feel good that this world is exactly as it should be. Everything is moving a long to Gods desires.,Why do cities make you feel that way?
+257,13,Actitud,proud,My daughter got is going to university. I'm so happy. ,Thank you_comma_ I'm so proud
+258,161,Actitud,confident,I'm about to ask someone that I like out on a date. I'm pretty confident that she will say yes.,So there's a girl that I've been talking to lately... I'm thinking about asking her out.
+259,160,Actitud,proud,My dog learned all of his tricks!,Oh great. That is so fun . My baby died a few years ago. But he was over 14 _comma_ so. 
+260,132,Actitud,prepared,when I had my test to get a new certification at work_comma_ I felt great about it because I had workd really hard and studied.,I had my test for a new certification at work.  I really wasn't that nervous for it though.
+261,159,Actitud,confident,I interviewed for a job.  I know I gave great answers to their questions and walked away feeling like I had the job.,I interviewed for a job.  I know I gave great answers to their questions and walked away feeling like the job was mine.
+262,4,Actitud,excited,Gareth Bale played his best in the champion's league final. I was thrilled after I watched his game.,Have you watched champion's league final?
+263,7,Actitud,confident,I was very sure I was getting the promotion I asked for.,I knew I was going to get the promotion I was up for.
+264,154,Actitud,excited,Just got a house for 10k. It's really broken down_comma_ but I hope it'll be nice after we fix it up.,thats cool.  i hope it works out for you
+265,157,Actitud,proud,I had a big final exam that I studied really hard for. I passed with an A and finished with a 4.0 for the semester. I couldnt be happier.,I did. I even ended up with a 4.0 for the whole semester. I was very happy I was able to achieve that.
+266,140,Actitud,proud,I was held my head high when my mother received her Master's Degree after getting a GED after high school.,You know she inspires me. She always reminds me of what hard work can do for you.
+267,165,Actitud,confident,Going to a job interview soon and I think I got this!,It is great to be confident. I am sure you will knock the interview out of the park!
+268,2,Actitud,confident,I feel I can do things on my own. I didn't always feel this way_comma_ so it's nice I am empowered now and can accomplish things on my own.,My resolve I guess? Nothing changed for the better but inside me at least I know I can do it on my own because it's 1000 times better than the alternative. I'll do whatever it takes.
+269,166,Actitud,excited,I've never had a lust for life like I do these days.  I literally wake up every day stoked that I'm living my dreams and can't wait to see how much money I can make,Yes you have no idea...still grinding it out everyday but it's totally worth it
+270,172,Actitud,joyful,I was pretty happy to find out I was having a girl,I had her 7 months ago
+271,24,Actitud,trusting,My nephew is learning how to drive and asked to use my car to take the driving test this weekend. ,Yeah. I feel he wont let me down. 
+272,134,Actitud,trusting,I was working on a boat_comma_ and I had to hope that my friend didn't screw something up while I had my hands in the engine.,Gosh I hate it when I have to work on complicated parts in my boat engine_comma_ when my friend is helping me.
+273,170,Actitud,confident,I have my physics test tomorrow that I have been studying 10 days for_comma_ Never felt so ready in my life.,I have a physics test tomorrow. I think I can say that after 10 days of nonstop studying and copious amounts of adderall_comma_ I am finally ready.
+274,135,Actitud,faithful,I have always  been faithful to my girlfiend of almost 3 years,So many people cheat nowadays. That's good to hear!
+275,167,Actitud,proud,My son just graduated from college. I cannot believe how fast time went.,Awesome. That is a huge accomplishment.
+276,22,Actitud,trusting,When I was a little kid I used to put my faith in everybody.  I learned later on_comma_ as I matured that you can't rely on other people too much because only you know what is best for you in life while everyone else will try to use you if they see you doing too well in life,I understand. Do you like Tony Montana in the movie Scarface?
+277,20,Actitud,trusting,When my dad wanted to help me get a car_comma_ I trusted him. I knew he would help me a lot,That is nice of him_comma_ that is a good dad right there!
+278,155,Actitud,proud,I watched two of my daughters as they graduated from high school.,Oh_comma_ that's wonderful!  Tell them congratulations for me! You must be bursting with pride!  
+279,19,Actitud,excited,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!,I finally thought my dog how to sit and give me her paw. I felt very accomplished and happy!
+280,129,Agente inteligente,Definición de agente inteligente,What does it mean to be an intelligent agent?,Intelligent agents are the technology's future.
+281,421,Agente inteligente,Definición de agente inteligente,What is the definition of an intelligent agent?,"An intelligent agent is an entity capable of perceiving its environment, processing such perceptions and responding or acting in its environment rationally, i.e., tending to maximize an expected result."
+282,259,Agente inteligente,Definición de agente inteligente,What is the definition of an intelligent agent?,Intelligent agents are the future of technology.
+283,253,Agente inteligente,Definición de agente inteligente,What is the project's goal?,"The project's goal is to develop intelligent agents to produce high-quality, efficient and safe food."
+284,231,Algoritmo,Ejemplo de algoritmo,What is the name of the algorithm used by Google?,Google has been accused of manipulating its search results to favour its own products and services over those of rivals such as Yahoo and Bing.
+285,462,Algoritmo,Input del algoritmo,What is the name of the algorithm that is used to find the search results?,The world wide web is a large and complex place. The web is a big part of our lives.
+286,299,Algoritmo,Características de los algoritmos,What is the idea of an algorithm?,The idea of an algorithm is to create a set of rules that can be used to solve problems.
+287,340,Algoritmo,Partes del algoritmo,What is the function of an algorithm?,An algorithm is a kind of computer program. It uses instructions to solve problems.
+288,326,Algoritmo,Clasificación de los algoritmos,What information is classified by?,"In this paper, the data will be classified according to the following criteria."
+289,81,Algoritmo,Input del algoritmo,What is the algoritm's name?,A cooking class is an opportunity for students to learn how to cook.
+290,248,Algoritmo,Ejemplo de algoritmo,What is the name of the algorithm that Facebook uses to determine what you want?,Facebook has said that it uses Edgerank to find out what you are interested in on the website.
+291,463,Algoritmo,Historia del algoritmo,What is the name of the film that celebrates Euclid?,"The ancient Greek mathematician Euclid is celebrated in the film The Big Bang Theory, which opens in the UK on Friday."
+292,128,Algoritmo,Historia del algoritmo,What does John Sudworth think?,"Dr John Sudworth, the BBC's science correspondent, looks at the history of algorithms."
+293,41,Algoritmo,Ejemplo de algoritmo,What is the Google algorithm that is used?,"Google has been accused of giving its own products and services better search results than other companies, such as Yahoo and Bing."
+294,354,Algoritmo,Definición de agente inteligente,What is the algorithm's name?,An algorithm is a set of instructions. They are used to solve problems.
+295,374,Algoritmo,Input del algoritmo,What is the name of the command that specifies the steps to be taken when a given command is executed?,The following example shows how to use the following commands to specify the steps to be taken when a given command is executed.
+296,164,Algoritmo,Ejemplo de algoritmo,What is an algorithm?,"An algorithm is a computer program. It can do something that a human can not, for example, make a recipe."
+297,278,Algoritmo,Ejemplo de algoritmo,What is the name of the algorithm that Facebook uses to find out what you're interested in?,Facebook has revealed that it is using Edgerank to find out what you're most likely to be interested in on the site.
+298,169,Algoritmo,Clasificación de los algoritmos,What is one of the main functions of computer systems?,The following are some of the main functions of computer systems.
+299,399,Algoritmo,Partes del algoritmo,What is the name of the part of an algorithm?,An algorithm is a computer program that uses a set of instructions to solve a problem.
+300,450,Algoritmo,Características de los algoritmos,What does Jeremy Hobson think?,"The BBC's science correspondent, Jeremy Hobson, looks at the challenges faced by scientists trying to use technology to predict what will happen in the future."
+301,185,Algoritmo,Clasificación de los algoritmos,What is the classification of data by?,In this paper we will discuss the classification of data by the following criteria:
+302,67,Algoritmo,Clasificación de los algoritmos,What is the title of the paper describing the algorithm classification?,"In this paper, we explain the algorithm classification."
+303,138,Algoritmo,Características de los algoritmos,What is the purpose of this paper?,The purpose of this paper is to show how to design algorithms for the number of points distribution problem in a series of triplets.
+304,147,Algoritmo,Características de los algoritmos,What is the aim of this paper?,The aim of this paper is to show how to design algorithms for the problem of the distribution of the number of points of a series of triplets.
+305,16,Algoritmo,Definición de agente inteligente,What is the name of the algorithm?,The algorithm is a set of instructions that is used to solve problems.
+306,108,Algoritmo,Características de los algoritmos,What is a computer program that uses instructions or rules to solve problems?,An algorithm is a computer program that uses instructions or rules to solve problems.
+307,393,Algoritmo,Historia del algoritmo,What does John Sudworth look at?,"The BBC's science correspondent, Dr John Sudworth, looks at the history of algorithms."
+308,335,Algoritmo,Ejemplo de algoritmo de recomendación,What can you do to make people like your content?,"In the social media world, algorithms are not the only way to get people to like your content."
+309,144,Algoritmo,Características de los algoritmos,What is an algorithm idea?,"An algorithm is a set of rules, or ideas, that can be used to solve problems."
+310,464,Algoritmo,Características de los algoritmos,What does Jeremy Hobson look at?,"The BBC's science correspondent, Jeremy Hobson, looks at the challenges faced by researchers trying to develop algorithms for predicting the behaviour of natural disasters."
+311,290,Algoritmo,Ejemplo de algoritmo de recomendación,What is one way to get people to like your content?,"In the world of social media, recommendation algorithms are not the only way to get people to like your content."
+312,26,Aprendizaje automático,Definición de aprendizaje automático,What does machine learning mean to you?,"The BBC's artificial intelligence expert, Sue Perkins, explains how the system works."
+313,476,Aprendizaje federado,Ejemplo de aprendizaje federado,What is the project name?,"University of California, Los Angeles researchers have developed a way to train artificial intelligence models for use in hospitals."
+314,125,Aprendizaje federado,Definición de aprendizaje federado,What is the name of the new way of learning at the University of Cambridge?,"The University of Cambridge has developed a new way of learning, called Federated Learning."
+315,376,Aprendizaje federado,Definición de aprendizaje federado,What is the new way of learning in the University of Cambridge?,A new way of learning has been developed at the University of Cambridge.
+316,208,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is a new kind of artificial intelligence term?,A new type of artificial intelligence is being developed to predict people's future behavior.
+317,352,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is the name of the tool that is used to learn how to use a website?,This is a very useful tool for learning how to use a website.
+318,1,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is the name of the tool that you use to find out how to use a site?,It is a great tool to help you learn how to use a website.
+319,136,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is a good reward if you do well?,"Researchers at the University of California, Berkeley, have found a way to help children learn. When they do well, they get a reward."
+320,475,Aprendizaje por refuerzo,Definición de aprendizaje por refuerzo,What does reinforcement learning mean?,This paper describes how software development can use reinforcement learning.
+321,11,Aprendizaje por refuerzo,Funcionalidad del aprendizaje por refuerzo,What is the main function of aprendizaje?,This paper shows how to train an unsupervised learning algorithm group.
+322,401,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is the term for a new type of artificial intelligence?,A new type of artificial intelligence is being developed that can predict the future behaviour of people.
+323,394,Aprendizaje por refuerzo,Ejemplos de aprendizaje por refuerzo,What is a reward for doing well?,"Researchers at the University of California, Berkeley, have developed a way to teach children to learn by giving them a reward for doing well."
+324,53,Autoencoder,Definición de autoencoder,What is the name of the autoencoder developed by Cambridge University?,The Cambridge University Press has developed an autoencoder for computer science.
+325,224,Autoencoder,Definición de autoencoder,What is the name of the autoencoder developed by the University of Cambridge?,The University of Cambridge has developed an autoencoder for the Cambridge University Press.
+326,35,Autoencoder,Definición de autoencoder,What is the project's goal?,"In this project, the research group is developing an autoencoder to read audio signals."
+327,44,Autoencoder,Definición de autoencoder,What is the name of the new method developed?,A novel method for learning autoencoders has been developed.
+328,152,Big data,Uso de big data,What is the term for the collection and analysis of large amounts of data?,Big Data is the collection and analysis of large amounts of data.
+329,48,Big data,Definición de big data,What does big data mean?,"In our series of letters from African journalists, Ahmed Rashid looks at the big data revolution."
+330,436,Big data,Definición de big data,What is the definition of big data?,"The term 'big data' has been around for a long time, but has now become more common."
+331,207,Big data,Uso de big data,What is the definition of data collection and analysis?,Big data is the collection and analysis of large amounts of information.
+332,93,Blockchain,Definición de blockchain,What new technology is being used to help businesses manage their digital resources?,A new technology is being used to help companies manage their assets.
+333,241,Blockchain,Ejemplo de blockchain,What is the name of the technology that allows the transfer of information between computers?,Blockchain is a technology that allows the transfer of information between computers.
+334,410,Blockchain,Definición de blockchain,What is the name of the new technology being used to help businesses manage their digital assets?,A new technology is being used to help businesses manage their digital assets.
+335,200,Blockchain,Definición de blockchain,What is the definition of blockchain?,The Blockchain Foundation is a non-profit organisation that promotes the adoption of Blockchain technology.
+336,307,Blockchain,Blockchain example,What type of technology is expected to be the global market's fastest growing segment?,The telecommunications industry is expected to grow at the fastest rate in the global blockchain market.
+337,17,Blockchain,Ejemplo de blockchain,What is the name of the technology used in the banking sector?,The use of blockchain technology in the banking sector has been growing in recent years.
+338,302,Blockchain,Definición de blockchain,What is the blockchain definition?,The Blockchain Foundation is a non-profit organization to promote the use of blockchain technology.
+339,267,Blockchain,Definición de blockchain,What is the blockchain definition?,The Blockchain Foundation is a non-profit organization to promote the use of blockchain technology.
+340,189,Blockchain,Ejemplo de blockchain,What is the technology that allows information to be transferred between computers?,Blockchain technology allows information to be transferred between computers.
+341,162,Blockchain,Ejemplo de blockchain,What is the technology that is used in the banking industry?,The use of blockchain technology in the banking industry has increased in recent years.
+342,382,Bot,Definición de bot,What is the definition of a bot?,A bot is a computer program capable of performing repetitive tasks.
+343,303,Bot,Definición de bot,What is a bot definition?,A bot is a computer program that does the same thing over and over.
+344,194,Bot,Tipos de bot,What is a bot?,Bots are software programs designed to monitor and control other people's online activities.
+345,12,Bot,Definición de bot,What is the definition of a bot?,A bot is a software application that is programmed to perform certain tasks.
+346,177,Bot,Ejemplo de bot,What is a bot?,A bot is a computer program that can play video games.
+347,437,Bot,Tipos de bot,What is a bot?,Bots are computer programs that people use to control other people on the Internet.
+348,179,Bot,Definición de bot,What is a bot definition?,A bot is a computer program. It is made to do certain things.
+349,40,Ciencia de datos,Ejemplo de ciencia de datos,What is the main new approach of the NCA?,The UK's National Crime Agency (NCA) has developed a new way to identify cyber threats. It uses machine learning to find patterns in data.
+350,141,Ciencia de datos,Definición de ciencia de datos,What is the data science term?,Data science is a science that uses information to solve problems.
+351,338,Ciencia de datos,Definición de ciencia de datos,What is the topic of the PhD program at the University of Bristol?,The University of Bristol is offering a PhD in data science.
+352,31,Ciencia de datos,Definición de ciencia de datos,What is the PhD program topic at the University of Bristol?,The University of Bristol offers a data science PhD.
+353,469,Ciencia de datos,Ejemplo de ciencia de datos,What is the main focus of the NCA's new approach?,"The UK's National Crime Agency (NCA) has developed a new approach to identifying cyber threats, using machine learning to identify patterns in data."
+354,88,Ciencia de datos,Ventajas de la ciencia de datos,What does it mean to use data to change the way we work?,The use of data to improve the way we work has become an important part of many companies.
+355,293,Ciencia de datos,Definición de ciencia de datos,What is the term for data science?,Data science is a branch of science that uses data to solve problems.
+356,90,Ciencia de datos,Expertos en ciencia de datos,What is a computer scientist? A computer scientist uses data to solve problems.,Data science is a branch of computer science that uses data to make things work.
+357,398,Computación Ecológica,Definición de computación Ecológica,What is the purpose of this project to promote green computing use?,World Green Computing Council The World Green Computing Council (WGC) is an international organization.
+358,175,Computación Ecológica,Definición de computación Ecológica,What is the name of the initiative that promotes the use of green computing?,The World Green Computing Council (WGC) has launched a new initiative to promote the use of green computing in the world.
+359,84,Computación Ecológica,Definición de computación Ecológica,What is the name of the project that the GPC is working on?,The Green Computing Project (GPC) at the University of Cambridge is helping people learn more about green computers and how they can use them.
+360,6,Función Hash,Definición de función hash,What is the definition of a hash function?,A hash function is a function that converts one or more input elements into another element.
+361,5,Función Hash,Definición de función hash,What is the definition of a hash function?,A Hash Function is a mathematical function that transforms a set of data into an alphanumeric code of fixed length.
+362,383,Función Hash,Definición de función hash,What is a cryptographic hash function?,This page explains how to use a hash function in Python. It uses the Python programming language.
+363,188,Función Hash,Definición de función hash,What exactly is a hash function?,A Hash function is a mathematical function. It can be used to get a certain number of information.
+364,439,Grafo,Definición de grafo,What is a graph definition?,"In mathematics, a graph is a set of objects that can be put together in a certain way."
+365,432,Grafo,Definición de grafo,What does grafo mean?,Graph theory is a branch of mathematics that studies how information is related to people.
+366,105,Grafo,Definición de grafo,What is the definition of a graph?,A graph is a set of objects that can be arranged in a way that is mathematically possible.
+367,68,Grafo,Definición de grafo,What is the definition of a graph?,"A graph is a representation of a system or set, by means of graphical schemes."
+368,430,Internet de las Cosas (IoT),Ejemplo de Internet de las Cosas (IoT),What is Garageio?,Garageio is a new app that allows you to monitor and control your garage from home by connecting to the app.
+369,218,Internet de las Cosas (IoT),Ejemplo de Internet de las Cosas (IoT),What is the internet's name?,"The University of California, Berkeley is developing a new type of shoe."
+370,419,Internet de las Cosas (IoT),Ejemplo de Internet de las Cosas (IoT),What is Garageio?,Garageio is a new app that allows you to control your garage from home by connecting to the app.
+371,282,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What is the term for the Internet of Things?,The Internet of Things (IoT) is a growing trend in the technology industry.
+372,387,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What is the definition of sensors and actuators in the home?,The use of actuators and sensors in the home is growing.
+373,323,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What is the term for the use of sensors and actuators in the home?,The use of sensors and actuators in the home is increasing.
+374,356,Internet de las Cosas (IoT),Características de Internet de las Cosas (IoT),What exactly is the Internet of Things?,The Internet of Things (IoT) is an important technology in technology.
+375,425,Metadatos,Definición de metadatos,What exactly is metadata?,Metadata is the information that goes along with data.
+376,150,Metadatos,Definición de metadatos,What is the definition of metadata?,Metadata is a word that has been used by many people to describe data.
+377,304,Metadatos,Definición de metadatos,What is the definition of metadata?,Metadata is a collection of information that accompanies data.
+378,117,Metadatos,Definición de metadatos,What exactly is metadata?,Metadata is a very important part of software development.
+379,452,Metaverso,Definición de metaverso,What exactly is a metaverse?,A metaverse is a new way for people to explore the world.
+380,139,Metaverso,Definición de metaverso,What does metaverso mean?,"The University of California, Los Angeles (UCLA) has developed a new technology called Metaverse."
+381,316,Metaverso,Definición de metaverso,What is the definition of a metaverse?,The idea of a metaverse is a new way of exploring the universe.
+382,137,Metaverso,Ejemplo de metaverso,What is the name of the European Commission report?,"The European Commission has published a report on machine testing ""breakthrough"" technology."
+383,279,Metaverso,Definición de metaverso,What does Richard Black mean by this?,"Richard Black, the BBC's technology correspondent, explains what the metaverse is."
+384,9,Metaverso,Ejemplo de metaverso,What is the name of the report published by the European Commission?,"The European Commission has published a report on the ""breakthrough"" technology of machine testing."
+385,358,Metaverso,Definición de metaverso,What does Richard Black explain about the metaverse?,"The BBC's technology correspondent, Richard Black, explains the meaning of the metaverse."
+386,347,Modelo,Definición de modelo,What is a model definition?,This paper shows how to train an artificial intelligence model to predict what will happen in the future.
+387,158,Modelo,Definición de modelo,What is the definition of a model?,This paper describes how to train an artificial intelligence model to predict the likelihood of a given event.
+388,112,Modelo,Definición de modelo,What is the definition of a machine learning model?,A machine learning model is a file that has been trained to recognize certain types of patterns.
+389,417,Modelo,Definición de modelo,What is a model definition?,AI is a science that is trying to improve how we use and think about data.
+390,71,Modelo,Definición de modelo,What is the definition of a model?,AI is a branch of science that aims to improve the way we think about and use data.
+391,127,Modelo,Definición de modelo,What is the goal of the project?,The aim of this project is to develop a new type of data analytics: a model.
+392,8,Modelos generativos,Ejemplo de modelos generativos,What is an example of a model-based learning method?,Image-based learning is a promising new way to train computers.
+393,198,Modelos generativos,Definición de modelos generativos,What is the current model that we present?,We present an unsupervised learning model for large-scale data sets.
+394,447,Modelos generativos,Definición de modelos generativos,What is the name of the model we present?,We present a generative model for unsupervised learning of large-scale data sets.
+395,283,Modelos generativos,Definición de modelos generativos,What is the name of the paper that describes how ofrative models are used to train computer systems to distinguish between real and fake examples?,The purpose of this paper is to train computer systems to distinguish between real and artificial examples.
+396,205,Modelos generativos,Definición de modelos generativos,What is the definition of a model that is used to train computers?,Generative models are a new way of training computers.
+397,210,Modelos generativos,Definición de modelos generativos,What is the name of the paper that describes the use of ofrative models to train computer systems to discriminate between real and artificial examples?,This paper describes the use ofrative models to train computer systems to discriminate between real and artificial examples.
+398,268,Máquina de Turing,Definición de máquina de Turing,What is the name of the lecture by Alan Turing?,"On the 80th anniversary of the Turing machine's creation, the University of California, Berkeley, is marking the occasion with a series of lectures by computer scientist Alan Turing, who was the man who first proposed the idea of a computer."
+399,396,Máquina de Turing,Definición de máquina de Turing,What was the name of the machine that was seen at Bletchley Park?,"The BBC's science correspondent, Jeremy Vine, has been to the World War Two code-breaking centre at Bletchley Park to see the Turing machine."
+400,370,Máquina de Turing,Definición de máquina de Turing,What is the name of the machine that is the most important in computer science?,The Turing machine and the complexity of its solutions are two of the most important topics in computer science.
+401,72,Máquina de Turing,Definición de máquina de Turing,What was the machine's name and what was its work?,"The BBC's science correspondent, Jeremy Vine, went to Bletchley Park during World War Two to see how the machine worked."
+402,80,Máquina de Turing,Definición de máquina de Turing,What is the name of Alan Turing's machine?,"The BBC's science correspondent, Richard Black, has been to the University of Cambridge to see what it is like to work with a Turing machine."
+403,412,Máquina de Turing,Definición de máquina de Turing,What is the name of the machine that Alan Turing developed?,"The BBC's science correspondent, Richard Black, has been to the University of Cambridge to see the Turing machine, a machine developed by Alan Turing in the 1950s."
+404,300,Prolog,Definición de Prolog,What is the name of the project that has been awarded the European Research Award?,"The PROLOG project has been awarded the European Union's prestigious R&D award, the European Research Award (Eredo), for its contribution to artificial intelligence."
+405,389,Prolog,Definición de Prolog,What is the name of the tutorial that shows you how to solve a factorial in Prolog?,"In this tutorial, I will show you how to solve a factorial in the Prolog language."
+406,56,Prolog,Definición de Prolog,What language is Vine currently working on with Le Gall?,"The BBC's science correspondent, Jeremy Vine, is working with Pierre-Yves Le Gall, a French computer scientist, to develop a language for artificial intelligence."
+407,10,Prolog,Definición de Prolog,What is the name of the European Research Award-winning project?,"The PROLOG project has been awarded the European Union's highest research award, the European Research Award (Eredo), for its work on artificial intelligence."
+408,344,Realidad aumentada,Definición de realidad aumentada,What is the definition of augmented reality?,"The BBC's technology correspondent, Chris McGrath, explains how augmented reality can be used to enhance our daily lives."
+409,232,Realidad aumentada,Definición de realidad aumentada,What is the definition of augmented reality?,The BBC's science and technology correspondent Nick Thorpe explains how augmented reality can be used to create new forms of media.
+410,79,Realidad aumentada,Definición de realidad aumentada,What is the definition of augmented reality?,The Augmented Reality Association (ARA) is a non-profit organisation that promotes the use of augmented reality in the hospitality industry.
+411,77,Realidad aumentada,Ejemplo de realidad aumentada,What exactly is augmented reality?,"Augmented reality is when you use your computer, smartphone or tablet to view the world around you."
+412,404,Realidad aumentada,Ejemplo de realidad aumentada,What is the concept of Augmented Reality?,"Augmented reality is the idea that your smartphone, tablet or computer can be used to view the world around you."
+413,102,Realidad aumentada,Definición de realidad aumentada,What exactly is augmented reality?,The Augmented Reality Association (ARA) is a non-profit organization. Its purpose is to promote the use of augmented reality.
+414,151,Reglas de asociación,Definición de reglas de asociación,What are the organization rules?,"In this paper, we will look at decision trees and association rules."
+415,264,Reglas de asociación,Definición de reglas de asociación,What is the definition of association rules?,In this paper we will look at the use of association rules in decision trees.
+416,301,Reglas de asociación,Definición de reglas de asociación,What is the definition of a grouping rule?,The association rule is a set of rules that govern the way items are grouped and stored.
+417,42,Reglas de asociación,Ejemplo de reglas de asociación,What is the name of the rule that says that the person who bought the book from the seller will be the user.,"The idea behind the idea is that if a user buys a book, the book will be given to the user who bought it from the seller."
+418,131,Saludo,Saludo,What's your name?,My name is Sara. What would you like to talk about?
+419,133,Saludo,Saludo,What is your name?,"My name is Sara, and what is yours?"
+420,360,Smart data,Definición de smart data,What is the term used to describe data that is not yet ready for use but can be used?,"The term ""smart data"" is used for data that is ready to be used, but does not yet need to be used."
+421,45,Smart data,Definición de smart data,What is the term used to describe data that is ready to be used but not yet ready for use?,"The term ""smart data"" is used to describe data that is ready to be used, but which is not yet ready for use."
+422,321,Smart data,Definición de smart data,What is a smart data definition?,Smart data is a technology that makes information more useful by using information.
+423,191,Smart data,Definición de smart data,What is the name of the new type of data collection system?,"The British government has announced that it will be introducing a new type of data collection system called Smart Data, which will be able to collect a lot of data in a short time, but will also be able to analyse it."
+424,249,Sobreajuste,Definición de sobreajuste,What is the definition of sobreajuste?,A new study suggests that a neural network can be overfitted.
+425,309,Sobreajuste,Definición de sobreajuste,What does overfitting mean?,The term 'overfitting' is a common term in machine learning. It means that the model is too complex for humans to understand.
+426,265,Sobreajuste,Definición de sobreajuste,What is the definition of sobreajuste?,This video shows how to overfitting a computer model.
+427,214,Sobreajuste,Definición de sobreajuste,What exactly is a sobreajuste?,A new study shows that neural networks can be overfitted.
+428,369,Subajuste,Definición de subajuste,What is the definition of a subajustment?,The failure of a system to work properly is called underfitting.
+429,171,Subajuste,Definición de subajuste,What exactly is a subajustment?,"When a system does not work properly, it is called underfitting."
+430,55,Subajuste,Definición de subajuste,What is the machine learning problem name?,"In this article, I will talk about a little-known machine learning problem."
+431,371,Subajuste,Causa de subajuste,What is the name of the condition that a 3D printer must be maintained?,We have been using a 3D printer for many years and have been finding that it is a very expensive machine to maintain.
+432,83,Sugar code,Definición de sugar code,What is a sugar code definition?,"In this video, you will learn how to use sugar to write code."
+433,363,Tabla Hash,Definición de tabla hash,What is the definition of tabla hash?,The hash table is a very useful tool for searching for data.
+434,230,Tabla Hash,Definición de tabla hash,What exactly is a tabla hash?,A hash table is an important tool when looking for data.
+435,441,Tabla Hash,Definición de tabla hash,What is the definition of tabla hash?,A hash table is a data structure that associates keys or keys with values.
+436,21,Tabla Hash,Definición de tabla hash,What exactly is a tabla hash?,A hash table is a popular way to store information.
+437,197,Test de Turing,Definición de test de Turing,What test did it pass?,The BBC reported that a machine called DeepMind had passed the test for the first time.
+438,428,Test de Turing,Definición de test de Turing,What test did DeepMind pass?,The BBC reports that a machine called DeepMind has passed the Turing test for the first time.
+439,225,Test de Turing,Definición de test de Turing,What is the name of the team working with Nick Thorpe to test the theory that machines can understand human speech?,"The BBC's science correspondent, Nick Thorpe, has been working with Alan Turing, to test how well a computer could understand human speech."
+440,429,Test de Turing,Definición de test de Turing,What is the name of the test that is used to test the intelligence of machines?,"The BBC's science correspondent, Richard Galpin, explains how the Turing test is used to test the intelligence of machines."
+441,229,Trabajo,Trabajo,What do you do for a living?,I am responsible for promoting learning about AI through conversations.
+442,110,Trabajo,Trabajo,What do you do?,I am a chatbot to promote learning about AI. Are you interested in learning about any aspect of AI?
+443,244,Trabajo,Trabajo,What is your occupation?,I am a chatbot in charge of fostering learning about AI.
+444,168,Turing completo,Definición de turing completo,What is the name of the computer system that the University of Bristol has developed?,"A computer system that could be used to ""Turing complete"" has been developed, but no-one has used it yet."
+445,122,Turing completo,Definición de turing completo,What is the name of the computer system developed by researchers at the University of Bristol?,"A computer system that could be used to ""Turing complete"" has been developed by researchers at the University of Bristol."
+446,455,Turing completo,Definición de turing completo,What was the name of Alan Turing's work?,Alan Turing was a British computer scientist who developed the complete Turing complete.
+447,107,Turing completo,Definición de turing completo,What is a Turing complete computer system?,"In this video, Dr. John-Paul Sartre explains why a Turing Complete system is a good idea, and why it is not."
+448,250,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the definition of a graphics processing unit?,"A graphics processing unit (GPU) or graphics processor is a coprocessor dedicated to graphics processing or floating point operations, to lighten the workload of the central processor/CPU in applications such as video games or interactive 3D applications."
+449,322,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is a computer graphics processing unit?,A graphics processing unit (GPU) is a special part of a computer. It is used to make graphics.
+450,329,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the term for a graphics processing unit?,"GPU- accelerated computing is the use of a graphics processing unit (GPU) in conjunction with a CPU to accelerate the performance of deep learning, analytics and engineering applications."
+451,343,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the name of the computer chip that is used for computing?,The GPU is a type of computer chip that is used for computing.
+452,153,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is a computer graphics processing unit?,"A graphics processing unit (GPU) or graphics processor is a part of a computer. It is used to do graphics work, such as making graphics on a video game, or to make 3D graphics on a computer program."
+453,226,Unidad de Procesamiento Gráfico (GPU),Definición de Unidad de Procesamiento Gráfico (GPU),What is the definition of a graphics processing unit?,A graphics processing unit (GPU) is a piece of computer hardware that handles computer graphics operations.
+454,0,Variables dummy,Definición de variables dummy,What exactly is a dummy variable?,"The researchers at the University of Oxford have written about the effect of a dummy variable on a study in the paper ""Effects of a dummy variable on a study""."
+455,176,Variables dummy,Definición de variables dummy,What is the dummy variable name?,The following table lists all the comments the committee made.
+456,193,Variables dummy,Definición de variables dummy,What is the definition of a variable dummy?,This article will show you how to create a dummy variable in Python.
+457,305,Variables dummy,Definición de variables dummy,What is the term for variables dummy?,"The effect of a dummy variable on the outcome of a study is discussed in the paper ""Effects of a dummy variable on a study"" by the researchers at the University of Oxford."
+458,238,Xenobot,Definición de xenobot,What is the name of the robot that was created from a living frog embryo?,A robot that has been designed from scratch from a living frog embryo has been unveiled at the European Society for the Study of Reproduction (ESSR) conference in Berlin.
+459,366,Xenobot,Definición de xenobot,What is the definition of xenobot?,"Meet the Xenobots, the latest in a long line of living robots."
+460,457,Xenobot,Definición de xenobot,What exactly is a xenobot?,Xenobots are the latest in a long line of living machines.
+461,123,Xenobot,Historia de xenobot,What is the name of the robot that can swim and talk?,A robot that can swim and talk has been developed in the US.
+462,199,Xenobot,Definición de xenobot,"What is the name of the xenobot that can swim, fly and crawl?","A team of scientists at the University of California, Berkeley, has developed a xenobot that can swim, fly and crawl."
+463,236,Xenobot,Definición de xenobot,"What is the xenobot's name? It can fly, swim and crawl.","A team of scientists at the University of California, Berkeley, has created a robot that can move around and swim."
+464,415,Árbol,Definición de árbol,What is a tree definition?,"In this course, we will learn how to use trees in different ways."
+465,409,Árbol,Definición de árbol,What is the definition of a tree?,A tree is a structure of data that is not empty or null.
+466,345,Árbol,Definición de árbol,What is a tree definition?,"In computer science, a tree is a structure of data."
+467,359,Árbol,Definición de árbol,What is the definition of a directory tree?,"A directory tree is a collection of data structures, usually consisting of a row of characters, which are arranged in a hierarchy."
+468,458,Árbol,Definición de árbol,What is the definition of a tree?,In this course we will be learning how to use a tree in a variety of ways.
+469,287,Árbol,Definición de árbol,What is the definition of arbol?,In this article we will talk about the different types of data structures and how they can be used in the web.
+470,251,Árbol de Merkle,Definición de árbol de Merkle,What is the definition of the Merkle tree?,"The Merkle tree is a distributed ledger system that can be used to store, manage, and retrieve large amounts of data."
+471,228,Árbol de Merkle,Definición de árbol de Merkle,What does the Merkle tree look like?,The Merkle tree is a distributed ledger system. It can be used to store large amounts of information.
+472,342,Árbol de Merkle,Definición de árbol de Merkle,What is the definition of a Merkle hash tree?,"A Merkle hash tree is a tree of data structures, binary or otherwise, with the labels or values of its child nodes."
+473,23,Árbol de Merkle,Definición de árbol de Merkle,What exactly is a hash tree?,"Hash trees are a great way to store data, but they can be difficult to use."
+474,296,Árbol de decisión,Definición de árbol de decisión,What is the name of the prediction model used in artificial intelligence?,"A decision tree is a prediction model used in many fields including artificial intelligence, economics and computer science."
+475,339,Árbol de decisión,Definición de árbol de decisión,What is the tree's name?,The tree is an important part of learning though.
+476,64,Árbol de decisión,Definición de árbol de decisión,What is the name of the tree?,The tree is a very important part of any learning process.
+477,263,Árbol de decisión,Definición de árbol de decisión,What is a decision tree structure?,A decision tree diagram is an important tool when making decisions.

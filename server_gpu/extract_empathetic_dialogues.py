@@ -14,7 +14,6 @@ from transformers import HfArgumentParser
 
 def modify_dataset(dataset):
     dataset = dataset.rename(columns={"Sentiment":"Subject"})
-    dataset["Topic"] = ["Actitud"] * len(dataset.Question.to_list())
 
     return dataset
 
@@ -23,12 +22,14 @@ def extract_dataset_sentiment(list_sentiment, num_samples, seed):
     dataset = load_dataset("empathetic_dialogues")
 
     dataset_train = pd.DataFrame({
+        "Topic": ["Actitud"] * len(dataset["train"]["context"]),
         "Sentiment": dataset["train"]["context"],
         "Question": dataset["train"]["prompt"],
         "Answer": dataset["train"]["utterance"]
     })
 
     dataset_valid = pd.DataFrame({
+        "Topic": ["Actitud"] * len(dataset["validation"]["context"]),
         "Sentiment": dataset["validation"]["context"],
         "Question": dataset["validation"]["prompt"],
         "Answer": dataset["validation"]["utterance"]
