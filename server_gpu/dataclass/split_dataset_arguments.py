@@ -43,8 +43,9 @@ class SplitDatasetArguments(ProyectArguments):
     )
 
     def __post_init__(self):
+        self.split_result_dir = os.path.join(self.workdir, self.split_result_dir)
         if self.split_dataset_file != "":
-            self.split_result_dir = os.path.join(self.workdir, self.split_result_dir)
+            self.split_dataset_file = os.path.join(self.workdir, self.split_dataset_file)
 
             assert os.path.exists(self.split_dataset_file), "`split_dataset_file` debe ser un archivo existente."
             assert self.split_dataset_file.split('.')[-1] == 'csv', "`split_dataset_file` debe ser un archivo CSV"
