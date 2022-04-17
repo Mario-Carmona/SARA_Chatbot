@@ -20,7 +20,7 @@
 
     "seed": 0,
 
-    "output_dir": "result_finetuning/v1",
+    "output_dir": "result_finetuning/v2",
     "overwrite_output_dir": true,
     "resume_from_checkpoint": false,
 
