@@ -295,6 +295,10 @@ def summarization(groups_datasets):
 
     print(bcolors.WARNING + "Realizando resumen del texto..." + bcolors.RESET)
 
+    print(f"Número: {calculateElements(groups_datasets)}")
+    for i in groups_datasets:
+        print(i)
+
     # Creación de la barra de progreso
     progress_bar = tqdm(range(calculateElements(groups_datasets)))
 
