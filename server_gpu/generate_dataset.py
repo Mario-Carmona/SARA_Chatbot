@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import Path
+from pathlib import Path
 import sys
 import pandas as pd
 import os

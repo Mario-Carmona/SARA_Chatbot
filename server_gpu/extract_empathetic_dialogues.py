@@ -4,7 +4,7 @@
 import pandas as pd
 import argparse
 import sys
-import Path
+from pathlib import Path
 from datasets import load_dataset
 
 from dataclass.attitude_dataset_arguments import AttitudeDatasetArguments

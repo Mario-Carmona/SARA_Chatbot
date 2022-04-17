@@ -5,7 +5,7 @@ import pandas as pd
 import argparse
 import os
 import sys
-import Path
+from pathlib import Path
 
 from dataclass.join_datasets_arguments import JoinDatasetsArguments
 from transformers import HfArgumentParser
