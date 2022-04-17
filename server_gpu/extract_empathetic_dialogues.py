@@ -15,6 +15,9 @@ from transformers import HfArgumentParser
 def modify_dataset(dataset):
     dataset = dataset.rename(columns={"Sentiment":"Subject"})
 
+    for i in dataset.iloc[:]:
+        print(len(i))
+
     return dataset
 
 
