@@ -32,10 +32,10 @@ class ModelSumArguments(ProyectArguments):
     )
 
     def __post_init__(self):
-        self.model_summary = self.workdir + self.model_summary
-        self.model_summary_config = self.workdir + self.model_summary_config
-        self.model_summary_tokenizer = self.workdir + self.model_summary_tokenizer
-        self.model_summary_tokenizer_config = self.workdir + self.model_summary_tokenizer_config
+        self.model_summary = os.path.join(self.workdir, self.model_summary)
+        self.model_summary_config = os.path.join(self.workdir, self.model_summary_config)
+        self.model_summary_tokenizer = os.path.join(self.workdir, self.model_summary_tokenizer)
+        self.model_summary_tokenizer_config = os.path.join(self.workdir, self.model_summary_tokenizer_config)
 
         assert os.path.exists(self.model_summary), "`model_summary` debe ser un directorio existente."
         assert os.path.exists(self.model_summary_config), "`model_summary_config` debe ser un archivo existente."

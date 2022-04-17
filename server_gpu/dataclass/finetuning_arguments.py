@@ -87,9 +87,9 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
     def __post_init__(self):
         ModelConverArguments.__post_init__(self)
 
-        self.data_dir = self.workdir + self.data_dir
-        self.train_dataset = self.data_dir + self.train_dataset
-        self.validation_dataset = self.data_dir + self.validation_dataset
+        self.data_dir = os.path.join(self.workdir, self.data_dir)
+        self.train_dataset = os.path.join(self.data_dir, self.train_dataset)
+        self.validation_dataset = os.path.join(self.data_dir, self.validation_dataset)
 
         assert os.path.exists(self.data_dir), "`data_dir` debe ser un directorio existente."
 
