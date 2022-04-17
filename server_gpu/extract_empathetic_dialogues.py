@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
     new_lineas = []
     for linea in lineas:
-        if len(linea.split(',')) != 5:
+        if len(linea.split(',')) == 5:
             new_lineas.append(linea)
 
     with open(extract_args.attitude_dataset_file, 'w') as f:
