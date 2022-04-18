@@ -12,6 +12,7 @@ from typing import Dict, Tuple, List, Callable, Iterable
 from color import bcolors
 
 from datasets import load_dataset, load_metric, Dataset
+import torch.nn as nn
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
@@ -274,13 +275,17 @@ def main():
         predictions = predictions.flatten()
         references = eval_pred.label_ids.flatten()
 
-        aux = metric.compute(predictions=predictions, references=references)
+        result_metric = metric.compute(predictions=predictions, references=references)
+
+        loss = nn.CrossEntropyLoss(predictions, references)
 
         print("-------------------------------------")
-        aux['loss'] = 0.5
-        print(aux)
+        print(loss)
+        result_metric['loss'] = loss
+        print(result_metric)
         print("-------------------------------------")
-        return aux
+        
+        return result_metric
 
 
 
