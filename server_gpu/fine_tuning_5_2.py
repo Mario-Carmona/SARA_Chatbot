@@ -187,12 +187,6 @@ def main():
         }
     )
 
-    extra_model_params = ("encoder_layerdrop", "decoder_layerdrop", "dropout", "attention_dropout")
-    for p in extra_model_params:
-        if getattr(training_args, p, None):
-            assert hasattr(configConver, p), f"({configConver.__class__.__name__}) doesn't have a `{p}` attribute"
-            setattr(configConver, p, getattr(training_args, p))
-
     tokenizerConver = AutoTokenizer.from_pretrained(
         finetuning_args.model_conver_tokenizer,
         config=finetuning_args.model_conver_tokenizer_config,

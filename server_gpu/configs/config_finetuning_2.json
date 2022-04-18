@@ -26,8 +26,8 @@
     "overwrite_output_dir": true,
     "resume_from_checkpoint": false,
 
-    "do_train": true,
-    "do_eval": false,
+    "do_train": false,
+    "do_eval": true,
 
     "evaluation_strategy": "epoch",
     "num_train_epochs": 2,
@@ -35,7 +35,7 @@
     "logging_strategy": "epoch",
     "save_strategy": "epoch",
 
-    "load_best_model_at_end": false,
+    "load_best_model_at_end": true,
     "metric_for_best_model": "accuracy",
     "greater_is_better": true,
 
