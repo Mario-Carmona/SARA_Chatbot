@@ -181,8 +181,7 @@ def main():
                 "temperature": finetuning_args.temperature,
                 "top_p": finetuning_args.top_p,
                 "max_length": finetuning_args.max_length,
-                "min_length": finetuning_args.min_length,
-                "use_cache": finetuning_args.use_cache
+                "min_length": finetuning_args.min_length
             }
         }
     )
