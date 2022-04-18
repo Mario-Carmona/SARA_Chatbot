@@ -201,8 +201,7 @@ def main():
     modelConver = AutoModelForSeq2SeqLM.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
-        config=configConver,
-        torch_dtype=torch.float16
+        config=configConver
     )
 
 
@@ -287,6 +286,8 @@ def main():
         compute_metrics=compute_metrics
     )
 
+
+    os.system("nvidia-smi")
 
 
     all_metrics = {}
