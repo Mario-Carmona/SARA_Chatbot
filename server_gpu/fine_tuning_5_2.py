@@ -272,7 +272,7 @@ def main():
         # dimensión es igual a 8008 al igual que logits en la versión
         # de Pytorch y es igual al tamaño del vocabulario del modelo
         predictions, labels = eval_pred
-        predictions = predictions[:, 0]
+        predictions = np.argmax(predictions[0], axis=-1)
 
         result_metric = metric.compute(predictions=predictions, references=labels)
 
