@@ -283,11 +283,11 @@ def main():
 
         print("-------------------------------------")
 
-        print(logits)
+        print(len(predictions))
 
         print("-------------------------------------")
 
-        print(labels)
+        print(len(references))
         
         print("-------------------------------------")
 
