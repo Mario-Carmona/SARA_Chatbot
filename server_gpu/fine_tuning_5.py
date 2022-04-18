@@ -10,7 +10,7 @@ import os
 import logging
 from typing import Dict, Tuple, List, Callable, Iterable
 
-from datasets import load_dataset, load_metric
+from datasets import load_dataset, load_metric, Dataset
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
@@ -221,12 +221,11 @@ def main():
         data_files["validation"] = finetuning_args.validation_dataset
     datasets = load_dataset("csv", data_files=data_files)
 
-    """
     if training_args.do_train:
-        datasets["train"] = datasets["train"][:finetuning_args.n_train]
+        datasets["train"] = Dataset.from_dict(datasets["train"][:finetuning_args.n_train])
     if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO:
-        datasets["validation"] = datasets["validation"][:finetuning_args.n_val]
-    """
+        datasets["validation"] = Dataset.from_dict(datasets["validation"][:finetuning_args.n_val])
+
 
     print(datasets)
     aux = input("----->")
