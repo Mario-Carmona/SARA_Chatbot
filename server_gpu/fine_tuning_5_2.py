@@ -16,14 +16,14 @@ from torch.nn import functional as F
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
-from transformers import Seq2SeqTrainingArguments
+from transformers import TrainingArguments
 
 from transformers import DataCollatorForSeq2Seq
 
 import transformers
 from transformers import set_seed
 from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, BlenderbotForConditionalGeneration
-from transformers import EvalPrediction, Seq2SeqTrainer
+from transformers import EvalPrediction, Trainer
 from transformers.trainer_utils import is_main_process, EvaluationStrategy
 from transformers.training_args import ParallelMode
 
@@ -115,7 +115,7 @@ def main():
     parser = HfArgumentParser(
         (
             FinetuningArguments,
-            Seq2SeqTrainingArguments
+            TrainingArguments
         )
     )
 
@@ -282,7 +282,7 @@ def main():
 
 
 
-    trainer = Seq2SeqTrainer(
+    trainer = Trainer(
         model=modelConver,
         args=training_args,
         train_dataset=tokenized_datasets["train"] if training_args.do_train else None,
