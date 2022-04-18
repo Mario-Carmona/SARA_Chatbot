@@ -63,12 +63,6 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
             "help": "Target language id for translation."
         }
     )
-    eval_beams: int = field(
-        default=None, 
-        metadata={
-            "help": "# num_beams to use for evaluation."
-        }
-    )
 
     def __post_init__(self):
         ModelConverArguments.__post_init__(self)
