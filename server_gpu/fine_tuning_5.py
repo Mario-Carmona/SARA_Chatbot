@@ -215,8 +215,10 @@ def main():
 
     # Carga de los datasets
     data_files = {}
-    data_files["train"] = finetuning_args.train_dataset
-    data_files["validation"] = finetuning_args.validation_dataset
+    if training_args.do_train:
+        data_files["train"] = finetuning_args.train_dataset
+    if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO:    
+        data_files["validation"] = finetuning_args.validation_dataset
     datasets = load_dataset("csv", data_files=data_files)
 
     print(datasets)

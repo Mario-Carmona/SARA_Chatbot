@@ -8,7 +8,7 @@
     "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
 
 
-    "data_dir": "server_gpu/datasets/v2/split_0.7_adult/",
+    "data_dir": "server_gpu/datasets/v2/split_0.7_adult",
     "train_dataset": "train.csv",
     "validation_dataset": "validation.csv",
     "task": "conversational",
