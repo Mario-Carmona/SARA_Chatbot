@@ -12,7 +12,7 @@ from typing import Dict, Tuple, List, Callable, Iterable
 from color import bcolors
 
 from datasets import load_dataset, load_metric, Dataset
-import torch.nn as nn
+from torch.nn import functional as F
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
@@ -265,8 +265,6 @@ def main():
 
     metric = load_metric("accuracy")
 
-    metric_loss = load_metric("loss")
-
     def compute_metrics(eval_pred: EvalPrediction):
         # No se si es el índice 0 ó 1, se podrá comprobar cuando
         # se tengan más datos porque no se si es la predicción
@@ -280,13 +278,15 @@ def main():
 
         result_metric = metric.compute(predictions=predictions, references=labels)
 
+        predictions_loss, labels_loss = eval_pred
 
+        loss = F.cross_entropy(labels_loss, predictions_loss[0])
         
         #loss = nn.CrossEntropyLoss(predictions, )
 
         print("-------------------------------------")
 
-        print(eval_pred)
+        print(loss)
 
         print("-------------------------------------")
 
