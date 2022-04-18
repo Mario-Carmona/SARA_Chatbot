@@ -277,14 +277,30 @@ def main():
 
         result_metric = metric.compute(predictions=predictions, references=references)
 
-        loss = nn.CrossEntropyLoss(predictions, references)
+        #loss = nn.CrossEntropyLoss(predictions, references)
+
+        logits, labels = eval_pred
 
         print("-------------------------------------")
-        print(loss)
-        result_metric['loss'] = loss
-        print(result_metric)
+
+        print(logits)
+
         print("-------------------------------------")
+
+        print(labels)
         
+        print("-------------------------------------")
+
+        predict = logits.view(-1, modelConver.config.vocab_size)
+
+        print(predict)
+        
+        print("-------------------------------------")
+
+        print(labels.view(-1))
+        
+        print("-------------------------------------")
+
         return result_metric
 
 
