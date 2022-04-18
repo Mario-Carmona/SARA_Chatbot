@@ -88,5 +88,3 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
         assert self.max_source_length > 0, "`max_source_length` debe ser un entero positivo."
 
         assert self.max_target_length > 0, "`max_target_length` debe ser un entero positivo."
-
-        assert self.val_max_target_length > 0, "`val_max_target_length` debe ser un entero positivo."
