@@ -221,7 +221,7 @@ def main():
         data_files["validation"] = finetuning_args.validation_dataset
     datasets = load_dataset("csv", data_files=data_files)
 
-    print(datasets)
+    print(datasets["train"])
     aux = input("----->")
 
 
