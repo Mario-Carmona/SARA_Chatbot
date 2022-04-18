@@ -265,6 +265,8 @@ def main():
 
     metric = load_metric("accuracy")
 
+    metric_loss = load_metric("loss")
+
     def compute_metrics(eval_pred: EvalPrediction):
         # No se si es el índice 0 ó 1, se podrá comprobar cuando
         # se tengan más datos porque no se si es la predicción
@@ -273,6 +275,8 @@ def main():
         # de Pytorch y es igual al tamaño del vocabulario del modelo
         predictions, labels = eval_pred
         predictions = np.argmax(predictions[0], axis=-1)
+        predictions = predictions.flatten()
+        labels = labels.flatten()
 
         result_metric = metric.compute(predictions=predictions, references=labels)
 
