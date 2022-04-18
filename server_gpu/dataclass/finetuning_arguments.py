@@ -39,14 +39,6 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
             "than this will be truncated, sequences shorter will be padded."
         }
     )
-    val_max_target_length: int = field(
-        metadata={
-            "help": "The maximum total sequence length for validation target text after tokenization. Sequences longer "
-            "than this will be truncated, sequences shorter will be padded. "
-            "This argument is also used to override the ``max_length`` param of ``model.generate``, which is used "
-            "during ``evaluate`` and ``predict``."
-        }
-    )
     n_train: int = field(
         default=-1, 
         metadata={

@@ -14,7 +14,6 @@
     "task": "conversational",
     "max_source_length": 128,
     "max_target_length": 128,
-    "val_max_target_length": 128,
     "n_train": -1,
     "n_val": -1,
 
