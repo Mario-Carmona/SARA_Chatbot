@@ -221,11 +221,12 @@ def main():
         data_files["validation"] = finetuning_args.validation_dataset
     datasets = load_dataset("csv", data_files=data_files)
 
+    """
     if training_args.do_train:
         datasets["train"] = datasets["train"][:finetuning_args.n_train]
     if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO:
         datasets["validation"] = datasets["validation"][:finetuning_args.n_val]
-
+    """
 
     print(datasets)
     aux = input("----->")
