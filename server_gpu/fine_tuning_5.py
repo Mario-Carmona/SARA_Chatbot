@@ -201,7 +201,8 @@ def main():
     modelConver = AutoModelForSeq2SeqLM.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
-        config=configConver
+        config=configConver,
+        torch_dtype=torch.float16
     )
 
 
@@ -226,9 +227,6 @@ def main():
     if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO:
         datasets["validation"] = Dataset.from_dict(datasets["validation"][:finetuning_args.n_val])
 
-
-    print(datasets)
-    aux = input("----->")
 
 
     def preprocess_function(examples):
