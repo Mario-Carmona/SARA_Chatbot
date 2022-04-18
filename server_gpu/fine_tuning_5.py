@@ -296,7 +296,6 @@ def main():
         logger.info("*** Train ***")
 
         train_result = trainer.train(
-            model_path=finetuning_args.model_conver,
             resume_from_checkpoint=training_args.resume_from_checkpoint
         )
         metrics = train_result.metrics
