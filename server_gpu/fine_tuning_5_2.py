@@ -280,7 +280,7 @@ def main():
 
         predictions_loss, labels_loss = eval_pred
 
-        loss = F.cross_entropy(torch.tensor(labels_loss), torch.tensor(predictions_loss[0]))
+        loss = F.cross_entropy(predictions_loss, labels_loss)
         
         #loss = nn.CrossEntropyLoss(predictions, )
 
