@@ -223,9 +223,9 @@ def main():
         data_files["validation"] = finetuning_args.validation_dataset
     datasets = load_dataset("csv", data_files=data_files)
 
-    if training_args.do_train:
+    if training_args.do_train and finetuning_args.n_train != -1:
         datasets["train"] = Dataset.from_dict(datasets["train"][:finetuning_args.n_train])
-    if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO:
+    if (training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO) and finetuning_args.n_val != -1:
         datasets["validation"] = Dataset.from_dict(datasets["validation"][:finetuning_args.n_val])
 
 
@@ -276,28 +276,9 @@ def main():
         predictions = predictions.flatten()
         labels = labels.flatten()
 
-        result_metric = metric.compute(predictions=predictions, references=labels)
+        acc = metric.compute(predictions=predictions, references=labels)
 
-        predictions_loss, labels_loss = eval_pred
-
-        loss = F.cross_entropy(predictions_loss, labels_loss)
-        
-        #loss = nn.CrossEntropyLoss(predictions, )
-
-        print("-------------------------------------")
-
-        print(loss)
-
-        print("-------------------------------------")
-
-        print(result_metric)
-
-        print("-------------------------------------")
-
-        aux = input("---------->")
-
-
-        return result_metric
+        return acc
 
 
 
