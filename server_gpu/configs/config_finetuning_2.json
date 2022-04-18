@@ -25,8 +25,8 @@
     "overwrite_output_dir": true,
     "resume_from_checkpoint": false,
 
-    "do_train": false,
-    "do_eval": true,
+    "do_train": true,
+    "do_eval": false,
 
     "evaluation_strategy": "epoch",
     "num_train_epochs": 7,
