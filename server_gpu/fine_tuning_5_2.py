@@ -277,7 +277,7 @@ def main():
 
         result_metric = metric.compute(predictions=predictions, references=references)
 
-        #loss = nn.CrossEntropyLoss(predictions, references)
+        loss = nn.CrossEntropyLoss(eval_pred)
 
         logits, labels = eval_pred
 
