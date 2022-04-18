@@ -271,35 +271,27 @@ def main():
         # ó la máscara. Parece que es el cero porque la tercera
         # dimensión es igual a 8008 al igual que logits en la versión
         # de Pytorch y es igual al tamaño del vocabulario del modelo
-        predictions = np.argmax(eval_pred.predictions[0], axis=-1)
-        predictions = predictions.flatten()
-        references = eval_pred.label_ids.flatten()
+        predictions, labels = eval_pred
+        predictions = predictions[:, 0]
 
-        result_metric = metric.compute(predictions=predictions, references=references)
+        result_metric = metric.compute(predictions=predictions, references=labels)
 
-        loss = nn.CrossEntropyLoss(eval_pred)
 
-        logits, labels = eval_pred
-
-        print("-------------------------------------")
-
-        print(len(predictions))
-
-        print("-------------------------------------")
-
-        print(len(references))
         
+        #loss = nn.CrossEntropyLoss(predictions, )
+
         print("-------------------------------------")
 
-        predict = logits.view(-1, modelConver.config.vocab_size)
+        print(eval_pred)
 
-        print(predict)
-        
         print("-------------------------------------")
 
-        print(labels.view(-1))
-        
+        print(result_metric)
+
         print("-------------------------------------")
+
+        aux = input("---------->")
+
 
         return result_metric
 
