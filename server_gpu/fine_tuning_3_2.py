@@ -352,6 +352,6 @@ for batch in eval_dataloader:
     
     metric.add_batch(predictions=predictions, references=batch["labels"].flatten())
 
-metric.compute()
+print(metric.compute())
 
 
