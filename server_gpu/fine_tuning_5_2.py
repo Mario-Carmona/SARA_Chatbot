@@ -24,7 +24,7 @@ from transformers import DataCollatorForSeq2Seq, PreTrainedTokenizer, BartTokeni
 
 import transformers
 from transformers import set_seed
-from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, BlenderbotForConditionalGeneration
+from transformers import AutoConfig, AutoTokenizer, AutoModel, AutoModelForSeq2SeqLM, BlenderbotForConditionalGeneration
 from transformers import EvalPrediction, Trainer, Seq2SeqTrainer
 from transformers.trainer_utils import is_main_process, EvaluationStrategy
 from transformers.training_args import ParallelMode
@@ -580,7 +580,7 @@ def main():
         use_fast=True
     )
 
-    modelConver = AutoModelForSeq2SeqLM.from_pretrained(
+    modelConver = AutoModel.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
         config=configConver,
