@@ -18,7 +18,7 @@ from torch.nn import functional as F
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
-from transformers import Seq2SeqTrainingArguments
+from transformers import Seq2SeqTrainingArguments, TrainingArguments
 
 from transformers import DataCollatorForSeq2Seq, DataCollator, PreTrainedTokenizer, BartTokenizer
 
@@ -496,7 +496,7 @@ def main():
     parser = HfArgumentParser(
         (
             FinetuningArguments,
-            Seq2SeqTrainingArguments
+            TrainingArguments
         )
     )
 
@@ -576,7 +576,7 @@ def main():
 
 
 
-    dataset_class = Seq2SeqDataset
+    dataset_class = Dataset
 
 
     train_dataset = (
