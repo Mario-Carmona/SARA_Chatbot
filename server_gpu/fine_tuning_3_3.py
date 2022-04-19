@@ -370,7 +370,7 @@ for batch in eval_dataloader:
         outputs = modelConver(**inputs)
 
     print(type(outputs))
-    logits = outputs.past_key_values
+    logits = outputs.last_hidden_state
     predictions = torch.argmax(logits, dim=-1)
     predictions = predictions.flatten()
     
