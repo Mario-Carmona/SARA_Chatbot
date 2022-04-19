@@ -73,10 +73,10 @@ class FinetuningArguments(ModelConverArguments, GenerateArguments):
 
         assert os.path.exists(self.data_dir), "`data_dir` debe ser un directorio existente."
 
-        assert os.path.exists(self.train_dataset), "`train_dataset` debe ser un archivo existente."
+        #assert os.path.exists(self.train_dataset), "`train_dataset` debe ser un archivo existente."
         assert self.train_dataset.split(".")[-1] == "csv", "`train_dataset` debe ser un archivo CSV."
 
-        assert os.path.exists(self.validation_dataset), "`validation_dataset` debe ser un archivo existente."
+        #assert os.path.exists(self.validation_dataset), "`validation_dataset` debe ser un archivo existente."
         assert self.validation_dataset.split(".")[-1] == "csv", "`validation_dataset` debe ser un archivo CSV."
 
         assert self.max_source_length > 0, "`max_source_length` debe ser un entero positivo."
