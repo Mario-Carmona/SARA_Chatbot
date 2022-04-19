@@ -12,10 +12,10 @@
     "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
 
 
-    "model_conver": "facebook/blenderbot-3B",
-    "model_conver_config": "facebook/blenderbot-3B/config.json",
-    "model_conver_tokenizer": "facebook/blenderbot-3B",
-    "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
+    "model_conver": "result_finetuning/v2",
+    "model_conver_config": "result_finetuning/v2/config.json",
+    "model_conver_tokenizer": "result_finetuning/v2",
+    "model_conver_tokenizer_config": "result_finetuning/v2/tokenizer_config.json",
 
 
     "do_sample": true,
