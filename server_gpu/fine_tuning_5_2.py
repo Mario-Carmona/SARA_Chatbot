@@ -8,22 +8,24 @@ import json
 import sys
 import os
 import logging
+import linecache
 from typing import Dict, Tuple, List, Callable, Iterable
 from color import bcolors
 
-from datasets import load_dataset, load_metric, Dataset
+from torch.utils.data import Dataset, Sampler
+from datasets import load_dataset, load_metric
 from torch.nn import functional as F
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
 from transformers import Seq2SeqTrainingArguments
 
-from transformers import DataCollatorForSeq2Seq
+from transformers import DataCollatorForSeq2Seq, PreTrainedTokenizer, BartTokenizer
 
 import transformers
 from transformers import set_seed
 from transformers import AutoConfig, AutoTokenizer, AutoModelForSeq2SeqLM, BlenderbotForConditionalGeneration
-from transformers import EvalPrediction, Trainer
+from transformers import EvalPrediction, Trainer, Seq2SeqTrainer
 from transformers.trainer_utils import is_main_process, EvaluationStrategy
 from transformers.training_args import ParallelMode
 
@@ -36,9 +38,309 @@ import numpy as np
 
 from torch.utils.data import DataLoader
 
+import pickle
+
+from transformers.file_utils import cached_property
+
+import torch.distributed as dist
+
+import math
 
 
 
+from torch.utils.data import Dataset
+
+
+
+try:
+    from fairseq.data.data_utils import batch_by_size
+
+    FAIRSEQ_AVAILABLE = True
+except (ImportError, ModuleNotFoundError):
+    FAIRSEQ_AVAILABLE = False
+
+
+
+
+
+def pickle_load(path):
+    """pickle.load(path)"""
+    with open(path, "rb") as f:
+        return pickle.load(f)
+
+
+
+def trim_batch(
+    input_ids,
+    pad_token_id,
+    attention_mask=None,
+):
+    """Remove columns that are populated exclusively by pad_token_id"""
+    keep_column_mask = input_ids.ne(pad_token_id).any(dim=0)
+    if attention_mask is None:
+        return input_ids[:, keep_column_mask]
+    else:
+        return (input_ids[:, keep_column_mask], attention_mask[:, keep_column_mask])
+
+
+class Seq2SeqDataCollator:
+    def __init__(self, tokenizer, data_args, tpu_num_cores=None):
+        self.tokenizer = tokenizer
+        self.pad_token_id = tokenizer.pad_token_id
+        assert (
+            self.pad_token_id is not None
+        ), f"pad_token_id is not defined for ({self.tokenizer.__class__.__name__}), it must be defined."
+        self.data_args = data_args
+        self.tpu_num_cores = tpu_num_cores
+        self.dataset_kwargs = {"add_prefix_space": True} if isinstance(tokenizer, BartTokenizer) else {}
+        if data_args.src_lang is not None:
+            self.dataset_kwargs["src_lang"] = data_args.src_lang
+        if data_args.tgt_lang is not None:
+            self.dataset_kwargs["tgt_lang"] = data_args.tgt_lang
+
+    def __call__(self, batch) -> Dict[str, torch.Tensor]:
+        if hasattr(self.tokenizer, "prepare_seq2seq_batch"):
+            batch = self._encode(batch)
+            input_ids, attention_mask, labels = (
+                batch["input_ids"],
+                batch["attention_mask"],
+                batch["labels"],
+            )
+        else:
+            input_ids = torch.stack([x["input_ids"] for x in batch])
+            attention_mask = torch.stack([x["attention_mask"] for x in batch])
+            labels = torch.stack([x["labels"] for x in batch])
+
+            labels = trim_batch(labels, self.pad_token_id)
+            input_ids, attention_mask = trim_batch(input_ids, self.pad_token_id, attention_mask=attention_mask)
+
+        batch = {
+            "input_ids": input_ids,
+            "attention_mask": attention_mask,
+            "labels": labels,
+        }
+        return batch
+
+    def _shift_right_t5(self, input_ids):
+        # shift inputs to the right
+        shifted_input_ids = input_ids.new_zeros(input_ids.shape)
+        shifted_input_ids[..., 1:] = input_ids[..., :-1].clone()
+        shifted_input_ids[..., 0] = self.pad_token_id
+        return shifted_input_ids
+
+    def _encode(self, batch) -> Dict[str, torch.Tensor]:
+        batch_encoding = self.tokenizer.prepare_seq2seq_batch(
+            [x["src_texts"] for x in batch],
+            tgt_texts=[x["tgt_texts"] for x in batch],
+            max_length=self.data_args.max_source_length,
+            max_target_length=self.data_args.max_target_length,
+            padding="max_length" if self.tpu_num_cores is not None else "longest",  # TPU hack
+            return_tensors="pt",
+            **self.dataset_kwargs,
+        )
+        return batch_encoding.data
+
+
+
+
+def sortish_sampler_indices(data: List, bs: int, shuffle=True) -> np.array:
+    "Go through the text data by order of src length with a bit of randomness. From fastai repo."
+    if not shuffle:
+        return np.argsort(np.array(data) * -1)
+
+    def key_fn(i):
+        return data[i]
+
+    idxs = np.random.permutation(len(data))
+    sz = bs * 50
+    ck_idx = [idxs[i : i + sz] for i in range(0, len(idxs), sz)]
+    sort_idx = np.concatenate([sorted(s, key=key_fn, reverse=True) for s in ck_idx])
+    sz = bs
+    ck_idx = [sort_idx[i : i + sz] for i in range(0, len(sort_idx), sz)]
+    max_ck = np.argmax([key_fn(ck[0]) for ck in ck_idx])  # find the chunk with the largest key,
+    ck_idx[0], ck_idx[max_ck] = ck_idx[max_ck], ck_idx[0]  # then make sure it goes first.
+    sort_idx = np.concatenate(np.random.permutation(ck_idx[1:])) if len(ck_idx) > 1 else np.array([], dtype=np.int)
+    sort_idx = np.concatenate((ck_idx[0], sort_idx))
+    return sort_idx
+
+
+class SortishSampler(Sampler):
+    "Go through the text data by order of src length with a bit of randomness. From fastai repo."
+
+    def __init__(self, data, batch_size, shuffle=True):
+        self.data, self.bs, self.shuffle = data, batch_size, shuffle
+
+    def __len__(self) -> int:
+        return len(self.data)
+
+    def __iter__(self):
+        return iter(sortish_sampler_indices(self.data, self.bs, shuffle=self.shuffle))
+
+
+
+class DistributedSortishSampler(Sampler):
+    """Copied from torch DistributedSampler"""
+
+    def __init__(self, dataset, batch_size, num_replicas=None, rank=None, add_extra_examples=True, shuffle=True):
+        if num_replicas is None:
+            if not dist.is_available():
+                raise RuntimeError("Requires distributed package to be available")
+            num_replicas = dist.get_world_size()
+        if rank is None:
+            if not dist.is_available():
+                raise RuntimeError("Requires distributed package to be available")
+            rank = dist.get_rank()
+        self.dataset = dataset
+        self.num_replicas = num_replicas
+        self.rank = rank
+        self.epoch = 0
+        if add_extra_examples:
+            self.num_samples = int(math.ceil(len(self.dataset) * 1.0 / self.num_replicas))
+            self.total_size = self.num_samples * self.num_replicas
+        else:
+            self.total_size = len(dataset)
+            self.num_samples = len(self.available_indices)
+        self.batch_size = batch_size
+        self.add_extra_examples = add_extra_examples
+        self.shuffle = shuffle
+
+    def __iter__(self) -> Iterable:
+        g = torch.Generator()
+        g.manual_seed(self.epoch)
+
+        sortish_data = [self.dataset.src_lens[i] for i in self.available_indices]
+        sortish_indices = sortish_sampler_indices(sortish_data, self.batch_size, shuffle=self.shuffle)
+        indices = [self.available_indices[i] for i in sortish_indices]
+        assert len(indices) == self.num_samples
+        return iter(indices)
+
+    @cached_property
+    def available_indices(self) -> np.array:
+        indices = list(range(len(self.dataset)))
+        # add extra samples to make it evenly divisible
+        indices += indices[: (self.total_size - len(indices))]
+        assert len(indices) == self.total_size
+        # subsample
+        available_indices = indices[self.rank : self.total_size : self.num_replicas]
+        return available_indices
+
+    def __len__(self):
+        return self.num_samples
+
+    def set_epoch(self, epoch):
+        self.epoch = epoch
+
+
+
+class AbstractSeq2SeqDataset(Dataset):
+    def __init__(
+        self,
+        tokenizer,
+        data_dir,
+        max_source_length,
+        max_target_length,
+        type_path="train",
+        n_obs=None,
+        prefix="",
+        **dataset_kwargs
+    ):
+        super().__init__()
+        self.src_file = Path(data_dir).joinpath(type_path + ".source")
+        self.tgt_file = Path(data_dir).joinpath(type_path + ".target")
+        self.len_file = Path(data_dir).joinpath(type_path + ".len")
+        if os.path.exists(self.len_file):
+            self.src_lens = pickle_load(self.len_file)
+            self.used_char_len = False
+        else:
+            self.src_lens = self.get_char_lens(self.src_file)
+            self.used_char_len = True
+        self.max_source_length = max_source_length
+        self.max_target_length = max_target_length
+        assert min(self.src_lens) > 0, f"found empty line in {self.src_file}"
+        self.tokenizer = tokenizer
+        self.prefix = prefix if prefix is not None else ""
+
+        if n_obs is not None:
+            self.src_lens = self.src_lens[:n_obs]
+        self.pad_token_id = self.tokenizer.pad_token_id
+        self.dataset_kwargs = dataset_kwargs
+        dataset_kwargs.update({"add_prefix_space": True} if isinstance(self.tokenizer, BartTokenizer) else {})
+
+    def __len__(self):
+        return len(self.src_lens)
+
+    @staticmethod
+    def get_char_lens(data_file):
+        return [len(x) for x in Path(data_file).open().readlines()]
+
+    @cached_property
+    def tgt_lens(self):
+        """Length in characters of target documents"""
+        return self.get_char_lens(self.tgt_file)
+
+    def make_sortish_sampler(self, batch_size, distributed=False, shuffle=True, **kwargs):
+        if distributed:
+            return DistributedSortishSampler(self, batch_size, shuffle=shuffle, **kwargs)
+        else:
+            return SortishSampler(self.src_lens, batch_size, shuffle=shuffle)
+
+    def make_dynamic_sampler(self, max_tokens_per_batch=1024, **kwargs):
+        assert FAIRSEQ_AVAILABLE, "Dynamic batch size requires `pip install fairseq`"
+        assert not self.used_char_len, "You must call  python make_len_file.py before calling make_dynamic_sampler"
+        sorted_indices = list(self.make_sortish_sampler(1024, shuffle=False))
+
+        def num_tokens_in_example(i):
+            return min(self.src_lens[i], self.max_target_length)
+
+        # call fairseq cython function
+        batch_sampler: List[List[int]] = batch_by_size(
+            sorted_indices,
+            num_tokens_fn=num_tokens_in_example,
+            max_tokens=max_tokens_per_batch,
+            required_batch_size_multiple=64,
+        )
+        shuffled_batches = [batch_sampler[i] for i in np.random.permutation(range(len(batch_sampler)))]
+        # move the largest batch to the front to OOM quickly (uses an approximation for padding)
+        approximate_toks_per_batch = [max(self.src_lens[i] for i in batch) * len(batch) for batch in shuffled_batches]
+        largest_batch_idx = np.argmax(approximate_toks_per_batch)
+        shuffled_batches[0], shuffled_batches[largest_batch_idx] = (
+            shuffled_batches[largest_batch_idx],
+            shuffled_batches[0],
+        )
+        return shuffled_batches
+
+    def __getitem__(self, item):
+        raise NotImplementedError("You must implement this")
+
+    def collate_fn(self, batch):
+        raise NotImplementedError("You must implement this")
+
+
+
+
+class Seq2SeqDataset(AbstractSeq2SeqDataset):
+    """A dataset that calls prepare_seq2seq_batch."""
+
+    def __getitem__(self, index) -> Dict[str, str]:
+        index = index + 1  # linecache starts at 1
+        source_line = self.prefix + linecache.getline(str(self.src_file), index).rstrip("\n")
+        tgt_line = linecache.getline(str(self.tgt_file), index).rstrip("\n")
+        assert source_line, f"empty source line for index {index}"
+        assert tgt_line, f"empty tgt line for index {index}"
+        return {"tgt_texts": tgt_line, "src_texts": source_line, "id": index - 1}
+
+    def collate_fn(self, batch) -> Dict[str, torch.Tensor]:
+        """Call prepare_seq2seq_batch."""
+        batch_encoding: Dict[str, torch.Tensor] = self.tokenizer.prepare_seq2seq_batch(
+            [x["src_texts"] for x in batch],
+            tgt_texts=[x["tgt_texts"] for x in batch],
+            max_length=self.max_source_length,
+            max_target_length=self.max_target_length,
+            return_tensors="pt",
+            **self.dataset_kwargs,
+        ).data
+        batch_encoding["ids"] = torch.tensor([x["id"] for x in batch])
+        return batch_encoding
 
 
 
@@ -126,6 +428,48 @@ def main():
         n_require_grad = sum(lmap(int, model_grads))
         npars = len(model_grads)
         assert not any(model_grads), f"{n_require_grad/npars:.1%} of {npars} weights require grad"
+
+
+    def calculate_bleu(output_lns, refs_lns, **kwargs) -> dict:
+        """Uses sacrebleu's corpus_bleu implementation."""
+        return {"bleu": round(corpus_bleu(output_lns, [refs_lns], **kwargs).score, 4)}
+
+
+    def build_compute_metrics_fn(task_name: str, tokenizer: PreTrainedTokenizer) -> Callable[[EvalPrediction], Dict]:
+        def non_pad_len(tokens: np.ndarray) -> int:
+            return np.count_nonzero(tokens != tokenizer.pad_token_id)
+
+        def decode_pred(pred: EvalPrediction) -> Tuple[List[str], List[str]]:
+            pred_str = tokenizer.batch_decode(pred.predictions, skip_special_tokens=True)
+            label_str = tokenizer.batch_decode(pred.label_ids, skip_special_tokens=True)
+            pred_str = lmap(str.strip, pred_str)
+            label_str = lmap(str.strip, label_str)
+            return pred_str, label_str
+
+        def translation_metrics(pred: EvalPrediction) -> Dict:
+            pred_str, label_str = decode_pred(pred)
+            bleu: Dict = calculate_bleu(pred_str, label_str)
+            gen_len = np.round(np.mean(lmap(non_pad_len, pred.predictions)), 1)
+            bleu.update({"gen_len": gen_len})
+            return bleu
+
+        compute_metrics_fn = translation_metrics
+        return compute_metrics_fn
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -239,7 +583,8 @@ def main():
     modelConver = AutoModelForSeq2SeqLM.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
-        config=configConver
+        config=configConver,
+        torch_dtype=torch.float16
     )
 
 
@@ -252,82 +597,56 @@ def main():
 
 
 
-
-    # Carga de los datasets
-    data_files = {}
-    if training_args.do_train:
-        data_files["train"] = finetuning_args.train_dataset
-    if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO:    
-        data_files["validation"] = finetuning_args.validation_dataset
-    datasets = load_dataset("csv", data_files=data_files)
-
-    if training_args.do_train and finetuning_args.n_train != -1:
-        datasets["train"] = Dataset.from_dict(datasets["train"][:finetuning_args.n_train])
-    if (training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO) and finetuning_args.n_val != -1:
-        datasets["validation"] = Dataset.from_dict(datasets["validation"][:finetuning_args.n_val])
+    dataset_class = Seq2SeqDataset
 
 
-
-    def preprocess_function(examples):
-        inputs = [example for example in examples["source"]]
-        targets = [example for example in examples["target"]]
-        model_inputs = tokenizerConver(inputs, max_length=finetuning_args.max_source_length, truncation=True, padding="max_length")
-
-        with tokenizerConver.as_target_tokenizer():
-            labels = tokenizerConver(targets, max_length=finetuning_args.max_target_length, truncation=True, padding="max_length")
-
-        model_inputs["labels"] = labels["input_ids"]
-        return model_inputs
-
-
-
-
-    tokenized_datasets = datasets.map(preprocess_function, batched=True)
+    train_dataset = (
+        dataset_class(
+            tokenizerConver,
+            type_path="train",
+            data_dir=finetuning_args.data_dir,
+            n_obs=finetuning_args.n_train,
+            max_target_length=finetuning_args.max_target_length,
+            max_source_length=finetuning_args.max_source_length,
+            prefix=modelConver.config.prefix or "",
+        )
+        if training_args.do_train
+        else None
+    )
+    eval_dataset = (
+        dataset_class(
+            tokenizerConver,
+            type_path="val",
+            data_dir=finetuning_args.data_dir,
+            n_obs=finetuning_args.n_val,
+            max_target_length=128,
+            max_source_length=finetuning_args.max_source_length,
+            prefix=modelConver.config.prefix or "",
+        )
+        if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO
+        else None
+    )
 
 
 
-    tokenized_datasets = tokenized_datasets.remove_columns(["Unnamed: 0", "source", "target"])
 
-    tokenized_datasets.set_format("torch")
-
+    compute_metrics_fn = (
+        build_compute_metrics_fn(None, tokenizerConver) if training_args.predict_with_generate else None
+    )
 
 
 
 
 
-    data_collator = DataCollatorForSeq2Seq(tokenizer=tokenizerConver, model=modelConver)
 
-
-
-
-
-    metric = load_metric("accuracy")
-
-    def compute_metrics(eval_pred: EvalPrediction):
-        # No se si es el índice 0 ó 1, se podrá comprobar cuando
-        # se tengan más datos porque no se si es la predicción
-        # ó la máscara. Parece que es el cero porque la tercera
-        # dimensión es igual a 8008 al igual que logits en la versión
-        # de Pytorch y es igual al tamaño del vocabulario del modelo
-        predictions, labels = eval_pred
-        predictions = np.argmax(predictions[0], axis=-1)
-        predictions = predictions.flatten()
-        labels = labels.flatten()
-
-        acc = metric.compute(predictions=predictions, references=labels)
-
-        return acc
-
-
-
-    trainer = Trainer(
+    trainer = Seq2SeqTrainer(
         model=modelConver,
         args=training_args,
-        train_dataset=tokenized_datasets["train"] if training_args.do_train else None,
-        eval_dataset=tokenized_datasets["validation"] if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO else None,
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
         tokenizer=tokenizerConver,
-        data_collator=data_collator,
-        compute_metrics=compute_metrics
+        data_collator=Seq2SeqDataCollator(tokenizerConver, finetuning_args, training_args.tpu_num_cores),
+        compute_metrics=compute_metrics_fn
     )
 
 
@@ -340,7 +659,7 @@ def main():
         logger.info(bcolors.OK + "*** Train ***" + bcolors.RESET)
 
         train_result = trainer.train(
-            resume_from_checkpoint=training_args.resume_from_checkpoint
+            model_path=finetuning_args.model_conver
         )
         metrics = train_result.metrics
         metrics["train_n_objs"] = finetuning_args.n_train
