@@ -589,11 +589,6 @@ def main():
 
 
 
-    if True:
-        freeze_embeds(modelConver)
-    if True:
-        freeze_params(modelConver.get_encoder())
-        assert_all_frozen(modelConver.get_encoder())
 
 
 
