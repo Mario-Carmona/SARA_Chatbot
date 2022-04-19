@@ -9,7 +9,7 @@ import os
 import logging
 from typing import Dict, Tuple, List, Callable, Iterable
 
-from datasets import load_dataset, load_metric
+from datasets import load_dataset, load_metric, Dataset
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import Seq2SeqTrainingArguments, HfArgumentParser
@@ -294,8 +294,8 @@ tokenized_datasets.set_format("torch")
 
 from torch.utils.data import DataLoader
 
-train_dataloader = DataLoader(tokenized_datasets["train"], shuffle=True, batch_size=8)
-eval_dataloader = DataLoader(tokenized_datasets["validation"], batch_size=8)
+train_dataloader = DataLoader(tokenized_datasets["train"], shuffle=True, batch_size=4)
+eval_dataloader = DataLoader(tokenized_datasets["validation"], batch_size=4)
 
 
 
