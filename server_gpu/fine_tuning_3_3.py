@@ -369,8 +369,8 @@ for batch in eval_dataloader:
     with torch.no_grad():
         outputs = modelConver(**inputs)
 
-    print(outputs.items())
-    logits = outputs.logits
+    print(type(outputs))
+    logits = outputs.past_key_values
     predictions = torch.argmax(logits, dim=-1)
     predictions = predictions.flatten()
     
