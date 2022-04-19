@@ -576,7 +576,7 @@ def main():
 
 
 
-    dataset_class = Dataset
+    dataset_class = Seq2SeqDataset
 
 
     train_dataset = (
