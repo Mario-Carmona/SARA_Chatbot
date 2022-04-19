@@ -32,7 +32,7 @@ class JoinDatasetsArguments(ProyectArguments):
         for i, dataset_path in enumerate(self.list_datasets):
             self.list_datasets[i] = os.path.join(self.workdir, dataset_path)
 
-        #assert len(self.list_datasets) > 0, "`list_datasets` debe ser una lista con al menos un elemento"
+        assert len(self.list_datasets) > 0, "`list_datasets` debe ser una lista con al menos un elemento"
         for dataset_path in self.list_datasets:
             assert os.path.exists(dataset_path), "`list_datasets` debe contener archivos existentes."
             assert dataset_path.split('.')[-1] == 'csv', "`list_datasets` debe contener archivos CSV"

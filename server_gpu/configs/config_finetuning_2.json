@@ -8,7 +8,7 @@
     "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
 
 
-    "data_dir": "server_gpu/datasets/v2/split_0.7_adult",
+    "data_dir": "server_gpu/datasets/v3/split_0.8_Adulto",
     "train_dataset": "train.csv",
     "validation_dataset": "validation.csv",
     "task": "conversational",
@@ -36,7 +36,7 @@
 
     "prediction_loss_only": true,
 
-    "load_best_model_at_end": true,
+    "load_best_model_at_end": false,
     "metric_for_best_model": "loss",
     "greater_is_better": false,
 
