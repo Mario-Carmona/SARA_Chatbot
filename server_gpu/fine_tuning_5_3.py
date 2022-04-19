@@ -561,7 +561,8 @@ def main():
 
     tokenizerConver = AutoTokenizer.from_pretrained(
         finetuning_args.model_conver_tokenizer,
-        config=finetuning_args.model_conver_tokenizer_config
+        config=finetuning_args.model_conver_tokenizer_config,
+        use_fast=False
     )
 
     modelConver = AutoModel.from_pretrained(
