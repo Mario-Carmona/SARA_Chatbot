@@ -648,7 +648,18 @@ def main():
         return bleu
 
 
+    metric = load_metric("accuracy")
 
+    def compute_metrics(eval_pred: EvalPrediction):
+        # No se si es el índice 0 ó 1, se podrá comprobar cuando
+        # se tengan más datos porque no se si es la predicción
+        # ó la máscara. Parece que es el cero porque la tercera
+        # dimensión es igual a 8008 al igual que logits en la versión
+        # de Pytorch y es igual al tamaño del vocabulario del modelo
+        predictions = np.argmax(eval_pred.predictions[0], axis=-1)
+        predictions = predictions.flatten()
+        references = eval_pred.label_ids.flatten()
+        return metric.compute(predictions=predictions, references=references)
 
 
 
@@ -659,7 +670,7 @@ def main():
         eval_dataset=eval_dataset,
         tokenizer=tokenizerConver,
         data_collator=Seq2SeqDataCollator(tokenizerConver, finetuning_args, training_args.tpu_num_cores),
-        compute_metrics=translation_metrics
+        compute_metrics=compute_metrics
     )
 
 
