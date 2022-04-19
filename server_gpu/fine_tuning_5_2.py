@@ -628,11 +628,24 @@ def main():
     )
 
 
+    def non_pad_len(tokens: np.ndarray) -> int:
+        return np.count_nonzero(tokens != tokenizerConver.pad_token_id)
 
 
-    compute_metrics_fn = (
-        build_compute_metrics_fn(None, tokenizerConver)
-    )
+    def decode_pred(pred: EvalPrediction) -> Tuple[List[str], List[str]]:
+        pred_str = tokenizerConver.batch_decode(pred.predictions, skip_special_tokens=True)
+        label_str = tokenizerConver.batch_decode(pred.label_ids, skip_special_tokens=True)
+        pred_str = lmap(str.strip, pred_str)
+        label_str = lmap(str.strip, label_str)
+        return pred_str, label_str
+
+
+    def translation_metrics(pred: EvalPrediction) -> Dict:
+        pred_str, label_str = decode_pred(pred)
+        bleu: Dict = calculate_bleu(pred_str, label_str)
+        gen_len = np.round(np.mean(lmap(non_pad_len, pred.predictions)), 1)
+        bleu.update({"gen_len": gen_len})
+        return bleu
 
 
 
@@ -646,7 +659,7 @@ def main():
         eval_dataset=eval_dataset,
         tokenizer=tokenizerConver,
         data_collator=Seq2SeqDataCollator(tokenizerConver, finetuning_args, training_args.tpu_num_cores),
-        compute_metrics=compute_metrics_fn
+        compute_metrics=translation_metrics
     )
 
 
