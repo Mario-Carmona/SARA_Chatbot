@@ -382,7 +382,8 @@ modelConver.train()
 for epoch in range(num_epochs):
     for batch in train_dataloader:
         batch = {k: v.to(device) for k, v in batch.items()}
-        outputs = modelConver(**batch)
+        inputs = {"input_ids": batch["input_ids"]}
+        outputs = modelConver(**inputs)
         loss = outputs.loss
         print(loss)
         loss.backward()
