@@ -663,14 +663,13 @@ def main():
 
 
 
-    trainer = Seq2SeqTrainer(
+    trainer = Trainer(
         model=modelConver,
         args=training_args,
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         tokenizer=tokenizerConver,
         data_collator=Seq2SeqDataCollator(tokenizerConver, finetuning_args, training_args.tpu_num_cores),
-        compute_metrics=compute_metrics
     )
 
 
