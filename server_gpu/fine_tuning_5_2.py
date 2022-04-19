@@ -576,8 +576,7 @@ def main():
 
     tokenizerConver = AutoTokenizer.from_pretrained(
         finetuning_args.model_conver_tokenizer,
-        config=finetuning_args.model_conver_tokenizer_config,
-        use_fast=True
+        config=finetuning_args.model_conver_tokenizer_config
     )
 
     modelConver = AutoModel.from_pretrained(
