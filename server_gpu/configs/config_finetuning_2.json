@@ -29,7 +29,7 @@
     "do_eval": false,
 
     "evaluation_strategy": "epoch",
-    "num_train_epochs": 3,
+    "num_train_epochs": 1,
     "log_level": "info",
     "logging_strategy": "epoch",
     "save_strategy": "epoch",
