@@ -65,6 +65,7 @@ if __name__ == "__main__":
     save_dataset(child_dataset, child_dataset_path)
     
 
+    """
     sentiment_dataset = extract_dataset_sentiment(generate_args.list_sentiment, generate_args.num_samples, generate_args.seed)
 
     save_dataset(sentiment_dataset, generate_args.attitude_dataset_file)
@@ -72,7 +73,7 @@ if __name__ == "__main__":
     clean_trash_csv(generate_args.attitude_dataset_file)
 
     generate_args.list_datasets.append(generate_args.attitude_dataset_file)
-
+    """
 
     for dataset_path, cadena in zip([adult_dataset_path, child_dataset_path],["_adult", "_child"]):
         new_list_datasets = generate_args.list_datasets
