@@ -16,7 +16,7 @@ from torch.nn import functional as F
 
 from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
-from transformers import TrainingArguments
+from transformers import Seq2SeqTrainingArguments
 
 from transformers import DataCollatorForSeq2Seq
 
@@ -152,7 +152,7 @@ def main():
     parser = HfArgumentParser(
         (
             FinetuningArguments,
-            TrainingArguments
+            Seq2SeqTrainingArguments
         )
     )
 
@@ -239,8 +239,7 @@ def main():
     modelConver = AutoModelForSeq2SeqLM.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
-        config=configConver,
-        torch_dtype=torch.float16
+        config=configConver
     )
 
 
