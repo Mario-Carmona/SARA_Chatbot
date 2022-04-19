@@ -369,7 +369,7 @@ for batch in eval_dataloader:
     with torch.no_grad():
         outputs = modelConver(**inputs)
 
-    print(outputs)
+    print(outputs.keys())
     logits = outputs.logits
     predictions = torch.argmax(logits, dim=-1)
     predictions = predictions.flatten()
