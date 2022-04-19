@@ -556,23 +556,8 @@ def main():
     # The .from_pretrained methods guarantee that only one local process can concurrently
     # download model & vocab.
     configConver = AutoConfig.from_pretrained(
-        finetuning_args.model_conver_config,
-        task_specific_params={
-            finetuning_args.task: {
-                "do_sample": finetuning_args.do_sample,
-                "temperature": finetuning_args.temperature,
-                "top_p": finetuning_args.top_p,
-                "max_length": finetuning_args.max_length,
-                "min_length": finetuning_args.min_length
-            }
-        }
+        finetuning_args.model_conver_config
     )
-
-    extra_model_params = ("encoder_layerdrop", "decoder_layerdrop", "dropout", "attention_dropout")
-    for p in extra_model_params:
-        if getattr(training_args, p, None):
-            assert hasattr(configConver, p), f"({configConver.__class__.__name__}) doesn't have a `{p}` attribute"
-            setattr(configConver, p, getattr(training_args, p))
 
     tokenizerConver = AutoTokenizer.from_pretrained(
         finetuning_args.model_conver_tokenizer,
@@ -580,7 +565,7 @@ def main():
         use_fast=True
     )
 
-    modelConver = AutoModel.from_pretrained(
+    modelConver = AutoModelForSeq2SeqLM.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
         config=configConver,
@@ -664,7 +649,6 @@ def main():
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         tokenizer=tokenizerConver,
-        data_collator=Seq2SeqDataCollator(tokenizerConver, finetuning_args, training_args.tpu_num_cores),
     )
 
 
