@@ -363,6 +363,7 @@ metric = load_metric("accuracy")
 
 modelConver.eval()
 for batch in eval_dataloader:
+    print(batch.items())
     batch = {k: v.to(device) for k, v in batch.items()}
     with torch.no_grad():
         outputs = modelConver(**batch)
