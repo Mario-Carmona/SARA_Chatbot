@@ -631,7 +631,7 @@ def main():
 
 
     compute_metrics_fn = (
-        build_compute_metrics_fn(None, tokenizerConver) if training_args.predict_with_generate else None
+        build_compute_metrics_fn(None, tokenizerConver)
     )
 
 
