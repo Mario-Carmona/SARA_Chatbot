@@ -16,7 +16,7 @@ from transformers import Seq2SeqTrainingArguments, HfArgumentParser
 
 import transformers
 from transformers import set_seed
-from transformers import AutoConfig, AutoTokenizer, AutoModel, BlenderbotForConditionalGeneration
+from transformers import AutoConfig, AutoTokenizer, AutoModel, AutoModelForSeq2SeqLM, BlenderbotForConditionalGeneration
 from transformers import EvalPrediction, Seq2SeqTrainer
 from transformers.trainer_utils import is_main_process, EvaluationStrategy
 from transformers.training_args import ParallelMode
@@ -187,7 +187,7 @@ tokenizerConver = AutoTokenizer.from_pretrained(
 
 tokenizerConver.pad_token = tokenizerConver.eos_token
 
-modelConver = AutoModel.from_pretrained(
+modelConver = AutoModelForSeq2SeqLM.from_pretrained(
     finetuning_args.model_conver,
     from_tf=bool(".ckpt" in finetuning_args.model_conver),
     config=configConver,
