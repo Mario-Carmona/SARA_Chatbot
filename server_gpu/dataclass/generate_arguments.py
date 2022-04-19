@@ -35,3 +35,8 @@ class GenerateArguments:
             "help": ""
         }
     )
+    use_cache: bool = field(
+        metadata={
+            "help": ""
+        }
+    )
