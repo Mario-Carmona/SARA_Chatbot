@@ -294,8 +294,8 @@ tokenized_datasets.set_format("torch")
 
 from torch.utils.data import DataLoader
 
-train_dataloader = DataLoader(tokenized_datasets["train"], shuffle=True, batch_size=4)
-eval_dataloader = DataLoader(tokenized_datasets["validation"], batch_size=4)
+train_dataloader = DataLoader(tokenized_datasets["train"], shuffle=True, batch_size=2)
+eval_dataloader = DataLoader(tokenized_datasets["validation"], batch_size=2)
 
 
 
