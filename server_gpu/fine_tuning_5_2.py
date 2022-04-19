@@ -28,6 +28,7 @@ from transformers.trainer_utils import is_main_process, EvaluationStrategy
 from transformers.training_args import ParallelMode
 
 import torch
+from torch import nn
 
 from sacrebleu import corpus_bleu
 
@@ -89,7 +90,7 @@ def main():
         save_json(metrics, os.path.join(output_dir, f"{split}_results.json"))
 
 
-    def freeze_params(model: torch.Module):
+    def freeze_params(model: nn.Module):
         """Set requires_grad=False for each of model.parameters()"""
         for par in model.parameters():
             par.requires_grad = False
@@ -117,7 +118,7 @@ def main():
         """list(map(f, x))"""
         return list(map(f, x))
 
-    def grad_status(model: torch.Module) -> Iterable:
+    def grad_status(model: nn.Module) -> Iterable:
         return (par.requires_grad for par in model.parameters())
 
     def assert_all_frozen(model):
