@@ -363,10 +363,11 @@ metric = load_metric("accuracy")
 
 modelConver.eval()
 for batch in eval_dataloader:
-    print(batch.items())
+    #print(batch.items())
     batch = {k: v.to(device) for k, v in batch.items()}
+    inputs = {"input_ids": batch["input_ids"]}
     with torch.no_grad():
-        outputs = modelConver(**batch)
+        outputs = modelConver(**inputs)
 
     logits = outputs.logits
     predictions = torch.argmax(logits, dim=-1)
