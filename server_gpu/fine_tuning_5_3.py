@@ -20,7 +20,7 @@ from dataclass.finetuning_arguments import FinetuningArguments
 from transformers import HfArgumentParser
 from transformers import Seq2SeqTrainingArguments
 
-from transformers import DataCollatorForSeq2Seq, PreTrainedTokenizer, BartTokenizer
+from transformers import DataCollatorForSeq2Seq, DataCollator, PreTrainedTokenizer, BartTokenizer
 
 import transformers
 from transformers import set_seed
@@ -561,11 +561,10 @@ def main():
 
     tokenizerConver = AutoTokenizer.from_pretrained(
         finetuning_args.model_conver_tokenizer,
-        config=finetuning_args.model_conver_tokenizer_config,
-        use_fast=True
+        config=finetuning_args.model_conver_tokenizer_config
     )
 
-    modelConver = AutoModelForSeq2SeqLM.from_pretrained(
+    modelConver = AutoModel.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
         config=configConver,
@@ -649,7 +648,7 @@ def main():
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         tokenizer=tokenizerConver,
-        data_collator=Seq2SeqDataCollator(tokenizerConver, finetuning_args, training_args.tpu_num_cores)
+        data_collator=DataCollator(tokenizerConver, finetuning_args, training_args.tpu_num_cores)
     )
 
 
