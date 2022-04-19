@@ -185,6 +185,8 @@ tokenizerConver = AutoTokenizer.from_pretrained(
     use_fast=True
 )
 
+tokenizerConver.pad_token = tokenizerConver.eos_token
+
 modelConver = AutoModel.from_pretrained(
     finetuning_args.model_conver,
     from_tf=bool(".ckpt" in finetuning_args.model_conver),
