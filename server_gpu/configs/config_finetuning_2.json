@@ -2,10 +2,10 @@
     "workdir": "/mnt/homeGPU/mcarmona",
 
 
-    "model_conver": "facebook/blenderbot-3B",
-    "model_conver_config": "facebook/blenderbot-3B/config.json",
-    "model_conver_tokenizer": "facebook/blenderbot-3B",
-    "model_conver_tokenizer_config": "facebook/blenderbot-3B/tokenizer_config.json",
+    "model_conver": "tosin/dialogpt_mwoz",
+    "model_conver_config": "tosin/dialogpt_mwoz/config.json",
+    "model_conver_tokenizer": "tosin/dialogpt_mwoz",
+    "model_conver_tokenizer_config": "tosin/dialogpt_mwoz/tokenizer_config.json",
 
 
     "data_dir": "server_gpu/datasets/v4",
