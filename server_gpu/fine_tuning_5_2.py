@@ -276,7 +276,8 @@ def main():
         train_dataset=tokenized_datasets["train"] if training_args.do_train else None,
         eval_dataset=tokenized_datasets["validation"] if training_args.do_eval or training_args.evaluation_strategy != EvaluationStrategy.NO else None,
         tokenizer=tokenizerConver,
-        data_collator=data_collator
+        data_collator=data_collator,
+        compute_metrics=compute_metrics
     )
 
 
