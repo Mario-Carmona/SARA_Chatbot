@@ -323,6 +323,7 @@ from tqdm.auto import tqdm
 
 progress_bar = tqdm(range(num_training_steps))
 
+"""
 modelConver.train()
 for epoch in range(num_epochs):
     for batch in train_dataloader:
@@ -354,4 +355,34 @@ for batch in eval_dataloader:
 
 print(metric.compute())
 
+"""
+
+metric = load_metric("accuracy")
+
+modelConver.train()
+for epoch in range(num_epochs):
+    for batch in train_dataloader:
+        batch = {k: v.to(device) for k, v in batch.items()}
+        outputs = modelConver(**batch)
+        loss = outputs.loss
+        print(loss)
+        loss.backward()
+
+        optimizer.step()
+        lr_scheduler.step()
+        optimizer.zero_grad()
+        progress_bar.update(1)
+    
+    for batch in eval_dataloader:
+        batch = {k: v.to(device) for k, v in batch.items()}
+        with torch.no_grad():
+            outputs = modelConver(**batch)
+
+        logits = outputs.logits
+        predictions = torch.argmax(logits, dim=-1)
+        predictions = predictions.flatten()
+        
+        metric.add_batch(predictions=predictions, references=batch["labels"].flatten())
+
+    print(metric.compute())
 
