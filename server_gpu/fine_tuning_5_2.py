@@ -582,8 +582,7 @@ def main():
     modelConver = AutoModel.from_pretrained(
         finetuning_args.model_conver,
         from_tf=bool(".ckpt" in finetuning_args.model_conver),
-        config=configConver,
-        torch_dtype=torch.float16
+        config=configConver
     )
 
 
