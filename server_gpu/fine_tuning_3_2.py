@@ -295,13 +295,13 @@ tokenized_datasets.set_format("torch")
 from torch.utils.data import DataLoader
 
 train_dataloader = DataLoader(tokenized_datasets["train"], shuffle=True, batch_size=2)
-eval_dataloader = DataLoader(tokenized_datasets["validation"], batch_size=2)
+eval_dataloader = DataLoader(tokenized_datasets["validation"], batch_size=4)
 
 
 
 from torch.optim import AdamW
 
-optimizer = AdamW(modelConver.parameters(), lr=5e-5)
+optimizer = AdamW(modelConver.parameters(), lr=3e-5)
 
 
 from transformers import get_scheduler
