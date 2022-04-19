@@ -384,6 +384,7 @@ for epoch in range(num_epochs):
         batch = {k: v.to(device) for k, v in batch.items()}
         inputs = {"input_ids": batch["input_ids"]}
         outputs = modelConver(**inputs)
+        print(outputs.keys())
         loss = outputs.loss
         print(loss)
         loss.backward()
