@@ -89,6 +89,42 @@ def main():
         save_json(metrics, os.path.join(output_dir, f"{split}_results.json"))
 
 
+    def freeze_params(model: torch.Module):
+        """Set requires_grad=False for each of model.parameters()"""
+        for par in model.parameters():
+            par.requires_grad = False
+
+
+    def freeze_embeds(model):
+        """Freeze token embeddings and positional embeddings for bart, just token embeddings for t5."""
+        model_type = model.config.model_type
+
+        if model_type == "t5":
+            freeze_params(model.shared)
+            for d in [model.encoder, model.decoder]:
+                freeze_params(d.embed_tokens)
+        elif model_type == "fsmt":
+            for d in [model.model.encoder, model.model.decoder]:
+                freeze_params(d.embed_positions)
+                freeze_params(d.embed_tokens)
+        else:
+            freeze_params(model.model.shared)
+            for d in [model.model.encoder, model.model.decoder]:
+                freeze_params(d.embed_positions)
+                freeze_params(d.embed_tokens)
+
+    def lmap(f: Callable, x: Iterable) -> List:
+        """list(map(f, x))"""
+        return list(map(f, x))
+
+    def grad_status(model: torch.Module) -> Iterable:
+        return (par.requires_grad for par in model.parameters())
+
+    def assert_all_frozen(model):
+        model_grads: List[bool] = list(grad_status(model))
+        n_require_grad = sum(lmap(int, model_grads))
+        npars = len(model_grads)
+        assert not any(model_grads), f"{n_require_grad/npars:.1%} of {npars} weights require grad"
 
 
 
@@ -187,6 +223,12 @@ def main():
         }
     )
 
+    extra_model_params = ("encoder_layerdrop", "decoder_layerdrop", "dropout", "attention_dropout")
+    for p in extra_model_params:
+        if getattr(training_args, p, None):
+            assert hasattr(configConver, p), f"({configConver.__class__.__name__}) doesn't have a `{p}` attribute"
+            setattr(configConver, p, getattr(training_args, p))
+
     tokenizerConver = AutoTokenizer.from_pretrained(
         finetuning_args.model_conver_tokenizer,
         config=finetuning_args.model_conver_tokenizer_config,
@@ -199,6 +241,13 @@ def main():
         config=configConver,
         torch_dtype=torch.float16
     )
+
+
+    if True:
+        freeze_embeds(modelConver)
+    if True:
+        freeze_params(modelConver.get_encoder())
+        assert_all_frozen(modelConver.get_encoder())
 
 
 
