@@ -8,9 +8,12 @@ from transformers import AutoTokenizer
 
 model_path = "/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium"
 
-tokenizer = AutoTokenizer.from_pretrained(
-    model_path,
-    config=join(model_path, 'tokenizer_config.json')
+tokenizer = GPT2Tokenizer(
+    vocab_file = join(model_path, 'vocab.json'),
+    merges_file = join(model_path, 'merges.txt'),
+    unk_token = "<|endoftext|>",
+    bos_token = "<|endoftext|>",
+    eos_token = "<|endoftext|>"
 )
 
 config = GPT2Config.from_json_file(
