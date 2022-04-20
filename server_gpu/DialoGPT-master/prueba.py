@@ -6,7 +6,7 @@ from os.path import join
 from transformers import AutoTokenizer
 
 
-model_path = "/mnt/homeGPU/mcarmona/tosin/dialogpt_mwoz"
+model_path = "/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium"
 
 tokenizer = AutoTokenizer.from_pretrained(
     model_path,
