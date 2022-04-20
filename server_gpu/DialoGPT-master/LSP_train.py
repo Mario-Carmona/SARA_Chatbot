@@ -29,6 +29,8 @@ from data_loader import BucketingDataLoader, DynamicBatchingLoader, DistributedB
 
 from gpt2_training.distributed import all_reduce_and_rescale_tensors, all_gather_list
 
+from transformers import AutoConfig
+
 
 logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(name)s -   %(message)s',
@@ -191,7 +193,7 @@ eval_dataloader_gen = get_eval_list_same_length(
 #########################################################################
 # Prepare Model and Optimizer
 ##########################################################################
-model = load_model(args.model_name_or_path, GPT2LMHeadModel(config), args.init_checkpoint,
+model = load_model(args.model_name_or_path, config, args.init_checkpoint,
                    args, verbose=True)
 if args.local_rank != -1:
     # when from scratch make sure initial models are the same
