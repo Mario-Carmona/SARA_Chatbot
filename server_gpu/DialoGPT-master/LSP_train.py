@@ -380,17 +380,6 @@ while True:
 
 
 if args.local_rank == -1 or get_rank() == 0:
-    # only rank 0 process evaluate
-    torch.save(
-        {k: (v.cpu() if v is not None else None)  # save to cpu tensors
-            for k, v in model.state_dict().items()},
-        join("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium",
-                f'GP2-pretrain-best.pkl'))
-
-
-
-
-if args.local_rank == -1 or get_rank() == 0:
     if pbar is not None:
         pbar.close()
     train_logger.close()
