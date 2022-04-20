@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 
 
 
-target_folder = "/mnt/homeGPU/mcarmona/tosin/dialogpt_mwoz"
+target_folder = "/mnt/homeGPU/mcarmona/microsoft/DialoGPT-medium"
 
 PYTHON_EXE = 'python'
 PROJECT_FOLDER = os.path.dirname(os.path.realpath(__file__))
@@ -94,7 +94,7 @@ args = [
     '--gradient_accumulation_steps', '8',
     '--eval_batch_size', '64',
     '--learning_rate', '1e-5',
-    '--num_optim_steps', '2',
+    '--num_optim_steps', '10000',
     '--valid_step', '5000',
     '--warmup_steps', '4000',
     '--normalize_data', 'true',
