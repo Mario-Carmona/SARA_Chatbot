@@ -5,9 +5,9 @@ import torch
 from transformers import AutoConfig
 
 
-tokenizer = GPT2Tokenizer.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small")
+tokenizer = GPT2Tokenizer.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium")
 
-config = AutoConfig.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small/config.json")
+config = GPT2Config.from_json_file("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium/config.json")
 
 
 def fix_state_dict_namespace(model_state_dict):

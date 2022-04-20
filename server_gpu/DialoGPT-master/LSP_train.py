@@ -191,7 +191,7 @@ eval_dataloader_gen = get_eval_list_same_length(
 #########################################################################
 # Prepare Model and Optimizer
 ##########################################################################
-model = load_model(GPT2LMHeadModel(config), args.init_checkpoint,
+model = load_model(args.model_name_or_path, GPT2LMHeadModel(config), args.init_checkpoint,
                    args, verbose=True)
 if args.local_rank != -1:
     # when from scratch make sure initial models are the same
@@ -379,7 +379,8 @@ while True:
     epoch += 1
 
 
-torch.save(model, "/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/prueba")
+
+model.save_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/prueba")
 
 
 

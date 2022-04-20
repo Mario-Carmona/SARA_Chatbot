@@ -6,6 +6,8 @@ import logging
 import torch
 from collections import defaultdict
 
+from transformers import GPT2Model
+
 from env import END_OF_TEXT_TOKEN
 from lsp_model.optim import warmup_linear, noam_decay, noamwd_decay
 
@@ -15,7 +17,7 @@ logger = logging.getLogger(__name__)
 SEQ_LENGTH_SHRINK_PROP = 0.9
 
 
-def load_model(model, checkpoint, args, verbose=False):
+def load_model(model, config, checkpoint, args, verbose=False):
     n_gpu = args.n_gpu
     device = args.device
     if checkpoint is None or checkpoint == "None":
@@ -26,17 +28,9 @@ def load_model(model, checkpoint, args, verbose=False):
             raise ValueError('checkpoint %s not exist' % checkpoint)
         if verbose:
             logger.info('loading finetuned model from %s' % checkpoint)
-        model_state_dict = torch.load(checkpoint)
 
-        model_state_dict = fix_state_dict_namespace(model_state_dict)
-
-        start_model = model
-        if (hasattr(model, "transformer")
-            and all(not s.startswith('transformer.')
-                    for s in model_state_dict.keys())):
-            logger.info('loading transfomer only')
-            start_model = model.transformer
-        start_model.load_state_dict(model_state_dict)
+        model = GPT2Model.from_pretrained(model, config=config)
+        
 
     if args.fp16:
         logger.info('in fp16, model.half() activated')
