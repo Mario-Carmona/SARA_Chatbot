@@ -3,11 +3,12 @@ from lsp_model import GPT2LMHeadModel, GPT2Tokenizer, GPT2Config
 from gpt2_training.train_utils import load_model
 import torch
 from os.path import join
+from transformers import AutoTokenizer
 
 
 model_path = "/mnt/homeGPU/mcarmona/tosin/dialogpt_mwoz"
 
-tokenizer = GPT2Tokenizer.from_pretrained(
+tokenizer = AutoTokenizer.from_pretrained(
     model_path,
     config=join(model_path, 'tokenizer_config.json')
 )
