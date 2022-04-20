@@ -94,7 +94,7 @@ args = [
     '--gradient_accumulation_steps', '8',
     '--eval_batch_size', '64',
     '--learning_rate', '1e-5',
-    '--num_optim_steps', '10000',
+    '--num_optim_steps', '2',
     '--valid_step', '5000',
     '--warmup_steps', '4000',
     '--normalize_data', 'true',
