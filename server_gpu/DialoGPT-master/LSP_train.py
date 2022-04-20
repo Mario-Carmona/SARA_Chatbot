@@ -379,7 +379,7 @@ while True:
     epoch += 1
 
 
-torch.save(model, "./models/prueba")
+torch.save(model, "/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/prueba")
 
 
 
