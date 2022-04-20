@@ -379,8 +379,7 @@ while True:
     epoch += 1
 
 
-
-model.save_pretrained("./models/prueba")
+torch.save(model, "./models/prueba")
 
 
 
