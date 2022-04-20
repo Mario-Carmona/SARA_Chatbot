@@ -2,11 +2,12 @@
 from lsp_model import GPT2LMHeadModel, GPT2Tokenizer, GPT2Config
 from gpt2_training.train_utils import load_model
 import torch
+from transformers import AutoConfig
 
 
 tokenizer = GPT2Tokenizer.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small")
 
-config = GPT2Config.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small/config.json")
+config = AutoConfig.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small/config.json")
 
 
 def fix_state_dict_namespace(model_state_dict):
