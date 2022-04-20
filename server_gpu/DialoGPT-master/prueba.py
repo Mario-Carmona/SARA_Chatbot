@@ -6,7 +6,7 @@ import torch
 
 tokenizer = GPT2Tokenizer.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small")
 
-config = GPT2Config.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small")
+config = GPT2Config.from_pretrained("/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/small/config.json")
 
 
 def fix_state_dict_namespace(model_state_dict):
