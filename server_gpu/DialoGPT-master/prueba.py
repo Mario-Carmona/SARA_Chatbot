@@ -5,12 +5,16 @@ import torch
 from os.path import join
 
 
-model_path = "/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium"
+model_path = "/mnt/homeGPU/mcarmona/tosin/dialogpt_mwoz"
 
-tokenizer = GPT2Tokenizer.from_pretrained(model_path)
+tokenizer = GPT2Tokenizer.from_pretrained(
+    model_path,
+    config=join(model_path, 'tokenizer_config.json')
+)
 
 config = GPT2Config.from_json_file(
-    join(model_path, 'config.json'))
+    join(model_path, 'config.json')
+)
 
 args = {
     "n_gpu": 1,
@@ -18,7 +22,7 @@ args = {
     "fp16": True
 }
 
-model = load_model(GPT2LMHeadModel(config), join(model_path, 'GP2-pretrain-best.pkl'),
+model = load_model(GPT2LMHeadModel(config), join(model_path, 'pytorch_model.bin'),
                    args, verbose=True)
 
 
