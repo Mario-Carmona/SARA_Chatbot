@@ -25,6 +25,7 @@ model = load_model(GPT2LMHeadModel(config), join(model_path, 'GP2-pretrain-best.
 
 
 
+
 new_user_input_ids = tokenizer.encode(input(">> User:") + tokenizer.eos_token, return_tensors='pt')
 # append the new user input tokens to the chat history
 bot_input_ids = new_user_input_ids
