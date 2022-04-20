@@ -379,6 +379,11 @@ while True:
     epoch += 1
 
 
+
+model.save_pretrained("./models/prueba")
+
+
+
 if args.local_rank == -1 or get_rank() == 0:
     if pbar is not None:
         pbar.close()
