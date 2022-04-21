@@ -669,8 +669,6 @@ body.dark_mode .link_lateral {
 }
 
 .video {
-    display: flex;
-    justify-content: center;
     width: 90%;
     height: 70vh;
 }
