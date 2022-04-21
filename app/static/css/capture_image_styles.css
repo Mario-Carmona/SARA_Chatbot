@@ -665,4 +665,5 @@ body.dark_mode .link_lateral {
     justify-content: center;
     width: 90%;
     height: 70vh;
+    margin: auto;
 }
