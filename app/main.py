@@ -283,6 +283,10 @@ def chatbot(request: Request):
 def interface(request: Request):
     return templates.TemplateResponse("interface.html", {"request": request})
 
+@app.get("/capture_image", response_class=HTMLResponse) 
+def home(request: Request):
+    return templates.TemplateResponse("capture_image.html", {"request": request})
+
 @app.get("/wakeup", response_class=PlainTextResponse)
 def wakeup():
     return "Server ON"
