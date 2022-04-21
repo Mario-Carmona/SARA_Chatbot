@@ -62,7 +62,15 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main2 {
+    .container__header__main__capture {
+        /* Ancho relativo a la pantalla */
+        width: 90%;
+        /* Ancho máximo del contenedor */
+        max-width: 1200px;
+        /* Se eliminan los márgenes en el top */
+        margin: 0 auto;
+        /* Se oculta el contenido que se sale del contenedor */
+        overflow: hidden;
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
@@ -152,7 +160,15 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main2 {
+    .container__header__main__capture {
+        /* Ancho relativo a la pantalla */
+        width: 90%;
+        /* Ancho máximo del contenedor */
+        max-width: 1200px;
+        /* Se eliminan los márgenes en el top */
+        margin: 0 auto;
+        /* Se oculta el contenido que se sale del contenedor */
+        overflow: hidden;
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
@@ -242,7 +258,15 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main2 {
+    .container__header__main__capture {
+        /* Ancho relativo a la pantalla */
+        width: 90%;
+        /* Ancho máximo del contenedor */
+        max-width: 1200px;
+        /* Se eliminan los márgenes en el top */
+        margin: 0 auto;
+        /* Se oculta el contenido que se sale del contenedor */
+        overflow: hidden;
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
@@ -330,7 +354,15 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main2 {
+    .container__header__main__capture {
+        /* Ancho relativo a la pantalla */
+        width: 90%;
+        /* Ancho máximo del contenedor */
+        max-width: 1200px;
+        /* Se eliminan los márgenes en el top */
+        margin: 0 auto;
+        /* Se oculta el contenido que se sale del contenedor */
+        overflow: hidden;
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
