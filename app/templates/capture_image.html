@@ -5,13 +5,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La noche europea de los investigadores</title>
-    <!-- <link rel="stylesheet" href="/static/css/home_styles.css"> -->
+    <link rel="stylesheet" href="/static/css/capture_image_styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <header class="header">
+        <nav class="nav__header">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
+                </div>
+                <div class="tools">
+                    <div class="show_links links">
+                        <a href="./" class="link">Inicio</a>
+                        <a href="#" class="link__active">Sobre nosotros</a>
+                    </div>
+                    <button class="switch_dark_mode" id="switch_dark_mode">
+                        <img src="/static/img/sun-solid.svg" class="icono icono_sun">
+                        <img src="/static/img/moon-solid.svg" class="icono icono_moon">
+                    </button>
+                    <button class="show_sidebar button_sidebar" id="button_sidebar">
+                        <img src="/static/img/bars-solid.svg" class="bars-solid">
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section class="container header__main">
+            <div class="header__texts">
+                <h1 class="header__title">Sara Chatbot</h1>
+                <p class="header__subtitle">Este chatbot está preparado para realizar una conversación para formentar el uso y la investigación de la IA, adaptando la conversación a las características del usuario.</p>
+                <div class="open_buttons">
+                    <div class="open_button">
+                        <a href="./interface" class="enlace">
+                            <img src="/static/img/message-solid.svg" class="icono message-solid">
+                            <div class="button">Open in Web</div>
+                        </a>
+                    </div>
+                    <div class="open_button">
+                        <a href="#" class="enlace">
+                            <img src="/static/img/telegram-brands.svg" class="icono telegram-brands">
+                            <div class="button">Open in Telegram</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <img src="/static/img/mockup_noche_inves.png" class="mockup">
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_content">
+                    <a href="./" class="link_lateral">Inicio</a>
+                    <a href="#" class="link_lateral__active">Sobre nosotros</a>
+                </div>
+            </div>
+        </section>
+    </header>
+
+    <main>
+        <section class="main" id="main">
+            <div class="container">
+                <!-- Stream video via webcam -->
+                <div class="video-wrap">
+                    <video id="video" playsinline autoplay></video>
+                </div>
+
+                <div class="sidebar" id="sidebar">
+                    <div class="sidebar_content">
+                        <a href="./" class="link_lateral">Inicio</a>
+                        <a href="#" class="link_lateral__active">Sobre nosotros</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
     <!-- Stream video via webcam -->
     <div class="video-wrap">
         <video id="video" playsinline autoplay></video>
