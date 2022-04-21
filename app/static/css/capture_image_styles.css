@@ -709,6 +709,7 @@ body.dark_mode .link_lateral {
 .div__video {
     position: relative;
     display: block;
+    z-index: 2;
 }
 
 .capture_button {
@@ -719,4 +720,5 @@ body.dark_mode .link_lateral {
     width: 40%;
     position: relative;
     display: block;
+    z-index: 1;
 }
