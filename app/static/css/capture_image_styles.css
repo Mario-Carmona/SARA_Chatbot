@@ -65,8 +65,6 @@ body {
     .header__main__capture {
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
-        /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
-        display: flex;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -155,8 +153,6 @@ body {
     .header__main__capture {
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
-        /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
-        display: flex;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -245,8 +241,6 @@ body {
     .header__main__capture {
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
-        /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
-        display: flex;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -333,8 +327,6 @@ body {
     .header__main__capture {
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
-        /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
-        display: flex;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
