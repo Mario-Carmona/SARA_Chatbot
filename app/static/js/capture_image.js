@@ -32,6 +32,15 @@ const canvas = document.getElementById('canvas');
 const snap = document.getElementById("snap");
 const errorMsgElement = document.querySelector('span#errorMsg');
 
+
+
+navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+    //video.src = window.URL.createObjectURL(stream);
+    video.srcObject = stream;
+    video.play();
+});
+
+/*
 const constraints = {
     video: {
         width: video_wrap.clientWidth,
@@ -49,6 +58,8 @@ async function init() {
     }
 }
 
+
+
 // Success
 function handleSuccess(stream) {
     window.stream = stream;
@@ -63,3 +74,5 @@ var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
     context.drawImage(video, 0, 0, 640, 480);
 });
+
+*/
