@@ -438,7 +438,7 @@ body.dark_mode .link_lateral {
     width: 100%;
     /* Se fija que el alto del header sea igual al alto de la ventana */
     min-height: 100vh;
-    height: auto;
+    height: 100vh + var(--header_height);
     /* Fondo del encabezado */
     background: linear-gradient(180deg, var(--start_gradient_header_claro) 0%, var(--finish_gradient_header_claro) 100%);
 }
