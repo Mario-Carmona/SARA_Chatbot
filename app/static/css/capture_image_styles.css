@@ -702,5 +702,11 @@ body.dark_mode .link_lateral {
 
 .video {
     width: 90%;
-    height: 70vh;
+    height: 80%;
+    margin: 5% 0;
+    border: 1px solid var(--black1);
+}
+
+body.dark_mode .video {
+    border: 1px solid white;
 }
