@@ -62,7 +62,7 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main__capture {
+    .header__main2 {
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
@@ -152,7 +152,7 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main__capture {
+    .header__main2 {
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
@@ -242,7 +242,7 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main__capture {
+    .header__main2 {
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
@@ -330,7 +330,7 @@ body {
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
-    .header__main__capture {
+    .header__main2 {
         display: flex;
         justify-content: center;
         /* Se asigna la altura restante del encabezado */
