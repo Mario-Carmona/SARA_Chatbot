@@ -25,6 +25,8 @@ window.addEventListener('resize', () => {
 
 'use strict';
 
+const video_wrap = document.getElementById("video-wrap")
+
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const snap = document.getElementById("snap");
@@ -32,8 +34,8 @@ const errorMsgElement = document.querySelector('span#errorMsg');
 
 const constraints = {
     video: {
-        width: 1280,
-        height: 720
+        width: video_wrap.clientWidth,
+        height: video_wrap.clientHeight
     }
 };
 
