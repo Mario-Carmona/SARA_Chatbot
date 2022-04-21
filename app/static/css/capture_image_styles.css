@@ -704,9 +704,12 @@ body.dark_mode .link_lateral {
     width: 90%;
     height: 80%;
     margin: 5% 0;
-    border: 3px solid var(--black1);
 }
 
-body.dark_mode .video {
-    border: 3px solid white;
+.capture_button {
+    background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
+    box-shadow: var(--shadow) var(--color_shadow_claro);
+    border-radius: 6px;
+    cursor: pointer;
+    width: 40%;
 }
