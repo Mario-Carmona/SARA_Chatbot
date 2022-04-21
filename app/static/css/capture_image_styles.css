@@ -635,3 +635,8 @@ body.dark_mode .link_lateral {
 .telegram-brands {
     display: inline-flex;
 }
+
+.video-wrap {
+    align-items: center;
+    width: 90%;
+}
