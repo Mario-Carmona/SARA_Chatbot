@@ -71,8 +71,6 @@ body {
         margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
-        display: flex;
-        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
@@ -169,8 +167,6 @@ body {
         margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
-        display: flex;
-        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
@@ -267,8 +263,6 @@ body {
         margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
-        display: flex;
-        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
@@ -363,8 +357,6 @@ body {
         margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
-        display: flex;
-        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
@@ -703,7 +695,7 @@ body.dark_mode .link_lateral {
 .video {
     width: 90%;
     height: 80%;
-    margin: 5% 0;
+    margin: 5% auto;
 }
 
 .capture_button {
@@ -712,4 +704,5 @@ body.dark_mode .link_lateral {
     border-radius: 6px;
     cursor: pointer;
     width: 40%;
+    margin: auto;
 }
