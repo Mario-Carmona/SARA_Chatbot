@@ -6,7 +6,6 @@ const snap = document.getElementById("snap");
 const errorMsgElement = document.querySelector('span#errorMsg');
 
 const constraints = {
-    audio: true,
     video: {
         width: 1280,
         height: 720
