@@ -701,10 +701,7 @@ body.dark_mode .link_lateral {
 }
 
 .video {
-    position: absolute;
     z-index: 10;
-    top: 0px;
-    left: 0px;
     width: 90%;
     height: 80%;
     margin: 5% 0;
@@ -716,8 +713,5 @@ body.dark_mode .link_lateral {
     border-radius: 6px;
     cursor: pointer;
     width: 40%;
-    position: absolute;
     z-index: 5;
-    top: 0px;
-    left: 0px;
 }
