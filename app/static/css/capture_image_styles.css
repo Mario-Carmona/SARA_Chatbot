@@ -668,14 +668,9 @@ body.dark_mode .link_lateral {
     display: inline-flex;
 }
 
-.video-wrap {
-    width: 90%;
-    height: 70vh;
-}
-
 .video {
     display: flex;
     justify-content: center;
-    width: inherit;
-    height: inherit;
+    width: 90%;
+    height: 70vh;
 }
