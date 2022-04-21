@@ -707,7 +707,8 @@ body.dark_mode .link_lateral {
 }
 
 .div__video {
-    vertical-align: top;
+    position: absolute;
+    z-index: 2;
 }
 
 .capture_button {
@@ -716,5 +717,6 @@ body.dark_mode .link_lateral {
     border-radius: 6px;
     cursor: pointer;
     width: 40%;
-    vertical-align: bottom;
+    position: absolute;
+    z-index: 1;
 }
