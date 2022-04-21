@@ -68,11 +68,12 @@ body {
         /* Ancho máximo del contenedor */
         max-width: 1200px;
         /* Se eliminan los márgenes en el top */
-        margin: auto;
+        margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
         /* Se asigna la altura restante del encabezado */
-        height: 100vh;
+        height: auto;
+        max-height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -164,11 +165,12 @@ body {
         /* Ancho máximo del contenedor */
         max-width: 1200px;
         /* Se eliminan los márgenes en el top */
-        margin: auto;
+        margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
         /* Se asigna la altura restante del encabezado */
-        height: 100vh;
+        height: auto;
+        max-height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -260,11 +262,12 @@ body {
         /* Ancho máximo del contenedor */
         max-width: 1200px;
         /* Se eliminan los márgenes en el top */
-        margin: auto;
+        margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
         /* Se asigna la altura restante del encabezado */
-        height: 100vh;
+        height: auto;
+        max-height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -354,11 +357,12 @@ body {
         /* Ancho máximo del contenedor */
         max-width: 1200px;
         /* Se eliminan los márgenes en el top */
-        margin: auto;
+        margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
         /* Se asigna la altura restante del encabezado */
-        height: 100vh;
+        height: auto;
+        max-height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -692,14 +696,18 @@ body.dark_mode .link_lateral {
     display: inline-flex;
 }
 
-.video {
-    width: 90%;
-    height: auto;
-    margin: 5%;
+.cont__video {
     border: 3px solid black;
 }
 
-body.dark_mode .video {
+.video {
+    width: 90%;
+    height: auto;
+    max-height: 80%;
+    margin: 5%;
+}
+
+body.dark_mode .cont__video {
     border: 3px solid white;
 }
 
