@@ -708,12 +708,15 @@ body.dark_mode .link_lateral {
     display: block;
 }
 
+.prueba {
+    position: relative;
+    display: block;
+}
+
 .capture_button {
     background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
     box-shadow: var(--shadow) var(--color_shadow_claro);
     border-radius: 6px;
     cursor: pointer;
     width: 40%;
-    position: relative;
-    display: block;
 }
