@@ -38,9 +38,6 @@ navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
     video.play();
 });
 
-video.style.width = stream.width;
-video.style.height = stream.height;
-
 
 /*
 const constraints = {
