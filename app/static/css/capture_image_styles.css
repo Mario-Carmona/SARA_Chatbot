@@ -63,6 +63,8 @@ body {
         padding: 0;
     }
     .header__main__capture {
+        display: flex;
+        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
@@ -151,6 +153,8 @@ body {
         padding: 0;
     }
     .header__main__capture {
+        display: flex;
+        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
@@ -239,6 +243,8 @@ body {
         padding: 0;
     }
     .header__main__capture {
+        display: flex;
+        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
@@ -325,6 +331,8 @@ body {
         padding: 0;
     }
     .header__main__capture {
+        display: flex;
+        justify-content: center;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
