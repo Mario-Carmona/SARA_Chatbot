@@ -674,7 +674,8 @@ body.dark_mode .link_lateral {
 }
 
 .video {
+    display: flex;
+    justify-content: center;
     width: inherit;
     height: inherit;
-    margin: auto;
 }
