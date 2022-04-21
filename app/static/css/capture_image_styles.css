@@ -694,7 +694,7 @@ body.dark_mode .link_lateral {
 
 .video {
     width: 90%;
-    height: 80%;
+    height: auto;
     margin: 5%;
 }
 
