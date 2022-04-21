@@ -672,3 +672,8 @@ body.dark_mode .link_lateral {
     width: 90%;
     height: 70vh;
 }
+
+.video {
+    width: inherit;
+    height: inherit;
+}
