@@ -704,11 +704,9 @@ body.dark_mode .link_lateral {
     width: 90%;
     height: 80%;
     margin: 5% 0;
-    position: relative;
-    display: block;
 }
 
-.prueba {
+.div__video {
     position: relative;
     display: block;
 }
@@ -719,4 +717,6 @@ body.dark_mode .link_lateral {
     border-radius: 6px;
     cursor: pointer;
     width: 40%;
+    position: relative;
+    display: block;
 }
