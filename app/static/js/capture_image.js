@@ -25,8 +25,6 @@ window.addEventListener('resize', () => {
 
 'use strict';
 
-const video_wrap = document.getElementById("video-wrap")
-
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const snap = document.getElementById("snap");
@@ -39,6 +37,10 @@ navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
     video.srcObject = stream;
     video.play();
 });
+
+video.style.width = stream.width;
+video.style.height = stream.height;
+
 
 /*
 const constraints = {
