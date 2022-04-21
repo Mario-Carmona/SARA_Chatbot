@@ -67,8 +67,6 @@ body {
         height: 100vh;
         /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
         display: flex;
-        /* El espacio entre los elementos se iguala para todos */
-        justify-content: center;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -159,8 +157,6 @@ body {
         height: 100vh;
         /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
         display: flex;
-        /* El espacio entre los elementos se iguala para todos */
-        justify-content: center;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -251,8 +247,6 @@ body {
         height: 100vh;
         /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
         display: flex;
-        /* El espacio entre los elementos se iguala para todos */
-        justify-content: center;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
@@ -341,8 +335,6 @@ body {
         height: 100vh;
         /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
         display: flex;
-        /* El espacio entre los elementos se iguala para todos */
-        justify-content: center;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
     }
