@@ -115,7 +115,7 @@ document.getElementById("snap").addEventListener("click", function() {
 
 
 // CommonJS
-const Swal = require('sweetalert2')
+const Swal = require('sweetalert2');
 
 
 
