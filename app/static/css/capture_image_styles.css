@@ -730,6 +730,11 @@ body.dark_mode .link_lateral {
     margin: 15% 0 10% 0;
 }
 
+.video {
+    width: 922;
+    height: 693;
+}
+
 .visualizar {
     background: var(--white3);
 }
