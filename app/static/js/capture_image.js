@@ -46,8 +46,8 @@ snap.addEventListener("click", function() {
 
 const constraints = {
     video: {
-        width: video.clientWidth,
-        height: video.clientHeight
+        width: 640,
+        height: 480
     }
 };
 
