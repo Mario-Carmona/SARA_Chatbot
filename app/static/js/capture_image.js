@@ -46,8 +46,8 @@ snap.addEventListener("click", function() {
 
 const constraints = {
     video: {
-        width: 640,
-        height: 480
+        width: video.clientWidth,
+        height: video.clientHeight
     }
 };
 
@@ -75,5 +75,6 @@ init();
 // Draw image
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
-    context.drawImage(video, 0, 0, video.clientWidth * 2, video.clientHeight * 2);
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    context.drawImage(stream, 0, 0);
 });
