@@ -95,7 +95,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     });
 }
 
-var canvas = document.getElementById('canvas');
+var canvas = document.getElementById('canvasLaptop');
 var context = canvas.getContext('2d');
 var video = document.getElementById('video');
 var relacion = 1.33;
