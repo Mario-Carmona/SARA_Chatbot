@@ -360,7 +360,7 @@ body {
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
-        padding: auto 0;
+        padding: 0;
     }
     .header__texts {
         display: block;
@@ -692,13 +692,10 @@ body.dark_mode .link_lateral {
     display: inline-flex;
 }
 
-.cont__video {
-    max-height: 80vh;
-}
-
 .video {
     width: 90%;
     margin: 5%;
+    height: 80%;
 }
 
 .capture_button {
