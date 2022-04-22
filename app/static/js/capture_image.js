@@ -41,8 +41,6 @@ navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
 
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
-    canvas.width = video.width
-    canvas.height = video.height
     context.drawImage(video, 0, 0, video.width, video.height);
 });
 

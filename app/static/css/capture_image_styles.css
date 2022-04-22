@@ -737,3 +737,8 @@ body.dark_mode .link_lateral {
 body.dark_mode .visualizar {
     background: var(--black3);
 }
+
+.canvas {
+    width: 90%;
+    height: auto;
+}
