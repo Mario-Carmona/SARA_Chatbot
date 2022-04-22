@@ -736,11 +736,11 @@ body.dark_mode .link_lateral {
 }
 
 .canvasLaptop {
-    visibility: visible;
+    display: block;
 }
 
-.canvasTableVertical {
-    visibility: hidden;
+.canvasTabletVertical {
+    display: none;
 }
 
 .visualizar {
