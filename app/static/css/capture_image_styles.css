@@ -727,7 +727,7 @@ body.dark_mode .link_lateral {
 .cont_video {
     display: flex;
     justify-content: center;
-    margin: 15% 0 10% 0;
+    margin: 10% 0 10% 0;
 }
 
 .video {
