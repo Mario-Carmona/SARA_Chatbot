@@ -729,3 +729,11 @@ body.dark_mode .link_lateral {
     margin: 5%;
     height: 80%;
 }
+
+.visualizar {
+    background: var(--white3);
+}
+
+body.dark_mode .visualizar {
+    background: var(--black3);
+}
