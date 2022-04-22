@@ -118,7 +118,7 @@ document.getElementById("snap").addEventListener("click", function() {
 
 
 document.getElementById("send").addEventListener("click", function() {
-    swal.fire({
+    Swal.fire({
         title: '¿Deseas enviar esta foto?',
         text: "¡No podrás revertir esto!",
         icon: 'warning',
