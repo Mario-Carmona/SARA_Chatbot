@@ -697,18 +697,14 @@ body.dark_mode .link_lateral {
 }
 
 .cont__video {
-    border: 3px solid black;
+    height: auto;
+    max-height: 80vh;
 }
 
 .video {
     width: 90%;
-    height: auto;
-    max-height: 80vh;
+    height: 100%;
     margin: 5%;
-}
-
-body.dark_mode .cont__video {
-    border: 3px solid white;
 }
 
 .capture_button {
