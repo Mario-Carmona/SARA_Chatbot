@@ -114,14 +114,11 @@ document.getElementById("snap").addEventListener("click", function() {
 
 
 
-// CommonJS
-const Swal = require('sweetalert2');
-
 
 
 
 document.getElementById("send").addEventListener("click", function() {
-    Swal.fire({
+    swal.fire({
         title: '¿Deseas enviar esta foto?',
         text: "¡No podrás revertir esto!",
         icon: 'warning',
