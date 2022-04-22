@@ -73,6 +73,5 @@ init();
 // Draw image
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
-    stream2 = await navigator.mediaDevices.getUserMedia(constraints);
-    context.drawImage(stream2, 0, 0);
+    context.drawImage(stream, 0, 0);
 });
