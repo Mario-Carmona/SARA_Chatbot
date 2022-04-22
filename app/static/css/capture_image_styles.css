@@ -725,9 +725,9 @@ body.dark_mode .link_lateral {
 }
 
 .video {
-    width: 90%;
+    width: 640;
     margin: 5%;
-    height: 80%;
+    height: 480;
 }
 
 .visualizar {
@@ -739,7 +739,7 @@ body.dark_mode .visualizar {
 }
 
 .canvas {
-    width: 90%;
-    height: 80vh;
+    width: 640;
+    height: 480;
     margin: 5%;
 }
