@@ -36,8 +36,6 @@ navigator.mediaDevices.getUserMedia({ video: { width: video.clientWidth, height:
     video.srcObject = stream;
     video.play();
 });
-
-
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
     context.drawImage(video, 0, 0);
@@ -75,6 +73,5 @@ init();
 // Draw image
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    context.drawImage(stream, 0, 0);
+    context.drawImage(video, 0, 0, video.clientWidth * 2, video.clientHeight * 2);
 });
