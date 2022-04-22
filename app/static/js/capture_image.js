@@ -113,8 +113,11 @@ document.getElementById("snap").addEventListener("click", function() {
 
 
 
+/*
+$("#send").click(function(){
 
-
+});
+*/
 
 
 document.getElementById("send").addEventListener("click", function() {
@@ -127,5 +130,5 @@ document.getElementById("send").addEventListener("click", function() {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Enviar',
         cancelButtonText: 'No enviar'
-    })
+    });
 });
