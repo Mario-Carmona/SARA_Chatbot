@@ -31,8 +31,7 @@ const snap = document.getElementById("snap");
 const errorMsgElement = document.querySelector('span#errorMsg');
 
 
-
-navigator.mediaDevices.getUserMedia({ video: { width: video.width, height: video.height } }).then(function(stream) {
+navigator.mediaDevices.getUserMedia({ video: { width: video.clientWidth, height: video.clientWidth } }).then(function(stream) {
     //video.src = window.URL.createObjectURL(stream);
     video.srcObject = stream;
     video.play();
