@@ -75,5 +75,5 @@ init();
 // Draw image
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
-    context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
+    context.drawImage(video, 0, 0, video.srcObject.clientWidth, video.srcObject.clientHeight);
 });
