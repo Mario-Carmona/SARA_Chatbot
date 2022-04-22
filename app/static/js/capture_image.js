@@ -31,7 +31,7 @@ const snap = document.getElementById("snap");
 const errorMsgElement = document.querySelector('span#errorMsg');
 
 
-navigator.mediaDevices.getUserMedia({ video: { width: video.clientWidth, height: video.clientWidth } }).then(function(stream) {
+navigator.mediaDevices.getUserMedia({ video: { width: video.clientWidth, height: video.clientHeight } }).then(function(stream) {
     //video.src = window.URL.createObjectURL(stream);
     video.srcObject = stream;
     video.play();
@@ -41,8 +41,8 @@ navigator.mediaDevices.getUserMedia({ video: { width: video.clientWidth, height:
 var context = canvas.getContext('2d');
 snap.addEventListener("click", function() {
     context.drawImage(video, 0, 0, document.getElementById('video').width, document.getElementById('video').height);
-    console.log(document.getElementById('video').width)
-    console.log(document.getElementById('video').height)
+    console.log(document.getElementById('video').clientWidth)
+    console.log(document.getElementById('video').clientHeight)
 });
 
 
