@@ -75,7 +75,6 @@ body {
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
-        align-items: center;
     }
     .header__title {
         font-size: 350%;
@@ -728,6 +727,7 @@ body.dark_mode .link_lateral {
 .cont_video {
     display: flex;
     justify-content: center;
+    margin: 15% 0 10% 0;
 }
 
 .visualizar {
