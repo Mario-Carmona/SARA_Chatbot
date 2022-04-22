@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.10.1/dist/sweetalert2.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
 </head>
 
 <body>
@@ -66,6 +66,13 @@
                     <canvas id="canvasLaptop" class="canvasLaptop" width="922" height="693"></canvas>
                     <canvas id="canvasTableVertical" class="canvasTabletVertical" width="500" height="500"></canvas>
                 </section>
+
+                <div class="capture_button">
+                    <button id="send" class="enlace">
+                        <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
+                        <div class="button">Enviar</div>
+                    </button>
+                </div>
             </div>
         </section>
     </main>

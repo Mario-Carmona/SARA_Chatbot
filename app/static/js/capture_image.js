@@ -106,3 +106,31 @@ document.getElementById("snap").addEventListener("click", function() {
     var inicioHeight = (video.clientHeight - videoHeight) / 2;
     context.drawImage(video, 0, inicioHeight, video.clientWidth, videoHeight);
 });
+
+
+
+
+
+
+
+// ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
+
+// CommonJS
+const Swal = require('sweetalert2')
+
+
+
+
+document.getElementById("send").addEventListener("click", function() {
+    Swal.fire({
+        title: '¿Deseas enviar esta foto?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#00FF24',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Enviar',
+        cancelButtonText: 'No enviar'
+    })
+});
