@@ -735,6 +735,14 @@ body.dark_mode .link_lateral {
     height: 693px;
 }
 
+.canvasLaptop {
+    visibility: visible;
+}
+
+.canvasTableVertical {
+    visibility: hidden;
+}
+
 .visualizar {
     background: var(--white3);
 }
