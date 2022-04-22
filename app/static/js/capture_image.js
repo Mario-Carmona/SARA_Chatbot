@@ -102,6 +102,4 @@ var video = document.getElementById('video');
 // Trigger photo take
 document.getElementById("snap").addEventListener("click", function() {
     context.drawImage(video, 0, 0, video.clientWidth, video.clientHeight);
-    console.log(video.srcObject.width)
-    console.log(video.srcObject.height)
 });
