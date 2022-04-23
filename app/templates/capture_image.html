@@ -42,6 +42,8 @@
             var videoHeight = video.clientWidth / relacion;
             var inicioHeight = (video.clientHeight - videoHeight) / 2;
             context.drawImage(video, 0, inicioHeight, video.clientWidth, videoHeight);
+
+            document.getElementById('visualizar').style.display = 'block';
         }
 
         function sendPhoto() {
@@ -128,7 +130,7 @@
     </header>
 
     <main>
-        <section class="visualizar">
+        <section id="visualizar" class="visualizar">
             <div class="container__header__main__capture">
                 <section class="cont_video">
                     <canvas id="canvasLaptop" class="canvasLaptop" width="922" height="693"></canvas>
