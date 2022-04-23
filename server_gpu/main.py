@@ -233,13 +233,13 @@ def adulto(request: Entry):
 
     return response
 
-@app.get("/deduct", response_class=PlainTextResponse)
+@app.get("/deduct")
 def deduct(imagen: str):
 
     print(imagen)
     #age = deduct_age(data["image"])
 
-    return "Nada"
+    return {"texto": "Nada"}
 
 @app.get("/Reconnect", response_class=PlainTextResponse)
 def adulto():
