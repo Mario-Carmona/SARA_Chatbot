@@ -138,6 +138,8 @@ document.getElementById("send").addEventListener("click", function() {
                 console.log(`${data} and status is ${status}`)
             });
             */
+
+            document.getElementById('enlace_sec_sig').setAttribute('href', './interface')
         }
     });
 });

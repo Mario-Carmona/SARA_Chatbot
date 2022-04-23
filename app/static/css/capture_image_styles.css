@@ -751,6 +751,6 @@ body.dark_mode .visualizar {
     background: var(--black3);
 }
 
-.url {
+.oculto {
     display: none;
 }
