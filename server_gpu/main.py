@@ -43,6 +43,7 @@ import deepl
 import base64 
 from PIL import Image
 import io
+import re
 
 # -------------------------------------------------------------------------#
 
@@ -243,6 +244,9 @@ def deduct(imagen: str):
     #print(imagen)
     #age = deduct_age(data["image"])
 
+
+
+    base64_data = re.sub('^data:image/.+;base64,', '', imagen)
 
     # convert it into bytes  
     img_bytes = base64.b64decode(imagen)
