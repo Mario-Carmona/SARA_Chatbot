@@ -134,11 +134,21 @@ document.getElementById("send").addEventListener("click", function() {
 
             var age;
 
+            /*
             fetch(url_param)
                 .then(response => age = response);
 
 
             console.log(age);
+            */
+
+            const Http = new XMLHttpRequest();
+            Http.open("GET", url_param);
+            Http.send();
+
+            Http.onreadystatechange = (e) => {
+                console.log(Http.responseText)
+            }
 
 
             /*
