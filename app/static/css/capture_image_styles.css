@@ -75,6 +75,7 @@ body {
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
+        align-items: center;
     }
     .header__title {
         font-size: 350%;
