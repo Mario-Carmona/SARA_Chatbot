@@ -76,6 +76,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0;
     }
     .header__title {
         font-size: 350%;
@@ -197,6 +198,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0;
     }
     .header__title {
         font-size: 250%;
@@ -318,6 +320,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0;
     }
     .header__title {
         font-size: 250%;
@@ -437,6 +440,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin: 0;
     }
     .header__texts {
         display: block;
