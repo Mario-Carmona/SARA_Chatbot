@@ -123,7 +123,7 @@ document.getElementById("send").addEventListener("click", function() {
     }).then((result) => {
         if (result.isConfirmed) {
             var canvas = document.getElementById('canvasLaptop');
-            var imgBase64 = canvas.toDataURL("image/png");
+            var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
             var url = document.getElementById('url').innerText;
 
