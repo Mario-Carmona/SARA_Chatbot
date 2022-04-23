@@ -256,7 +256,6 @@ def deduct(request: EntryDeduct):
     img = Image.open(io.BytesIO(img_bytes))
 
 
-    imgAux = Image.open("./niño.jpeg")
 
 
     # Init model, transforms
