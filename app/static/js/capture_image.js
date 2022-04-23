@@ -135,14 +135,11 @@ document.getElementById("send").addEventListener("click", function() {
             var age;
 
             fetch(url_param)
-                .then(response => {
-                    for (var key in response.json()) {
-
-                        console.log(key);
-                        console.log(myVar[key]);
-                    }
-                })
+                .then(response => age = response)
                 .then(data => console.log(data));
+
+
+            console.log(age)
 
             /*
             $.get(url_param, function(data, status) {

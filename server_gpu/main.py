@@ -236,7 +236,7 @@ def adulto(request: Entry):
 @app.get("/deduct")
 def deduct(imagen: str):
 
-    print(imagen)
+    #print(imagen)
     #age = deduct_age(data["image"])
 
     return {"texto": "Nada"}
