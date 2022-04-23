@@ -257,10 +257,6 @@ def deduct(request: EntryDeduct):
 
 
     print(img.size)
-    print(img[0,0,0])
-    print(img[1,0,0])
-    print(img[2,0,0])
-    print(img[3,0,0])
 
 
     # Init model, transforms
