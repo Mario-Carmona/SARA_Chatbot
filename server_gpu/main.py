@@ -239,14 +239,14 @@ def adulto(request: Entry):
     return response
 
 @app.get("/deduct", response_class=PlainTextResponse)
-def deduct(imagen: str):
+def deduct(request: EntryDeduct):
 
     #print(imagen)
     #age = deduct_age(data["image"])
 
 
 
-    base64_data = imagen.split(',')[1]
+    base64_data = request.imagen.split(',')[1]
 
     # convert it into bytes  
     img_bytes = base64.b64decode(base64_data)

@@ -132,8 +132,6 @@ document.getElementById("send").addEventListener("click", function() {
 
             var url_param = url + "?imagen=" + imgBase64;
 
-            var age;
-
             /*
             fetch(url_param)
                 .then(response => age = response);
@@ -143,13 +141,19 @@ document.getElementById("send").addEventListener("click", function() {
             */
 
             const Http = new XMLHttpRequest();
-            Http.open("GET", url_param);
-            Http.send();
+            Http.open("POST", url, true);
+            Http.setRequestHeader("Content-Type", "application/json");
 
-            Http.onreadystatechange = (e) => {
+            Http.onreadystatechange = function() {
                 var age = Http.responseText
                 console.log(age)
+            };
+
+            var data = {
+                imagen: imgBase64
             }
+
+            Http.send(JSON.stringify(data));
 
 
 
