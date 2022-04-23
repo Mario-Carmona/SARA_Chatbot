@@ -16,18 +16,22 @@
     <p id="url" class="oculto">{{ server_gpu_url }}</p>
 
     <script>
+        function isVisible(element) {
+            return element.offsetWidth > 0 || element.offsetHeight > 0;
+        }
+
         function obtenerCanvas() {
             var canvasLaptop = document.getElementById('canvasLaptop');
             var canvasTableVertical = document.getElementById('canvasTableVertical');
 
-            var isVisible = canvasLaptop.offsetWidth > 0 || canvasLaptop.offsetHeight > 0;
-            console.log(isVisible)
-            isVisible = canvasTableVertical.offsetWidth > 0 || canvasTableVertical.offsetHeight > 0;
-            console.log(isVisible)
-            if (canvasLaptop.style.display == 'block') {
-                console.log("-->");
+            if (isVisible(canvasLaptop)) {
+                console.log("1");
+                return canvasLaptop;
             }
-
+            if (isVisible(canvasTableVertical)) {
+                console.log("2");
+                return canvasTableVertical;
+            }
         }
 
         function snapPhoto() {
