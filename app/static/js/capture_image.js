@@ -138,15 +138,11 @@ document.getElementById("send").addEventListener("click", function() {
                 .then(response => age = response.json());
 
 
-            /*
             for (var key in age) {
 
                 console.log(key);
                 console.log(age[key]);
             }
-            */
-
-            console.log(age["texto"])
 
 
             /*
