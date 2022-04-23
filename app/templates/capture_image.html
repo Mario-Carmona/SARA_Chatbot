@@ -18,7 +18,12 @@
     <script>
         function obtenerCanvas() {
             var canvasLaptop = document.getElementById('canvasLaptop');
-            console.log(canvasLaptop)
+            var canvasTableVertical = document.getElementById('canvasTableVertical');
+
+            var isVisible = canvasLaptop.offsetWidth > 0 || canvasLaptop.offsetHeight > 0;
+            console.log(isVisible)
+            isVisible = canvasTableVertical.offsetWidth > 0 || canvasTableVertical.offsetHeight > 0;
+            console.log(isVisible)
             if (canvasLaptop.style.display == 'block') {
                 console.log("-->");
             }
