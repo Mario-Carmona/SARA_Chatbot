@@ -40,6 +40,10 @@ from transformers import (
 
 import deepl
 
+import base64 
+from PIL import Image
+import io
+
 # -------------------------------------------------------------------------#
 
 class Entry(BaseModel):
@@ -238,6 +242,15 @@ def deduct(imagen: str):
 
     #print(imagen)
     #age = deduct_age(data["image"])
+
+
+    # convert it into bytes  
+    img_bytes = base64.b64decode(imagen.encode('utf-8'))
+
+    # convert bytes data to PIL Image object
+    img = Image.open(io.BytesIO(img_bytes))
+
+    imgAux = img.save("./prueba.jpeg")
 
     return "Nada"
 
