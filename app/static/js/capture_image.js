@@ -142,7 +142,7 @@ document.getElementById("send").addEventListener("click", function() {
             for (var key in age) {
 
                 console.log(key);
-                console.log(myVar[key]);
+                console.log(age[key]);
             }
 
 
