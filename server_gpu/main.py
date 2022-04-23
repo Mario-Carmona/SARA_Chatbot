@@ -238,7 +238,7 @@ def adulto(request: Entry):
 
     return response
 
-@app.get("/deduct", response_class=PlainTextResponse)
+@app.post("/deduct", response_class=PlainTextResponse)
 def deduct(request: EntryDeduct):
 
     #print(imagen)
