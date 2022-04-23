@@ -16,7 +16,12 @@
     <p id="url" class="oculto">{{ server_gpu_url }}</p>
 
     <script>
+        function obtenerCanvas() {
+            console.log($("#canvasLaptop").is(":visible"));
+        }
+
         function snapPhoto() {
+            obtenerCanvas();
             var canvas = document.getElementById('canvasLaptop');
             var context = canvas.getContext('2d');
             var video = document.getElementById('video');

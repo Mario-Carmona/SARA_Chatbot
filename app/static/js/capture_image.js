@@ -24,6 +24,10 @@ window.addEventListener('resize', () => {
 /********************************/
 
 
+
+
+
+
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
 
