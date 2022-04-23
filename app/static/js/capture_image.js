@@ -110,16 +110,6 @@ document.getElementById("snap").addEventListener("click", function() {
 
 
 
-
-
-
-/*
-$("#send").click(function(){
-
-});
-*/
-
-
 document.getElementById("send").addEventListener("click", function() {
     Swal.fire({
         title: '¿Deseas enviar esta foto?',
@@ -130,5 +120,24 @@ document.getElementById("send").addEventListener("click", function() {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Enviar',
         cancelButtonText: 'No enviar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var canvas = document.getElementById('canvasLaptop');
+            var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
+
+            var url = document.getElementById('url').innerText;
+            var data = {
+                imagen: imgBase64
+            }
+
+            console.log(url)
+
+
+            /*
+            $.post(url, data, function(data, status) {
+                console.log(`${data} and status is ${status}`)
+            });
+            */
+        }
     });
 });
