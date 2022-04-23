@@ -113,7 +113,7 @@ document.getElementById("snap").addEventListener("click", function() {
 document.getElementById("send").addEventListener("click", function() {
     Swal.fire({
         title: '¿Deseas enviar esta foto?',
-        text: "¡No podrás revertir esto!",
+        text: "¡No podrás revertir tu decisión!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#00FF24',
