@@ -242,10 +242,6 @@ def adulto(request: Entry):
 @app.post("/deduct", response_class=PlainTextResponse)
 def deduct(request: EntryDeduct):
 
-    #print(imagen)
-    #age = deduct_age(data["image"])
-
-
 
     base64_data = request.imagen.split(',')[1]
 
@@ -254,8 +250,6 @@ def deduct(request: EntryDeduct):
 
     # convert bytes data to PIL Image object
     img = Image.open(io.BytesIO(img_bytes))
-
-
 
 
     # Init model, transforms
@@ -273,6 +267,7 @@ def deduct(request: EntryDeduct):
     preds = proba.argmax(1)
 
     """
+    Los índices empiezan en 0
     0-2
     3-9
     10-19
@@ -284,11 +279,11 @@ def deduct(request: EntryDeduct):
     more than 70
     """
 
-    print(int(preds))
+    if int(preds) <= 1:
+        return "Niño"
+    else:
+        return "Adulto"
 
-
-
-    return "Nada"
 
 @app.get("/Reconnect", response_class=PlainTextResponse)
 def adulto():
