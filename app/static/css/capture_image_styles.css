@@ -68,14 +68,13 @@ body {
         /* Ancho máximo del contenedor */
         max-width: 1200px;
         /* Se eliminan los márgenes en el top */
-        margin: auto;
+        margin: 0 auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
         /* Se asigna la altura restante del encabezado */
         height: 100vh;
         /* Se elimina el padding-top del contenedor de sección */
         padding: 0;
-        align-items: center;
     }
     .header__title {
         font-size: 350%;
