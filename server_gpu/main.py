@@ -35,7 +35,9 @@ from transformers import (
     AutoTokenizer,
     BlenderbotForConditionalGeneration,
     ConversationalPipeline, 
-    Conversation
+    Conversation,
+    ViTFeatureExtractor,
+    ViTForImageClassification
 )
 
 import deepl
@@ -43,7 +45,6 @@ import deepl
 import base64 
 from PIL import Image
 import io
-import re
 
 # -------------------------------------------------------------------------#
 
@@ -254,7 +255,24 @@ def deduct(request: EntryDeduct):
     # convert bytes data to PIL Image object
     img = Image.open(io.BytesIO(img_bytes))
 
-    imgAux = img.save("./prueba.png")
+
+    # Init model, transforms
+    model = ViTForImageClassification.from_pretrained('/mnt/homeGPU/mcarmona/nateraw/vit-age-classifier')
+    transforms = ViTFeatureExtractor.from_pretrained('/mnt/homeGPU/mcarmona/nateraw/vit-age-classifier')
+
+    # Transform our image and pass it through the model
+    inputs = transforms(img, return_tensors='pt')
+    output = model(**inputs)
+
+    # Predicted Class probabilities
+    proba = output.logits.softmax(1)
+
+    # Predicted Classes
+    preds = proba.argmax(1)
+
+    print(preds)
+
+
 
     return "Nada"
 
