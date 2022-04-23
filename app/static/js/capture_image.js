@@ -130,7 +130,7 @@ document.getElementById("send").addEventListener("click", function() {
                 imagen: "Prueba"
             };
 
-            console.log(data);
+            console.log(typeof imgBase64);
 
             /* 
             var otherParam = {
