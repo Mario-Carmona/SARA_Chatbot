@@ -126,13 +126,13 @@ document.getElementById("send").addEventListener("click", function() {
             var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
             var url = document.getElementById('url').innerText;
-            var Data = {
+            var data = {
                 imagen: "Prueba"
             };
 
             console.log(data);
 
-
+            /* 
             var otherParam = {
                 headers: {
                     "content-type": "application/json; charset=UTF-8"
@@ -142,8 +142,42 @@ document.getElementById("send").addEventListener("click", function() {
             };
 
             fetch(url, otherParam)
+                .then(response => (console.log(response)))
                 .then(data => (console.log(data)))
-                .then(res => (console.log(res)))
+            */
+
+
+
+
+            // Example POST method implementation:
+            async function postData(url = '', data = {}) {
+                // Default options are marked with *
+                const response = await fetch(url, {
+                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                    mode: 'cors', // no-cors, *cors, same-origin
+                    headers: {
+                        'Content-Type': 'application/json'
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: JSON.stringify(data) // body data type must match "Content-Type" header
+                });
+                return response.json(); // parses JSON response into native JavaScript objects
+            }
+
+            postData(url, data)
+                .then(data => {
+                    console.log(data); // JSON data parsed by `data.json()` call
+                });
+
+
+
+
+
+
+
+
+
+
 
             /*
             $.post(url, data, function(data, status) {
