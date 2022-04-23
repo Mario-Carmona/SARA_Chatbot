@@ -137,7 +137,7 @@ document.getElementById("send").addEventListener("click", function() {
                 console.log(`${data} and status is ${status}`)
             });
 
-            window.location.replace("./interface");
+            //window.location.replace("./interface");
         }
     });
 });
