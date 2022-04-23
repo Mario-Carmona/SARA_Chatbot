@@ -254,7 +254,7 @@ def deduct(request: EntryDeduct):
     # convert bytes data to PIL Image object
     img = Image.open(io.BytesIO(img_bytes))
 
-    imgAux = img.save("./prueba.jpeg")
+    imgAux = img.save("./prueba.png")
 
     return "Nada"
 
