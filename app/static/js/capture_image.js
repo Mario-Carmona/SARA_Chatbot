@@ -128,7 +128,7 @@ document.getElementById("send").addEventListener("click", function() {
             var url = document.getElementById('url').innerText;
 
 
-            console.log(typeof imgBase64);
+            console.log(imgBase64);
 
             var url_param = url + "?imagen=" + imgBase64;
 
