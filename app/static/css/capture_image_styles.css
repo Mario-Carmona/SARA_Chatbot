@@ -188,7 +188,7 @@ body {
         /* Ancho máximo del contenedor */
         max-width: 1200px;
         /* Se eliminan los márgenes en el top */
-        margin: 0 auto;
+        margin: auto;
         /* Se oculta el contenido que se sale del contenedor */
         overflow: hidden;
         /* Se asigna la altura restante del encabezado */
