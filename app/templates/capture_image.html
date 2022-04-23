@@ -17,7 +17,11 @@
 
     <script>
         function obtenerCanvas() {
-            console.log($("#canvasLaptop").is(":visible"));
+            var canvasLaptop = document.getElementById('canvasLaptop');
+            if (canvasLaptop.style.visibility == 'visible') {
+                console.log("-->");
+            }
+
         }
 
         function snapPhoto() {
