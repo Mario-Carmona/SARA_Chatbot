@@ -130,7 +130,7 @@ document.getElementById("send").addEventListener("click", function() {
                 imagen: imgBase64
             }
 
-            console.log(url)
+            console.log(data)
 
 
             /*
