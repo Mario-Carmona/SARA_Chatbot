@@ -128,21 +128,14 @@ document.getElementById("send").addEventListener("click", function() {
             var url = document.getElementById('url').innerText;
             var data = {
                 imagen: imgBase64
-            };
-
-            var otherParam = {
-                headers: {
-                    "content-type": "application/json; charset=UTF-8"
-                },
-                body: data,
-                method: "POST"
-            };
+            }
 
             console.log(data)
 
-            fetch(url, otherParam)
-                .then(data => { console.log(data) })
-                .then(res => { console.log(res) })
+
+            $.post(url, data, function(data, status) {
+                console.log(`${data} and status is ${status}`)
+            });
 
             //window.location.replace("./interface");
         }
