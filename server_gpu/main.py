@@ -265,7 +265,8 @@ if __name__ == "__main__":
         pyngrok_config=pyngrok_config
     ).public_url
     # Convertir URL HTTP en HTTPS
-    public_url = public_url.split(':')[0] + "s:" + public_url.split(':')[1]
+    if public_url.split(':')[0] == "http":
+        public_url = public_url.split(':')[0] + "s:" + public_url.split(':')[1]
 
     print(bcolors.OK + "Public URL" + bcolors.RESET + ": " + public_url)
 
