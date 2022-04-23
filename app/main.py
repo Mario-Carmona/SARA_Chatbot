@@ -285,7 +285,7 @@ def interface(request: Request):
 
 @app.get("/capture_image", response_class=HTMLResponse) 
 def capture_image(request: Request):
-    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": (SERVER_GPU_URL + "/deduct")})
+    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL + "/deduct"})
 
 @app.get("/wakeup", response_class=PlainTextResponse)
 def wakeup():
