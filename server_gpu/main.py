@@ -47,6 +47,8 @@ class Entry(BaseModel):
     past_user_inputs: List[str]
     generated_responses: List[str]
 
+class EntryDeduct(BaseModel):
+    imagen: str
 
 
 parser = argparse.ArgumentParser()
@@ -232,9 +234,10 @@ def adulto(request: Entry):
     return response
 
 @app.post("/deduct", response_class=PlainTextResponse)
-def deduct(request):
+def deduct(request: EntryDeduct):
 
     print(request)
+    print(request.imagen)
     #age = deduct_age(data["image"])
 
     return "Nada"
