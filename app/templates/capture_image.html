@@ -22,13 +22,21 @@
 
         function obtenerCanvas() {
             var canvasLaptop = document.getElementById('canvasLaptop');
-            var canvasTableVertical = document.getElementById('canvasTableVertical');
+            var canvasTabletVertical = document.getElementById('canvasTabletVertical');
+            var canvasTabletHorizontal = document.getElementById('canvasTabletHorizontal');
+            var canvasMovil = document.getElementById('canvasMovil');
 
             if (isVisible(canvasLaptop)) {
                 return canvasLaptop;
             }
-            if (isVisible(canvasTableVertical)) {
-                return canvasTableVertical;
+            if (isVisible(canvasTabletVertical)) {
+                return canvasTabletVertical;
+            }
+            if (isVisible(canvasTabletHorizontal)) {
+                return canvasTabletHorizontal;
+            }
+            if (isVisible(canvasMovil)) {
+                return canvasMovil;
             }
         }
 
@@ -134,7 +142,9 @@
             <div class="container__header__main__capture">
                 <section class="cont_video">
                     <canvas id="canvasLaptop" class="canvasLaptop" width="922" height="693"></canvas>
-                    <canvas id="canvasTableVertical" class="canvasTabletVertical" width="500" height="500"></canvas>
+                    <canvas id="canvasTabletVertical" class="canvasTabletVertical" width="500" height="500"></canvas>
+                    <canvas id="canvasTabletHorizontal" class="canvasTabletHorizontal" width="500" height="500"></canvas>
+                    <canvas id="canvasMovil" class="canvasMovil" width="500" height="500"></canvas>
                 </section>
 
                 <div class="capture_button">

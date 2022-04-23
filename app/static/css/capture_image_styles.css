@@ -143,6 +143,22 @@ body {
         width: 120px;
         margin: auto;
     }
+    .video {
+        width: 922px;
+        height: 693px;
+    }
+    .canvasLaptop {
+        display: block;
+    }
+    .canvasTabletVertical {
+        display: none;
+    }
+    .canvasTabletHorizontal {
+        display: none;
+    }
+    .canvasMovil {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 751px) and (max-height: 750px) and (min-height: 500px) {
@@ -246,6 +262,22 @@ body {
         cursor: pointer;
         width: 15%;
         margin: auto;
+    }
+    .video {
+        width: 675px;
+        height: 507px;
+    }
+    .canvasLaptop {
+        display: none;
+    }
+    .canvasTabletVertical {
+        display: none;
+    }
+    .canvasTabletHorizontal {
+        display: block;
+    }
+    .canvasMovil {
+        display: none;
     }
 }
 
@@ -358,6 +390,22 @@ body {
         width: 20%;
         margin: auto;
     }
+    .video {
+        width: 450px;
+        height: 338px;
+    }
+    .canvasLaptop {
+        display: none;
+    }
+    .canvasTabletVertical {
+        display: block;
+    }
+    .canvasTabletHorizontal {
+        display: none;
+    }
+    .canvasMovil {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 400px) and (min-width: 200px) and (max-height: 850px) and (min-height: 500px) {
@@ -467,6 +515,22 @@ body {
         cursor: pointer;
         width: 30%;
         margin: auto;
+    }
+    .video {
+        width: 180px;
+        height: 135px;
+    }
+    .canvasLaptop {
+        display: none;
+    }
+    .canvasTabletVertical {
+        display: none;
+    }
+    .canvasTabletHorizontal {
+        display: none;
+    }
+    .canvasMovil {
+        display: block;
     }
 }
 
@@ -728,19 +792,6 @@ body.dark_mode .link_lateral {
     display: flex;
     justify-content: center;
     margin: 10% 0 10% 0;
-}
-
-.video {
-    width: 922px;
-    height: 693px;
-}
-
-.canvasLaptop {
-    display: block;
-}
-
-.canvasTabletVertical {
-    display: none;
 }
 
 .visualizar {
