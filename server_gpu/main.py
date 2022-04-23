@@ -6,7 +6,7 @@
 # General
 import os
 from pathlib import Path
-from typing import List
+from typing import Dict, List
 from color import bcolors
 
 # Configuración
@@ -189,6 +189,10 @@ def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_resp
 
 
 
+def deduct_age(image):
+    pass
+
+
 def send_public_URL():
     print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
     url = server_args.controller_url
@@ -216,6 +220,13 @@ def adulto(request: Entry):
 
     return response
 
+@app.post("/deduct", response_class=PlainTextResponse)
+def deduct(request):
+
+    print(request)
+    #age = deduct_age(data["image"])
+
+    return "Nada"
 
 @app.get("/Reconnect", response_class=PlainTextResponse)
 def adulto():

@@ -133,11 +133,9 @@ document.getElementById("send").addEventListener("click", function() {
             console.log(data)
 
 
-            /*
             $.post(url, data, function(data, status) {
                 console.log(`${data} and status is ${status}`)
             });
-            */
 
             window.location.replace("./interface");
         }
