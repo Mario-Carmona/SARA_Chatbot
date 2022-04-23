@@ -127,7 +127,7 @@ document.getElementById("send").addEventListener("click", function() {
 
             var url = document.getElementById('url').innerText;
             var data = {
-                imagen: imgBase64
+                imagen: "Prueba"
             }
 
             console.log(data)
