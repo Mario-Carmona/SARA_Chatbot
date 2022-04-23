@@ -233,11 +233,10 @@ def adulto(request: Entry):
 
     return response
 
-@app.post("/deduct", response_class=PlainTextResponse)
-def deduct(request: EntryDeduct):
+@app.get("/deduct", response_class=PlainTextResponse)
+def deduct(imagen: str):
 
-    print(request)
-    print(request.imagen)
+    print(imagen)
     #age = deduct_age(data["image"])
 
     return "Nada"

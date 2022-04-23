@@ -132,6 +132,12 @@ document.getElementById("send").addEventListener("click", function() {
 
             console.log(typeof imgBase64);
 
+            var url_param = url + "?imagen=" + "Prueba"
+
+            $.get(url_param, function(data, status) {
+                console.log(`${data}`)
+            });
+
             /* 
             var otherParam = {
                 headers: {
@@ -148,6 +154,7 @@ document.getElementById("send").addEventListener("click", function() {
 
 
 
+            /*
 
             // Example POST method implementation:
             async function postData(url = '', data = {}) {
@@ -169,7 +176,7 @@ document.getElementById("send").addEventListener("click", function() {
                     console.log(data); // JSON data parsed by `data.json()` call
                 });
 
-
+            */
 
 
 
