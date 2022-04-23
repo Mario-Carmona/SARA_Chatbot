@@ -256,7 +256,7 @@ def deduct(request: EntryDeduct):
     img = Image.open(io.BytesIO(img_bytes))
 
 
-    print(img.size)
+    imgAux = Image.open("./prueba.png")
 
 
     # Init model, transforms
@@ -264,7 +264,7 @@ def deduct(request: EntryDeduct):
     transforms = ViTFeatureExtractor.from_pretrained('/mnt/homeGPU/mcarmona/nateraw/vit-age-classifier')
 
     # Transform our image and pass it through the model
-    inputs = transforms(img, return_tensors='pt')
+    inputs = transforms(imgAux, return_tensors='pt')
     output = model(**inputs)
 
     # Predicted Class probabilities
