@@ -256,7 +256,7 @@ def deduct(request: EntryDeduct):
     img = Image.open(io.BytesIO(img_bytes))
 
 
-    print(img.shape)
+    print(len(img))
     print(img[0,0,0])
     print(img[1,0,0])
     print(img[2,0,0])
