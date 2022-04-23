@@ -139,7 +139,7 @@ document.getElementById("send").addEventListener("click", function() {
             });
             */
 
-            document.getElementById('enlace_sec_sig').setAttribute('href', './interface')
+            window.location.replace("./interface");
         }
     });
 });
