@@ -108,9 +108,7 @@ document.getElementById("snap").addEventListener("click", function() {
 });
 
 
-
-
-document.getElementById("send").addEventListener("click", function() {
+function deductAge() {
     Swal.fire({
         title: '¿Deseas enviar esta foto?',
         text: "¡No podrás revertir tu decisión!",
@@ -127,19 +125,6 @@ document.getElementById("send").addEventListener("click", function() {
 
             var url = document.getElementById('url').innerText;
 
-
-            console.log(imgBase64);
-
-            var url_param = url + "?imagen=" + imgBase64;
-
-            /*
-            fetch(url_param)
-                .then(response => age = response);
-
-
-            console.log(age);
-            */
-
             const Http = new XMLHttpRequest();
             Http.open("POST", url, true);
             Http.setRequestHeader("Content-Type", "application/json");
@@ -147,6 +132,8 @@ document.getElementById("send").addEventListener("click", function() {
             Http.onreadystatechange = function() {
                 var age = Http.responseText
                 console.log(age)
+
+                //window.location.replace("./interface"+age);
             };
 
             var data = {
@@ -154,74 +141,6 @@ document.getElementById("send").addEventListener("click", function() {
             }
 
             Http.send(JSON.stringify(data));
-
-
-
-
-            /*
-            $.get(url_param, function(data, status) {
-                age = data;
-            });
-            */
-
-
-
-
-            /* 
-            var otherParam = {
-                headers: {
-                    "content-type": "application/json; charset=UTF-8"
-                },
-                body: Data,
-                method: "POST"
-            };
-
-            fetch(url, otherParam)
-                .then(response => (console.log(response)))
-                .then(data => (console.log(data)))
-            */
-
-
-
-            /*
-
-            // Example POST method implementation:
-            async function postData(url = '', data = {}) {
-                // Default options are marked with *
-                const response = await fetch(url, {
-                    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-                    mode: 'cors', // no-cors, *cors, same-origin
-                    headers: {
-                        'Content-Type': 'application/json'
-                            // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: JSON.stringify(data) // body data type must match "Content-Type" header
-                });
-                return response.json(); // parses JSON response into native JavaScript objects
-            }
-
-            postData(url, data)
-                .then(data => {
-                    console.log(data); // JSON data parsed by `data.json()` call
-                });
-
-            */
-
-
-
-
-
-
-
-
-
-            /*
-            $.post(url, data, function(data, status) {
-                console.log(`${data} and status is ${status}`)
-            });
-            */
-
-            //window.location.replace("./interface");
         }
     });
-});
+}

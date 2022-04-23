@@ -280,9 +280,9 @@ def deduct(request: EntryDeduct):
     """
 
     if int(preds) <= 1:
-        return "Niño"
+        return "Child"
     else:
-        return "Adulto"
+        return "Adult"
 
 
 @app.get("/Reconnect", response_class=PlainTextResponse)
