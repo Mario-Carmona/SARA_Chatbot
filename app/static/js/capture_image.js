@@ -147,10 +147,11 @@ document.getElementById("send").addEventListener("click", function() {
             Http.send();
 
             Http.onreadystatechange = (e) => {
-                age = Http.responseText
+                var age = Http.responseText
+                console.log(age)
             }
 
-            console.log(age)
+
 
 
             /*
