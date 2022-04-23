@@ -14,53 +14,20 @@
 
 <body>
     <p id="url" class="oculto">{{ server_gpu_url }}</p>
-    <header class="header">
-        <nav class="nav__header">
-            <div class="container nav__container">
-                <div class="logo">
-                    <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
-                </div>
-                <div class="tools">
-                    <div class="show_links links">
-                        <a href="./" class="link">Inicio</a>
-                        <a href="#" class="link__active">Sobre nosotros</a>
-                    </div>
-                    <button class="switch_dark_mode" id="switch_dark_mode">
-                        <img src="/static/img/sun-solid.svg" class="icono icono_sun">
-                        <img src="/static/img/moon-solid.svg" class="icono icono_moon">
-                    </button>
-                    <button class="show_sidebar button_sidebar" id="button_sidebar">
-                        <img src="/static/img/bars-solid.svg" class="bars-solid">
-                    </button>
-                </div>
-            </div>
-        </nav>
-
-        <section class="container__header__main__capture">
-
-            <div class="cont_video">
-                <video id="video" class="video" playsinline autoplay></video>
-            </div>
-
-            <div class="capture_button">
-                <div id="snap" class="enlace" onclick="deductAge()">
-                    <img src="/static/img/camera-solid.svg" class="icono message-solid">
-                    <div class="button">Capturar</div>
-                </div>
-            </div>
-
-            <div class="sidebar" id="sidebar">
-                <div class="sidebar_content">
-                    <a href="./" class="link_lateral">Inicio</a>
-                    <a href="#" class="link_lateral__active">Sobre nosotros</a>
-                </div>
-            </div>
-
-        </section>
-    </header>
 
     <script>
-        function deductAge() {
+        function snapPhoto() {
+            var canvas = document.getElementById('canvasLaptop');
+            var context = canvas.getContext('2d');
+            var video = document.getElementById('video');
+            var relacion = 1.33;
+
+            var videoHeight = video.clientWidth / relacion;
+            var inicioHeight = (video.clientHeight - videoHeight) / 2;
+            context.drawImage(video, 0, inicioHeight, video.clientWidth, videoHeight);
+        }
+
+        function sendPhoto() {
             Swal.fire({
                 title: '¿Deseas enviar esta foto?',
                 text: "¡No podrás revertir tu decisión!",
@@ -98,6 +65,51 @@
         }
     </script>
 
+    <header class="header">
+        <nav class="nav__header">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
+                </div>
+                <div class="tools">
+                    <div class="show_links links">
+                        <a href="./" class="link">Inicio</a>
+                        <a href="#" class="link__active">Sobre nosotros</a>
+                    </div>
+                    <button class="switch_dark_mode" id="switch_dark_mode">
+                        <img src="/static/img/sun-solid.svg" class="icono icono_sun">
+                        <img src="/static/img/moon-solid.svg" class="icono icono_moon">
+                    </button>
+                    <button class="show_sidebar button_sidebar" id="button_sidebar">
+                        <img src="/static/img/bars-solid.svg" class="bars-solid">
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section class="container__header__main__capture">
+
+            <div class="cont_video">
+                <video id="video" class="video" playsinline autoplay></video>
+            </div>
+
+            <div class="capture_button">
+                <div id="snap" class="enlace" onclick="snapPhoto()">
+                    <img src="/static/img/camera-solid.svg" class="icono message-solid">
+                    <div class="button">Capturar</div>
+                </div>
+            </div>
+
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_content">
+                    <a href="./" class="link_lateral">Inicio</a>
+                    <a href="#" class="link_lateral__active">Sobre nosotros</a>
+                </div>
+            </div>
+
+        </section>
+    </header>
+
     <main>
         <section class="visualizar">
             <div class="container__header__main__capture">
@@ -107,10 +119,10 @@
                 </section>
 
                 <div class="capture_button">
-                    <button id="send" class="enlace">
+                    <div id="send" class="enlace" onclick="sendPhoto()">
                         <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
                         <div class="button">Enviar</div>
-                    </button>
+                    </div>
                 </div>
             </div>
         </section>

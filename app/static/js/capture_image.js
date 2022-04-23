@@ -94,15 +94,3 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         video.play();
     });
 }
-
-var canvas = document.getElementById('canvasLaptop');
-var context = canvas.getContext('2d');
-var video = document.getElementById('video');
-var relacion = 1.33;
-
-// Trigger photo take
-document.getElementById("snap").addEventListener("click", function() {
-    var videoHeight = video.clientWidth / relacion;
-    var inicioHeight = (video.clientHeight - videoHeight) / 2;
-    context.drawImage(video, 0, inicioHeight, video.clientWidth, videoHeight);
-});
