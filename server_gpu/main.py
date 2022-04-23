@@ -269,12 +269,22 @@ def deduct(request: EntryDeduct):
     # Predicted Class probabilities
     proba = output.logits.softmax(1)
 
-    print(proba)
-
     # Predicted Classes
     preds = proba.argmax(1)
 
-    print(preds)
+    """
+    0-2
+    3-9
+    10-19
+    20-29
+    30-39
+    40-49
+    50-59
+    60-69
+    more than 70
+    """
+
+    print(int(preds))
 
 
 
