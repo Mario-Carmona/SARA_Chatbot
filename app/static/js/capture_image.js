@@ -135,15 +135,18 @@ document.getElementById("send").addEventListener("click", function() {
             var age;
 
             fetch(url_param)
-                .then(response => age = response.json())
-                .then(data => console.log(data));
+                .then(response => age = response.json());
 
 
+            /*
             for (var key in age) {
 
                 console.log(key);
                 console.log(age[key]);
             }
+            */
+
+            console.log(age["texto"])
 
 
             /*
