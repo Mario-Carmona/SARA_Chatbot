@@ -126,17 +126,21 @@ document.getElementById("send").addEventListener("click", function() {
             var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
             var url = document.getElementById('url').innerText;
-            var data = {
-                imagen: "Prueba"
-            };
+
 
             console.log(typeof imgBase64);
 
-            var url_param = url + "?imagen=" + "Prueba"
+            var url_param = url + "?imagen=" + imgBase64;
+
+            var age;
 
             $.get(url_param, function(data, status) {
-                console.log(`${data}`)
+                age = data;
             });
+
+            console.log(age)
+
+
 
             /* 
             var otherParam = {
