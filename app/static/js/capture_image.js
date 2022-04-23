@@ -134,11 +134,16 @@ document.getElementById("send").addEventListener("click", function() {
 
             var age;
 
+            fetch(url_param)
+                .then(response => console.log(response))
+                .then(data => console.log(data));
+
+            /*
             $.get(url_param, function(data, status) {
                 age = data;
             });
+            */
 
-            console.log(age)
 
 
 
