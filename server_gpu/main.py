@@ -249,7 +249,7 @@ def deduct(imagen: str):
     base64_data = re.sub('^data:image/.+;base64,', '', imagen)
 
     # convert it into bytes  
-    img_bytes = base64.b64decode(imagen)
+    img_bytes = base64.b64decode(base64_data)
 
     # convert bytes data to PIL Image object
     img = Image.open(io.BytesIO(img_bytes))
