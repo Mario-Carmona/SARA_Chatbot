@@ -255,13 +255,17 @@ def deduct(request: EntryDeduct):
     # convert bytes data to PIL Image object
     img = Image.open(io.BytesIO(img_bytes))
 
+    img.save("./prueba.png")
+
+    imgAux = Image.open("./prueba.png")
+
 
     # Init model, transforms
     model = ViTForImageClassification.from_pretrained('/mnt/homeGPU/mcarmona/nateraw/vit-age-classifier')
     transforms = ViTFeatureExtractor.from_pretrained('/mnt/homeGPU/mcarmona/nateraw/vit-age-classifier')
 
     # Transform our image and pass it through the model
-    inputs = transforms(img, return_tensors='pt')
+    inputs = transforms(imgAux, return_tensors='pt')
     output = model(**inputs)
 
     # Predicted Class probabilities
