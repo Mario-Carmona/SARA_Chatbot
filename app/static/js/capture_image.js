@@ -126,16 +126,30 @@ document.getElementById("send").addEventListener("click", function() {
             var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
             var url = document.getElementById('url').innerText;
-            var data = {
+            var Data = {
                 imagen: "Prueba"
-            }
+            };
 
-            console.log(data)
+            console.log(data);
 
 
+            var otherParam = {
+                headers: {
+                    "content-type": "application/json; charset=UTF-8"
+                },
+                body: Data,
+                method: "POST"
+            };
+
+            fetch(url, otherParam)
+                .then(data => (console.log(data)))
+                .then(res => (console.log(res)))
+
+            /*
             $.post(url, data, function(data, status) {
                 console.log(`${data} and status is ${status}`)
             });
+            */
 
             //window.location.replace("./interface");
         }
