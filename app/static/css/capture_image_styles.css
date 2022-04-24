@@ -145,6 +145,15 @@ body {
         width: 120px;
         margin: auto;
     }
+    .send_button {
+        background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
+        box-shadow: var(--shadow) var(--color_shadow_claro);
+        border-radius: 6px;
+        cursor: pointer;
+        width: 120px;
+        margin: auto;
+        display: none;
+    }
     .video {
         width: 830px;
         height: 624px;
@@ -266,6 +275,15 @@ body {
         cursor: pointer;
         width: 20%;
         margin: auto;
+    }
+    .send_button {
+        background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
+        box-shadow: var(--shadow) var(--color_shadow_claro);
+        border-radius: 6px;
+        cursor: pointer;
+        width: 120px;
+        margin: auto;
+        display: none;
     }
     .video {
         width: 547px;
@@ -396,6 +414,15 @@ body {
         width: 25%;
         margin: auto;
     }
+    .send_button {
+        background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
+        box-shadow: var(--shadow) var(--color_shadow_claro);
+        border-radius: 6px;
+        cursor: pointer;
+        width: 120px;
+        margin: auto;
+        display: none;
+    }
     .video {
         width: 450px;
         height: 338px;
@@ -523,6 +550,15 @@ body {
         cursor: pointer;
         width: 30%;
         margin: auto;
+    }
+    .send_button {
+        background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
+        box-shadow: var(--shadow) var(--color_shadow_claro);
+        border-radius: 6px;
+        cursor: pointer;
+        width: 120px;
+        margin: auto;
+        display: none;
     }
     .video {
         width: 180px;

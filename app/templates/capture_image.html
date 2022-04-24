@@ -56,7 +56,7 @@
             var inicioHeight = (video.clientHeight - videoHeight) / 2;
             context.drawImage(video, 0, inicioHeight, video.clientWidth, videoHeight);
 
-            document.getElementById('visualizar').style.display = 'block';
+            document.getElementById('send_button').style.display = 'block';
         }
 
         function sendPhoto() {
@@ -154,7 +154,7 @@
                         <canvas id="canvasMovil" class="canvasMovil" width="180" height="135"></canvas>
                     </section>
 
-                    <div class="capture_button">
+                    <div id="send_button" class="send_button">
                         <div id="send" class="enlace" onclick="sendPhoto()">
                             <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
                             <div class="button">Enviar</div>
