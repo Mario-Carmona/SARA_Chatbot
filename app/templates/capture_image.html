@@ -41,8 +41,7 @@
         }
 
         function snapPhoto() {
-            obtenerCanvas();
-            var canvas = document.getElementById('canvasLaptop');
+            var canvas = obtenerCanvas();
             var context = canvas.getContext('2d');
             var video = document.getElementById('video');
             var relacion = 1.33;
@@ -66,7 +65,7 @@
                 cancelButtonText: 'No enviar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var canvas = document.getElementById('canvasLaptop');
+                    var canvas = obtenerCanvas();
                     var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
                     var url = document.getElementById('url').innerText;
