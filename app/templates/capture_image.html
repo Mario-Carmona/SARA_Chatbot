@@ -141,17 +141,19 @@
     <main>
         <section id="visualizar" class="visualizar">
             <div class="container__header__main__capture">
-                <section class="cont_video">
-                    <canvas id="canvasLaptop" class="canvasLaptop" width="830" height="624"></canvas>
-                    <canvas id="canvasTabletVertical" class="canvasTabletVertical" width="450" height="338"></canvas>
-                    <canvas id="canvasTabletHorizontal" class="canvasTabletHorizontal" width="547" height="411"></canvas>
-                    <canvas id="canvasMovil" class="canvasMovil" width="180" height="135"></canvas>
-                </section>
+                <div>
+                    <section class="cont_video">
+                        <canvas id="canvasLaptop" class="canvasLaptop" width="830" height="624"></canvas>
+                        <canvas id="canvasTabletVertical" class="canvasTabletVertical" width="450" height="338"></canvas>
+                        <canvas id="canvasTabletHorizontal" class="canvasTabletHorizontal" width="547" height="411"></canvas>
+                        <canvas id="canvasMovil" class="canvasMovil" width="180" height="135"></canvas>
+                    </section>
 
-                <div class="capture_button">
-                    <div id="send" class="enlace" onclick="sendPhoto()">
-                        <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
-                        <div class="button">Enviar</div>
+                    <div class="capture_button">
+                        <div id="send" class="enlace" onclick="sendPhoto()">
+                            <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
+                            <div class="button">Enviar</div>
+                        </div>
                     </div>
                 </div>
             </div>
