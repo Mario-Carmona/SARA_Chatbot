@@ -804,15 +804,10 @@ body.dark_mode .link_lateral {
 
 .visualizar {
     background: var(--white3);
-    display: none;
 }
 
 body.dark_mode .visualizar {
     background: var(--black3);
-}
-
-.visible {
-    display: block;
 }
 
 .oculto {
