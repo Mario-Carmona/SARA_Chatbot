@@ -26,10 +26,10 @@
             var canvasTabletHorizontal = document.getElementById('canvasTabletVertical');
             var canvasMovil = document.getElementById('canvasMovil');
 
-            console.log(canvasLaptop.className)
-            console.log(canvasTabletVertical.className)
-            console.log(canvasTabletHorizontal.style.display)
-            console.log(canvasMovil.style.display)
+            console.log(isVisible(canvasLaptop))
+            console.log(isVisible(canvasTabletVertical))
+            console.log(isVisible(canvasTabletHorizontal))
+            console.log(isVisible(canvasMovil))
 
             if (isVisible(canvasLaptop)) {
                 return 'canvasLaptop';

@@ -811,6 +811,10 @@ body.dark_mode .visualizar {
     background: var(--black3);
 }
 
+.visible {
+    display: block;
+}
+
 .oculto {
     display: none;
 }
