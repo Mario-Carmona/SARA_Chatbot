@@ -23,25 +23,26 @@
         function obtenerCanvas() {
             var canvasLaptop = document.getElementById('canvasLaptop');
             var canvasTabletVertical = document.getElementById('canvasTabletVertical');
-            var canvasTabletHorizontal = document.getElementById('canvasTabletHorizontal');
+            var canvasTabletHorizontal = document.getElementById('canvasTabletVertical');
             var canvasMovil = document.getElementById('canvasMovil');
 
             if (isVisible(canvasLaptop)) {
-                return canvasLaptop;
+                return 'canvasLaptop';
             }
             if (isVisible(canvasTabletVertical)) {
-                return canvasTabletVertical;
+                return 'canvasTabletVertical';
             }
             if (isVisible(canvasTabletHorizontal)) {
-                return canvasTabletHorizontal;
+                return 'canvasTabletVertical';
             }
             if (isVisible(canvasMovil)) {
-                return canvasMovil;
+                return 'canvasMovil';
             }
         }
 
         function snapPhoto() {
-            var canvas = obtenerCanvas();
+            console.log(obtenerCanvas())
+            var canvas = document.getElementById(obtenerCanvas());
             var context = canvas.getContext('2d');
             var video = document.getElementById('video');
             var relacion = 1.33;
@@ -65,7 +66,7 @@
                 cancelButtonText: 'No enviar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    var canvas = obtenerCanvas();
+                    var canvas = document.getElementById(obtenerCanvas());
                     var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
                     var url = document.getElementById('url').innerText;
