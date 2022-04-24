@@ -23,7 +23,7 @@
         function obtenerCanvas() {
             var canvasLaptop = document.getElementById('canvasLaptop');
             var canvasTabletVertical = document.getElementById('canvasTabletVertical');
-            var canvasTabletHorizontal = document.getElementById('canvasTabletVertical');
+            var canvasTabletHorizontal = document.getElementById('canvasTabletHorizontal');
             var canvasMovil = document.getElementById('canvasMovil');
 
             console.log(isVisible(canvasLaptop))
@@ -38,7 +38,7 @@
                 return 'canvasTabletVertical';
             }
             if (isVisible(canvasTabletHorizontal)) {
-                return 'canvasTabletVertical';
+                return 'canvasTabletHorizontal';
             }
             if (isVisible(canvasMovil)) {
                 return 'canvasMovil';
