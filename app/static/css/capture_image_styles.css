@@ -264,7 +264,7 @@ body {
         box-shadow: var(--shadow) var(--color_shadow_claro);
         border-radius: 6px;
         cursor: pointer;
-        width: 15%;
+        width: 20%;
         margin: auto;
     }
     .video {
