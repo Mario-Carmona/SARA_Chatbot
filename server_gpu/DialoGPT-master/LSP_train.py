@@ -5,6 +5,7 @@
           Modified based on Huggingface GPT-2 implementation
 '''
 
+from ast import arg
 import json
 import os
 import sys
@@ -63,10 +64,10 @@ parser.add_argument("--gradient_accumulation_steps", type=int, default=2,
                          "and reduce synchronization")
 parser.add_argument("--eval_batch_size", type=int, default=4)
 parser.add_argument("--learning_rate", type=float, default=1e-5)
-parser.add_argument("--num_optim_steps", type=int, default=1000000,
-                    help="new API specifies num update steps")
-parser.add_argument("--valid_step", type=int, default=10000,
-                    help="how many optim steps between validations")
+parser.add_argument("--init_epoch", type=int, default=0,
+                    help="new API specifies num epochs at the start of training")
+parser.add_argument("--num_epochs", type=int, default=10,
+                    help="new API specifies num epochs")
 parser.add_argument("--warmup_proportion", type=float, default=0.1)
 parser.add_argument("--warmup_steps", type=int, default=16000)
 
@@ -249,9 +250,11 @@ if args.local_rank == -1 or get_rank() == 0:
           'n_token_total,epoch_time', file=train_logger)
     print('epoch,global_step,step,eval_loss,eval_ppl', file=eval_logger)
 
-global_step = 0
-step = 0
-epoch = 0
+epoch = args.init_epoch
+step = len(train_dataloader) * epoch
+global_step = (step+1)/2
+
+total_steps = len(train_dataloader) * args.num_epochs
 
 if args.continue_from:
     global_step = args.continue_from
@@ -262,7 +265,7 @@ if args.local_rank != -1:
     n_gpu = 1
 if args.local_rank == -1 or get_rank() == 0:
     if args.pbar:
-        pbar = tqdm.tqdm(total=args.num_optim_steps, desc=f"training")
+        pbar = tqdm.tqdm(total=total_steps, desc=f"training")
     else:
         pbar = None
 
@@ -308,7 +311,7 @@ while True:
             set_lr(optimizer, global_step,
                    args.lr_schedule, args.learning_rate,
                    args.warmup_steps, args.warmup_proportion,
-                   config.n_embd, args.num_optim_steps)
+                   config.n_embd, total_steps)
 
             if args.local_rank != -1:
                 grads = [p.grad.data for p in model.parameters()
@@ -341,42 +344,42 @@ while True:
                     n_token_real_all_proc, n_token_total_all_proc, epoch_time),
                     file=train_logger)
 
-            if global_step % args.valid_step == 0:
-                if args.local_rank == -1 or get_rank() == 0:
-                    # only rank 0 process evaluate
-                    torch.save(
-                        {k: (v.cpu() if v is not None else None)  # save to cpu tensors
-                         for k, v in model.state_dict().items()},
-                        join(output_dir,
-                             f'GP2-pretrain-step-{global_step}.pkl'))
-
-                    eval_loss, eval_ppl = eval_model_loss(
-                        model, enc, eval_dataloader_loss, epoch, args)
-                    # enable generation step evaluation for now
-                    # gen_response = eval_model_generation(
-                    #     model, enc, eval_dataloader_gen, epoch, args)
-                    '''
-                    # probably use beam search only for test set
-                    if False:
-                        gen_response_beam = eval_model_generation(
-                            model, enc, eval_dataloader_gen, epoch, args,
-                            use_beam_search=True, beam_width=3)
-                    '''
-                    print('{},{},{},{},{}'.format(
-                        epoch+1, global_step+1, step+1, eval_loss, eval_ppl),
-                        file=eval_logger)
-                    logger.info('current learning rate: '
-                                + str(optimizer.param_groups[0]['lr']))
-                    model.train()
-            if global_step >= args.num_optim_steps:
-                break
-
         if (step+1) % CACHE_EMPTY_STEP == 0:
             torch.cuda.empty_cache()
 
-    if global_step >= args.num_optim_steps:
-        break
+
+    if args.local_rank == -1 or get_rank() == 0:
+        # only rank 0 process evaluate
+        torch.save(
+            {k: (v.cpu() if v is not None else None)  # save to cpu tensors
+                for k, v in model.state_dict().items()},
+            join(output_dir,
+                    f'GP2-pretrain-epoch-{epoch+1}.pkl'))
+
+        eval_loss, eval_ppl = eval_model_loss(
+            model, enc, eval_dataloader_loss, epoch, args)
+        # enable generation step evaluation for now
+        # gen_response = eval_model_generation(
+        #     model, enc, eval_dataloader_gen, epoch, args)
+        '''
+        # probably use beam search only for test set
+        if False:
+            gen_response_beam = eval_model_generation(
+                model, enc, eval_dataloader_gen, epoch, args,
+                use_beam_search=True, beam_width=3)
+        '''
+        print('{},{},{},{},{}'.format(
+            epoch+1, global_step+1, step+1, eval_loss, eval_ppl),
+            file=eval_logger)
+        logger.info('current learning rate: '
+                    + str(optimizer.param_groups[0]['lr']))
+        model.train()
+
     epoch += 1
+
+    if epoch >= args.num_epochs:
+        break
+    
 
 
 if args.local_rank == -1 or get_rank() == 0:

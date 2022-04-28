@@ -88,14 +88,14 @@ args = [
     '--train_input_file', data_db ,  # file from last step
     '--eval_input_file', './data/dummy_data.tsv',   # dummy test data
     '--output_dir', os.path.join(MODEL_FOLDER, 'output_model'),
-    '--seed', '42',
+    '--seed', '0',
     '--max_seq_length', '128',
     '--train_batch_size', '512',
     '--gradient_accumulation_steps', '8',
     '--eval_batch_size', '64',
     '--learning_rate', '1e-5',
-    '--num_optim_steps', '10000',
-    '--valid_step', '5000',
+    '--init_epoch', '0',
+    '--num_epochs', '10',
     '--warmup_steps', '4000',
     '--normalize_data', 'true',
     '--fp16', 'true',
