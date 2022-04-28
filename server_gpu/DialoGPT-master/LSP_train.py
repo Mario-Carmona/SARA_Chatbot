@@ -256,6 +256,8 @@ global_step = int(step/args.gradient_accumulation_steps)
 
 total_steps = len(train_dataloader) * args.num_epochs
 
+best_loss = float('inf')
+
 if args.continue_from:
     global_step = args.continue_from
     step = global_step*2 - 1
@@ -371,6 +373,18 @@ while True:
         print('{},{},{},{},{}'.format(
             epoch+1, global_step+1, step+1, eval_loss, eval_ppl),
             file=eval_logger)
+
+        if best_loss > eval_loss:
+            best_loss = eval_loss
+            torch.save(
+                {k: (v.cpu() if v is not None else None)  # save to cpu tensors
+                    for k, v in model.state_dict().items()},
+                join(output_dir,
+                        f'GP2-pretrain-best-model.pkl'))
+            print('Best model: {},{},{},{},{}'.format(
+                epoch+1, global_step+1, step+1, eval_loss, eval_ppl),
+                file=eval_logger)
+
         logger.info('current learning rate: '
                     + str(optimizer.param_groups[0]['lr']))
         model.train()
