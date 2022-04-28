@@ -252,7 +252,7 @@ if args.local_rank == -1 or get_rank() == 0:
 
 epoch = args.init_epoch
 step = len(train_dataloader) * epoch
-global_step = (step+1)/2
+global_step = int(step/args.gradient_accumulation_steps)
 
 total_steps = len(train_dataloader) * args.num_epochs
 
