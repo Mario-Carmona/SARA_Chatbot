@@ -1,8 +1,13 @@
+/* Imports */
+
 @import url(base_styles.css);
 @import url(laptop_styles.css);
 @import url(tablet_horizontal_styles.css);
 @import url(tablet_vertical_styles.css);
 @import url(movil_styles.css);
+
+/* Estilos en el modo oscuro */
+
 body.dark_mode .header__title {
     color: var(--white1);
 }
@@ -77,17 +82,11 @@ body.dark_mode .card__img {
 /* Contenedor de cada sección de la página web */
 
 .container {
-    /* Ancho relativo a la pantalla */
     width: 90%;
-    /* Ancho máximo del contenedor */
     max-width: 1200px;
-    /* Se eliminan los márgenes en el top */
     margin: 0 auto;
-    /* Se oculta el contenido que se sale del contenedor */
     overflow: hidden;
-    /* Se deja un padding-top relativo a la pantalla */
     padding: 7% 0;
-    /* No se fija la altura */
     height: auto;
 }
 
@@ -95,12 +94,9 @@ body.dark_mode .card__img {
 /* Encabezado de la página web */
 
 .header {
-    /* El ancho del header es igual al ancho de la pantalla */
     width: 100%;
-    /* Se fija que el alto del header sea igual al alto de la ventana */
     min-height: 100vh;
     height: auto;
-    /* Fondo del encabezado */
     background: linear-gradient(180deg, var(--start_gradient_header_claro) 0%, var(--finish_gradient_header_claro) 100%);
 }
 
@@ -108,31 +104,19 @@ body.dark_mode .card__img {
 /* Barra de navegación del encabezado */
 
 .nav__header {
-    /* Color del texto */
     color: var(--black1);
-    /* Altura de la barra */
     height: var(--header_height);
-    /* Borde inferior de la barra */
     border-bottom: 1px solid var(--header_border_claro);
-}
-
-.tools {
-    display: flex;
 }
 
 
 /* Contenedor de la barra de navegación */
 
 .nav__container {
-    /* Flexibilidad en las dimensiones del contenedor para rellenar todo el contenedor */
     display: flex;
-    /* Centra verticalmente los elementos del contenedor */
     align-items: center;
-    /* El espacio entre los elementos se iguala para todos */
     justify-content: space-between;
-    /* Hereda la altura del padre, es decir, de la barra de navegación del encabezado */
     height: inherit;
-    /* Se elimina el padding-top del contenedor de sección */
     padding: 0;
 }
 
@@ -146,18 +130,20 @@ body.dark_mode .card__img {
 }
 
 
+/* Herramientas de la barra de navegación */
+
+.tools {
+    display: flex;
+}
+
+
 /* Links de la barra de navegación */
 
 .link {
-    /* Convierte al elemento en un bloque y lo alinea con el resto de elementos */
     display: inline-block;
-    /* Color del texto */
     color: var(--black1);
-    /* Elimina el aspecto de enlace */
     text-decoration: none;
-    /* Peso de la fuente de texto */
     font-weight: 300;
-    /* Se fija un padding alrededor del link */
     padding: 1vh;
 }
 
@@ -165,13 +151,13 @@ body.dark_mode .card__img {
 /* Último link de la barra de navegación */
 
 .link__active {
-    /* Color del texto */
     color: var(--gold1);
-    /* Elimina el aspecto de enlace */
     text-decoration: none;
-    /* Peso de la fuente de texto */
     font-weight: 700;
 }
+
+
+/* Switch para cambiar a modo oscuro */
 
 .switch_dark_mode {
     background: gray;
@@ -184,6 +170,9 @@ body.dark_mode .card__img {
     margin: auto 1vh;
     display: inline-flex;
 }
+
+
+/* Bola interior del switch */
 
 .switch_dark_mode::after {
     content: "";
@@ -198,21 +187,33 @@ body.dark_mode .card__img {
     box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+
+/* Switch activo en modo oscuro */
+
 .switch_dark_mode.active {
     background: orange;
     border: 1px solid white;
 }
+
+
+/* Bola interior del switch con el modo oscuro activado */
 
 .switch_dark_mode.active::after {
     right: 0;
     left: unset;
 }
 
+
+/* Icono del switch */
+
 .icono {
     width: 20px;
     height: 20px;
     margin: 5px;
 }
+
+
+/* Botón para desplegar la barra de navegación lateral */
 
 .button_sidebar {
     height: 30px;
@@ -223,7 +224,10 @@ body.dark_mode .card__img {
     margin: auto 1vh;
 }
 
-.class_to_action {
+
+/* Botón general */
+
+.button_normal {
     padding-top: 4%;
     padding-bottom: 4%;
     padding-left: 6%;
@@ -237,6 +241,9 @@ body.dark_mode .card__img {
     border-radius: 6px;
 }
 
+
+/* Barra de navegación lateral */
+
 .sidebar {
     width: 0;
     height: 0;
@@ -248,6 +255,9 @@ body.dark_mode .card__img {
     text-align: left;
 }
 
+
+/* Link de la barra de navegación lateral */
+
 .link_lateral {
     display: block;
     color: var(--black1);
@@ -256,6 +266,9 @@ body.dark_mode .card__img {
     padding: 1vh 0 1vh 2vh;
     border-bottom: 1px solid black;
 }
+
+
+/* Último link de la barra de navegación lateral */
 
 .link_lateral__active {
     display: block;
@@ -272,6 +285,9 @@ body.dark_mode .card__img {
     background: var(--white3);
 }
 
+
+/* Imagen de la carta */
+
 .card__img {
     width: 95%;
     height: 50%;
@@ -280,11 +296,17 @@ body.dark_mode .card__img {
     border: 1px solid var(--black1);
 }
 
+
+/* Texto de la carta */
+
 .cards__text {
     text-align: left;
     width: 90%;
     margin: 0 auto;
 }
+
+
+/* Botón de la carta */
 
 .card__button {
     display: block;

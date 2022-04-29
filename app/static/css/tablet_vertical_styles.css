@@ -73,7 +73,7 @@
     }
     /* Carta */
     .card {
-        width: 30%;
+        width: 40%;
         padding: 2.5% 0;
         overflow: hidden;
         background: linear-gradient(180deg, var(--start_gradient_header_claro) 0%, var(--finish_gradient_header_claro) 100%);
