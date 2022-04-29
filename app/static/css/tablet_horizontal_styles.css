@@ -15,11 +15,11 @@
     }
     /* Contenido principal de la cabecera */
     .header__main {
-        height: calc(100vh - var(--header_height));
+        height: auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0;
+        padding: 7% 0;
     }
     /* Texto de la cabecera */
     .header__texts {
