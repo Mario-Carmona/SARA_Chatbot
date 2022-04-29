@@ -21,6 +21,17 @@
         height: auto;
         background: white;
     }
+    /* Contenido principal de la cabecera */
+    .header__main {
+        height: auto;
+        align-items: center;
+        padding: 7% 0;
+    }
+    /* Texto de la cabecera */
+    .header__texts {
+        display: block;
+        height: 50%;
+    }
     /* Título de la cabecera */
     .header__title {
         font-size: 250%;
@@ -33,6 +44,14 @@
         color: var(--gray1_claro);
         text-shadow: var(--shadow) var(--color_shadow_claro);
         margin: 4% 0 4%;
+    }
+    /* Imagen de la cabecera */
+    .mockup {
+        object-fit: contain;
+        height: 50%;
+        width: 100%;
+        display: block;
+        margin-top: 20%;
     }
     /* Título de la sección de servicios */
     .servicios__title {
