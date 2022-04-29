@@ -65,7 +65,7 @@
     }
     /* Carta */
     .card {
-        width: 35%;
+        width: 30%;
         padding: 2.5% 0;
         overflow: hidden;
         background: linear-gradient(180deg, var(--start_gradient_header_claro) 0%, var(--finish_gradient_header_claro) 100%);
@@ -78,7 +78,7 @@
     }
     /* Título de las cartas */
     .card__title {
-        font-size: 250%;
+        font-size: 210%;
         color: var(--black1);
         margin-bottom: 4.5%;
     }
