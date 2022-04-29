@@ -5,9 +5,15 @@
 @import url(tablet_horizontal_styles.css);
 @import url(tablet_vertical_styles.css);
 @import url(movil_styles.css);
+
+/* Botones para la apertura del chatbot */
+
 .open_buttons {
     display: flex;
 }
+
+
+/* Botón para la apertura del chatbot */
 
 .open_button {
     padding-top: 4%;
@@ -23,6 +29,9 @@
     margin-right: 5%;
 }
 
+
+/* Texto del botón */
+
 .button_text {
     text-decoration: none;
     color: var(--black2);
@@ -30,6 +39,9 @@
     text-align: center;
     display: inline-flex;
 }
+
+
+/* Enlace del botón */
 
 .enlace {
     position: relative;
@@ -43,9 +55,15 @@
     align-items: center;
 }
 
+
+/* Icono de apertura en la web */
+
 .message-solid {
     display: inline-flex;
 }
+
+
+/* Icono de apertura en Telegram */
 
 .telegram-brands {
     display: inline-flex;
