@@ -21,18 +21,6 @@
         height: auto;
         background: white;
     }
-    /* Contenido principal de la cabecera */
-    .header__main {
-        height: auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 7% 0;
-    }
-    /* Texto de la cabecera */
-    .header__texts {
-        display: inline-block;
-    }
     /* Título de la cabecera */
     .header__title {
         font-size: 250%;
@@ -45,12 +33,6 @@
         color: var(--gray1_claro);
         text-shadow: var(--shadow) var(--color_shadow_claro);
         margin: 4% 0 4%;
-    }
-    /* Imagen de la cabecera */
-    .mockup {
-        object-fit: contain;
-        height: calc(100vh - var(--header_height));
-        width: 55%;
     }
     /* Título de la sección de servicios */
     .servicios__title {
