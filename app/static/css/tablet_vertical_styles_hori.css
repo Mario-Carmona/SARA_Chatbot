@@ -3,20 +3,19 @@
     /* Contenido principal de la cabecera */
     .header__main {
         height: auto;
+        display: flex;
         align-items: center;
+        justify-content: space-between;
         padding: 7% 0;
     }
     /* Texto de la cabecera */
     .header__texts {
-        display: block;
-        height: 50%;
+        display: inline-block;
     }
     /* Imagen de la cabecera */
     .mockup {
         object-fit: contain;
-        height: 50%;
-        width: 100%;
-        display: block;
-        margin-top: 20%;
+        height: calc(100vh - var(--header_height));
+        width: 55%;
     }
 }
