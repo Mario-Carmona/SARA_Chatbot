@@ -1,0 +1,90 @@
+/* Estilos para la visualización en una tablet en modo horizontal */
+
+@media screen and (max-width: 1024px) and (min-width: 751px) and (max-height: 750px) and (min-height: 500px) {
+    /* Logo de la barra de navegación */
+    .logo__name {
+        font-size: 110%;
+    }
+    /* Links de la barra de navegación */
+    .show_links {
+        display: inline-block;
+    }
+    /* Botón para mostrar la barra de navegación lateral */
+    .show_sidebar {
+        display: none;
+    }
+    /* Contenido principal de la cabecera */
+    .header__main {
+        height: calc(100vh - var(--header_height));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+    }
+    /* Texto de la cabecera */
+    .header__texts {
+        display: inline-block;
+    }
+    /* Título de la cabecera */
+    .header__title {
+        font-size: 250%;
+        font-weight: 500;
+        color: var(--black1);
+    }
+    /* Subtítulo de la cabecera */
+    .header__subtitle {
+        font-size: 120%;
+        color: var(--gray1_claro);
+        text-shadow: var(--shadow) var(--color_shadow_claro);
+        margin: 4% 0 4%;
+    }
+    /* Imagen de la cabecera */
+    .mockup {
+        object-fit: contain;
+        height: calc(100vh - var(--header_height));
+        width: 55%;
+    }
+    /* Título de la sección de servicios */
+    .servicios__title {
+        font-size: 200%;
+        color: var(--black1);
+    }
+    /* Subtítulo de la sección de servicios */
+    .servicios__subtitle {
+        color: var(--black2);
+        font-size: 100%;
+        line-height: 32px;
+        margin-bottom: 5%;
+    }
+    /* Contenedor de las cartas */
+    .container__cards {
+        display: flex;
+        justify-content: space-around;
+        align-items: left;
+        flex-wrap: wrap;
+    }
+    /* Carta */
+    .card {
+        width: 30%;
+        padding: 2.5% 0;
+        overflow: hidden;
+        background: linear-gradient(180deg, var(--start_gradient_header_claro) 0%, var(--finish_gradient_header_claro) 100%);
+        border-radius: 10px;
+        position: relative;
+        text-align: right;
+        margin-bottom: 5%;
+        box-shadow: 0 0 6px var(--color_shadow_claro);
+        border: 1px solid var(--black1);
+    }
+    /* Título de las cartas */
+    .card__title {
+        font-size: 150%;
+        color: var(--black1);
+        margin-bottom: 4.5%;
+    }
+    /* Descripción de las cartas */
+    .card__descrip {
+        color: var(--gray2_claro);
+        margin-bottom: 9%;
+    }
+}

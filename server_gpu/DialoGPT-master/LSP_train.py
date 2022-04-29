@@ -251,10 +251,13 @@ if args.local_rank == -1 or get_rank() == 0:
     print('epoch,global_step,step,eval_loss,eval_ppl', file=eval_logger)
 
 epoch = args.init_epoch
-step = len(train_dataloader) * epoch
+num_batchs = 0
+for batch in train_dataloader:
+    num_batchs += 1
+step = num_batchs * epoch
 global_step = int(step/args.gradient_accumulation_steps)
 
-total_steps = len(train_dataloader) * args.num_epochs
+total_steps = step + num_batchs * args.num_epochs
 
 best_loss = float('inf')
 

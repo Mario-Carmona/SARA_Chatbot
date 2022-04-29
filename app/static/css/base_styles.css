@@ -1,0 +1,42 @@
+:root {
+    /* Colores */
+    /*      Generales */
+    --gold1: #F4BD76;
+    --start_gradient_button: #F7CE90;
+    --finish_gradient_button: #F48D76;
+    /*      Modo claro */
+    --black1: #000;
+    --black2: #1A1B1F;
+    --white3: #fafafa;
+    --gray1_claro: #00000080;
+    --gray2_claro: #08262690;
+    --color_shadow_claro: #ffffff33;
+    --start_gradient_header_claro: #ffffff;
+    --finish_gradient_header_claro: #6db1e9;
+    --header_border_claro: #0000008c;
+    /*      Modo oscuro */
+    --white1: #fff;
+    --white2: #e5e4e0;
+    --black3: #050505;
+    --gray1_oscuro: #ffffff80;
+    --gray2_oscuro: #f7d9d990;
+    --color_shadow_oscuro: #00000033;
+    --start_gradient_header_oscuro: #30353B;
+    --finish_gradient_header_oscuro: #1A1B1F;
+    --header_border_oscuro: #ffffff1a;
+    /* Tamaños */
+    --shadow: 0 8px 8px;
+    --header_height: 8vh;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: .3s ease all;
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+}
