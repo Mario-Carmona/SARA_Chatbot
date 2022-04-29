@@ -1,0 +1,22 @@
+@import url(tablet_vertical_styles.css);
+@media screen and (max-width: 400px) and (min-width: 200px) and (max-height: 850px) and (min-height: 500px) {
+    /* Contenido principal de la cabecera */
+    .header__main {
+        height: auto;
+        align-items: center;
+        padding: 7% 0;
+    }
+    /* Texto de la cabecera */
+    .header__texts {
+        display: block;
+        height: 50%;
+    }
+    /* Imagen de la cabecera */
+    .mockup {
+        object-fit: contain;
+        height: 50%;
+        width: 100%;
+        display: block;
+        margin-top: 20%;
+    }
+}
