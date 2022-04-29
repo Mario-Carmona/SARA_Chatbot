@@ -3,7 +3,7 @@
 @import url(base_styles.css);
 @import url(laptop_styles.css);
 @import url(tablet_horizontal_styles.css);
-@import url(tablet_vertical_styles_verti.css);
+@import url(tablet_vertical_styles_verti.css) all;
 @import url(movil_styles.css);
 
 /* Botones para la apertura del chatbot */
