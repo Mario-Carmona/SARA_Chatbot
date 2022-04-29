@@ -34,7 +34,7 @@
     }
     /* Título de la cabecera */
     .header__title {
-        font-size: 140%;
+        font-size: 160%;
         font-weight: 500;
         color: var(--black1);
     }
