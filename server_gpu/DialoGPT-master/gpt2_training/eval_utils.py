@@ -76,7 +76,7 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
             outputs = model(input_ids)
             print(outputs)
             print(outputs[0])
-            print(len(outputs))
+            print(len(outputs[0]))
             logits = outputs.logits
             predictions = torch.argmax(logits, dim=-1)
             predictions = predictions.flatten()
