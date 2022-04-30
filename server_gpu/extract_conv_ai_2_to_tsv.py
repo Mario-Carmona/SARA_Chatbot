@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-from ast import arg
 import sys
+import random
 from datasets import load_dataset
 
 
@@ -44,6 +44,8 @@ if __name__ == "__main__":
             entry = conver[j]["text"]
             response = conver[j+1]["text"]
             conversaciones.append(f"{entry}\t{response}")
+
+    random.shuffle(conversaciones)
 
     div = int(len(conversaciones) * args.train_split)
 
