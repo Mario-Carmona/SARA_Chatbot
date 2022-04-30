@@ -73,15 +73,15 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
             tot_ppl.append(ppl.mean().item() * n_sample)
             tot_sample.append(n_sample)
 
-            outputs = model(input_ids)
-            print(label_ids)
-            print(len(outputs[0][0]))
-            print(len(outputs[1]))
-            print(len(label_ids))
-            #logits = outputs.logits
-            #predictions = torch.argmax(logits, dim=-1)
-            #predictions = predictions.flatten()
-            metric.add_batch(predictions=outputs[0].flatten(), references=label_ids.flatten())
+            outputs = model(input_ids, return_dict=True)
+            #print(label_ids)
+            #print(len(outputs[0][0]))
+            #print(len(outputs[1]))
+            #print(len(label_ids))
+            logits = outputs.logits
+            predictions = torch.argmax(logits, dim=-1)
+            predictions = predictions.flatten()
+            metric.add_batch(predictions=predictions, references=label_ids.flatten())
 
     acc = metric.compute()
 
