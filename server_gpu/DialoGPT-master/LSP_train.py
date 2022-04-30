@@ -55,7 +55,6 @@ parser.add_argument("--skip_eval", action='store_true',
 parser.add_argument("--init_checkpoint", type=str)
 parser.add_argument("--train_input_file", type=str)
 parser.add_argument("--eval_input_file", type=str)
-parser.add_argument("--continue_from", type=int, default=0)
 
 parser.add_argument("--train_batch_size", type=int, default=4,
                     help="batch size now means per GPU per step")
@@ -259,11 +258,7 @@ global_step = int(step/args.gradient_accumulation_steps)
 
 total_steps = step + num_batchs * args.num_epochs
 
-best_loss = float('inf')
-
-if args.continue_from:
-    global_step = args.continue_from
-    step = global_step*2 - 1
+best_acc = 0.0
 
 
 if args.local_rank != -1:
@@ -361,7 +356,7 @@ while True:
             join(output_dir,
                     f'GP2-pretrain-epoch-{epoch+1}.pkl'))
 
-        eval_loss, eval_ppl = eval_model_loss(
+        eval_loss, eval_ppl, eval_acc = eval_model_loss(
             model, enc, eval_dataloader_loss, epoch, args)
         # enable generation step evaluation for now
         # gen_response = eval_model_generation(
@@ -377,15 +372,15 @@ while True:
             epoch+1, global_step+1, step+1, eval_loss, eval_ppl),
             file=eval_logger)
 
-        if best_loss > eval_loss:
+        if best_acc < eval_acc:
             best_loss = eval_loss
             torch.save(
                 {k: (v.cpu() if v is not None else None)  # save to cpu tensors
                     for k, v in model.state_dict().items()},
                 join(output_dir,
                         f'GP2-pretrain-best-model.pkl'))
-            print('Best model: {},{},{},{},{}'.format(
-                epoch+1, global_step+1, step+1, eval_loss, eval_ppl),
+            print('Best model: {},{},{},{},{},{}'.format(
+                epoch+1, global_step+1, step+1, eval_loss, eval_ppl, eval_acc),
                 file=eval_logger)
 
         logger.info('current learning rate: '
