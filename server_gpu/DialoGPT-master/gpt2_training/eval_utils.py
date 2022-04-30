@@ -62,21 +62,19 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
     metric = load_metric("accuracy")
     with torch.no_grad():
         for step, batch in enumerate(eval_dataloader):
-            print(batch)
             batch = tuple(t.to(args.device) for t in batch)
-            print(batch)
             input_ids, position_ids, token_ids, label_ids, src_len, _ = batch
             if args.no_token_id:
                 token_ids = None
             n_sample = input_ids.shape[0]
             result = model(input_ids, position_ids, token_ids, label_ids)
-            print(result)
             loss, ppl = result
             tot_loss.append(loss.mean().item() * n_sample)
             tot_ppl.append(ppl.mean().item() * n_sample)
             tot_sample.append(n_sample)
 
-            outputs = model(**batch)
+            outputs = model(batch)
+            print(outputs)
             logits = outputs.logits
             predictions = torch.argmax(logits, dim=-1)
             predictions = predictions.flatten()
