@@ -3,19 +3,8 @@ import logging
 import os
 import subprocess as sp
 import sys
-import argparse
 
 
-
-
-
-parser = argparse.ArgumentParser()
-parser.add_argument('--data', type=str, default='dummy',
-                    help='choose from dummy, small and full')
-dargs = parser.parse_args()
-
-assert dargs.data == 'dummy' or dargs.data == 'small' or dargs.data == 'full' , \
-    'The specified data option is not support!'
 
 
 
