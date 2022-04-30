@@ -247,7 +247,7 @@ if args.local_rank == -1 or get_rank() == 0:
     eval_logger = open(join(log_dir, 'eval_log.txt'), 'a+', buffering=1)
     print('epoch,global_step,step,mean_loss,mean_ppl,n_token_real,'
           'n_token_total,epoch_time', file=train_logger)
-    print('epoch,global_step,step,eval_loss,eval_ppl', file=eval_logger)
+    print('epoch,global_step,step,eval_loss,eval_ppl,eval_acc', file=eval_logger)
 
 epoch = args.init_epoch
 num_batchs = 0
@@ -368,8 +368,8 @@ while True:
                 model, enc, eval_dataloader_gen, epoch, args,
                 use_beam_search=True, beam_width=3)
         '''
-        print('{},{},{},{},{}'.format(
-            epoch+1, global_step+1, step+1, eval_loss, eval_ppl),
+        print('{},{},{},{},{},{}'.format(
+            epoch+1, global_step+1, step+1, eval_loss, eval_ppl, eval_acc),
             file=eval_logger)
 
         if best_acc < eval_acc:
