@@ -74,9 +74,8 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
             tot_sample.append(n_sample)
 
             outputs = model(input_ids)
-            print(outputs)
-            print(outputs[0])
-            print(len(outputs[0]))
+            print(label_ids)
+            print(len(outputs[0][0]))
             print(len(outputs[1]))
             print(len(label_ids))
             logits = outputs.logits
