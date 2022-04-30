@@ -49,6 +49,8 @@ def cal_entropy(generated):
     return etp_score, div_score
 
 
+from datasets import load_metric
+
 def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
     # use the same signature with eval_model_generation
     logger.info('compute eval model loss, using eval mode, '
@@ -57,6 +59,7 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
     tot_loss = []
     tot_ppl = []
     tot_sample = []
+    metric = load_metric("accuracy")
     with torch.no_grad():
         for step, batch in enumerate(eval_dataloader):
             batch = tuple(t.to(args.device) for t in batch)
@@ -68,5 +71,14 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
             tot_loss.append(loss.mean().item() * n_sample)
             tot_ppl.append(ppl.mean().item() * n_sample)
             tot_sample.append(n_sample)
-    print(f"\n Epoch {epoch_id}: Val loss {np.sum(tot_loss) / np.sum(tot_sample)} Val ppl {np.sum(tot_ppl) / np.sum(tot_sample)} ")
-    return np.sum(tot_loss) / np.sum(tot_sample), np.sum(tot_ppl) / np.sum(tot_sample)
+
+            outputs = model(**batch)
+            logits = outputs.logits
+            predictions = torch.argmax(logits, dim=-1)
+            predictions = predictions.flatten()
+            metric.add_batch(predictions=predictions, references=batch["labels"].flatten())
+
+    acc = metric.compute()
+
+    print(f"\n Epoch {epoch_id}: Val loss {np.sum(tot_loss) / np.sum(tot_sample)} Val ppl {np.sum(tot_ppl) / np.sum(tot_sample)} Val acc {acc} ")
+    return np.sum(tot_loss) / np.sum(tot_sample), np.sum(tot_ppl) / np.sum(tot_sample), acc
