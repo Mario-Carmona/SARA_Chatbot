@@ -8,7 +8,7 @@ from datasets import load_dataset
 
 
 def extract_conv_ai_2_dataset(train_split: float):
-    dataset = load_dataset("conv_ai_2")
+    dataset = load_dataset("conv_ai_2", revision="master")
 
     dialog = dataset["train"]["dialog"]
 
@@ -29,7 +29,7 @@ def extract_conv_ai_2_dataset(train_split: float):
 
 
 def extract_daily_dialog_dataset(train_split: float):
-    dataset = load_dataset("daily_dialog")
+    dataset = load_dataset("daily_dialog", revision="master")
 
     conversaciones = []
 
@@ -51,7 +51,7 @@ def extract_daily_dialog_dataset(train_split: float):
 
 
 def extract_multi_woz_v22_dataset(train_split: float):
-    dataset = load_dataset("multi_woz_v22")
+    dataset = load_dataset("multi_woz_v22", revision="master")
 
     conversaciones = []
 
