@@ -45,19 +45,9 @@ else:
 #########################################################################
 # Prepare Data
 #########################################################################
-logger.info('Downloading and Extracting Data...')
-if dargs.data == 'dummy':
-    cmd = 'bash prepare4db.sh'
-    ret = sp.run(cmd.split(' '), stdout=sp.PIPE, stderr=sp.STDOUT, cwd=DATA_FOLDER)
-elif dargs.data == 'small':
-    myCmd = os.popen('cd reddit_extractor; make -j 8; cd ..').read()
-elif dargs.data == 'full':
-    myCmd = os.popen('cd reddit_extractor; SIZE=full make -j 8; cd ..').read()
-else:
-    raise ValueError('you need to implement your own data type, or use either dummy, small, or full')
 
 logger.info('Preparing Data...')
-data_path = os.path.join(DATA_FOLDER, 'train.tsv')
+data_path = os.path.join(DATA_FOLDER, 'dataset_train.tsv')
 MAX_LEN = 128
 data_db = f'{data_path[:-4]}.{MAX_LEN}len.db'
 if os.path.isdir(data_db):
@@ -86,7 +76,7 @@ args = [
     '--model_name_or_path', target_folder,
     '--init_checkpoint', os.path.join(target_folder, 'pytorch_model.bin'),
     '--train_input_file', data_db ,  # file from last step
-    '--eval_input_file', './data/dummy_data.tsv',   # dummy test data
+    '--eval_input_file', './data/dataset_valid.tsv',   # dummy test data
     '--output_dir', os.path.join(MODEL_FOLDER, 'output_model'),
     '--seed', '0',
     '--max_seq_length', '128',
@@ -95,7 +85,7 @@ args = [
     '--eval_batch_size', '64',
     '--learning_rate', '1e-5',
     '--init_epoch', '0',
-    '--num_epochs', '10',
+    '--num_epochs', '30',
     '--warmup_steps', '4000',
     '--normalize_data', 'true',
     '--fp16', 'true',
