@@ -88,5 +88,7 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
 
     acc = metric.compute()
 
+    print(acc)
+
     print(f"\n Epoch {epoch_id}: Val loss {np.sum(tot_loss) / np.sum(tot_sample)} Val ppl {np.sum(tot_ppl) / np.sum(tot_sample)} Val acc {acc} ")
     return np.sum(tot_loss) / np.sum(tot_sample), np.sum(tot_ppl) / np.sum(tot_sample), acc
