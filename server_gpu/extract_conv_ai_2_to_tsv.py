@@ -11,7 +11,7 @@ from datasets import load_dataset
 if __name__ == "__main__":
     dataset = load_dataset("conv_ai_2")
 
-    dialog = dataset["dialog"]
+    dialog = dataset["train"]["dialog"]
 
     print(dialog)
 
