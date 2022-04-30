@@ -102,9 +102,9 @@ if __name__ == "__main__":
 
     conv_ai_2_train, conv_ai_2_valid = extract_conv_ai_2_dataset(args.train_split)
 
-    daily_dialog_train, daily_dialog_valid = extract_daily_dialog_dataset()
+    daily_dialog_train, daily_dialog_valid = extract_daily_dialog_dataset(args.train_split)
 
-    multi_woz_v22_train, multi_woz_v22_valid = extract_multi_woz_v22_dataset()
+    multi_woz_v22_train, multi_woz_v22_valid = extract_multi_woz_v22_dataset(args.train_split)
 
     dataset_train = conv_ai_2_train + daily_dialog_train + multi_woz_v22_train
     dataset_valid = conv_ai_2_valid + daily_dialog_valid + multi_woz_v22_valid
