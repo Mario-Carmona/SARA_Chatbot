@@ -8,27 +8,6 @@ from datasets import load_dataset
 
 
 
-def extract_daily_dialog_dataset(train_split: float):
-    dataset = load_dataset("daily_dialog", revision="master")
-
-    conversaciones = []
-
-    for split in ["train", "test", "validation"]:
-        dialog = dataset[split]["dialog"]
-
-        for conver in dialog:
-            len_dialog = len(conver) if len(conver)%2 == 0 else len(conver)-1
-            for j in range(0,len_dialog,2):
-                entry = conver[j]
-                response = conver[j+1]
-                conversaciones.append(f"{entry}\t{response}")
-    
-    random.shuffle(conversaciones)
-
-    div = int(len(conversaciones) * train_split)
-
-    return conversaciones[:div], conversaciones[div:]
-
 
 def extract_multi_woz_v22_dataset(train_split: float):
     dataset = load_dataset("multi_woz_v22", revision="master")
@@ -80,12 +59,11 @@ if __name__ == "__main__":
         sys.exit(0)
 
 
-    daily_dialog_train, daily_dialog_valid = extract_daily_dialog_dataset(args.train_split)
 
     multi_woz_v22_train, multi_woz_v22_valid = extract_multi_woz_v22_dataset(args.train_split)
 
-    dataset_train = daily_dialog_train + multi_woz_v22_train
-    dataset_valid = daily_dialog_valid + multi_woz_v22_valid
+    dataset_train = multi_woz_v22_train
+    dataset_valid = multi_woz_v22_valid
 
     random.shuffle(dataset_train)
     random.shuffle(dataset_valid)
