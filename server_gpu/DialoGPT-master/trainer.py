@@ -74,7 +74,7 @@ args = [
     '--eval_batch_size', '64',
     '--learning_rate', '1e-5',
     '--init_epoch', '0',
-    '--num_epochs', '30',
+    '--num_epochs', '100',
     '--warmup_steps', '4000',
     '--normalize_data', 'true',
     '--fp16', 'true',
