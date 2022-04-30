@@ -373,7 +373,7 @@ while True:
             file=eval_logger)
 
         if best_acc < eval_acc:
-            best_loss = eval_loss
+            best_acc = eval_loss
             torch.save(
                 {k: (v.cpu() if v is not None else None)  # save to cpu tensors
                     for k, v in model.state_dict().items()},
