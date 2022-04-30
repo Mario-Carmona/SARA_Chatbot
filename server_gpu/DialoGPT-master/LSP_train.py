@@ -259,6 +259,7 @@ global_step = int(step/args.gradient_accumulation_steps)
 total_steps = step + num_batchs * args.num_epochs
 
 best_acc = 0.0
+best_model = model.copy()
 
 
 if args.local_rank != -1:
@@ -374,6 +375,7 @@ while True:
 
         if best_acc < eval_acc:
             best_loss = eval_loss
+            best_model = model.copy()
             torch.save(
                 {k: (v.cpu() if v is not None else None)  # save to cpu tensors
                     for k, v in model.state_dict().items()},
@@ -382,6 +384,8 @@ while True:
             print('Best model: {},{},{},{},{},{}'.format(
                 epoch+1, global_step+1, step+1, eval_loss, eval_ppl, eval_acc),
                 file=eval_logger)
+        else:
+            model = best_model
 
         logger.info('current learning rate: '
                     + str(optimizer.param_groups[0]['lr']))
