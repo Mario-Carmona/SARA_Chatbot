@@ -47,8 +47,8 @@ if __name__ == "__main__":
 
     div = int(len(conversaciones) * args.train_split)
 
-    with open(arg.train_file, 'w') as f:
+    with open(args.train_file, 'w') as f:
         f.write('\n'.join(conversaciones[:div]))
 
-    with open(arg.test_file, 'w') as f:
+    with open(args.test_file, 'w') as f:
         f.write('\n'.join(conversaciones[div:]))
