@@ -16,6 +16,7 @@ if __name__ == "__main__":
     conversaciones = []
 
     for conver in dialog:
+        print(len(conver))
         for j in range(0,len(conver),2):
             entry = conver[j]["text"]
             response = conver[j+1]["text"]
