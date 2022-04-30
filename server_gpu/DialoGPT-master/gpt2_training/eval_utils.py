@@ -73,7 +73,7 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
             tot_ppl.append(ppl.mean().item() * n_sample)
             tot_sample.append(n_sample)
 
-            outputs = model(batch)
+            outputs = model(input_ids)
             print(outputs)
             logits = outputs.logits
             predictions = torch.argmax(logits, dim=-1)
