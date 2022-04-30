@@ -10,6 +10,9 @@ from datasets import load_dataset
 
 if __name__ == "__main__":
     dataset = load_dataset("conv_ai_2")
-    print(dataset)
+
+    dialog = dataset["dialog"]
+
+    print(dialog)
 
 
