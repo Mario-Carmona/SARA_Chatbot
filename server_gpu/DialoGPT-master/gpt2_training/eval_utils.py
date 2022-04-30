@@ -77,12 +77,11 @@ def eval_model_loss(model, tokenizer, eval_dataloader, epoch_id, args):
             predictions = outputs[0]
             predictions = torch.argmax(predictions, dim=-1)
             predictions = predictions.flatten()
-            
+
             metric.add_batch(predictions=predictions, references=label_ids.flatten())
 
-    acc = metric.compute()
-
-    print(acc)
+    result_metric = metric.compute()
+    acc = result_metric['accuracy']
 
     print(f"\n Epoch {epoch_id}: Val loss {np.sum(tot_loss) / np.sum(tot_sample)} Val ppl {np.sum(tot_ppl) / np.sum(tot_sample)} Val acc {acc} ")
     return np.sum(tot_loss) / np.sum(tot_sample), np.sum(tot_ppl) / np.sum(tot_sample), acc
