@@ -1,14 +1,37 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+import argparse
+from ast import arg
+import sys
 from datasets import load_dataset
 
 
-
-
-
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "train_split", 
+        type = float,
+        help = ""
+    )
+    parser.add_argument(
+        "train_file", 
+        type = str,
+        help = ""
+    )
+    parser.add_argument(
+        "test_file", 
+        type = str,
+        help = ""
+    )
+
+    try:
+        args = parser.parse_args()
+    except:
+        parser.print_help()
+        sys.exit(0)
+
     dataset = load_dataset("conv_ai_2")
 
     dialog = dataset["train"]["dialog"]
@@ -22,6 +45,10 @@ if __name__ == "__main__":
             response = conver[j+1]["text"]
             conversaciones.append(f"{entry}\t{response}")
 
-    print(conversaciones)
+    div = int(len(conversaciones) * args.train_split)
 
+    with open(arg.train_file, 'w') as f:
+        f.write('\n'.join(conversaciones[:div]))
 
+    with open(arg.test_file, 'w') as f:
+        f.write('\n'.join(conversaciones[div:]))
