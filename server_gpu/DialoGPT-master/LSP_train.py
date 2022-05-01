@@ -384,6 +384,44 @@ while True:
             print('Best model: {},{},{},{},{},{}'.format(
                 epoch+1, global_step+1, step+1, eval_loss, eval_ppl, eval_acc),
                 file=eval_logger)
+        else:
+            model = load_model(GPT2LMHeadModel(config), join(output_dir,'GP2-pretrain-best-model.pkl'),
+                   args, verbose=True)
+            if args.local_rank != -1:
+                # when from scratch make sure initial models are the same
+                params = [p.data for p in model.parameters()]
+                all_reduce_and_rescale_tensors(
+                    params, float(torch.distributed.get_world_size()))
+
+            param_optimizer = list(model.named_parameters())
+            no_decay = ['bias', 'ln']   # no decay for bias and LayerNorm (ln)
+            optimizer_grouped_parameters = [
+                {'params': [p for n, p in param_optimizer
+                            if not any(nd in n for nd in no_decay)],
+                'weight_decay': 0.01},
+                {'params': [p for n, p in param_optimizer
+                            if any(nd in n for nd in no_decay)], 'weight_decay': 0.0}
+            ]
+
+            if args.fp16:
+                logger.info('in fp16, using FusedAdam')
+
+                actual_lr = optimizer.param_groups[0]['lr']
+
+                optimizer = FusedAdam(optimizer_grouped_parameters,
+                                    lr=actual_lr,
+                                    bias_correction=False,
+                                    max_grad_norm=1.0)
+                if args.loss_scale == 0:
+                    optimizer = FP16_Optimizer(optimizer, dynamic_loss_scale=True,
+                                            verbose=False)
+                else:
+                    optimizer = FP16_Optimizer(optimizer,
+                                            static_loss_scale=args.loss_scale,
+                                            verbose=False)
+            else:
+                optimizer = Adam(optimizer_grouped_parameters, actual_lr,
+                                max_grad_norm=1.0)
 
         logger.info('current learning rate: '
                     + str(optimizer.param_groups[0]['lr']))
