@@ -313,7 +313,7 @@ while True:
             set_lr(optimizer, global_step,
                    args.lr_schedule, args.learning_rate,
                    args.warmup_steps, args.warmup_proportion,
-                   config.n_embd, total_steps)
+                   config.n_embd, total_global_steps)
 
             if args.local_rank != -1:
                 grads = [p.grad.data for p in model.parameters()
