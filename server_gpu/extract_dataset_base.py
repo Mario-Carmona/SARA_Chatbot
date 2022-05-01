@@ -9,7 +9,7 @@ from datasets import load_dataset
 
 
 
-def extract_multi_woz_v22_dataset(train_split: float):
+def extract_multi_woz_v22_dataset():
     dataset = load_dataset("multi_woz_v22", revision="master")
 
     conversaciones_train = []
@@ -46,11 +46,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "train_split", 
-        type = float,
-        help = ""
-    )
-    parser.add_argument(
         "train_file", 
         type = str,
         help = ""
@@ -69,7 +64,7 @@ if __name__ == "__main__":
 
 
 
-    multi_woz_v22_train, multi_woz_v22_valid = extract_multi_woz_v22_dataset(args.train_split)
+    multi_woz_v22_train, multi_woz_v22_valid = extract_multi_woz_v22_dataset()
 
     dataset_train = multi_woz_v22_train
     dataset_valid = multi_woz_v22_valid
