@@ -11,6 +11,7 @@ model_path = "/mnt/homeGPU/mcarmona/tosin/dialogpt_mwoz"
 model = AutoModelForCausalLM.from_pretrained(model_path)
 
 
+
 torch.save(
             {k: (v.cpu() if v is not None else None)  # save to cpu tensors
                 for k, v in model.state_dict().items()},
