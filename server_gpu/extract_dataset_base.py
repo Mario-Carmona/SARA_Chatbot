@@ -12,25 +12,34 @@ from datasets import load_dataset
 def extract_multi_woz_v22_dataset(train_split: float):
     dataset = load_dataset("multi_woz_v22", revision="master")
 
-    conversaciones = []
+    conversaciones_train = []
 
-    for split in ["train", "test", "validation"]:
-        dialog = dataset[split]["turns"]
+    dialog = dataset["train"]["turns"]
 
-        for conver in dialog:
-            conver = conver["utterance"]
+    for conver in dialog:
+        conver = conver["utterance"]
 
-            len_dialog = len(conver) if len(conver)%2 == 0 else len(conver)-1
-            for j in range(0,len_dialog,2):
-                entry = conver[j]
-                response = conver[j+1]
-                conversaciones.append(f"{entry}\t{response}")
-    
-    random.shuffle(conversaciones)
+        len_dialog = len(conver) if len(conver)%2 == 0 else len(conver)-1
+        for j in range(0,len_dialog,2):
+            entry = conver[j]
+            response = conver[j+1]
+            conversaciones_train.append(f"{entry}\t{response}")
 
-    div = int(len(conversaciones) * train_split)
 
-    return conversaciones[:div], conversaciones[div:]
+    conversaciones_valid = []
+
+    dialog = dataset["validation"]["turns"]
+
+    for conver in dialog:
+        conver = conver["utterance"]
+
+        len_dialog = len(conver) if len(conver)%2 == 0 else len(conver)-1
+        for j in range(0,len_dialog,2):
+            entry = conver[j]
+            response = conver[j+1]
+            conversaciones_valid.append(f"{entry}\t{response}")
+
+    return conversaciones_train, conversaciones_valid
 
 
 if __name__ == "__main__":
@@ -64,9 +73,6 @@ if __name__ == "__main__":
 
     dataset_train = multi_woz_v22_train
     dataset_valid = multi_woz_v22_valid
-
-    random.shuffle(dataset_train)
-    random.shuffle(dataset_valid)
 
     with open(args.train_file, 'w') as f:
         f.write('\n'.join(dataset_train))
