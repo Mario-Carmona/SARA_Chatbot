@@ -6,7 +6,8 @@ from os.path import join
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 
-model_path = "/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium"
+#model_path = "/mnt/homeGPU/mcarmona/server_gpu/DialoGPT-master/models/medium"
+model_path = "/mnt/homeGPU/mcarmona/tosin/prueba"
 
 """
 tokenizer = GPT2Tokenizer.from_pretrained(
