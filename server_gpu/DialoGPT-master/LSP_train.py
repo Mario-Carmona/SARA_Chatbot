@@ -406,10 +406,8 @@ while True:
             if args.fp16:
                 logger.info('in fp16, using FusedAdam')
 
-                actual_lr = optimizer.param_groups[0]['lr']
-
                 optimizer = FusedAdam(optimizer_grouped_parameters,
-                                    lr=actual_lr,
+                                    lr=args.learning_rate,
                                     bias_correction=False,
                                     max_grad_norm=1.0)
                 if args.loss_scale == 0:
@@ -420,7 +418,7 @@ while True:
                                             static_loss_scale=args.loss_scale,
                                             verbose=False)
             else:
-                optimizer = Adam(optimizer_grouped_parameters, actual_lr,
+                optimizer = Adam(optimizer_grouped_parameters, args.learning_rate,
                                 max_grad_norm=1.0)
 
         logger.info('current learning rate: '
