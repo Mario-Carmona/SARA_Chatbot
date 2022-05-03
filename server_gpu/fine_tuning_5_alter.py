@@ -24,8 +24,8 @@ data_files["train"] = "/mnt/homeGPU/mcarmona/server_gpu/datasets/v3/split_0.8_Ad
 data_files["validation"] = "/mnt/homeGPU/mcarmona/server_gpu/datasets/v3/split_0.8_Adulto/validation.csv"
 datasets = load_dataset("csv", data_files=data_files)
 
-datasets["train"] = Dataset.from_dict(datasets["train"][:])
-datasets["validation"] = Dataset.from_dict(datasets["validation"][:])
+datasets["train"] = Dataset.from_dict(datasets["train"][:10])
+datasets["validation"] = Dataset.from_dict(datasets["validation"][:8])
 
 
 
