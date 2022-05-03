@@ -49,10 +49,6 @@ def tokenize_function(examples):
 tokenized_datasets = datasets.map(tokenize_function, batched=True)
 
 
-print(tokenized_datasets)
-
-# Poner los elementos de source y target de cada línea en una lista en el preprocesado
-aux = input()
 
 """
 raw_datasets = load_dataset("glue", "mrpc")

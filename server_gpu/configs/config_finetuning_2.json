@@ -2,10 +2,10 @@
     "workdir": "/mnt/homeGPU/mcarmona",
 
 
-    "model_conver": "tosin/dialogpt_mwoz",
-    "model_conver_config": "tosin/dialogpt_mwoz/config.json",
-    "model_conver_tokenizer": "tosin/dialogpt_mwoz",
-    "model_conver_tokenizer_config": "tosin/dialogpt_mwoz/tokenizer_config.json",
+    "model_conver": "prueba/microsoft/DialoGPT-medium",
+    "model_conver_config": "prueba/microsoft/DialoGPT-medium/config.json",
+    "model_conver_tokenizer": "prueba/microsoft/DialoGPT-medium",
+    "model_conver_tokenizer_config": "prueba/microsoft/DialoGPT-medium/tokenizer_config.json",
 
 
     "data_dir": "server_gpu/datasets/v3/split_0.8_Adulto",
@@ -21,7 +21,7 @@
 
     "seed": 0,
 
-    "output_dir": "result_finetuning/v2",
+    "output_dir": "result_finetuning/v3",
     "overwrite_output_dir": true,
     "resume_from_checkpoint": false,
 
@@ -35,9 +35,9 @@
     "save_strategy": "epoch",
 
 
-    "per_device_train_batch_size": 2,
-    "gradient_accumulation_steps": 4,
-    "per_device_eval_batch_size": 4,
+    "per_device_train_batch_size": 8,
+    "gradient_accumulation_steps": 1,
+    "per_device_eval_batch_size": 8,
 
     "fp16": false,
     "fp16_opt_level": "O1",
