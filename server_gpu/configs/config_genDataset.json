@@ -26,7 +26,7 @@
     "num_beams_question": 1,
     "initial_dataset_file": "server_gpu/datasets/v2/datasetV2_EN.csv",
     "translated": true,
-    "theme_result_dir": "server_gpu/datasets/v2",
+    "theme_result_dir": "server_gpu/datasets/v4",
     "adult_dataset_file": "dataset_adult.csv",
     "child_dataset_file": "dataset_child.csv",
 
@@ -42,19 +42,19 @@
         "prepared"
     ],
     "num_samples": 200,
-    "attitude_dataset_file": "server_gpu/datasets/v2/attitude_dataset.csv",
+    "attitude_dataset_file": "server_gpu/datasets/v4/attitude_dataset.csv",
 
 
     "list_datasets": [
-        "server_gpu/datasets/v2/general_dataset.csv"
+        "server_gpu/datasets/v4/general_dataset.csv"
     ],
-    "join_dataset_file": "server_gpu/datasets/v2/total_dataset.csv",
+    "join_dataset_file": "server_gpu/datasets/v4/total_dataset.csv",
     "remove_source_files": false,
 
 
     "split_dataset_file": "",
-    "train_split": 0.7,
-    "split_result_dir": "server_gpu/datasets/v2",
+    "train_split": 0.8,
+    "split_result_dir": "server_gpu/datasets/v4",
     "train_dataset_file": "train_resume.csv",
     "valid_dataset_file": "validation_resume.csv"
 }

@@ -6,6 +6,7 @@ import argparse
 import pandas as pd
 import sys
 import os
+from utils import save_csv
 
 from extract_empathetic_dialogues import clean_trash_csv
 
@@ -60,8 +61,8 @@ if __name__ == "__main__":
 
     dir = os.path.join(BASE_PATH,'/'.join(args.train_dataset.split('/')[:-1]))
 
-    train_s_t.to_csv(os.path.join(dir,"train.csv"))
-    clean_trash_csv(os.path.join(dir,"train.csv"))
+    save_csv(train_s_t, os.path.join(dir,"train.csv"))
+    clean_trash_csv(os.path.join(dir,"train.csv"), 3)
 
-    validation_s_t.to_csv(os.path.join(dir,"validation.csv"), 3)
+    save_csv(validation_s_t, os.path.join(dir,"validation.csv"))
     clean_trash_csv(os.path.join(dir,"validation.csv"), 3)

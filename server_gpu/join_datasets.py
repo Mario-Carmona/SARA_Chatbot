@@ -6,6 +6,7 @@ import argparse
 import os
 import sys
 from pathlib import Path
+from utils import save_csv
 
 from dataclass.join_datasets_arguments import JoinDatasetsArguments
 from transformers import HfArgumentParser
@@ -16,7 +17,6 @@ def join_datasets(list_datasets, remove_source_files):
     lista = []
     for i in list_datasets:
         dataset = pd.read_csv(i)
-        dataset = dataset.drop(columns=["Unnamed: 0"])
         lista.append(dataset)
 
     result_dataset = pd.concat(lista)
@@ -59,5 +59,4 @@ if __name__ == "__main__":
 
     join_dataset = join_datasets(join_args.list_datasets, join_args.remove_source_files)
 
-    join_dataset.to_csv(join_args.join_dataset_file)
-
+    save_csv(join_dataset, join_args.join_dataset_file)

@@ -6,6 +6,7 @@ import argparse
 import sys
 from pathlib import Path
 from datasets import load_dataset
+from utils import save_csv
 
 from dataclass.attitude_dataset_arguments import AttitudeDatasetArguments
 from transformers import HfArgumentParser
@@ -14,7 +15,6 @@ from transformers import HfArgumentParser
 
 def modify_dataset(dataset):
     dataset = dataset.rename(columns={"Sentiment":"Subject"})
-
     return dataset
 
 
@@ -102,8 +102,6 @@ if __name__ == "__main__":
 
     dataset = extract_dataset_sentiment(extract_args.list_sentiment, extract_args.num_samples, extract_args.seed)
 
-    dataset.to_csv(extract_args.attitude_dataset_file)
-
+    save_csv(dataset, extract_args.attitude_dataset_file)
     
     clean_trash_csv(extract_args.attitude_dataset_file)
-

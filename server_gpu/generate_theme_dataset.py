@@ -15,6 +15,7 @@ from tqdm.auto import tqdm
 from color import bcolors
 from typing import List
 import numpy as np
+from utils import save_csv
 
 # Configuración
 import sys
@@ -185,7 +186,7 @@ def split(cadena: str, subcadena: str):
 def save_dataset_EN(groups_datasets):
     total_dataset = pd.concat(groups_datasets)
     filename = '.'.join(generate_args.initial_dataset_file.split('.')[:-1]) + "_EN.csv"
-    total_dataset.to_csv(filename)
+    save_csv(total_dataset, filename)
 
 
 def calculateElements(groups_datasets: List[DataFrame], num_columns: int=1):
@@ -446,9 +447,6 @@ def simplify(groups_datasets):
 
 
 def generate_theme_dataset(dataset):
-    # Eliminación de una columna que se añade al guardar el archivo CSV
-    dataset = dataset.drop(columns=["Unnamed: 0"])
-
     # División del dataset en base al campo Topic
     groups_datasets = split_by_topic(dataset)
 
@@ -482,5 +480,5 @@ if __name__ == "__main__":
 
     adult_dataset, child_dataset = generate_theme_dataset(dataset)
 
-    adult_dataset.to_csv(os.path.join(generate_args.theme_result_dir, generate_args.adult_dataset_file))
-    child_dataset.to_csv(os.path.join(generate_args.theme_result_dir, generate_args.child_dataset_file))
+    save_csv(adult_dataset, os.path.join(generate_args.theme_result_dir, generate_args.adult_dataset_file))
+    save_csv(child_dataset, os.path.join(generate_args.theme_result_dir, generate_args.child_dataset_file))

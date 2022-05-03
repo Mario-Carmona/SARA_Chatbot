@@ -6,6 +6,7 @@ import argparse
 import pandas as pd
 import sys
 import os
+from utils import save_csv
 
 from dataclass.split_dataset_arguments import SplitDatasetArguments
 from transformers import HfArgumentParser
@@ -96,10 +97,7 @@ def split_by_topic(dataset: DataFrame):
     return groups_datasets
 
 
-def split_dataset(dataset, train_split, seed):
-    if "Unnamed: 0" in dataset.columns.values:
-        dataset = dataset.drop(columns=["Unnamed: 0"])
-    
+def split_dataset(dataset, train_split, seed):    
     train_dataset = obtenerTrainDataset(
         split_by_topic(dataset), 
         train_split,
@@ -153,5 +151,5 @@ if __name__ == "__main__":
         split_args.seed
     )
 
-    train_dataset.to_csv(os.path.join(split_args.split_result_dir, split_args.train_dataset_file))
-    valid_dataset.to_csv(os.path.join(split_args.split_result_dir, split_args.valid_dataset_file))
+    save_csv(train_dataset, os.path.join(split_args.split_result_dir, split_args.train_dataset_file))
+    save_csv(valid_dataset, os.path.join(split_args.split_result_dir, split_args.valid_dataset_file))

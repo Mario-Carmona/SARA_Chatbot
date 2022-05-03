@@ -4,14 +4,13 @@
 import pandas as pd
 import argparse
 
+from utils import save_csv
+
 
 
 def ordenar_dataset(archivo):
     # Lectura del dataset
     dataset = pd.read_csv(archivo)
-
-    # Eliminación de una columna que se añade al guardar el archivo CSV
-    dataset = dataset.drop(columns=["Unnamed: 0"])
 
     # Ordenar el dataset en base a la columna Topic
     dataset = dataset.sort_values(dataset.columns.values[0])
@@ -20,8 +19,7 @@ def ordenar_dataset(archivo):
     for column in dataset.columns.values:
         new_dataset[column] = dataset[column].to_list()
 
-    # Guardar el dataset tras su ordenación
-    new_dataset.to_csv(archivo)
+    return new_dataset
 
 
 if __name__ == "__main__":
@@ -34,4 +32,5 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    ordenar_dataset(args.dataset_file)
+    order_dataset = ordenar_dataset(args.dataset_file)
+    save_csv(order_dataset, args.dataset_file)
