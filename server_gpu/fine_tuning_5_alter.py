@@ -19,7 +19,7 @@ from datasets import load_dataset, Dataset
 from transformers import AutoTokenizer, DataCollatorWithPadding
 
 
-"""
+
 data_files = {}
 data_files["train"] = "/mnt/homeGPU/mcarmona/server_gpu/datasets/v3/split_0.8_Adulto/train.csv"
 data_files["validation"] = "/mnt/homeGPU/mcarmona/server_gpu/datasets/v3/split_0.8_Adulto/validation.csv"
@@ -37,8 +37,9 @@ def tokenize_function(example):
     return tokenizer([example["source"], example["target"]], truncation=True)
 
 tokenized_datasets = datasets.map(tokenize_function, batched=True)
+
 """
-raw_datasets = load_dataset("glue")
+raw_datasets = load_dataset("glue", "mrpc")
 
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.pad_token = tokenizer.eos_token
@@ -47,6 +48,7 @@ def tokenize_function(example):
     return tokenizer([example["sentence1"], example["sentence2"]], truncation=True)
 
 tokenized_datasets = raw_datasets.map(tokenize_function, batched=True)
+"""
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
 
