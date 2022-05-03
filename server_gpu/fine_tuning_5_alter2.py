@@ -201,10 +201,6 @@ def main():
 
 
 
-    # set num_beams for evaluation
-    if finetuning_args.eval_beams is None:
-        finetuning_args.eval_beams = modelConver.config.num_beams
-
 
 
 
@@ -323,7 +319,7 @@ def main():
         logger.info(bcolors.OK + "*** Evaluate ***" + bcolors.RESET)
 
         metrics = trainer.evaluate(
-            metric_key_prefix="val", max_length=finetuning_args.val_max_target_length, num_beams=finetuning_args.eval_beams
+            metric_key_prefix="val", max_length=finetuning_args.val_max_target_length
         )
         metrics["val_n_objs"] = finetuning_args.n_val
         metrics["val_loss"] = round(metrics["val_loss"], 4)
