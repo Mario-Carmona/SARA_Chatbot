@@ -319,7 +319,7 @@ def main():
         logger.info(bcolors.OK + "*** Evaluate ***" + bcolors.RESET)
 
         metrics = trainer.evaluate(
-            metric_key_prefix="val", max_length=finetuning_args.max_target_length
+            metric_key_prefix="val"
         )
         metrics["val_n_objs"] = finetuning_args.n_val
         metrics["val_loss"] = round(metrics["val_loss"], 4)
