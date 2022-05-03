@@ -62,7 +62,7 @@ if __name__ == "__main__":
     dir = os.path.join(BASE_PATH,'/'.join(args.train_dataset.split('/')[:-1]))
 
     save_csv(train_s_t, os.path.join(dir,"train.csv"))
-    clean_trash_csv(os.path.join(dir,"train.csv"), 3)
+    clean_trash_csv(os.path.join(dir,"train.csv"), 2)
 
     save_csv(validation_s_t, os.path.join(dir,"validation.csv"))
-    clean_trash_csv(os.path.join(dir,"validation.csv"), 3)
+    clean_trash_csv(os.path.join(dir,"validation.csv"), 2)

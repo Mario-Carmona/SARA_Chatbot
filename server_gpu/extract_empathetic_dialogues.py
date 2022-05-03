@@ -18,7 +18,7 @@ def modify_dataset(dataset):
     return dataset
 
 
-def clean_trash_csv(archivo, num_columns = 5):
+def clean_trash_csv(archivo, num_columns = 4):
     with open(archivo) as f:
         lineas = f.readlines()
 
