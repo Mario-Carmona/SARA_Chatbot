@@ -32,8 +32,19 @@ datasets["validation"] = Dataset.from_dict(datasets["validation"][:2])
 tokenizer.pad_token = tokenizer.eos_token
 tokenizer.pad_token = tokenizer.eos_token
 
+"""
 def tokenize_function(example):
     return tokenizer([example["source"], example["target"]], truncation=True, is_split_into_words=True)
+"""
+def tokenize_function(examples):
+    inputs = [example for example in examples["source"]]
+    targets = [example for example in examples["target"]]
+    model_inputs = tokenizer(inputs, max_length=128, truncation=True, padding="max_length")
+
+    labels = tokenizer(targets, max_length=128, truncation=True, padding="max_length")
+
+    model_inputs["labels"] = labels["input_ids"]
+    return model_inputs
 
 tokenized_datasets = datasets.map(tokenize_function, batched=True)
 
