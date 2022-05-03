@@ -38,10 +38,9 @@ def tokenize_function(example):
 tokenized_datasets = datasets.map(tokenize_function, batched=True)
 
 
-print(datasets)
-print(datasets["train"]["source"])
-print(datasets["validation"])
+print(tokenized_datasets)
 
+# Poner los elementos de source y target de cada línea en una lista en el preprocesado
 aux = input()
 
 """
