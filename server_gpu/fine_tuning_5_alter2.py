@@ -268,7 +268,7 @@ def main():
         # ó la máscara. Parece que es el cero porque la tercera
         # dimensión es igual a 8008 al igual que logits en la versión
         # de Pytorch y es igual al tamaño del vocabulario del modelo
-        predictions = np.argmax(eval_pred.predictions[0], axis=-1)
+        predictions = np.argmax(eval_pred.predictions, axis=-1)
         predictions = predictions.flatten()
         references = eval_pred.label_ids.flatten()
         return metric.compute(predictions=predictions, references=references)
@@ -319,7 +319,7 @@ def main():
         logger.info(bcolors.OK + "*** Evaluate ***" + bcolors.RESET)
 
         metrics = trainer.evaluate(
-            metric_key_prefix="val", max_length=finetuning_args.val_max_target_length
+            metric_key_prefix="val", max_length=finetuning_args.max_target_length
         )
         metrics["val_n_objs"] = finetuning_args.n_val
         metrics["val_loss"] = round(metrics["val_loss"], 4)
