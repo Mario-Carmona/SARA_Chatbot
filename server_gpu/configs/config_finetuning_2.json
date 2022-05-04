@@ -22,7 +22,7 @@
 
     "output_dir": "result_finetuning/v1_adult",
     "overwrite_output_dir": true,
-    "resume_from_checkpoint": true,
+    "resume_from_checkpoint": false,
 
     "do_train": true,
     "do_eval": false,
