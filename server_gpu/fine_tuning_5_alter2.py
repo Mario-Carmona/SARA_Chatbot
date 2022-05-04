@@ -253,7 +253,7 @@ def main():
 
 
 
-    metric = load_metric("accuracy")
+    metric = load_metric("bleu")
 
     def compute_metrics(eval_pred: EvalPrediction):
         # No se si es el índice 0 ó 1, se podrá comprobar cuando
