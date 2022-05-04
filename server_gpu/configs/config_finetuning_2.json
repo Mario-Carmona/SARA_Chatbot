@@ -20,7 +20,7 @@
 
     "seed": 0,
 
-    "output_dir": "result_finetuning/v3",
+    "output_dir": "result_finetuning/v1_adult",
     "overwrite_output_dir": true,
     "resume_from_checkpoint": false,
 
@@ -28,7 +28,7 @@
     "do_eval": false,
 
     "evaluation_strategy": "epoch",
-    "num_train_epochs": 10,
+    "num_train_epochs": 50,
     "log_level": "info",
     "logging_strategy": "epoch",
     "save_strategy": "epoch",

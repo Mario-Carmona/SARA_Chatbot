@@ -253,7 +253,6 @@ def main():
 
 
 
-    metric = load_metric("bleu")
     from nltk.translate.bleu_score import sentence_bleu
 
     def compute_metrics(eval_pred: EvalPrediction):
@@ -280,14 +279,6 @@ def main():
             bleu_score += score
         bleu_score /= len(y_true)
 
-
-        """
-        predictions = np.argmax(eval_pred.predictions, axis=-1)
-        predictions = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in predictions]
-        #predictions = predictions.flatten()
-        references = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in eval_pred.label_ids]
-        #references = eval_pred.label_ids.flatten()
-        """
         return {"bleu": bleu_score}
 
 
