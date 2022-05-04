@@ -201,11 +201,6 @@ def main():
 
 
 
-    aux = tokenizerConver("esto es una prueba")
-    print(len(aux))
-    print(len(aux[0]))
-    print(len(aux[0].ids))
-    input("-->")
 
 
 
@@ -258,7 +253,7 @@ def main():
 
 
 
-    metric = load_metric("bleu")
+    metric = load_metric("f1")
 
     def compute_metrics(eval_pred: EvalPrediction):
         # No se si es el índice 0 ó 1, se podrá comprobar cuando
@@ -266,12 +261,9 @@ def main():
         # ó la máscara. Parece que es el cero porque la tercera
         # dimensión es igual a 8008 al igual que logits en la versión
         # de Pytorch y es igual al tamaño del vocabulario del modelo
-        print(eval_pred.predictions.shape)
-        #predictions = np.argmax(eval_pred.predictions, axis=-1)
-        predictions = [tokenizerConver.decode(i) for i in eval_pred.predictions]
-        #predictions = predictions.flatten()
-        #references = eval_pred.label_ids.flatten()
-        references = [tokenizerConver.decode(i) for i in eval_pred.label_ids]
+        predictions = np.argmax(eval_pred.predictions, axis=-1)
+        predictions = predictions.flatten()
+        references = eval_pred.label_ids.flatten()
         return metric.compute(predictions=predictions, references=references)
 
 
