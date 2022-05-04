@@ -204,6 +204,7 @@ def main():
     aux = tokenizerConver("esto es una prueba")
     print(len(aux))
     print(len(aux[0]))
+    print(len(aux[0][0]))
     input("-->")
 
 
