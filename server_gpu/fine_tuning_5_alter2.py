@@ -202,7 +202,7 @@ def main():
 
 
     aux = tokenizerConver("esto es una prueba")
-    print(aux.shape)
+    print(len(aux))
     input("-->")
 
 
