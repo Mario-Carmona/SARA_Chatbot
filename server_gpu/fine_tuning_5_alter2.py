@@ -273,7 +273,7 @@ def main():
             sentence = tokenizerConver.tokenize(sentence)
             y_true.append(sentence)
         
-        
+        metric.add_batch(predictions=y_pred, references=y_true)
         """
         predictions = np.argmax(eval_pred.predictions, axis=-1)
         predictions = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in predictions]
@@ -281,7 +281,7 @@ def main():
         references = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in eval_pred.label_ids]
         #references = eval_pred.label_ids.flatten()
         """
-        return metric.compute(predictions=y_pred, references=y_true)
+        return metric.compute()
 
 
 
