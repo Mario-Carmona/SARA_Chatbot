@@ -22,13 +22,13 @@
 
     "output_dir": "result_finetuning/v1_adult",
     "overwrite_output_dir": true,
-    "resume_from_checkpoint": false,
+    "resume_from_checkpoint": true,
 
     "do_train": true,
     "do_eval": false,
 
     "evaluation_strategy": "epoch",
-    "num_train_epochs": 50,
+    "num_train_epochs": 100,
     "log_level": "info",
     "logging_strategy": "epoch",
     "save_strategy": "epoch",
