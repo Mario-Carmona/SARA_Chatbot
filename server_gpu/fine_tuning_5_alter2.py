@@ -254,6 +254,7 @@ def main():
 
 
     metric = load_metric("bleu")
+    from nltk.translate.bleu_score import sentence_bleu
 
     def compute_metrics(eval_pred: EvalPrediction):
         # No se si es el índice 0 ó 1, se podrá comprobar cuando
@@ -265,15 +266,21 @@ def main():
         batch_pred = tokenizerConver.batch_decode(predictions, skip_special_tokens=True)
         y_pred = []
         for sentence in batch_pred:
-            sentence = tokenizerConver.tokenize(sentence)
+            sentence = sentence.strip().strip()
             y_pred.append(sentence)
         batch_labels = tokenizerConver.batch_decode(eval_pred.label_ids, skip_special_tokens=True)
         y_true = []
         for sentence in batch_labels:
-            sentence = tokenizerConver.tokenize(sentence)
+            sentence = sentence.strip().strip()
             y_true.append(sentence)
         
-        metric.add_batch(predictions=y_pred, references=y_true)
+        bleu_score = 0.0
+        for i in y_true:
+            score = sentence_bleu(y_pred, i)
+            bleu_score += score
+        bleu_score /= len(y_true)
+
+
         """
         predictions = np.argmax(eval_pred.predictions, axis=-1)
         predictions = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in predictions]
@@ -281,7 +288,7 @@ def main():
         references = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in eval_pred.label_ids]
         #references = eval_pred.label_ids.flatten()
         """
-        return metric.compute()
+        return {"bleu": bleu_score}
 
 
 
