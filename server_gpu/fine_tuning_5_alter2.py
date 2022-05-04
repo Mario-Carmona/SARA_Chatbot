@@ -261,12 +261,27 @@ def main():
         # ó la máscara. Parece que es el cero porque la tercera
         # dimensión es igual a 8008 al igual que logits en la versión
         # de Pytorch y es igual al tamaño del vocabulario del modelo
+        
+        batch_pred = tokenizerConver.batch_decode(eval_pred.predictions, skip_special_tokens=True)
+        y_pred = []
+        for sentence in batch_pred:
+            sentence = tokenizerConver.tokenize(sentence)
+            y_pred.append(sentence)
+        batch_labels = tokenizerConver.batch_decode(eval_pred.label_ids, skip_special_tokens=True)
+        y_true = []
+        for sentence in batch_labels:
+            sentence = tokenizerConver.tokenize(sentence)
+            y_true.append(sentence)
+        
+        
+        """
         predictions = np.argmax(eval_pred.predictions, axis=-1)
         predictions = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in predictions]
         #predictions = predictions.flatten()
         references = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in eval_pred.label_ids]
         #references = eval_pred.label_ids.flatten()
-        return metric.compute(predictions=predictions, references=references)
+        """
+        return metric.compute(predictions=y_pred, references=y_true)
 
 
 
