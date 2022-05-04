@@ -264,7 +264,7 @@ def main():
         predictions = np.argmax(eval_pred.predictions, axis=-1)
         predictions = predictions.flatten()
         references = eval_pred.label_ids.flatten()
-        return metric.compute(predictions=predictions, references=references)
+        return metric.compute(predictions=list(predictions), references=list(references))
 
 
 
