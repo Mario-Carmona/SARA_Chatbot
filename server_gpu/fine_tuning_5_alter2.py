@@ -229,11 +229,9 @@ def main():
 
 
     def preprocess_function(examples):
-        inputs = [example for example in examples["source"]]
-        targets = [example for example in examples["target"]]
-        model_inputs = tokenizerConver(inputs, max_length=finetuning_args.max_source_length, truncation=True, padding="max_length")
+        model_inputs = tokenizerConver(list(examples["source"]), max_length=finetuning_args.max_source_length, truncation=True, padding="max_length")
 
-        labels = tokenizerConver(targets, max_length=finetuning_args.max_target_length, truncation=True, padding="max_length")
+        labels = tokenizerConver(list(examples["target"]), max_length=finetuning_args.max_target_length, truncation=True, padding="max_length")
 
         model_inputs["labels"] = labels["input_ids"]
         return model_inputs
@@ -246,11 +244,6 @@ def main():
 
 
     tokenized_datasets = tokenized_datasets.remove_columns(["source", "target"])
-
-    #tokenized_datasets.set_format("torch")
-
-
-
 
 
 
