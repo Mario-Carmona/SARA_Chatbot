@@ -262,10 +262,9 @@ def main():
         # dimensión es igual a 8008 al igual que logits en la versión
         # de Pytorch y es igual al tamaño del vocabulario del modelo
         predictions = np.argmax(eval_pred.predictions, axis=-1)
-        predictions = []
+        predictions = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in predictions]
         #predictions = predictions.flatten()
-        print(tokenizerConver.decode(predictions[0], skip_special_tokens=True))
-        input("-->")
+        references = [tokenizerConver.decode(i, skip_special_tokens=True).split() for i in eval_pred.label_ids]
         #references = eval_pred.label_ids.flatten()
         return metric.compute(predictions=predictions, references=references)
 
