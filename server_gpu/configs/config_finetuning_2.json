@@ -2,10 +2,10 @@
     "workdir": "/mnt/homeGPU/mcarmona",
 
 
-    "model_conver": "microsoft/DialoGPT-large",
-    "model_conver_config": "microsoft/DialoGPT-large/config.json",
-    "model_conver_tokenizer": "microsoft/DialoGPT-large",
-    "model_conver_tokenizer_config": "microsoft/DialoGPT-large/tokenizer_config.json",
+    "model_conver": "microsoft/DialoGPT-medium",
+    "model_conver_config": "microsoft/DialoGPT-medium/config.json",
+    "model_conver_tokenizer": "microsoft/DialoGPT-medium",
+    "model_conver_tokenizer_config": "microsoft/DialoGPT-medium/tokenizer_config.json",
 
 
     "data_dir": "server_gpu/datasets/v4/split_0.8_adult",
