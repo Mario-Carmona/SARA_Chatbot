@@ -8,7 +8,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
-mname = "/mnt/homeGPU/mcarmona/facebook/blenderbot-1B-distill"
+mname = "/mnt/homeGPU/mcarmona/facebook/blenderbot-400M-distill"
 model = BlenderbotForConditionalGeneration.from_pretrained(mname)
 tokenizer = BlenderbotTokenizer.from_pretrained(mname)
 
