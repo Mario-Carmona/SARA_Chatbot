@@ -41,7 +41,7 @@ for step in range(20):
 
     print("----")
     for i in context:
-        tokenizer.decode(i[0], skip_special_tokens=False)
+        print(tokenizer.decode(i[0], skip_special_tokens=False))
     print("----")
 
     bot_input_ids = torch.cat(context, axis=-1)  
