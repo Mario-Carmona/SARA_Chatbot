@@ -10,6 +10,7 @@ import requests
 import psycopg2
 from datetime import datetime
 import pytz
+import enum
 
 from pydantic import BaseModel
 
@@ -18,6 +19,15 @@ from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
+
+
+
+
+class TalkType(enum.Enum):
+    child = "child"
+    adult = "adult"
+
+
 
 
 
@@ -37,7 +47,7 @@ class ServerURL(BaseModel):
     url: str
 
 def obtenerElemContext(outputContexts):
-    return [i for i, s in enumerate(outputContexts) if s["name"].__contains__("welcome-followup")][0]
+    return [i for i, s in enumerate(outputContexts) if s["name"].__contains__("Talk-followup")][0]
 
 
 def make_response_welcome(request: Dict):
@@ -93,7 +103,82 @@ def make_response_welcome(request: Dict):
 
     return response
 
-def make_response_deduct_talk(request: Dict):
+
+
+def is_first_response(outputContexts):
+    elem = obtenerElemContext(outputContexts)
+    
+    if(not "edad" in outputContexts[elem].get("parameters").keys()):
+        return True
+    else:
+        return False
+
+
+
+def generate_response(entry: str, edad: str, past_user_inputs=None, generated_responses=None):
+    query_json = {
+        "entry": entry,
+        "past_user_inputs": past_user_inputs,
+        "generated_responses": generated_responses
+    }
+    headers = {'content-type': 'application/json'}
+    output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
+    output = json.loads(output.content.decode('utf-8'))
+
+    return output
+
+
+
+
+def make_first_response(request: Dict, edad: TalkType):
+    outputContexts = request.get("queryResult").get("outputContexts")
+
+    if SERVER_GPU_URL != "":
+        entry = request.get("queryResult").get("queryText")
+
+        elem = obtenerElemContext(outputContexts)
+
+        edad = outputContexts[elem]["parameters"]["edad"]
+
+        past_user_inputs = outputContexts[elem]["parameters"]["past_user_inputs"]
+        generated_responses = outputContexts[elem]["parameters"]["generated_responses"]
+
+        generate_response(entry, edad)
+
+
+
+def make_rest_response(request: Dict):
+    pass
+
+
+
+def make_response_talk(request: Dict, edad: TalkType):
+    outputContexts = request.get("queryResult").get("outputContexts")
+
+    if is_first_response(outputContexts):
+        make_first_response(request, edad)
+    else:
+        make_rest_response(request)
+
+
+
+
+
+
+    if SERVER_GPU_URL != "":
+        entry = request.get("queryResult").get("queryText")
+
+        query_json = {
+            "entry": entry,
+            "past_user_inputs": None,
+            "generated_responses": None
+        }
+
+
+
+
+
+def make_response_deduct_talk(age: TalkType, request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if(not "edad" in outputContexts[0].get("parameters").keys()):
@@ -120,7 +205,7 @@ def make_response_deduct(request: Dict):
 
     return response
 
-def make_response_talk(request: Dict):
+def make_response_talk(age: TalkType, request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
@@ -297,7 +382,7 @@ def setURL(request: ServerURL):
     SERVER_GPU_URL = request.url
     return "URL fijada correctamente"
 
-@app.post("/webhook")
+@app.post("/webhook_adult")
 async def webhook( request: Request):
     request_JSON = await request.json()
 
@@ -305,10 +390,8 @@ async def webhook( request: Request):
 
     intent = request_JSON["queryResult"]["intent"]["displayName"]
 
-    if intent == "Welcome":
-        response = make_response_welcome(request_JSON)
-    elif intent == "Deduct And Talk":
-        response = make_response_deduct_talk(request_JSON)
+    if intent == "Talk":
+        response = make_response_talk(request_JSON, TalkType.adult)
     elif intent == "Goodbye":
         # Implementar guardado del historial
         response = make_response_goodbye(request_JSON)
