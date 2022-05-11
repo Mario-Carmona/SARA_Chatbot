@@ -8,7 +8,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM
 
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
-mname = "/mnt/homeGPU/mcarmona/facebook/blenderbot-400M-distill"
+mname = "/mnt/homeGPU/mcarmona/facebook/blenderbot-1B-distill"
 model = BlenderbotForConditionalGeneration.from_pretrained(mname)
 tokenizer = BlenderbotTokenizer.from_pretrained(mname)
 
@@ -27,7 +27,7 @@ for step in range(5):
     else:
       bot_input_ids = new_user_input_ids
 
-    chat_history_ids = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
+    chat_history_ids = model.generate(bot_input_ids, max_length=1000, max_time=3.0, pad_token_id=tokenizer.eos_token_id)
 
     print("Blendetbot: {}".format(tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)))
 
