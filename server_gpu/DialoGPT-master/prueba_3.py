@@ -24,6 +24,7 @@ for step in range(1):
     entry = input(">> User: ") + tokenizer.eos_token
     print(entry)
     new_user_input_ids = tokenizer.encode(entry, return_tensors='pt')
+    print(tokenizer.decode(new_user_input_ids, skip_special_tokens=True))
     if step > 0:
       bot_input_ids = torch.cat([chat_history_ids, new_user_input_ids], axis=-1)  
     else:
