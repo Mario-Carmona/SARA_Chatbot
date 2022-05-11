@@ -5,7 +5,6 @@ import torch
 from os.path import join
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-import math
 
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
@@ -32,7 +31,7 @@ for step in range(20):
     
     pos = -1
     num = 0
-    while num <= 500 and math.abs(pos) <= len(context):
+    while num <= 500 and abs(pos) <= len(context):
         num += len(context[pos][0])
 
         if num <= 500:
@@ -40,6 +39,10 @@ for step in range(20):
 
     context = context[pos+1:]
 
+    print("----")
+    for i in context:
+        tokenizer.decode(i[0], skip_special_tokens=False)
+    print("----")
 
     bot_input_ids = torch.cat(context, axis=-1)  
 
