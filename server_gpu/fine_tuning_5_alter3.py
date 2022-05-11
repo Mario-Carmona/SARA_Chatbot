@@ -263,12 +263,14 @@ def main():
         y_pred = []
         for sentence in batch_pred:
             sentence = sentence.strip()
+            sentence = sentence.replace("_comma_", ",")
             y_pred.append(sentence)
 
         batch_labels = tokenizerConver.batch_decode(eval_pred.label_ids, skip_special_tokens=True)
         y_true = []
         for sentence in batch_labels:
             sentence = sentence.strip()
+            sentence = sentence.replace("_comma_", ",")
             y_true.append(sentence)
         
         bleu_score = 0.0
