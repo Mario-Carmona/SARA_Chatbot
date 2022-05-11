@@ -25,13 +25,16 @@ for step in range(1):
     print(entry)
     new_user_input_ids = tokenizer.encode(entry, return_tensors='pt')
     print(new_user_input_ids)
-    print(tokenizer.decode(new_user_input_ids, skip_special_tokens=True))
+    print(tokenizer.decode(new_user_input_ids[0], skip_special_tokens=True))
     if step > 0:
       bot_input_ids = torch.cat([chat_history_ids, new_user_input_ids], axis=-1)  
     else:
       bot_input_ids = new_user_input_ids
 
     chat_history_ids = model.generate(bot_input_ids, max_length=1000, max_time=3.0, pad_token_id=tokenizer.eos_token_id)
+
+    print(tokenizer.decode(chat_history_ids[0], skip_special_tokens=True))
+    print(tokenizer.decode(chat_history_ids[0], skip_special_tokens=False))
 
     output = tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
     print("Blendetbot: {}".format(output))
