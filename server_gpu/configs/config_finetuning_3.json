@@ -42,7 +42,7 @@
 
     "dataloader_drop_last": true,
 
-    "load_best_model_at_end": true,
+    "load_best_model_at_end": false,
     "metric_for_best_model": "eval_bleu",
     "greater_is_better": true,
 
