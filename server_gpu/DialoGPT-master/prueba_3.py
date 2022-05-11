@@ -25,9 +25,8 @@ context = []
 
 for step in range(20):
     entry = tokenizer.cls_token + input(">> User: ") + tokenizer.eos_token
-    print(entry)
     new_user_input_ids = tokenizer.encode(entry, return_tensors='pt')
-    print(tokenizer.decode(new_user_input_ids[0]))
+    
     
     context.append(new_user_input_ids)
     
