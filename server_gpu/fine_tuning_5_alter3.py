@@ -177,9 +177,6 @@ def main():
         finetuning_args.model_conver_config,
         task_specific_params={
             finetuning_args.task: {
-                "do_sample": finetuning_args.do_sample,
-                "temperature": finetuning_args.temperature,
-                "top_p": finetuning_args.top_p,
                 "max_length": finetuning_args.max_length,
                 "min_length": finetuning_args.min_length
             }
@@ -261,6 +258,7 @@ def main():
         # ó la máscara. Parece que es el cero porque la tercera
         # dimensión es igual a 8008 al igual que logits en la versión
         # de Pytorch y es igual al tamaño del vocabulario del modelo
+        print(eval_pred.predictions.shape)
         predictions = np.argmax(eval_pred.predictions, axis=-1)
         batch_pred = tokenizerConver.batch_decode(predictions, skip_special_tokens=True)
         y_pred = []
