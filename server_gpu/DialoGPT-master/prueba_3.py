@@ -29,9 +29,9 @@ for step in range(20):
     
     context.append(new_user_input_ids)
     
-    pos = -1
+    pos = len(context) - 1
     num = 0
-    while num <= 500 and abs(pos) <= len(context):
+    while num <= 500 and pos >= 0:
         num += len(context[pos][0])
 
         if num <= 500:
