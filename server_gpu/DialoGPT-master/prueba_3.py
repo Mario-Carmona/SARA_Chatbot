@@ -23,7 +23,7 @@ print(tokenizer.batch_decode(reply_ids))
 for step in range(5):
     new_user_input_ids = tokenizer.encode(input(">> User:") + tokenizer.eos_token, return_tensors='pt')
     if step > 0:
-      bot_input_ids = torch.concat([chat_history_ids, new_user_input_ids], axis=-1)  
+      bot_input_ids = torch.cat([chat_history_ids, new_user_input_ids], axis=-1)  
     else:
       bot_input_ids = new_user_input_ids
 
