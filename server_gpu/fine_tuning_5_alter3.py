@@ -265,10 +265,9 @@ def main():
             sentence = sentence.strip()
             y_pred.append(sentence)
 
-        print(eval_pred.label_ids)
-        print(eval_pred.label_ids[0])
-        print(eval_pred.label_ids[0][0])
-        print(eval_pred.label_ids[0][0][0])
+        print(len(eval_pred.label_ids))
+        print(len(eval_pred.label_ids[0]))
+        print(len(eval_pred.label_ids[0][0]))
         input("--->")
 
         batch_labels = tokenizerConver.batch_decode(eval_pred.label_ids, skip_special_tokens=True)
