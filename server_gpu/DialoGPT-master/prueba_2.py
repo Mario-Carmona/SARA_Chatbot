@@ -18,6 +18,7 @@ new_user_input_ids = tokenizer.encode(input(">> User:") + tokenizer.eos_token, r
 # append the new user input tokens to the chat history
 bot_input_ids = new_user_input_ids
 # generated a response while limiting the total chat history to 1000 tokens, 
+print(bot_input_ids)
 chat_history_ids = model.generate(bot_input_ids, max_length=1000, pad_token_id=tokenizer.eos_token_id)
 print(chat_history_ids)
 # pretty print last ouput tokens from bot
