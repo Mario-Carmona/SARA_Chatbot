@@ -23,7 +23,7 @@ print(tokenizer.batch_decode(reply_ids))
 context = []
 
 for step in range(20):
-    entry = tokenizer.cls_token + input(">> User: ") + tokenizer.eos_token
+    entry = tokenizer.cls_token + input(">> User: ")
     new_user_input_ids = tokenizer.encode(entry, return_tensors='pt')
     
 
@@ -45,6 +45,8 @@ for step in range(20):
     print("----")
 
     bot_input_ids = torch.cat(context, axis=-1)  
+
+    print(tokenizer.decode(bot_input_ids[0], skip_special_tokens=False))
 
     response = model.generate(bot_input_ids, max_length=1000, max_time=3.0, pad_token_id=tokenizer.eos_token_id)
 
