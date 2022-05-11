@@ -48,7 +48,7 @@ for step in range(20):
 
     print(tokenizer.decode(bot_input_ids[0], skip_special_tokens=False))
 
-    response = model.generate(bot_input_ids, max_length=1000, max_time=3.0, pad_token_id=tokenizer.eos_token_id)
+    response = model.generate(bot_input_ids, max_length=128, pad_token_id=tokenizer.eos_token_id)
 
     context.append(response)
 
