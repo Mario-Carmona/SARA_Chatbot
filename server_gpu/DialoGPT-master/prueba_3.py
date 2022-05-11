@@ -5,10 +5,11 @@ import torch
 from os.path import join
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
+import math
 
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
-mname = "/mnt/homeGPU/mcarmona/facebook/blenderbot-400M-distill"
+mname = "/mnt/homeGPU/mcarmona/facebook/blenderbot-1B-distill"
 model = BlenderbotForConditionalGeneration.from_pretrained(mname)
 tokenizer = BlenderbotTokenizer.from_pretrained(mname)
 
@@ -20,22 +21,32 @@ reply_ids = model.generate(**inputs)
 print(tokenizer.batch_decode(reply_ids))
 """
 
-for step in range(1):
-    entry = input(">> User: ") + tokenizer.eos_token
+context = []
+
+for step in range(20):
+    entry = tokenizer.cls_token + input(">> User: ") + tokenizer.eos_token
     print(entry)
     new_user_input_ids = tokenizer.encode(entry, return_tensors='pt')
-    print(new_user_input_ids)
-    print(tokenizer.decode(new_user_input_ids[0], skip_special_tokens=True))
-    if step > 0:
-      bot_input_ids = torch.cat([chat_history_ids, new_user_input_ids], axis=-1)  
-    else:
-      bot_input_ids = new_user_input_ids
+    print(tokenizer.decode(new_user_input_ids[0]))
+    
+    context.append(new_user_input_ids)
+    
+    pos = -1
+    num = 0
+    while num <= 500 and math.abs(pos) <= len(context):
+        num += len(context[pos][0])
 
-    chat_history_ids = model.generate(bot_input_ids, max_length=1000, max_time=3.0, pad_token_id=tokenizer.eos_token_id)
+        if num <= 500:
+            pos -= 1
 
-    print(tokenizer.decode(chat_history_ids[0], skip_special_tokens=True))
-    print(tokenizer.decode(chat_history_ids[0], skip_special_tokens=False))
+    context = context[pos+1:]
 
-    output = tokenizer.decode(chat_history_ids[:, bot_input_ids.shape[-1]:][0], skip_special_tokens=True)
-    print("Blendetbot: {}".format(output))
+
+    bot_input_ids = torch.cat(context, axis=-1)  
+
+    response = model.generate(bot_input_ids, max_length=1000, max_time=3.0, pad_token_id=tokenizer.eos_token_id)
+
+    context.append(response)
+
+    print("Blendetbot: {}".format(tokenizer.decode(response[0], skip_special_tokens=True)))
 
