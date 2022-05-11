@@ -262,14 +262,19 @@ def main():
         batch_pred = tokenizerConver.batch_decode(predictions, skip_special_tokens=True)
         y_pred = []
         for sentence in batch_pred:
-            print(sentence)
-            input("--->")
-            sentence = sentence.strip().strip()
+            sentence = sentence.strip()
             y_pred.append(sentence)
+
+        print(eval_pred.label_ids)
+        print(eval_pred.label_ids[0])
+        print(eval_pred.label_ids[0][0])
+        print(eval_pred.label_ids[0][0][0])
+        input("--->")
+
         batch_labels = tokenizerConver.batch_decode(eval_pred.label_ids, skip_special_tokens=True)
         y_true = []
         for sentence in batch_labels:
-            sentence = sentence.strip().strip()
+            sentence = sentence.strip()
             y_true.append(sentence)
         
         bleu_score = 0.0
