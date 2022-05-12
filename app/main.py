@@ -260,8 +260,6 @@ def make_response_goodbye(request: Dict):
 
 
 
-
-
 app = FastAPI(version="1.0.0")
 
 app.mount("/static", StaticFiles(directory=(BASE_PATH + "/static")))
