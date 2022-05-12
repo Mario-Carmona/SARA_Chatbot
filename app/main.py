@@ -115,17 +115,19 @@ def is_first_response(outputContexts):
 
 
 
-def generate_response(entry: str, edad: str, past_user_inputs=None, generated_responses=None):
+def generate_response(entry: str, edad: str, history=[]):
     query_json = {
         "entry": entry,
-        "past_user_inputs": past_user_inputs,
-        "generated_responses": generated_responses
+        "history": history
     }
     headers = {'content-type': 'application/json'}
     output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
     output = json.loads(output.content.decode('utf-8'))
 
     return output
+
+
+
 
 
 
@@ -138,98 +140,56 @@ def make_first_response(request: Dict, edad: TalkType):
 
         elem = obtenerElemContext(outputContexts)
 
-        edad = outputContexts[elem]["parameters"]["edad"]
+        output = generate_response(entry, edad)
 
-        past_user_inputs = outputContexts[elem]["parameters"]["past_user_inputs"]
-        generated_responses = outputContexts[elem]["parameters"]["generated_responses"]
+        date_ini = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
-        generate_response(entry, edad)
+        outputContexts[elem]["parameters"]["context"]["entry"]["ES"] = [output["entry"]["ES"]]
+        outputContexts[elem]["parameters"]["context"]["answer"]["ES"] = [output["answer"]["ES"]]
 
+        outputContexts[elem]["parameters"]["context"]["entry"]["EN"] = [output["entry"]["EN"]]
+        outputContexts[elem]["parameters"]["context"]["entry"]["EN"] = [output["answer"]["EN"]]
 
+        outputContexts[elem]["parameters"]["history"] = output["history"]
 
-def make_rest_response(request: Dict):
-    pass
+        outputContexts[elem]["parameters"]["date_ini"] = date_ini
 
+        outputContexts[elem]["parameters"]["edad"] = edad
 
-
-def make_response_talk(request: Dict, edad: TalkType):
-    outputContexts = request.get("queryResult").get("outputContexts")
-
-    if is_first_response(outputContexts):
-        make_first_response(request, edad)
+        answer = output["answer"]["ES"]
     else:
-        make_rest_response(request)
+        outputContexts = []
+        answer = "Servidor GPU no disponible"
 
-
-
-
-
-
-    if SERVER_GPU_URL != "":
-        entry = request.get("queryResult").get("queryText")
-
-        query_json = {
-            "entry": entry,
-            "past_user_inputs": None,
-            "generated_responses": None
-        }
-
-
-
-
-
-def make_response_deduct_talk(age: TalkType, request: Dict):
-    outputContexts = request.get("queryResult").get("outputContexts")
-
-    if(not "edad" in outputContexts[0].get("parameters").keys()):
-        return make_response_deduct(request)
-    else:
-        return make_response_talk(request)
-
-def make_response_deduct(request: Dict):
-    outputContexts = request.get("queryResult").get("outputContexts")
-
-    entry = request.get("queryResult").get("queryText")
-
-    answer = entry
-
-    if answer in ["Niño", "Adolescente", "Adulto"]:
-        elem = obtenerElemContext(outputContexts)
-
-        outputContexts[elem]["parameters"]["edad"] = answer
-    
     response = {
         "fulfillmentText": answer,
         "output_contexts": outputContexts
     }
-
+    
     return response
 
-def make_response_talk(age: TalkType, request: Dict):
+
+
+def make_rest_response(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
-
+    
     elem = obtenerElemContext(outputContexts)
 
     edad = outputContexts[elem]["parameters"]["edad"]
 
-    past_user_inputs = outputContexts[elem]["parameters"]["past_user_inputs"]
-    generated_responses = outputContexts[elem]["parameters"]["generated_responses"]
+    history = outputContexts[elem]["parameters"]["history"]
 
-    query_json = {
-        "entry": entry,
-        "past_user_inputs": past_user_inputs,
-        "generated_responses": generated_responses
-    }
-    headers = {'content-type': 'application/json'}
-    output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
-    output = json.loads(output.content.decode('utf-8'))
+    output = generate_response(entry, edad, history)
 
-    outputContexts[elem]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
-    outputContexts[elem]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
-    outputContexts[elem]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
-    outputContexts[elem]["parameters"]["generated_responses"].append(output["answer"]["EN"])
+    outputContexts[elem]["parameters"]["context"]["entry"]["ES"].append(output["entry"]["ES"])
+    outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
+
+    outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["entry"]["EN"])
+    outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["answer"]["EN"])
+
+    outputContexts[elem]["parameters"]["history"] = output["history"]
 
     answer = output["answer"]["ES"]
 
@@ -237,28 +197,50 @@ def make_response_talk(age: TalkType, request: Dict):
         "fulfillmentText": answer,
         "output_contexts": outputContexts
     }
-
+    
     return response
 
-def generarContent(context, past_user_inputs, generated_responses):
+
+
+
+
+
+
+
+
+
+
+def make_response_talk(request: Dict, edad: TalkType):
+    outputContexts = request.get("queryResult").get("outputContexts")
+
+    if is_first_response(outputContexts):
+        return make_first_response(request, edad)
+    else:
+        return make_rest_response(request)
+
+
+
+
+
+def generarContent(context):
     content = ""
 
-    for entry, answer, entry_EN, answer_EN in zip(context["entry"], context["answer"], past_user_inputs, generated_responses):
-        content += f"\n[USER]: {entry}\n"
+    for entry_ES, answer_ES, entry_EN, answer_EN in zip(context["entry"]["ES"], context["answer"]["ES"], context["entry"]["EN"], context["answer"]["EN"]):
+        content += f"\n[USER]: {entry_ES}\n"
         content += f"[USER (EN)]: {entry_EN}\n"
         content += f"[BOT (EN)]: {answer_EN}\n"
-        content += f"[BOT]: {answer}\n"
+        content += f"[BOT]: {answer_ES}\n"
     
     return content
 
-def save_conversation(context, past_user_inputs, generated_responses, edad, date_ini):
+def save_conversation(context, edad, date_ini):
     DATABASE_URL = os.environ['DATABASE_URL']
 
     db = psycopg2.connect(DATABASE_URL, sslmode='require')
 
     cur = db.cursor()
 
-    content = generarContent(context, past_user_inputs, generated_responses)
+    content = generarContent(context)
 
     date_fin = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
@@ -284,43 +266,29 @@ def save_conversation(context, past_user_inputs, generated_responses, edad, date
     cur.close()
     db.close()
 
+
+
+
 def make_response_goodbye(request: Dict):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     entry = request.get("queryResult").get("queryText")
-
+    
     elem = obtenerElemContext(outputContexts)
 
     edad = outputContexts[elem]["parameters"]["edad"]
 
-    past_user_inputs = outputContexts[elem]["parameters"]["past_user_inputs"]
-    generated_responses = outputContexts[elem]["parameters"]["generated_responses"]
+    history = outputContexts[elem]["parameters"]["history"]
 
-    query_json = {
-        "entry": entry,
-        "past_user_inputs": None,
-        "generated_responses": None
-    }
-    """
-    headers = {'content-type': 'application/json'}
-    output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
-    output = json.loads(output.content.decode('utf-8'))
-    """
-    output = {
-        "entry": {
-            "ES": "Adios", 
-            "EN": "Bye bye"
-        },
-        "answer": {
-            "ES": "Adios", 
-            "EN": "Bye bye"
-        }
-    }
+    output = generate_response(entry, edad, history)
 
-    outputContexts[elem]["parameters"]["context"]["entry"].append(output["entry"]["ES"])
-    outputContexts[elem]["parameters"]["context"]["answer"].append(output["answer"]["ES"])
-    outputContexts[elem]["parameters"]["past_user_inputs"].append(output["entry"]["EN"])
-    outputContexts[elem]["parameters"]["generated_responses"].append(output["answer"]["EN"])
+    outputContexts[elem]["parameters"]["context"]["entry"]["ES"].append(output["entry"]["ES"])
+    outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
+
+    outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["entry"]["EN"])
+    outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["answer"]["EN"])
+
+    outputContexts[elem]["parameters"]["history"] = output["history"]
 
     answer = output["answer"]["ES"]
 
@@ -329,17 +297,24 @@ def make_response_goodbye(request: Dict):
         "output_contexts": []
     }
 
-    DATABASE_URL = os.environ['DATABASE_URL']
-
     save_conversation(
-        outputContexts[elem]["parameters"]["context"], 
-        outputContexts[elem]["parameters"]["past_user_inputs"], 
-        outputContexts[elem]["parameters"]["generated_responses"], 
+        outputContexts[elem]["parameters"]["context"],
         outputContexts[elem]["parameters"]["edad"], 
         outputContexts[elem]["parameters"]["date_ini"]
     )
 
     return response
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -392,6 +367,24 @@ async def webhook( request: Request):
 
     if intent == "Talk":
         response = make_response_talk(request_JSON, TalkType.adult)
+    elif intent == "Goodbye":
+        # Implementar guardado del historial
+        response = make_response_goodbye(request_JSON)
+
+    print(response)
+
+    return response
+
+@app.post("/webhook_child")
+async def webhook( request: Request):
+    request_JSON = await request.json()
+
+    print(request_JSON)
+
+    intent = request_JSON["queryResult"]["intent"]["displayName"]
+
+    if intent == "Talk":
+        response = make_response_talk(request_JSON, TalkType.child)
     elif intent == "Goodbye":
         # Implementar guardado del historial
         response = make_response_goodbye(request_JSON)
