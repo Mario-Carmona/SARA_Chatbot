@@ -50,8 +50,7 @@ import io
 
 class Entry(BaseModel):
     entry: str
-    past_user_inputs: List[str]
-    generated_responses: List[str]
+    history: List[torch.Tensor]
 
 class EntryDeduct(BaseModel):
     imagen: str
@@ -133,14 +132,7 @@ modelConver = BlenderbotForConditionalGeneration.from_pretrained(
     torch_dtype=torch.float16
 )
 
-# ----------------------------------------------
-
-pipelineConversation = ConversationalPipeline(
-    model=modelConver,
-    tokenizer=tokenizerConver,
-    framework="pt",
-    device=local_rank
-)
+modelConver.to(local_rank)
 
 # ----------------------------------------------
 
@@ -151,31 +143,50 @@ translator = deepl.Translator(auth_key)
 
 
 
+def adjust_history(history, max_length):
+    pos = len(history) - 1
+    num = 0
+    while num <= max_length and pos >= 0:
+        num += len(history[pos][0])
 
-def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_responses: List[str]):
+        if num <= 500:
+            pos -= 1
+
+    history = history[pos+1:]
+
+    return history
+
+
+
+def make_response_Adulto(entry: str, history: List[torch.Tensor]):
 
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
 
     print(entry_EN)
 
-    conversation = Conversation(
-        entry_EN,
-        past_user_inputs=past_user_inputs,
-        generated_responses=generated_responses
-    )
+    new_user_input_ids = tokenizerConver.encode(entry_EN, return_tensors='pt')
 
-    pipelineConversation(
-        conversation,
+    history.append(new_user_input_ids)
+
+    history = adjust_history(history, 500)
+
+    bot_input_ids = torch.cat(history, axis=-1)
+
+    response = modelConver.generate(
+        bot_input_ids, 
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
         top_p=server_args.top_p,
         max_time=server_args.max_time,
         max_length=server_args.max_length,
         min_length=server_args.min_length,
-        use_cache=server_args.use_cache
+        use_cache=server_args.use_cache,
+        pad_token_id=tokenizerConver.eos_token_id
     )
 
-    answer_EN = conversation.generated_responses[-1]
+    history.append(response)
+
+    answer_EN = tokenizerConver.decode(response[0], skip_special_tokens=True)
 
     print(answer_EN)
 
@@ -197,9 +208,6 @@ def make_response_Adulto(entry: str, past_user_inputs: List[str], generated_resp
     return response
 
 
-
-def deduct_age(image):
-    pass
 
 
 def send_public_URL():
@@ -233,8 +241,7 @@ def adulto(request: Entry):
 
     response = make_response_Adulto(
         request.entry, 
-        request.past_user_inputs,
-        request.generated_responses
+        request.history
     )
 
     return response
