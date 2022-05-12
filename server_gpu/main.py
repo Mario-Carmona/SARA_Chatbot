@@ -202,7 +202,8 @@ def make_response_Adulto(entry: str, history: List[torch.Tensor]):
         "answer": {
             "ES": answer, 
             "EN": answer_EN
-        }
+        },
+        "history": history
     }
 
     return response
