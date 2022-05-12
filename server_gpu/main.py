@@ -228,7 +228,7 @@ app.add_middleware(
 def home():
     return "Server GPU ON"
 
-@app.post("/Adulto")
+@app.post("/adult")
 def adulto(request: Entry):
 
     response = make_response_Adulto(
