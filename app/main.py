@@ -50,61 +50,6 @@ def obtenerElemContext(outputContexts):
     return [i for i, s in enumerate(outputContexts) if s["name"].__contains__("Talk-followup")][0]
 
 
-def make_response_welcome(request: Dict):
-    outputContexts = request.get("queryResult").get("outputContexts")
-
-    if SERVER_GPU_URL != "":          
-        entry = request.get("queryResult").get("queryText")
-
-        query_json = {
-            "entry": entry,
-            "past_user_inputs": None,
-            "generated_responses": None
-        }
-        """
-        headers = {'content-type': 'application/json'}
-        output = requests.post(SERVER_GPU_URL + "/deduct", json=query_json, headers=headers)
-        output = json.loads(output.content.decode('utf-8'))
-        """
-        output = {
-            "entry": {
-                "ES": "Hola", 
-                "EN": "Hello"
-            },
-            "answer": {
-                "ES": "Hola", 
-                "EN": "Hello"
-            }
-        }
-
-        date_ini = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
-
-        elem = obtenerElemContext(outputContexts)
-
-        outputContexts[elem]["parameters"] = {
-            "date_ini": date_ini,
-            "context": {
-                "entry": [output["entry"]["ES"]],
-                "answer": [output["answer"]["ES"]]
-            },
-            "past_user_inputs": [output["entry"]["EN"]],
-            "generated_responses": [output["answer"]["EN"]]
-        }
-
-        answer = output["answer"]["ES"]
-    else:
-        outputContexts = []
-        answer = "Servidor GPU no disponible"
-    
-    response = {
-        "fulfillmentText": answer,
-        "output_contexts": outputContexts
-    }
-
-    return response
-
-
-
 def is_first_response(outputContexts):
     elem = obtenerElemContext(outputContexts)
     
