@@ -9,9 +9,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/plugins/sweetAlert2/sweetalert2.min.css">
 </head>
 
 <body>
+    <script>
+        function openWeb() {
+            Swal.fire({
+                title: '¿Quiere deducir su edad mediante una foto?',
+                text: "¡No podrás revertir tu decisión!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#00FF24',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si',
+                cancelButtonText: 'No'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.replace('./capture_image');
+                } else {
+                    Swal.fire({
+                        title: '¿Cuál es tu edad?',
+                        text: 'Debes indicar cual de los siguientes rangos de edad se asocia más con tu edad actual',
+                        showCancelButton: true,
+                        confirmButtonColor: '#2563B9',
+                        cancelButtonColor: '#EBB241',
+                        confirmButtonText: 'Adulto',
+                        cancelButtonText: 'Niño'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.replace('./interface_adult');
+                        } else {
+                            window.location.replace('./interface_child');
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
     <header class="header">
         <nav class="nav__header">
             <div class="container nav__container">
@@ -40,10 +76,10 @@
                 <p class="header__subtitle">Este chatbot está preparado para realizar una conversación para formentar el uso y la investigación de la IA, adaptando la conversación a las características del usuario.</p>
                 <div class="open_buttons">
                     <div class="open_button">
-                        <a href="./interface" class="enlace">
+                        <div id="open_web" class="enlace" onclick="openWeb()">
                             <img src="/static/img/message-solid.svg" class="icono message-solid">
                             <div class="button_text">Open in Web</div>
-                        </a>
+                        </div>
                     </div>
                     <div class="open_button">
                         <a href="#" class="enlace">
@@ -63,5 +99,6 @@
         </section>
     </header>
 
+    <script src="/static/plugins/sweetAlert2/sweetalert2.all.min.js"></script>
     <script src="/static/js/home.js"></script>
 </body>

@@ -279,13 +279,17 @@ def home(request: Request):
 def chatbot(request: Request):
     return templates.TemplateResponse("chatbot.html", {"request": request})
 
-@app.get("/interface", response_class=HTMLResponse)
-def interface(request: Request):
-    return templates.TemplateResponse("interface.html", {"request": request})
-
 @app.get("/capture_image", response_class=HTMLResponse) 
 def capture_image(request: Request):
-    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL + "/deduct"})
+    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL})
+
+@app.get("/interface_adult", response_class=HTMLResponse)
+def interface(request: Request):
+    return templates.TemplateResponse("interface_adult.html", {"request": request})
+
+@app.get("/interface_child", response_class=HTMLResponse)
+def interface(request: Request):
+    return templates.TemplateResponse("interface_child.html", {"request": request})
 
 @app.get("/wakeup", response_class=PlainTextResponse)
 def wakeup():

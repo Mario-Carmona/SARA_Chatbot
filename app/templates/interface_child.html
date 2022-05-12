@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La noche europea de los investigadores</title>
+    <link rel="stylesheet" href="/static/css/interface_styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav__header">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
+                </div>
+                <div class="tools">
+                    <div class="show_links links">
+                        <a href="./" class="link">Inicio</a>
+                        <a href="./chatbot" class="link">Sara Chatbot</a>
+                        <a href="#" class="link__active">Sobre nosotros</a>
+                    </div>
+                    <button class="switch_dark_mode" id="switch_dark_mode">
+                        <img src="/static/img/sun-solid.svg" class="icono icono_sun">
+                        <img src="/static/img/moon-solid.svg" class="icono icono_moon">
+                    </button>
+                    <button class="show_sidebar button_sidebar" id="button_sidebar">
+                        <img src="/static/img/bars-solid.svg" class="bars-solid">
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="chat">
+            <iframe class="chat_iframe" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/07b6f139-6e98-4953-ab66-a7d3fcf56af8"> Your browser doesn't support iframes </iframe>
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_content">
+                    <a href="./" class="link_lateral">Inicio</a>
+                    <a href="./chatbot" class="link_lateral">Sara Chatbot</a>
+                    <a href="#" class="link_lateral__active">Sobre nosotros</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <script src="/static/js/home.js"></script>
+</body>
+
+</html>
