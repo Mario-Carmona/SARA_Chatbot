@@ -76,7 +76,6 @@ def generate_response(entry: str, edad: str, history=[]):
 
 
 
-
 def make_first_response(request: Dict, edad: TalkType):
     outputContexts = request.get("queryResult").get("outputContexts")
 
@@ -303,7 +302,7 @@ def setURL(request: ServerURL):
     return "URL fijada correctamente"
 
 @app.post("/webhook_adult")
-async def webhook( request: Request):
+async def webhook_adult( request: Request):
     request_JSON = await request.json()
 
     print(request_JSON)
@@ -321,7 +320,7 @@ async def webhook( request: Request):
     return response
 
 @app.post("/webhook_child")
-async def webhook( request: Request):
+async def webhook_child( request: Request):
     request_JSON = await request.json()
 
     print(request_JSON)
