@@ -176,14 +176,6 @@ def adjust_history(history, max_length):
 
 
 
-def convert_to_tensor(history):
-    pass
-
-
-def convert_to_list(history):
-    pass
-
-
 def make_response_adulto(entry: str, history: List[str]):
 
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
