@@ -139,15 +139,13 @@ tokenizerConverChild = AutoTokenizer.from_pretrained(
 modelConverAdult = BlenderbotForConditionalGeneration.from_pretrained(
     server_args.model_conver_adult,
     from_tf=bool(".ckpt" in server_args.model_conver_adult),
-    config=configConverAdult,
-    torch_dtype=torch.float16
+    config=configConverAdult
 )
 
 modelConverChild = BlenderbotForConditionalGeneration.from_pretrained(
     server_args.model_conver_child,
     from_tf=bool(".ckpt" in server_args.model_conver_child),
-    config=configConverChild,
-    torch_dtype=torch.float16
+    config=configConverChild
 )
 
 # ----------------------------------------------
