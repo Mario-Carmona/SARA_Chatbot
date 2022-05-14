@@ -43,6 +43,9 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 SPAIN = pytz.timezone('Europe/Madrid')
 
+#global PRIV_KEY_SERVER_GPU
+#PRIV_KEY_SERVER_GPU = os.environ.get("PRIV_KEY_SERVER_GPU", config["priv_key_server_gpu"])
+
 class ServerURL(BaseModel):
     url: str
 
