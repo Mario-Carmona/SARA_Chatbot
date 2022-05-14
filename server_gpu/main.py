@@ -51,7 +51,7 @@ import io
 
 class Entry(BaseModel):
     entry: str
-    history: List[np.ndarray]
+    history: List[List[List[int]]]
 
 class EntryDeduct(BaseModel):
     imagen: str
@@ -174,6 +174,14 @@ def adjust_history(history, max_length):
 
     return history
 
+
+
+def convert_to_tensor(history):
+    pass
+
+
+def convert_to_list(history):
+    pass
 
 
 def make_response_adulto(entry: str, history: List[torch.Tensor]):
@@ -309,6 +317,7 @@ def home():
 
 @app.post("/adult")
 def adulto(request: Entry):
+
 
     response = make_response_adulto(
         request.entry, 

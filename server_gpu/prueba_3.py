@@ -27,20 +27,15 @@ for step in range(20):
 
     context.append(new_user_input_ids)
 
-    aux = [np.array(i) for i in context]
+    aux3 = str(context[0])
+    print(aux3)
+    print(type(aux3))
 
-    print(aux)
+    aux4 = torch.as_tensor(aux3)
+    print(aux4)
+    print(type(aux4))
 
-    aux2 = [i.tolist() for i in aux]
-
-    print(aux2)
-    print(type(aux2[0]))
-    print(type(aux2[0][0]))
-    print(type(aux2[0][0][0]))
-
-    context = [torch.as_tensor(i) for i in aux]
-
-    print(context)
+    
     
     
     pos = len(context) - 1
