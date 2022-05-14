@@ -17,33 +17,3 @@ class GenerateArguments:
             "help": ""
         }
     )
-    do_sample: bool = field(
-        metadata={
-            "help": ""
-        },
-        default=None
-    )
-    temperature: float = field(
-        metadata={
-            "help": ""
-        },
-        default=None
-    )
-    top_p: float = field(
-        metadata={
-            "help": ""
-        },
-        default=None
-    )
-    max_time: float = field(
-        metadata={
-            "help": ""
-        },
-        default=None
-    )
-    use_cache: bool = field(
-        metadata={
-            "help": ""
-        },
-        default=None
-    )
