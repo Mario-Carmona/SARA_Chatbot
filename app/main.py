@@ -20,6 +20,8 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
+import rsa
+
 
 
 
@@ -43,11 +45,12 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 SPAIN = pytz.timezone('Europe/Madrid')
 
-#global PRIV_KEY_SERVER_GPU
-#PRIV_KEY_SERVER_GPU = os.environ.get("PRIV_KEY_SERVER_GPU", config["priv_key_server_gpu"])
+global PUB_KEY_SERVER_GPU
+global PUB_KEY_APP
+global PRIV_KEY_APP
+PUB_KEY_APP, PRIV_KEY_APP = rsa.newkeys(3072)
 
-class ServerURL(BaseModel):
-    url: str
+
 
 def obtenerElemContext(outputContexts):
     elem = [i for i, s in enumerate(outputContexts) if s["name"].__contains__("talk-followup")][0]
@@ -308,8 +311,9 @@ def interface_child(request: Request):
 def wakeup():
     return "Server ON"
 
-@app.post("/setURL", response_class=PlainTextResponse)
-def setURL(request: ServerURL):
+@app.post("/setConnetion")
+def setURL(request: Request):
+    print(request)
     global SERVER_GPU_URL
     SERVER_GPU_URL = request.url
     return "URL fijada correctamente"

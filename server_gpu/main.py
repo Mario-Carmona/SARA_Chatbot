@@ -47,6 +47,8 @@ import base64
 from PIL import Image
 import io
 
+import rsa
+
 # -------------------------------------------------------------------------#
 
 class Entry(BaseModel):
@@ -55,6 +57,12 @@ class Entry(BaseModel):
 
 class EntryDeduct(BaseModel):
     imagen: str
+
+
+global PUB_KEY_APP
+global PUB_KEY_SERVER_GPU
+global PRIV_KEY_SERVER_GPU
+PUB_KEY_SERVER_GPU, PRIV_KEY_SERVER_GPU = rsa.newkeys(3072)
 
 
 parser = argparse.ArgumentParser()
@@ -289,8 +297,19 @@ def send_public_URL():
     print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
     url = server_args.controller_url
     headers = {'content-type': 'application/json'}
-    response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
-    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))
+    response = requests.post(
+        url + "/setConnetion", 
+        json={
+            "url": public_url,
+            "pubkey": PUB_KEY_SERVER_GPU
+        }, 
+        headers=headers
+    )
+
+    global PUB_KEY_APP
+    PUB_KEY_APP = response["pubkey"]
+
+    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response["text"]))
 
 
 
