@@ -23,6 +23,9 @@
     "model_conver_child_tokenizer_config": "result_finetuning/v1_child/tokenizer_config.json",
 
 
+    "tam_history": 500,
+
+
     "do_sample": true,
     "temperature": 1.0,
     "top_p": 1.0,
