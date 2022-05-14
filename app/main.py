@@ -47,12 +47,12 @@ class ServerURL(BaseModel):
     url: str
 
 def obtenerElemContext(outputContexts):
-    aux = [i for i, s in enumerate(outputContexts) if s["name"].__contains__("talk-followup")][0]
+    elem = [i for i, s in enumerate(outputContexts) if s["name"].__contains__("talk-followup")][0]
 
-    if(not "parameters" in aux.keys()):
-        aux["parameters"] = {}
+    if(not "parameters" in outputContexts[elem].keys()):
+        outputContexts[elem]["parameters"] = {}
 
-    return aux
+    return elem
 
 
 def is_first_response(outputContexts):
