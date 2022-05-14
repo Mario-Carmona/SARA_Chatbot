@@ -2,13 +2,13 @@
     "workdir": "/mnt/homeGPU/mcarmona",
 
 
-    "model_conver": "microsoft/DialoGPT-medium",
-    "model_conver_config": "microsoft/DialoGPT-medium/config.json",
-    "model_conver_tokenizer": "microsoft/DialoGPT-medium",
-    "model_conver_tokenizer_config": "microsoft/DialoGPT-medium/tokenizer_config.json",
+    "model_conver": "facebook/blenderbot-400M-distill",
+    "model_conver_config": "facebook/blenderbot-400M-distill/config.json",
+    "model_conver_tokenizer": "facebook/blenderbot-400M-distill",
+    "model_conver_tokenizer_config": "facebook/blenderbot-400M-distill/tokenizer_config.json",
 
 
-    "data_dir": "server_gpu/datasets/v4/split_0.8_adult",
+    "data_dir": "server_gpu/datasets/v1/split_0.8_adult",
     "train_dataset": "train.csv",
     "validation_dataset": "validation.csv",
     "task": "conversational",
@@ -20,7 +20,7 @@
 
     "seed": 0,
 
-    "output_dir": "result_finetuning/v2_adult",
+    "output_dir": "result_finetuning/v1_adult",
     "overwrite_output_dir": true,
     "resume_from_checkpoint": false,
 
@@ -36,7 +36,7 @@
     "per_device_train_batch_size": 8,
     "per_device_eval_batch_size": 8,
 
-    "fp16": false,
+    "fp16": true,
     "fp16_opt_level": "O2",
     "half_precision_backend": "auto",
 
@@ -47,11 +47,6 @@
     "greater_is_better": true,
 
 
-    "do_sample": false,
-    "temperature": 0.0,
-    "top_p": 1.0,
-    "max_time": 3.0,
     "max_length": 128,
-    "min_length": 0,
-    "use_cache": false
+    "min_length": 0
 }
