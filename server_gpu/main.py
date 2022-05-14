@@ -192,6 +192,8 @@ def make_response_adulto(entry: str, history: List[str]):
 
     bot_input_ids = torch.cat(historyTensor, axis=-1)
 
+    bot_input_ids.to(local_rank)
+
     response = modelConverAdult.generate(
         bot_input_ids, 
         do_sample=server_args.do_sample,
@@ -245,6 +247,8 @@ def make_response_child(entry: str, history: List[str]):
     history = adjust_history(history, server_args.tam_history)
 
     bot_input_ids = torch.cat(history, axis=-1)
+
+    bot_input_ids.to(local_rank)
 
     response = modelConverChild.generate(
         bot_input_ids, 
