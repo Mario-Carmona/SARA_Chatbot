@@ -26,6 +26,9 @@ for step in range(20):
 
     context.append(new_user_input_ids)
     print(context)
+    print(type(context))
+    print(type(context[0]))
+    print(type(context[0][0]))
     
     pos = len(context) - 1
     num = 0
