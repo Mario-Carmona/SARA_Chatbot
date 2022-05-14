@@ -202,7 +202,7 @@ def make_response_adulto(entry: str, history: List[str]):
 
     historyTensor.append(response)
 
-    history = [tokenizerConverAdult.decode(i, skip_special_tokens=False) for i in historyTensor]
+    history = [tokenizerConverAdult.decode(i[0], skip_special_tokens=False) for i in historyTensor]
 
     answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
 
