@@ -47,7 +47,7 @@ class ServerURL(BaseModel):
     url: str
 
 def obtenerElemContext(outputContexts):
-    return [i for i, s in enumerate(outputContexts) if s["name"].__contains__("Talk-followup")][0]
+    return [i for i, s in enumerate(outputContexts) if s["name"].__contains__("talk-followup")][0]
 
 
 def is_first_response(outputContexts):
