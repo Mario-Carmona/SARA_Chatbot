@@ -51,7 +51,7 @@ import io
 
 class Entry(BaseModel):
     entry: str
-    history: List[List[List[int]]]
+    history: List[str]
 
 class EntryDeduct(BaseModel):
     imagen: str
@@ -184,7 +184,7 @@ def convert_to_list(history):
     pass
 
 
-def make_response_adulto(entry: str, history: List[torch.Tensor]):
+def make_response_adulto(entry: str, history: List[str]):
 
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
 
@@ -192,11 +192,13 @@ def make_response_adulto(entry: str, history: List[torch.Tensor]):
 
     new_user_input_ids = tokenizerConverAdult.encode(entry_EN, return_tensors='pt')
 
-    history.append(new_user_input_ids)
+    historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
 
-    history = adjust_history(history, server_args.tam_history)
+    historyTensor.append(new_user_input_ids)
 
-    bot_input_ids = torch.cat(history, axis=-1)
+    historyTensor = adjust_history(historyTensor, server_args.tam_history)
+
+    bot_input_ids = torch.cat(historyTensor, axis=-1)
 
     response = modelConverAdult.generate(
         bot_input_ids, 
@@ -210,7 +212,9 @@ def make_response_adulto(entry: str, history: List[torch.Tensor]):
         pad_token_id=tokenizerConverAdult.eos_token_id
     )
 
-    history.append(response)
+    historyTensor.append(response)
+
+    history = [tokenizerConverAdult.decode(i, skip_special_tokens=False) for i in historyTensor]
 
     answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
 
@@ -236,7 +240,7 @@ def make_response_adulto(entry: str, history: List[torch.Tensor]):
 
 
 
-def make_response_child(entry: str, history: List[torch.Tensor]):
+def make_response_child(entry: str, history: List[str]):
 
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
 
