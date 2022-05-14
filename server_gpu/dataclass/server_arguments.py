@@ -3,10 +3,12 @@ import os
 from dataclasses import dataclass, field
 from dataclass.deepl_arguments import DeeplArguments
 from dataclass.generate_arguments import GenerateArguments
+from dataclass.project_arguments import ProyectArguments
 
 
 @dataclass
-class ServerArguments(DeeplArguments, GenerateArguments):
+class ServerArguments(ProyectArguments, DeeplArguments, 
+                      GenerateArguments):
     """
     Argumentos relacionados con la configuración del servidor
     """
