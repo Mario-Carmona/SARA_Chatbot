@@ -7,30 +7,6 @@ from pkg_resources import require
 
 @dataclass
 class GenerateArguments:
-    do_sample: bool = field(
-        metadata={
-            "help": ""
-        },
-        required=False
-    )
-    temperature: float = field(
-        metadata={
-            "help": ""
-        },
-        required=False
-    )
-    top_p: float = field(
-        metadata={
-            "help": ""
-        },
-        required=False
-    )
-    max_time: float = field(
-        metadata={
-            "help": ""
-        },
-        required=False
-    )
     max_length: int = field(
         metadata={
             "help": ""
@@ -41,9 +17,33 @@ class GenerateArguments:
             "help": ""
         }
     )
+    do_sample: bool = field(
+        metadata={
+            "help": ""
+        },
+        default=None
+    )
+    temperature: float = field(
+        metadata={
+            "help": ""
+        },
+        default=None
+    )
+    top_p: float = field(
+        metadata={
+            "help": ""
+        },
+        default=None
+    )
+    max_time: float = field(
+        metadata={
+            "help": ""
+        },
+        default=None
+    )
     use_cache: bool = field(
         metadata={
             "help": ""
         },
-        required=False
+        default=None
     )
