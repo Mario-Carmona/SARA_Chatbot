@@ -31,6 +31,13 @@ for step in range(20):
 
     print(aux)
 
+    aux2 = [i.tolist() for i in aux]
+
+    print(aux2)
+    print(type(aux2[0]))
+    print(type(aux2[0][0]))
+    print(type(aux2[0][0][0]))
+
     context = [torch.as_tensor(i) for i in aux]
 
     print(context)
