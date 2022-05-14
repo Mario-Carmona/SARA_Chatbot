@@ -172,7 +172,7 @@ def adjust_history(history, max_length):
 
 
 
-def make_response_adulto(entry: str, history: List[str]):
+def make_response_adult(entry: str, history: List[str]):
 
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
 
@@ -236,9 +236,11 @@ def make_response_child(entry: str, history: List[str]):
 
     new_user_input_ids = tokenizerConverChild.encode(entry_EN, return_tensors='pt')
 
-    history.append(new_user_input_ids)
+    historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
 
-    history = adjust_history(history, server_args.tam_history)
+    historyTensor.append(new_user_input_ids)
+
+    historyTensor = adjust_history(historyTensor, server_args.tam_history)
 
     bot_input_ids = torch.cat(history, axis=-1)
 
@@ -254,7 +256,9 @@ def make_response_child(entry: str, history: List[str]):
         pad_token_id=tokenizerConverChild.eos_token_id
     )
 
-    history.append(response)
+    historyTensor.append(response)
+
+    history = [tokenizerConverAdult.decode(i[0], skip_special_tokens=False) for i in historyTensor]
 
     answer_EN = tokenizerConverChild.decode(response[0], skip_special_tokens=True)
 
@@ -308,10 +312,10 @@ def home():
     return "Server GPU ON"
 
 @app.post("/adult")
-def adulto(request: Entry):
+def adult(request: Entry):
 
 
-    response = make_response_adulto(
+    response = make_response_adult(
         request.entry, 
         request.history
     )
@@ -375,7 +379,7 @@ def deduct(request: EntryDeduct):
 
 
 @app.get("/Reconnect", response_class=PlainTextResponse)
-def adulto():
+def reconnect():
 
     send_public_URL()
 
