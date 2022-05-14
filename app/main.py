@@ -168,7 +168,7 @@ def make_response_talk(request: Dict, edad: TalkType):
     outputContexts = request.get("queryResult").get("outputContexts")
 
     if is_first_response(outputContexts):
-        return make_first_response(request, str(edad))
+        return make_first_response(request, str(edad).split('.')[-1])
     else:
         return make_rest_response(request)
 
