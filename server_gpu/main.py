@@ -142,7 +142,6 @@ modelConverAdult = BlenderbotForConditionalGeneration.from_pretrained(
     config=configConverAdult,
     torch_dtype=torch.float16
 )
-modelConverAdult.to("cuda:0")
 
 modelConverChild = BlenderbotForConditionalGeneration.from_pretrained(
     server_args.model_conver_child,
@@ -150,7 +149,6 @@ modelConverChild = BlenderbotForConditionalGeneration.from_pretrained(
     config=configConverChild,
     torch_dtype=torch.float16
 )
-modelConverChild.to("cuda:0")
 
 # ----------------------------------------------
 
@@ -191,8 +189,6 @@ def make_response_adulto(entry: str, history: List[str]):
     historyTensor = adjust_history(historyTensor, server_args.tam_history)
 
     bot_input_ids = torch.cat(historyTensor, axis=-1)
-
-    bot_input_ids.to("cuda:0")
 
     response = modelConverAdult.generate(
         bot_input_ids, 
@@ -247,8 +243,6 @@ def make_response_child(entry: str, history: List[str]):
     history = adjust_history(history, server_args.tam_history)
 
     bot_input_ids = torch.cat(history, axis=-1)
-
-    bot_input_ids.to("cuda:0")
 
     response = modelConverChild.generate(
         bot_input_ids, 
