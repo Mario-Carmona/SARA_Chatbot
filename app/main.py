@@ -49,7 +49,8 @@ class ServerURL(BaseModel):
 def obtenerElemContext(outputContexts):
     aux = [i for i, s in enumerate(outputContexts) if s["name"].__contains__("talk-followup")][0]
 
-    aux["parameters"] = {}
+    if(not "parameters" in aux.keys()):
+        aux["parameters"] = {}
 
     return aux
 
