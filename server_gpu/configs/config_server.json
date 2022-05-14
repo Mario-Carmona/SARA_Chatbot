@@ -12,10 +12,15 @@
     "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
 
 
-    "model_conver": "result_finetuning/v2",
-    "model_conver_config": "result_finetuning/v2/config.json",
-    "model_conver_tokenizer": "result_finetuning/v2",
-    "model_conver_tokenizer_config": "result_finetuning/v2/tokenizer_config.json",
+    "model_conver_adult": "result_finetuning/v1_adult",
+    "model_conver_adult_config": "result_finetuning/v1_adult/config.json",
+    "model_conver_adult_tokenizer": "result_finetuning/v1_adult",
+    "model_conver_adult_tokenizer_config": "result_finetuning/v1_adult/tokenizer_config.json",
+
+    "model_conver_child": "result_finetuning/v1_child",
+    "model_conver_child_config": "result_finetuning/v1_child/config.json",
+    "model_conver_child_tokenizer": "result_finetuning/v1_child",
+    "model_conver_child_tokenizer_config": "result_finetuning/v1_child/tokenizer_config.json",
 
 
     "do_sample": true,

@@ -113,26 +113,43 @@ set_seed(0)
 # The .from_pretrained methods guarantee that only one local process can concurrently
 # download model & vocab.
 
-configConver = AutoConfig.from_pretrained(
-    server_args.model_conver_config
+configConverAdult = AutoConfig.from_pretrained(
+    server_args.model_conver_adult_config
+)
+
+configConverChild = AutoConfig.from_pretrained(
+    server_args.model_conver_child_config
 )
 
 
-tokenizerConver = AutoTokenizer.from_pretrained(
-    server_args.model_conver_tokenizer,
-    config=server_args.model_conver_tokenizer_config,
+tokenizerConverAdult = AutoTokenizer.from_pretrained(
+    server_args.model_conver_adult_tokenizer,
+    config=server_args.model_conver_adult_tokenizer_config,
+    use_fast=True
+)
+
+tokenizerConverChild = AutoTokenizer.from_pretrained(
+    server_args.model_conver_child_tokenizer,
+    config=server_args.model_conver_child_tokenizer_config,
     use_fast=True
 )
 
 
-modelConver = BlenderbotForConditionalGeneration.from_pretrained(
-    server_args.model_conver,
-    from_tf=bool(".ckpt" in server_args.model_conver),
-    config=configConver,
+modelConverAdult = BlenderbotForConditionalGeneration.from_pretrained(
+    server_args.model_conver_adult,
+    from_tf=bool(".ckpt" in server_args.model_conver_adult),
+    config=configConverAdult,
     torch_dtype=torch.float16
 )
+modelConverAdult.to(local_rank)
 
-modelConver.to(local_rank)
+modelConverChild = BlenderbotForConditionalGeneration.from_pretrained(
+    server_args.model_conver_child,
+    from_tf=bool(".ckpt" in server_args.model_conver_child),
+    config=configConverChild,
+    torch_dtype=torch.float16
+)
+modelConverChild.to(local_rank)
 
 # ----------------------------------------------
 
@@ -158,21 +175,21 @@ def adjust_history(history, max_length):
 
 
 
-def make_response_Adulto(entry: str, history: List[torch.Tensor]):
+def make_response_adulto(entry: str, history: List[torch.Tensor]):
 
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
 
     print(entry_EN)
 
-    new_user_input_ids = tokenizerConver.encode(entry_EN, return_tensors='pt')
+    new_user_input_ids = tokenizerConverAdult.encode(entry_EN, return_tensors='pt')
 
     history.append(new_user_input_ids)
 
-    history = adjust_history(history, 500)
+    history = adjust_history(history, server_args.tam_history)
 
     bot_input_ids = torch.cat(history, axis=-1)
 
-    response = modelConver.generate(
+    response = modelConverAdult.generate(
         bot_input_ids, 
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
@@ -181,12 +198,64 @@ def make_response_Adulto(entry: str, history: List[torch.Tensor]):
         max_length=server_args.max_length,
         min_length=server_args.min_length,
         use_cache=server_args.use_cache,
-        pad_token_id=tokenizerConver.eos_token_id
+        pad_token_id=tokenizerConverAdult.eos_token_id
     )
 
     history.append(response)
 
-    answer_EN = tokenizerConver.decode(response[0], skip_special_tokens=True)
+    answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
+
+    print(answer_EN)
+
+    answer = translator.translate_text(answer_EN, target_lang="ES").text
+
+    print(answer)
+
+    response = {
+        "entry": {
+            "ES": entry, 
+            "EN": entry_EN
+        },
+        "answer": {
+            "ES": answer, 
+            "EN": answer_EN
+        },
+        "history": history
+    }
+
+    return response
+
+
+
+def make_response_child(entry: str, history: List[torch.Tensor]):
+
+    entry_EN = translator.translate_text(entry, target_lang="EN-US").text
+
+    print(entry_EN)
+
+    new_user_input_ids = tokenizerConverChild.encode(entry_EN, return_tensors='pt')
+
+    history.append(new_user_input_ids)
+
+    history = adjust_history(history, server_args.tam_history)
+
+    bot_input_ids = torch.cat(history, axis=-1)
+
+    response = modelConverChild.generate(
+        bot_input_ids, 
+        do_sample=server_args.do_sample,
+        temperature=server_args.temperature,
+        top_p=server_args.top_p,
+        max_time=server_args.max_time,
+        max_length=server_args.max_length,
+        min_length=server_args.min_length,
+        use_cache=server_args.use_cache,
+        pad_token_id=tokenizerConverChild.eos_token_id
+    )
+
+    history.append(response)
+
+    answer_EN = tokenizerConverChild.decode(response[0], skip_special_tokens=True)
 
     print(answer_EN)
 
@@ -240,7 +309,17 @@ def home():
 @app.post("/adult")
 def adulto(request: Entry):
 
-    response = make_response_Adulto(
+    response = make_response_adulto(
+        request.entry, 
+        request.history
+    )
+
+    return response
+
+@app.post("/child")
+def child(request: Entry):
+
+    response = make_response_child(
         request.entry, 
         request.history
     )
