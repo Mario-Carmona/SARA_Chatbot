@@ -1,6 +1,7 @@
 
 
 import torch
+import numpy as np
 
 
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
@@ -25,10 +26,15 @@ for step in range(20):
     
 
     context.append(new_user_input_ids)
+
+    aux = [np.array(i) for i in context]
+
+    print(aux)
+
+    context = [torch.as_tensor(i) for i in aux]
+
     print(context)
-    print(type(context))
-    print(type(context[0]))
-    print(type(context[0][0]))
+    
     
     pos = len(context) - 1
     num = 0

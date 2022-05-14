@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 from typing import Dict, List
 from color import bcolors
+import numpy as np
 
 # Configuración
 import sys
@@ -50,7 +51,7 @@ import io
 
 class Entry(BaseModel):
     entry: str
-    history: List[torch.Tensor]
+    history: List[np.ndarray]
 
 class EntryDeduct(BaseModel):
     imagen: str
