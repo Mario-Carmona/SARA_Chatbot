@@ -93,11 +93,16 @@ def make_first_response(request: Dict, edad: str):
 
         date_ini = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
-        outputContexts[elem]["parameters"]["context"]["entry"]["ES"] = [output["entry"]["ES"]]
-        outputContexts[elem]["parameters"]["context"]["answer"]["ES"] = [output["answer"]["ES"]]
-
-        outputContexts[elem]["parameters"]["context"]["entry"]["EN"] = [output["entry"]["EN"]]
-        outputContexts[elem]["parameters"]["context"]["entry"]["EN"] = [output["answer"]["EN"]]
+        outputContexts[elem]["parameters"]["context"] = {
+            "entry": {
+                "ES": [output["entry"]["ES"]],
+                "EN": [output["entry"]["EN"]]
+            },
+            "answer": {
+                "ES": [output["answer"]["ES"]],
+                "EN": [output["answer"]["EN"]]
+            }
+        }
 
         outputContexts[elem]["parameters"]["history"] = output["history"]
 
