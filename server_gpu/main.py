@@ -297,11 +297,7 @@ def send_public_URL():
     url = server_args.controller_url
     
     pubkey = KEY_SERVER_GPU.publickey()
-    pubkey_string = pubkey.exportKey("PEM")
-    print(type(pubkey_string))
-    print(pubkey_string)
-    print(str(pubkey_string))
-    input("--->")
+    pubkey_string = str(pubkey.exportKey("PEM"))
     
     headers = {'content-type': 'application/json'}
     response = requests.post(
