@@ -359,7 +359,9 @@ def child(request: Entry):
 
 @app.post("/deduct", response_class=PlainTextResponse)
 def deduct(request: EntryDeduct):
+    pivkey = KEY_SERVER_GPU.privatekey()
 
+    imagen = pivkey.decrypt(request.imagen)
 
     base64_data = request.imagen.split(',')[1]
 

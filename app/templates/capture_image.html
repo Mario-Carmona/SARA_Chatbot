@@ -53,6 +53,10 @@
             document.getElementById('send_button').style.display = 'block';
         }
 
+        import {
+            JSEncrypt
+        } from 'jsencrypt';
+
         function sendPhoto() {
             Swal.fire({
                 title: '¿Deseas enviar esta foto?',
@@ -170,6 +174,7 @@
     </main>
 
     <script src="/static/plugins/sweetAlert2/sweetalert2.all.min.js"></script>
+    <script src="https://cdnout.com/jsencrypt/jsencrypt.js"></script>
     <script src="/static/js/capture_image.js"></script>
 </body>
 
