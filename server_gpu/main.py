@@ -359,6 +359,10 @@ def child(request: Entry):
 
 @app.post("/deduct", response_class=PlainTextResponse)
 def deduct(request: EntryDeduct):
+    print(request.imagen)
+    input("--->")
+
+
     imagen = KEY_SERVER_GPU.decrypt(request.imagen)
 
     base64_data = imagen.split(',')[1]
