@@ -47,7 +47,7 @@ SPAIN = pytz.timezone('Europe/Madrid')
 
 
 
-class ServerURL(BaseModel):
+class ServerConnection(BaseModel):
     url: str
     pubkey: str
 
@@ -318,15 +318,9 @@ def wakeup():
     return "Server ON"
 
 @app.post("/setConnetion")
-def setURL(request: ServerURL):
+def setURL(request: ServerConnection):
     global SERVER_GPU_URL
     SERVER_GPU_URL = request.url
-
-    print(request.pubkey)
-    print(request.url)
-    aux = bytes(request.pubkey, encoding = 'UTF-8')
-    print(type(aux))
-    print(aux)
 
     global PUB_KEY_SERVER_GPU
     PUB_KEY_SERVER_GPU = RSA.importKey(bytes(request.pubkey, encoding = 'UTF-8'))

@@ -312,12 +312,6 @@ def send_public_URL():
     )
     response = json.loads(response.content.decode('UTF-8'))
 
-    print(response)
-    print(response["pubkey"])
-    print(type(response["pubkey"]))
-    print(bytes(response["pubkey"], encoding = 'UTF-8'))
-    input("--->")
-
     global PUB_KEY_APP
     PUB_KEY_APP = RSA.importKey(bytes(response["pubkey"], encoding = 'UTF-8'))
 
@@ -414,7 +408,7 @@ def reconnect():
 
     send_public_URL()
 
-    return "Reenviada URL"
+    return "Conexión realizada correctamente"
 
 
 if __name__ == "__main__":
