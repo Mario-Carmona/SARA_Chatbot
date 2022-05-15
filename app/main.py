@@ -46,6 +46,12 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 SPAIN = pytz.timezone('Europe/Madrid')
 
 
+
+class ServerURL(BaseModel):
+    url: str
+    pubkey: str
+
+
 global PUB_KEY_SERVER_GPU
 global KEY_APP
 KEY_APP = RSA.generate(3072)
@@ -312,15 +318,15 @@ def wakeup():
     return "Server ON"
 
 @app.post("/setConnetion")
-def setURL(url: str, pubkey: str):
+def setURL(request: ServerURL):
     global SERVER_GPU_URL
-    SERVER_GPU_URL = url
+    SERVER_GPU_URL = request.url
 
-    print(pubkey)
-    print(url)
+    print(request.pubkey)
+    print(request.url)
 
     global PUB_KEY_SERVER_GPU
-    PUB_KEY_SERVER_GPU = RSA.importKey(pubkey)
+    PUB_KEY_SERVER_GPU = RSA.importKey(request.pubkey)
 
     pubkey_app = KEY_APP.publickey()
     pubkey_app_string = str(pubkey_app.exportKey("PEM"))
