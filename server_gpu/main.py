@@ -49,6 +49,8 @@ import io
 
 from Crypto.PublicKey import RSA
 
+import json
+
 # -------------------------------------------------------------------------#
 
 class Entry(BaseModel):
@@ -308,6 +310,7 @@ def send_public_URL():
         }, 
         headers=headers
     )
+    response = json.loads(response.content.decode('utf-8'))
 
     print(response)
     print(response["pubkey"])
