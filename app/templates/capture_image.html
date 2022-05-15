@@ -53,10 +53,6 @@
             document.getElementById('send_button').style.display = 'block';
         }
 
-        import {
-            JSEncrypt
-        } from 'jsencrypt';
-
         function sendPhoto() {
             Swal.fire({
                 title: '¿Deseas enviar esta foto?',
@@ -79,6 +75,8 @@
                         });
                     } else {
                         url = url + '/deduct';
+
+                        var encrypt = new JSEncrypt();
 
                         var canvas = document.getElementById(obtenerCanvas());
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
