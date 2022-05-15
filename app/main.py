@@ -319,7 +319,7 @@ def setURL(url: str, pubkey: str):
     global PUB_KEY_SERVER_GPU
     PUB_KEY_SERVER_GPU = RSA.importKey(pubkey)
 
-    pubkey_app = str(KEY_APP.publickey())
+    pubkey_app = KEY_APP.publickey()
     pubkey_app_string = pubkey_app.exportKey("PEM")
 
     return {"text": "Conexión realiza correctamente", "pubkey": pubkey_app_string}

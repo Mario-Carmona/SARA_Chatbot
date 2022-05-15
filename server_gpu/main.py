@@ -296,7 +296,7 @@ def send_public_URL():
     print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
     url = server_args.controller_url
     
-    pubkey = str(KEY_SERVER_GPU.publickey())
+    pubkey = KEY_SERVER_GPU.publickey()
     pubkey_string = pubkey.exportKey("PEM")
     
     headers = {'content-type': 'application/json'}
