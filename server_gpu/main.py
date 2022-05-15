@@ -363,7 +363,7 @@ def deduct(request: EntryDeduct):
 
     imagen = pivkey.decrypt(request.imagen)
 
-    base64_data = request.imagen.split(',')[1]
+    base64_data = imagen.split(',')[1]
 
     # convert it into bytes  
     img_bytes = base64.b64decode(base64_data)
