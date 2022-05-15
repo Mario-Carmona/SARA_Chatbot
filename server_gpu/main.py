@@ -309,6 +309,11 @@ def send_public_URL():
         headers=headers
     )
 
+    print(response)
+    print(response["pubkey"])
+    print(type(response["pubkey"]))
+    input("--->")
+
     global PUB_KEY_APP
     PUB_KEY_APP = RSA.importKey(response["pubkey"])
 
