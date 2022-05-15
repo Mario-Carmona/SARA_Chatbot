@@ -96,7 +96,7 @@
                             Buffer.from("Hello world!")
                         );
 
-                        console.log(encryptedData)
+                        console.log(encryptedData.toString("base64"))
 
                         var canvas = document.getElementById(obtenerCanvas());
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
