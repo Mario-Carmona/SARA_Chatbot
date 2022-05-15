@@ -303,7 +303,7 @@ def chatbot(request: Request):
 
 @app.get("/capture_image", response_class=HTMLResponse) 
 def capture_image(request: Request):
-    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL})
+    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL, "pub_key_server_gpu": PUB_KEY_SERVER_GPU})
 
 @app.get("/interface_adult", response_class=HTMLResponse)
 def interface_adult(request: Request):
