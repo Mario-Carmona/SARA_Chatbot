@@ -310,15 +310,16 @@ def send_public_URL():
         }, 
         headers=headers
     )
-    response = json.loads(response.content.decode('utf-8'))
+    response = json.loads(response.content.decode('UTF-8'))
 
     print(response)
     print(response["pubkey"])
     print(type(response["pubkey"]))
+    print(bytes(response["pubkey"], encoding = 'UTF-8'))
     input("--->")
 
     global PUB_KEY_APP
-    PUB_KEY_APP = RSA.importKey(response["pubkey"])
+    PUB_KEY_APP = RSA.importKey(bytes(response["pubkey"], encoding = 'UTF-8'))
 
     print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response["text"]))
 

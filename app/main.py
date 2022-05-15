@@ -329,10 +329,10 @@ def setURL(request: ServerURL):
     print(aux)
 
     global PUB_KEY_SERVER_GPU
-    PUB_KEY_SERVER_GPU = RSA.importKey(aux)
+    PUB_KEY_SERVER_GPU = RSA.importKey(bytes(request.pubkey, encoding = 'UTF-8'))
 
     pubkey_app = KEY_APP.publickey()
-    pubkey_app_string = str(pubkey_app.exportKey("PEM"))
+    pubkey_app_string = pubkey_app.exportKey("PEM").decode('UTF-8')
 
     return {"text": "Conexión realiza correctamente", "pubkey": pubkey_app_string}
 
