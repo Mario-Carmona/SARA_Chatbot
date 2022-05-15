@@ -20,7 +20,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
-import rsa
+from Crypto.PublicKey import RSA
 
 
 
@@ -45,10 +45,10 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 SPAIN = pytz.timezone('Europe/Madrid')
 
+
 global PUB_KEY_SERVER_GPU
-global PUB_KEY_APP
-global PRIV_KEY_APP
-PUB_KEY_APP, PRIV_KEY_APP = rsa.newkeys(3072)
+global KEY_APP
+KEY_APP = RSA.generate(3072)
 
 
 
@@ -312,11 +312,17 @@ def wakeup():
     return "Server ON"
 
 @app.post("/setConnetion")
-def setURL(request: Request):
-    print(request)
+def setURL(url: str, pubkey: str):
     global SERVER_GPU_URL
-    SERVER_GPU_URL = request.url
-    return "URL fijada correctamente"
+    SERVER_GPU_URL = url
+
+    global PUB_KEY_SERVER_GPU
+    PUB_KEY_SERVER_GPU = RSA.importKey(pubkey)
+
+    pubkey_app = str(KEY_APP.publickey())
+    pubkey_app_string = pubkey_app.exportKey("PEM")
+
+    return {"text": "Conexión realiza correctamente", "pubkey": pubkey_app_string}
 
 @app.post("/webhook_adult")
 async def webhook_adult( request: Request):

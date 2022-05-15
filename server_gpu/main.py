@@ -47,7 +47,7 @@ import base64
 from PIL import Image
 import io
 
-import rsa
+from Crypto.PublicKey import RSA
 
 # -------------------------------------------------------------------------#
 
@@ -60,9 +60,8 @@ class EntryDeduct(BaseModel):
 
 
 global PUB_KEY_APP
-global PUB_KEY_SERVER_GPU
-global PRIV_KEY_SERVER_GPU
-PUB_KEY_SERVER_GPU, PRIV_KEY_SERVER_GPU = rsa.newkeys(3072)
+global KEY_SERVER_GPU
+KEY_SERVER_GPU = RSA.generate(3072)
 
 
 parser = argparse.ArgumentParser()
@@ -296,18 +295,22 @@ def make_response_child(entry: str, history: List[str]):
 def send_public_URL():
     print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
     url = server_args.controller_url
+    
+    pubkey = str(KEY_SERVER_GPU.publickey())
+    pubkey_string = pubkey.exportKey("PEM")
+    
     headers = {'content-type': 'application/json'}
     response = requests.post(
         url + "/setConnetion", 
         json={
             "url": public_url,
-            "pubkey": PUB_KEY_SERVER_GPU
+            "pubkey": pubkey_string
         }, 
         headers=headers
     )
 
     global PUB_KEY_APP
-    PUB_KEY_APP = response["pubkey"]
+    PUB_KEY_APP = RSA.importKey(response["pubkey"])
 
     print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response["text"]))
 

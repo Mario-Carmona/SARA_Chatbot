@@ -14,4 +14,4 @@ protobuf
 deepl
 nltk
 ray[tune]
-rsa
+pycrypto
