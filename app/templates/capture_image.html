@@ -81,12 +81,17 @@
 
                         var publicKey = document.getElementById('publicKey').innerText;
 
+                        console.log(publicKey)
+
                         encrypt.setPublicKey(publicKey);
 
                         var canvas = document.getElementById(obtenerCanvas());
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
                         var encrypted = encrypt.encrypt(imgBase64);
+
+                        console.log(imgBase64)
+                        console.log(encrypted)
 
                         const Http = new XMLHttpRequest();
                         Http.open("POST", url, true);
