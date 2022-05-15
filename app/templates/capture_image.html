@@ -88,7 +88,7 @@
                         var canvas = document.getElementById(obtenerCanvas());
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
-                        var encrypted = encrypt.encrypt(imgBase64);
+                        var encrypted = encrypt.encrypt("Hello world!");
 
                         console.log(imgBase64)
                         console.log(encrypted)
