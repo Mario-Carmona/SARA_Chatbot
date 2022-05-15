@@ -317,6 +317,7 @@ def setURL(url: str, pubkey: str):
     SERVER_GPU_URL = url
 
     print(pubkey)
+    print(url)
 
     global PUB_KEY_SERVER_GPU
     PUB_KEY_SERVER_GPU = RSA.importKey(pubkey)
