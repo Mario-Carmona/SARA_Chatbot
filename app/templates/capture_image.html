@@ -16,6 +16,8 @@
     <p id="url" class="oculto">{{ server_gpu_url }}</p>
     <p id="publicKey" class="oculto">{{ pub_key_server_gpu }}</p>
 
+    <script src="https://cdnout.com/jsencrypt/jsencrypt.js"></script>
+
     <script>
         function isVisible(element) {
             return element.offsetWidth > 0 || element.offsetHeight > 0;
@@ -85,26 +87,13 @@
 
                         encrypt.setPublicKey(publicKey);
 
-                        const crypto = require("crypto");
-
-                        const encryptedData = crypto.publicEncrypt({
-                                key: publicKey,
-                                padding: crypto.constants.RSA_PKCS1_OAEP_PADDING,
-                                oaepHash: "sha256",
-                            },
-                            // We convert the data string to a buffer using `Buffer.from`
-                            Buffer.from("Hello world!")
-                        );
-
-                        console.log(encryptedData.toString("base64"))
-
                         var canvas = document.getElementById(obtenerCanvas());
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
                         var encrypted = encrypt.encrypt("Hello world!");
 
-                        //console.log(imgBase64)
-                        //console.log(encrypted)
+                        console.log(imgBase64)
+                        console.log(encrypted)
 
                         const Http = new XMLHttpRequest();
                         Http.open("POST", url, true);
@@ -197,7 +186,6 @@
     </main>
 
     <script src="/static/plugins/sweetAlert2/sweetalert2.all.min.js"></script>
-    <script src="https://cdnout.com/jsencrypt/jsencrypt.js"></script>
     <script src="/static/js/capture_image.js"></script>
 </body>
 
