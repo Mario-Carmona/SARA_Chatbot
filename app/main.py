@@ -324,7 +324,7 @@ def setURL(request: ServerURL):
 
     print(request.pubkey)
     print(request.url)
-    aux = bytes(request.pubkey, encoding = "utf-8")
+    aux = bytes(request.pubkey, encoding = 'UTF-8')
     print(type(aux))
     print(aux)
 
