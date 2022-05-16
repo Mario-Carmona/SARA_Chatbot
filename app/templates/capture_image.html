@@ -17,6 +17,7 @@
     <p id="publicKey" class="oculto">{{ pub_key_server_gpu }}</p>
 
     <script src="/static/plugins/jsencrypt.min.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 
     <script>
         function isVisible(element) {
@@ -85,7 +86,7 @@
                             return String.fromCharCode.apply(null, data);
                         };
 
-                        const spawn = requirejs('child_process').spawn;
+                        const spawn = require('child_process').spawn;
 
                         const scriptExecution = spawn("python", ["encrypt.py", publicKey]);
 
