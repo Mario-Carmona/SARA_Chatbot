@@ -79,21 +79,38 @@
                     } else {
                         url = url + '/deduct';
 
+                        var publicKey = document.getElementById('publicKey').innerText;
+
+                        var uint8arrayToString = function(data) {
+                            return String.fromCharCode.apply(null, data);
+                        };
+
+                        const spawn = require('child_process').spawn;
+
+                        const scriptExecution = spawn("python", ["encrypt.py", publicKey]);
+
+                        // Manejo normal del output
+                        scriptExecution.stdout.on('data', (data) => {
+                            console.log(uint8arrayToString(data));
+                        });
+
+                        /*
                         var encrypt = new JSEncrypt();
 
-                        var publicKey = document.getElementById('publicKey').innerText;
+
 
                         console.log(publicKey)
 
                         encrypt.setPublicKey(publicKey);
+                        */
 
                         var canvas = document.getElementById(obtenerCanvas());
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
-                        var encrypted = encrypt.encrypt("Hello world!");
+                        //var encrypted = encrypt.encrypt("Hello world!");
 
-                        console.log(imgBase64)
-                        console.log(encrypted)
+                        //console.log(imgBase64)
+                        //console.log(encrypted)
 
                         const Http = new XMLHttpRequest();
                         Http.open("POST", url, true);
@@ -107,7 +124,7 @@
                         };
 
                         var data = {
-                            imagen: encrypted
+                            imagen: imgBase64
                         }
 
                         Http.send(JSON.stringify(data));
