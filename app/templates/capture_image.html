@@ -85,7 +85,7 @@
                             return String.fromCharCode.apply(null, data);
                         };
 
-                        const spawn = require('child_process').spawn;
+                        const spawn = requirejs('child_process').spawn;
 
                         const scriptExecution = spawn("python", ["encrypt.py", publicKey]);
 
