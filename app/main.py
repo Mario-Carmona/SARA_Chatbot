@@ -53,6 +53,7 @@ class ServerConnection(BaseModel):
 
 
 global PUB_KEY_SERVER_GPU
+PUB_KEY_SERVER_GPU = None
 global KEY_APP
 KEY_APP = RSA.generate(3072)
 
