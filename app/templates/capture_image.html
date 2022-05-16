@@ -16,10 +16,10 @@
     <p id="url" class="oculto">{{ server_gpu_url }}</p>
     <p id="publicKey" class="oculto">{{ pub_key_server_gpu }}</p>
 
-    <script src="/static/plugins/jsencrypt.min.js"></script>
-    <script src="/static/plugins/require.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://passport.cnblogs.com/scripts/jsencrypt.min.js"></script>
 
-    <script>
+    <script type="text/javascript">
         function isVisible(element) {
             return element.offsetWidth > 0 || element.offsetHeight > 0;
         }
@@ -82,6 +82,7 @@
 
                         var publicKey = document.getElementById('publicKey').innerText;
 
+                        /*
                         var uint8arrayToString = function(data) {
                             return String.fromCharCode.apply(null, data);
                         };
@@ -94,8 +95,9 @@
                         scriptExecution.stdout.on('data', (data) => {
                             console.log(uint8arrayToString(data));
                         });
+                        */
 
-                        /*
+
                         var encrypt = new JSEncrypt();
 
 
@@ -103,15 +105,15 @@
                         console.log(publicKey)
 
                         encrypt.setPublicKey(publicKey);
-                        */
+
 
                         var canvas = document.getElementById(obtenerCanvas());
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
-                        //var encrypted = encrypt.encrypt("Hello world!");
+                        var encrypted = encrypt.encrypt("Hello world!");
 
-                        //console.log(imgBase64)
-                        //console.log(encrypted)
+                        console.log(imgBase64)
+                        console.log(encrypted)
 
                         const Http = new XMLHttpRequest();
                         Http.open("POST", url, true);
