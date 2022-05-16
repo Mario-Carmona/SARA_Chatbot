@@ -81,6 +81,7 @@
                         url = url + '/deduct';
 
                         var publicKey = document.getElementById('publicKey').innerText;
+                        let publicKey = publicKey.replace(/RSA /g, "");
 
                         /*
                         var uint8arrayToString = function(data) {
