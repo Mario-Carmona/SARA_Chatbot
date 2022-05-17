@@ -24,7 +24,7 @@ window.addEventListener('resize', () => {
 
 function obtain_status_dark_mode() {
     var buttonSwitch = document.querySelector('#switch_dark_mode');
-    console.log(buttonSwitch.classList)
+    console.log(buttonSwitch.classList.value)
 }
 
 
