@@ -80,7 +80,6 @@ function getBase64(file) {
 
 
 
-
 const camera = document.querySelector('#camera');
 camera.addEventListener('change', function(e) {
     //photo.src = URL.createObjectURL(e.target.files[0]);
