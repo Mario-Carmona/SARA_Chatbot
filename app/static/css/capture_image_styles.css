@@ -600,6 +600,10 @@ body {
     .mobile {
         display: block;
     }
+    .capture_button_mobile {
+        position: relative;
+        display: inline-block;
+    }
     .capture_button_mobile::before {
         background-color: #5678EF;
         color: white;
