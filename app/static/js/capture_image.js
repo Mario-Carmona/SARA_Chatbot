@@ -46,15 +46,17 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 function getBase64(file) {
     var reader = new FileReader();
+    var aux;
     reader.readAsDataURL(file);
     reader.onload = function() {
         console.log(reader.result);
+        aux = reader.result;
     };
     reader.onerror = function(error) {
         console.log('Error: ', error);
     };
 
-    return reader.result
+    return aux
 }
 
 
