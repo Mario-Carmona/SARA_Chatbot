@@ -14,6 +14,7 @@
 <body>
     <p id="dark_mode" class="oculto">{{ dark_mode }}</p>
 
+
     <header class="header">
         <nav class="nav__header">
             <div class="container nav__container">
@@ -49,16 +50,7 @@
     </header>
 
 
-
-    <script src="/static/js/home.js"></script>
-
-    <script>
-        let event = new Event("click");
-
-        if (document.getElementById('dark_mode').innerText == "switch_dark_mode active") {
-            buttonSwitch.dispatchEvent(event);
-        }
-    </script>
+    <script src="/static/js/base.js"></script>
 </body>
 
 </html>

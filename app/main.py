@@ -286,11 +286,12 @@ def home(request: Request):
     return templates.TemplateResponse("home.html", {"request": request})
 
 @app.get("/chatbot", response_class=HTMLResponse)
-def chatbot(request: Request):
+def chatbot(request: Request, dark_mode: str):
     return templates.TemplateResponse(
         "chatbot.html", 
         {
             "request": request,
+            "dark_mode": dark_mode,
             "server_gpu_url": SERVER_GPU_URL,
             "web_interface_adult": config["web_interface_adult"],
             "web_interface_child": config["web_interface_child"],
@@ -300,12 +301,13 @@ def chatbot(request: Request):
     )
 
 @app.get("/capture_image", response_class=HTMLResponse) 
-def capture_image(request: Request, canal: str):
+def capture_image(request: Request, canal: str, dark_mode: str):
     return templates.TemplateResponse(
         "capture_image.html", 
         {
             "request": request, 
             "canal": canal,
+            "dark_mode": dark_mode,
             "server_gpu_url": SERVER_GPU_URL,
             "apartado_deduct": config["apartado_deduct"],
             "web_interface_adult": config["web_interface_adult"],
@@ -326,8 +328,14 @@ def interface_adult(request: Request, dark_mode: str):
     )
 
 @app.get("/interface_child", response_class=HTMLResponse)
-def interface_child(request: Request):
-    return templates.TemplateResponse("interface_child.html", {"request": request})
+def interface_child(request: Request, dark_mode: str):
+    return templates.TemplateResponse(
+        "interface_child.html", 
+        {
+            "request": request,
+            "dark_mode": dark_mode
+        }
+    )
 
 @app.get("/wakeup", response_class=PlainTextResponse)
 def wakeup():
