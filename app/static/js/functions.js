@@ -10,7 +10,7 @@ function openURL(url, canal = '') {
     } else {
         url_completa = url + '?canal=' + canal + '&dark_mode=' + obtain_status_dark_mode();
     }
-    window.location.replace(url_completa);
+    window.open(url_completa, "_self");
 }
 
 function openChatbot(canal) {
