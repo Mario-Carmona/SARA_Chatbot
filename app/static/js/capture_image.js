@@ -46,5 +46,53 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 const photo = document.querySelector('#photo');
 const camera = document.querySelector('#camera');
 camera.addEventListener('change', function(e) {
-    photo.src = URL.createObjectURL(e.target.files[0]);
+    //photo.src = URL.createObjectURL(e.target.files[0]);
+    Swal.fire({
+        title: '¿Deseas enviar esta foto?',
+        text: "¡No podrás revertir tu decisión!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#00FF24',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Enviar',
+        cancelButtonText: 'No enviar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var url = document.getElementById('url').innerText;
+
+            if (url == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de conexión...',
+                    text: 'El servidor GPU no está disponible en este momento.'
+                });
+            } else {
+                url = url + '/deduct';
+
+                var canvas = document.getElementById(obtenerCanvas());
+                var imgBase64 = URL.createObjectURL(e.target.files[0]);
+
+                console.log(imgBase64)
+
+                /*
+                const Http = new XMLHttpRequest();
+                Http.open("POST", url, true);
+                Http.setRequestHeader("Content-Type", "application/json");
+
+                Http.onreadystatechange = function() {
+                    var age = Http.responseText
+                    console.log(age)
+
+                    window.location.replace('./interface_' + age);
+                };
+
+                var data = {
+                    imagen: imgBase64
+                }
+
+                Http.send(JSON.stringify(data));
+                */
+            }
+        }
+    });
 });
