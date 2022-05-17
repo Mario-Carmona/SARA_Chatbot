@@ -287,12 +287,32 @@ def home(request: Request):
 
 @app.get("/chatbot", response_class=HTMLResponse)
 def chatbot(request: Request):
-    return templates.TemplateResponse("chatbot.html", {"request": request})
+    return templates.TemplateResponse(
+        "chatbot.html", 
+        {
+            "request": request,
+            "web_interface_adult": config["web_interface_adult"],
+            "web_interface_child": config["web_interface_child"],
+            "telegram_interface_adult": config["telegram_interface_adult"],
+            "telegram_interface_child": config["telegram_interface_child"]
+        }
+    )
 
 @app.get("/capture_image", response_class=HTMLResponse) 
 def capture_image(request: Request, canal: str):
-    print(canal)
-    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL})
+    return templates.TemplateResponse(
+        "capture_image.html", 
+        {
+            "request": request, 
+            "canal": canal,
+            "server_gpu_url": SERVER_GPU_URL,
+            "apartado_deduct": config["apartado_deduct"],
+            "web_interface_adult": config["web_interface_adult"],
+            "web_interface_child": config["web_interface_child"],
+            "telegram_interface_adult": config["telegram_interface_adult"],
+            "telegram_interface_child": config["telegram_interface_child"]
+        }
+    )
 
 @app.get("/interface_adult", response_class=HTMLResponse)
 def interface_adult(request: Request):

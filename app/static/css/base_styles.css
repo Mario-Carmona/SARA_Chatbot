@@ -313,3 +313,7 @@ body.dark_mode .card__descrip {
     font-weight: 700;
     padding: 1vh 0 1vh 2vh;
 }
+
+.oculto {
+    display: none;
+}

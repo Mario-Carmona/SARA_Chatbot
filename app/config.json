@@ -1,5 +1,10 @@
 {
     "host": "0.0.0.0",
+    "port": "5000",
     "server_gpu_url": "",
-    "port": "5000"
+    "apartado_deduct": "deduct",
+    "web_interface_adult": "interface_adult",
+    "web_interface_child": "interface_child",
+    "telegram_interface_adult": "http://t.me/sara_adult_chatbot",
+    "telegram_interface_child": "http://t.me/sara_child_chatbot"
 }

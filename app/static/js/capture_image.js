@@ -64,7 +64,11 @@ function getBase64(file) {
             var age = Http.responseText
             console.log(age)
 
-            window.location.replace('./interface_' + age);
+            if (document.getElementById('canal').innerText == "web") {
+                window.location.replace('./' + document.getElementById('web_' + age).innerText);
+            } else if (document.getElementById('canal').innerText == "telegram") {
+                window.open(document.getElementById('telegram_' + age).innerText)
+            }
         };
 
         var data = {

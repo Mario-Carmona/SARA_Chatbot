@@ -900,10 +900,6 @@ body.dark_mode .visualizar {
     background: var(--black3);
 }
 
-.oculto {
-    display: none;
-}
-
 .loading {
     position: fixed;
     left: 0px;

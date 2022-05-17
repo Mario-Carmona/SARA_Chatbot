@@ -13,8 +13,13 @@
 </head>
 
 <body>
+    <p id="web_adult" class="oculto">{{ web_interface_adult }}</p>
+    <p id="web_child" class="oculto">{{ web_interface_child }}</p>
+    <p id="telegram_adult" class="oculto">{{ telegram_interface_adult }}</p>
+    <p id="telegram_child" class="oculto">{{ telegram_interface_child }}</p>
+
     <script>
-        function openWeb() {
+        function openChatbot(canal) {
             Swal.fire({
                 title: '¿Quiere deducir su edad mediante una foto?',
                 text: "¡No podrás revertir tu decisión!",
@@ -26,7 +31,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.replace('./capture_image');
+                    window.location.replace('./capture_image?canal=' + canal);
                 } else {
                     Swal.fire({
                         title: '¿Cuál es tu edad?',
@@ -38,9 +43,17 @@
                         cancelButtonText: 'Niño'
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            window.location.replace('./interface_adult');
+                            if (canal == "web") {
+                                window.location.replace('./' + document.getElementById('web_adult').innerText);
+                            } else if (canal == "telegram") {
+                                window.open(document.getElementById('telegram_adult').innerText)
+                            }
                         } else {
-                            window.location.replace('./interface_child');
+                            if (canal == "web") {
+                                window.location.replace('./' + document.getElementById('web_child').innerText);
+                            } else if (canal == "telegram") {
+                                window.open(document.getElementById('telegram_child').innerText)
+                            }
                         }
                     });
                 }
@@ -76,16 +89,16 @@
                 <p class="header__subtitle">Este chatbot está preparado para realizar una conversación para formentar el uso y la investigación de la IA, adaptando la conversación a las características del usuario.</p>
                 <div class="open_buttons">
                     <div class="open_button">
-                        <div id="open_web" class="enlace" onclick="openWeb()">
+                        <div id="open_web" class="enlace" onclick="openChatbot('web')">
                             <img src="/static/img/message-solid.svg" class="icono message-solid">
                             <div class="button_text">Open in Web</div>
                         </div>
                     </div>
                     <div class="open_button">
-                        <a href="#" class="enlace">
+                        <div id="open_telegram" class="enlace" onclick="openChatbot('telegram')">
                             <img src="/static/img/telegram-brands.svg" class="icono telegram-brands">
                             <div class="button_text">Open in Telegram</div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
