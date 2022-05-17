@@ -103,9 +103,7 @@ camera.addEventListener('change', function(e) {
                     text: 'El servidor GPU no está disponible en este momento.'
                 });
             } else {
-                url = url + '/deduct';
-
-                var imgBase64 = getBase64(e.target.files[0]);
+                getBase64(e.target.files[0]);
             }
         }
     });
