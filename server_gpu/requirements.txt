@@ -14,4 +14,3 @@ protobuf
 deepl
 nltk
 ray[tune]
-PyCryptodome

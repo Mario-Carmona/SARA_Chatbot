@@ -47,10 +47,6 @@ import base64
 from PIL import Image
 import io
 
-from Crypto.PublicKey import RSA
-
-import json
-
 # -------------------------------------------------------------------------#
 
 class Entry(BaseModel):
@@ -59,11 +55,6 @@ class Entry(BaseModel):
 
 class EntryDeduct(BaseModel):
     imagen: str
-
-
-global PUB_KEY_APP
-global KEY_SERVER_GPU
-KEY_SERVER_GPU = RSA.generate(3072)
 
 
 parser = argparse.ArgumentParser()
@@ -297,25 +288,9 @@ def make_response_child(entry: str, history: List[str]):
 def send_public_URL():
     print(bcolors.WARNING + "Enviando URL al controlador..." + bcolors.RESET)
     url = server_args.controller_url
-    
-    pubkey = KEY_SERVER_GPU.publickey()
-    pubkey_string = pubkey.exportKey("PEM").decode('UTF-8')
-    
     headers = {'content-type': 'application/json'}
-    response = requests.post(
-        url + "/setConnetion", 
-        json={
-            "url": public_url,
-            "pubkey": pubkey_string
-        }, 
-        headers=headers
-    )
-    response = json.loads(response.content.decode('UTF-8'))
-
-    global PUB_KEY_APP
-    PUB_KEY_APP = RSA.importKey(bytes(response["pubkey"], encoding = 'UTF-8'))
-
-    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response["text"]))
+    response = requests.post(url + "/setURL", json={"url": public_url}, headers=headers)
+    print(bcolors.OK + "INFO" + bcolors.RESET + ": " + str(response.content.decode('utf-8')))
 
 
 
@@ -359,13 +334,9 @@ def child(request: Entry):
 
 @app.post("/deduct", response_class=PlainTextResponse)
 def deduct(request: EntryDeduct):
-    print(request.imagen)
-    input("--->")
 
 
-    imagen = KEY_SERVER_GPU.decrypt(request.imagen)
-
-    base64_data = imagen.split(',')[1]
+    base64_data = request.imagen.split(',')[1]
 
     # convert it into bytes  
     img_bytes = base64.b64decode(base64_data)
@@ -412,7 +383,7 @@ def reconnect():
 
     send_public_URL()
 
-    return "Conexión realizada correctamente"
+    return "Reenviada URL"
 
 
 if __name__ == "__main__":

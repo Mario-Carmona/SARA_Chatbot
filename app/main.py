@@ -20,8 +20,6 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 import uvicorn
 
-from Crypto.PublicKey import RSA
-
 
 
 
@@ -45,19 +43,8 @@ SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
 
 SPAIN = pytz.timezone('Europe/Madrid')
 
-
-
-class ServerConnection(BaseModel):
+class ServerURL(BaseModel):
     url: str
-    pubkey: str
-
-
-global PUB_KEY_SERVER_GPU
-PUB_KEY_SERVER_GPU = None
-global KEY_APP
-KEY_APP = RSA.generate(3072)
-
-
 
 def obtenerElemContext(outputContexts):
     elem = [i for i, s in enumerate(outputContexts) if s["name"].__contains__("talk-followup")][0]
@@ -304,7 +291,7 @@ def chatbot(request: Request):
 
 @app.get("/capture_image", response_class=HTMLResponse) 
 def capture_image(request: Request):
-    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL, "pub_key_server_gpu": PUB_KEY_SERVER_GPU})
+    return templates.TemplateResponse("capture_image.html", {"request": request, "server_gpu_url": SERVER_GPU_URL})
 
 @app.get("/interface_adult", response_class=HTMLResponse)
 def interface_adult(request: Request):
@@ -318,18 +305,11 @@ def interface_child(request: Request):
 def wakeup():
     return "Server ON"
 
-@app.post("/setConnetion")
-def setURL(request: ServerConnection):
+@app.post("/setURL", response_class=PlainTextResponse)
+def setURL(request: ServerURL):
     global SERVER_GPU_URL
     SERVER_GPU_URL = request.url
-
-    global PUB_KEY_SERVER_GPU
-    PUB_KEY_SERVER_GPU = RSA.importKey(bytes(request.pubkey, encoding = 'UTF-8'))
-
-    pubkey_app = KEY_APP.publickey()
-    pubkey_app_string = pubkey_app.exportKey("PEM").decode('UTF-8')
-
-    return {"text": "Conexión realiza correctamente", "pubkey": pubkey_app_string}
+    return "URL fijada correctamente"
 
 @app.post("/webhook_adult")
 async def webhook_adult( request: Request):
