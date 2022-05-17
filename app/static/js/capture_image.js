@@ -100,25 +100,6 @@ camera.addEventListener('change', function(e) {
                 url = url + '/deduct';
 
                 var imgBase64 = getBase64(e.target.files[0]);
-
-                console.log(imgBase64)
-
-                const Http = new XMLHttpRequest();
-                Http.open("POST", url, true);
-                Http.setRequestHeader("Content-Type", "application/json");
-
-                Http.onreadystatechange = function() {
-                    var age = Http.responseText
-                    console.log(age)
-
-                    window.location.replace('./interface_' + age);
-                };
-
-                var data = {
-                    imagen: imgBase64
-                }
-
-                Http.send(JSON.stringify(data));
             }
         }
     });
