@@ -614,6 +614,12 @@ body {
         top: 0;
         bottom: 0;
     }
+    .capture_button_mobile input[type="file"] {
+        opacity: 0;
+        width: 200px;
+        height: 32px;
+        display: inline-block;
+    }
 }
 
 body.dark_mode .header__title {
