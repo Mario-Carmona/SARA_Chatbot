@@ -70,7 +70,7 @@ camera.addEventListener('change', function(e) {
                 url = url + '/deduct';
 
                 var canvas = document.getElementById(obtenerCanvas());
-                var imgBase64 = URL.createObjectURL(e.target.files[0]);
+                var imgBase64 = e.target.files[0];
 
                 console.log(imgBase64)
 
