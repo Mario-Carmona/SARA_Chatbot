@@ -3,8 +3,6 @@ const buttonSwitch = document.querySelector('#switch_dark_mode');
 buttonSwitch.addEventListener('click', () => {
     document.body.classList.toggle('dark_mode');
     buttonSwitch.classList.toggle('active');
-
-    obtain_status_dark_mode();
 });
 
 const buttonSidebar = document.querySelector('#button_sidebar');
@@ -28,8 +26,14 @@ function obtain_status_dark_mode() {
 }
 
 
-function openURL(url) {
-    window.location.replace(url + '?dark_mode=' + obtain_status_dark_mode());
+function openURL(url, canal = '') {
+    var url_completa = '';
+    if (canal == '') {
+        url_completa = url + '?dark_mode=' + obtain_status_dark_mode();
+    } else {
+        url_completa = url + '?canal=' + canal + '&dark_mode=' + obtain_status_dark_mode();
+    }
+    window.location.replace(url_completa);
 }
 
 
@@ -38,7 +42,6 @@ function openURL(url) {
 
 
 
-obtain_status_dark_mode();
 
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
@@ -77,7 +80,8 @@ function getBase64(file) {
             console.log(age)
 
             if (document.getElementById('canal').innerText == "web") {
-                window.location.replace('./' + document.getElementById('web_' + age).innerText);
+                openURL('./' + document.getElementById('web_' + age).innerText);
+                //window.location.replace('./' + document.getElementById('web_' + age).innerText);
             } else if (document.getElementById('canal').innerText == "telegram") {
                 window.location.replace(document.getElementById('telegram_' + age).innerText)
             }
