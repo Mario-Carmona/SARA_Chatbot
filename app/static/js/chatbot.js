@@ -15,3 +15,9 @@ var link_inicio = document.getElementById("link_inicio");
 link_inicio.onclick = function() {
     openURL('./');
 };
+
+var link_inicio_lateral = document.getElementById("link_inicio_lateral");
+
+link_inicio_lateral.onclick = function() {
+    openURL('./');
+};

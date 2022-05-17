@@ -23,8 +23,12 @@
                 </div>
                 <div class="tools">
                     <div class="show_links links">
-                        <a href="./" class="link">Inicio</a>
-                        <a href="./chatbot" class="link">Sara Chatbot</a>
+                        <div id="link_inicio">
+                            <a href="./" class="link">Inicio</a>
+                        </div>
+                        <div id="link_chatbot">
+                            <a href="./chatbot" class="link">Sara Chatbot</a>
+                        </div>
                         <a href="#" class="link__active">Sobre nosotros</a>
                     </div>
                     <button class="switch_dark_mode" id="switch_dark_mode">
@@ -41,8 +45,12 @@
             <iframe class="chat_iframe" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/3672585b-6bc9-4483-b917-085debcf5b7c"> Your browser doesn't support iframes </iframe>
             <div class="sidebar" id="sidebar">
                 <div class="sidebar_content">
-                    <a href="./" class="link_lateral">Inicio</a>
-                    <a href="./chatbot" class="link_lateral">Sara Chatbot</a>
+                    <div id="link_inicio_lateral">
+                        <a href="./" class="link_lateral">Inicio</a>
+                    </div>
+                    <div id="link_chatbot_lateral">
+                        <a href="./chatbot" class="link_lateral">Sara Chatbot</a>
+                    </div>
                     <a href="#" class="link_lateral__active">Sobre nosotros</a>
                 </div>
             </div>
@@ -50,7 +58,9 @@
     </header>
 
 
+    <script src="/static/js/functions.js"></script>
     <script src="/static/js/base.js"></script>
+    <script src="/static/js/interface_adult.js"></script>
 </body>
 
 </html>
