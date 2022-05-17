@@ -292,7 +292,7 @@ def home(request: Request, dark_mode: str = ""):
     )
 
 @app.get("/chatbot", response_class=HTMLResponse)
-def chatbot(request: Request, dark_mode: str):
+def chatbot(request: Request, dark_mode: str = ""):
     return templates.TemplateResponse(
         "chatbot.html", 
         {
@@ -307,7 +307,7 @@ def chatbot(request: Request, dark_mode: str):
     )
 
 @app.get("/capture_image", response_class=HTMLResponse) 
-def capture_image(request: Request, canal: str, dark_mode: str):
+def capture_image(request: Request, canal: str, dark_mode: str = ""):
     return templates.TemplateResponse(
         "capture_image.html", 
         {
@@ -324,7 +324,7 @@ def capture_image(request: Request, canal: str, dark_mode: str):
     )
 
 @app.get("/interface_adult", response_class=HTMLResponse)
-def interface_adult(request: Request, dark_mode: str):
+def interface_adult(request: Request, dark_mode: str = ""):
     return templates.TemplateResponse(
         "interface_adult.html", 
         {
@@ -334,7 +334,7 @@ def interface_adult(request: Request, dark_mode: str):
     )
 
 @app.get("/interface_child", response_class=HTMLResponse)
-def interface_child(request: Request, dark_mode: str):
+def interface_child(request: Request, dark_mode: str = ""):
     return templates.TemplateResponse(
         "interface_child.html", 
         {
