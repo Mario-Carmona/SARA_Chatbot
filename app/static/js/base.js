@@ -26,9 +26,3 @@ try {
         buttonSwitch.dispatchEvent(event);
     }
 } catch (e) {}
-
-
-function obtain_status_dark_mode() {
-    var buttonSwitch = document.querySelector('#switch_dark_mode');
-    return buttonSwitch.classList.value;
-}

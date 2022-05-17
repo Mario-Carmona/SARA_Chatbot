@@ -1,3 +1,8 @@
+function obtain_status_dark_mode() {
+    var buttonSwitch = document.querySelector('#switch_dark_mode');
+    return buttonSwitch.classList.value;
+}
+
 function openURL(url, canal = '') {
     var url_completa = '';
     if (canal == '') {
