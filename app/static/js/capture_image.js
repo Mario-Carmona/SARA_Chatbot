@@ -40,3 +40,11 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         video.play();
     });
 }
+
+
+
+const photo = document.querySelector('#photo');
+const camera = document.querySelector('#camera');
+camera.addEventListener('change', function(e) {
+    photo.src = URL.createObjectURL(e.target.files[0]);
+});

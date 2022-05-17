@@ -170,6 +170,12 @@ body {
     .canvasMovil {
         display: none;
     }
+    .rest_device {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 1024px) and (min-width: 751px) and (max-height: 750px) and (min-height: 500px) {
@@ -299,6 +305,12 @@ body {
         display: block;
     }
     .canvasMovil {
+        display: none;
+    }
+    .rest_device {
+        display: block;
+    }
+    .mobile {
         display: none;
     }
 }
@@ -439,6 +451,12 @@ body {
     .canvasMovil {
         display: none;
     }
+    .rest_device {
+        display: block;
+    }
+    .mobile {
+        display: none;
+    }
 }
 
 @media screen and (max-width: 400px) and (min-width: 200px) and (max-height: 850px) and (min-height: 500px) {
@@ -574,6 +592,12 @@ body {
         display: none;
     }
     .canvasMovil {
+        display: block;
+    }
+    .rest_device {
+        display: none;
+    }
+    .mobile {
         display: block;
     }
 }
