@@ -59,44 +59,6 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 
 
-function getBase64(file) {
-    var reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function() {
-        var url = document.getElementById('url').innerText;
-
-        url = url + '/deduct';
-
-        var imgBase64 = reader.result;
-
-        console.log(imgBase64)
-
-        const Http = new XMLHttpRequest();
-        Http.open("POST", url, true);
-        Http.setRequestHeader("Content-Type", "application/json");
-
-        Http.onreadystatechange = function() {
-            var age = Http.responseText
-            console.log(age)
-
-            if (document.getElementById('canal').innerText == "web") {
-                openURL('./' + document.getElementById('web_' + age).innerText);
-                //window.location.replace('./' + document.getElementById('web_' + age).innerText);
-            } else if (document.getElementById('canal').innerText == "telegram") {
-                window.location.replace(document.getElementById('telegram_' + age).innerText)
-            }
-        };
-
-        var data = {
-            imagen: imgBase64
-        }
-
-        Http.send(JSON.stringify(data));
-
-        var loading = document.getElementById('loading');
-        loading.classList.toggle('active');
-    };
-}
 
 
 
@@ -134,7 +96,7 @@ camera.addEventListener('change', function(e) {
                     console.log(age)
 
                     if (document.getElementById('canal').innerText == "web") {
-                        window.location.replace('./' + document.getElementById('web_' + age).innerText);
+                        openURL('./' + document.getElementById('web_' + age).innerText);
                     } else if (document.getElementById('canal').innerText == "telegram") {
                         window.location.replace(document.getElementById('telegram_' + age).innerText)
                     }
