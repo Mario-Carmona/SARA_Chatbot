@@ -72,8 +72,12 @@ camera.addEventListener('change', function(e) {
 
 var snap = document.getElementById("snap");
 
-snap.onclick = snapPhoto();
+snap.onclick = function() {
+    snapPhoto();
+};
 
 var send = document.getElementById("send");
 
-send.onclick = sendPhoto();
+send.onclick = function() {
+    sendPhoto();
+};
