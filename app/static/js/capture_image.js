@@ -133,6 +133,8 @@ camera.addEventListener('change', function(e) {
                 var loading = document.getElementById('loading');
                 loading.classList.toggle('active');
             };
+        } else {
+            e.target.value = "";
         }
     });
 });
