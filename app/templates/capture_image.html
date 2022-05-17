@@ -23,14 +23,6 @@
     <p id="telegram_child" class="oculto">{{ telegram_interface_child }}</p>
 
 
-    <script>
-        import {
-            snapPhoto,
-            sendPhoto
-        } from '/static/js/functions.js';
-    </script>
-
-
     <div class="loading" id="loading"></div>
 
     <header class="header">
@@ -62,7 +54,7 @@
                 </div>
 
                 <div class="capture_button">
-                    <div id="snap" class="enlace" onclick="snapPhoto()">
+                    <div id="snap" class="enlace">
                         <img src="/static/img/camera-solid.svg" class="icono message-solid">
                         <div class="button">Capturar</div>
                     </div>
@@ -97,7 +89,7 @@
                         </section>
 
                         <div id="send_button" class="send_button">
-                            <div id="send" class="enlace" onclick="sendPhoto()">
+                            <div id="send" class="enlace">
                                 <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
                                 <div class="button">Enviar</div>
                             </div>

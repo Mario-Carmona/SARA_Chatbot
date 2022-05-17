@@ -67,3 +67,17 @@ camera.addEventListener('change', function(e) {
         }
     });
 });
+
+
+import {
+    snapPhoto,
+    sendPhoto
+} from '/static/js/functions.js';
+
+var snap = document.getElementById("snap");
+
+snap.onclick = snapPhoto();
+
+var send = document.getElementById("send");
+
+send.onclick = sendPhoto();

@@ -21,13 +21,6 @@
     <p id="telegram_child" class="oculto">{{ telegram_interface_child }}</p>
 
 
-    <script>
-        import {
-            openChatbot
-        } from '/static/js/functions.js';
-    </script>
-
-
     <header class="header">
         <nav class="nav__header">
             <div class="container nav__container">
@@ -56,13 +49,13 @@
                 <p class="header__subtitle">Este chatbot está preparado para realizar una conversación para formentar el uso y la investigación de la IA, adaptando la conversación a las características del usuario.</p>
                 <div class="open_buttons">
                     <div class="open_button">
-                        <div id="open_web" class="enlace" onclick="openChatbot('web')">
+                        <div id="open_web" class="enlace">
                             <img src="/static/img/message-solid.svg" class="icono message-solid">
                             <div class="button_text">Open in Web</div>
                         </div>
                     </div>
                     <div class="open_button">
-                        <div id="open_telegram" class="enlace" onclick="openChatbot('telegram')">
+                        <div id="open_telegram" class="enlace">
                             <img src="/static/img/telegram-brands.svg" class="icono telegram-brands">
                             <div class="button_text">Open in Telegram</div>
                         </div>
@@ -82,4 +75,5 @@
 
     <script src="/static/plugins/sweetAlert2/sweetalert2.all.min.js"></script>
     <script src="/static/js/base.js"></script>
+    <script src="/static/js/chatbot.js"></script>
 </body>
