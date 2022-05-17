@@ -14,11 +14,6 @@
 <body>
     <p id="dark_mode" class="oculto">{{ dark_mode }}</p>
 
-    <script>
-        var buttonSwitch = document.querySelector('#switch_dark_mode');
-        buttonSwitch.classList.value = document.getElementById('dark_mode');
-    </script>
-
     <header class="header">
         <nav class="nav__header">
             <div class="container nav__container">
@@ -52,6 +47,11 @@
             </div>
         </div>
     </header>
+
+    <script>
+        var buttonSwitch = document.querySelector('#switch_dark_mode');
+        buttonSwitch.classList.value = document.getElementById('dark_mode');
+    </script>
 
     <script src="/static/js/home.js"></script>
 </body>
