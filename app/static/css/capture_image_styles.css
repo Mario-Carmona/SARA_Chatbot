@@ -622,12 +622,13 @@ body {
     }
     .capture_button_mobile input[type="file"] {
         opacity: 0;
-        width: 30%;
+        width: 200px;
+        height: 30px;
         display: inline-block;
     }
     .input {
-        width: inherit;
-        height: inherit;
+        width: 200px;
+        height: 30px;
     }
 }
 
