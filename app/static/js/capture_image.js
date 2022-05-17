@@ -67,7 +67,7 @@ function getBase64(file) {
             if (document.getElementById('canal').innerText == "web") {
                 window.location.replace('./' + document.getElementById('web_' + age).innerText);
             } else if (document.getElementById('canal').innerText == "telegram") {
-                window.open(document.getElementById('telegram_' + age).innerText)
+                window.location.replace(document.getElementById('telegram_' + age).innerText)
             }
         };
 

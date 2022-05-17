@@ -31,7 +31,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.open('./capture_image?canal=' + canal);
+                    window.location.replace('./capture_image?canal=' + canal);
                 } else {
                     Swal.fire({
                         title: '¿Cuál es tu edad?',
@@ -46,13 +46,13 @@
                             if (canal == "web") {
                                 window.location.replace('./' + document.getElementById('web_adult').innerText);
                             } else if (canal == "telegram") {
-                                window.open(document.getElementById('telegram_adult').innerText)
+                                window.location.replace(document.getElementById('telegram_adult').innerText)
                             }
                         } else {
                             if (canal == "web") {
                                 window.location.replace('./' + document.getElementById('web_child').innerText);
                             } else if (canal == "telegram") {
-                                window.open(document.getElementById('telegram_child').innerText)
+                                window.location.replace(document.getElementById('telegram_child').innerText)
                             }
                         }
                     });
