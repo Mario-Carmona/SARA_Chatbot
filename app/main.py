@@ -282,7 +282,7 @@ def add_process_time_header(request: Request, call_next):
     return response
 
 @app.get("/", response_class=HTMLResponse) 
-def home(request: Request, dark_mode: str = "switch_dark_mode"):
+def home(request: Request, dark_mode: str = ""):
     return templates.TemplateResponse(
         "home.html", 
         {
