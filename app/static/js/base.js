@@ -32,14 +32,3 @@ function obtain_status_dark_mode() {
     var buttonSwitch = document.querySelector('#switch_dark_mode');
     return buttonSwitch.classList.value;
 }
-
-
-function openURL(url, canal = '') {
-    var url_completa = '';
-    if (canal == '') {
-        url_completa = url + '?dark_mode=' + obtain_status_dark_mode();
-    } else {
-        url_completa = url + '?canal=' + canal + '&dark_mode=' + obtain_status_dark_mode();
-    }
-    window.location.replace(url_completa);
-}

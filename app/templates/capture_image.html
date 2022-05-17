@@ -23,7 +23,12 @@
     <p id="telegram_child" class="oculto">{{ telegram_interface_child }}</p>
 
 
-    <script src="/static/js/pre_capture_image.js"></script>
+    <script>
+        import {
+            snapPhoto,
+            sendPhoto
+        } from '/static/js/functions.js';
+    </script>
 
 
     <div class="loading" id="loading"></div>
