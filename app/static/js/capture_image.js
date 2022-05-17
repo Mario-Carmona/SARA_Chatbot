@@ -69,10 +69,6 @@ camera.addEventListener('change', function(e) {
 });
 
 
-import {
-    snapPhoto,
-    sendPhoto
-} from '/static/js/functions.js';
 
 var snap = document.getElementById("snap");
 
