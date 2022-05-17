@@ -20,13 +20,18 @@ window.addEventListener('resize', () => {
 
 
 
+function obtain_status_dark_mode() {
+    var buttonSwitch = document.querySelector('#switch_dark_mode');
+    console.log(buttonSwitch.classList)
+}
+
 
 /********************************/
 
 
 
 
-
+obtain_status_dark_mode();
 
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
