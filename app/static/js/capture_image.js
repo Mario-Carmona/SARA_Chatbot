@@ -3,6 +3,8 @@ const buttonSwitch = document.querySelector('#switch_dark_mode');
 buttonSwitch.addEventListener('click', () => {
     document.body.classList.toggle('dark_mode');
     buttonSwitch.classList.toggle('active');
+
+    obtain_status_dark_mode();
 });
 
 const buttonSidebar = document.querySelector('#button_sidebar');
