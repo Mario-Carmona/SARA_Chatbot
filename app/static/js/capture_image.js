@@ -98,17 +98,41 @@ camera.addEventListener('change', function(e) {
         cancelButtonText: 'No enviar'
     }).then((result) => {
         if (result.isConfirmed) {
-            var url = document.getElementById('url').innerText;
+            var reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]);
+            reader.onload = function() {
+                var url = document.getElementById('url').innerText;
 
-            if (url == '') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error de conexión...',
-                    text: 'El servidor GPU no está disponible en este momento.'
-                });
-            } else {
-                getBase64(e.target.files[0]);
-            }
+                url = url + '/deduct';
+
+                var imgBase64 = reader.result;
+
+                console.log(imgBase64)
+
+                const Http = new XMLHttpRequest();
+                Http.open("POST", url, true);
+                Http.setRequestHeader("Content-Type", "application/json");
+
+                Http.onreadystatechange = function() {
+                    var age = Http.responseText
+                    console.log(age)
+
+                    if (document.getElementById('canal').innerText == "web") {
+                        window.location.replace('./' + document.getElementById('web_' + age).innerText);
+                    } else if (document.getElementById('canal').innerText == "telegram") {
+                        window.location.replace(document.getElementById('telegram_' + age).innerText)
+                    }
+                };
+
+                var data = {
+                    imagen: imgBase64
+                }
+
+                Http.send(JSON.stringify(data));
+
+                var loading = document.getElementById('loading');
+                loading.classList.toggle('active');
+            };
         }
     });
 });

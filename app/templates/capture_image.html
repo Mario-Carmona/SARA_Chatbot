@@ -73,44 +73,36 @@
                 if (result.isConfirmed) {
                     var url = document.getElementById('url').innerText;
 
-                    if (url == '') {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Error de conexión...',
-                            text: 'El servidor GPU no está disponible en este momento.'
-                        });
-                    } else {
-                        url_deduct = url + '/' + document.getElementById('deduct').innerText;
+                    url_deduct = url + '/' + document.getElementById('deduct').innerText;
 
-                        var canvas = document.getElementById(obtenerCanvas());
-                        var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
+                    var canvas = document.getElementById(obtenerCanvas());
+                    var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
-                        console.log(imgBase64)
+                    console.log(imgBase64)
 
-                        const Http = new XMLHttpRequest();
-                        Http.open("POST", url_deduct, true);
-                        Http.setRequestHeader("Content-Type", "application/json");
+                    const Http = new XMLHttpRequest();
+                    Http.open("POST", url_deduct, true);
+                    Http.setRequestHeader("Content-Type", "application/json");
 
-                        Http.onreadystatechange = function() {
-                            var age = Http.responseText
-                            console.log(age)
+                    Http.onreadystatechange = function() {
+                        var age = Http.responseText
+                        console.log(age)
 
-                            if (document.getElementById('canal').innerText == "web") {
-                                window.location.replace('./' + document.getElementById('web_' + age).innerText);
-                            } else if (document.getElementById('canal').innerText == "telegram") {
-                                window.location.replace(document.getElementById('telegram_' + age).innerText)
-                            }
-                        };
-
-                        var data = {
-                            imagen: imgBase64
+                        if (document.getElementById('canal').innerText == "web") {
+                            window.location.replace('./' + document.getElementById('web_' + age).innerText);
+                        } else if (document.getElementById('canal').innerText == "telegram") {
+                            window.location.replace(document.getElementById('telegram_' + age).innerText)
                         }
+                    };
 
-                        Http.send(JSON.stringify(data));
-
-                        var loading = document.getElementById('loading');
-                        loading.classList.toggle('active');
+                    var data = {
+                        imagen: imgBase64
                     }
+
+                    Http.send(JSON.stringify(data));
+
+                    var loading = document.getElementById('loading');
+                    loading.classList.toggle('active');
                 }
             });
         }

@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <p id="url" class="oculto">{{ server_gpu_url }}</p>
     <p id="web_adult" class="oculto">{{ web_interface_adult }}</p>
     <p id="web_child" class="oculto">{{ web_interface_child }}</p>
     <p id="telegram_adult" class="oculto">{{ telegram_interface_adult }}</p>
@@ -20,44 +21,54 @@
 
     <script>
         function openChatbot(canal) {
-            Swal.fire({
-                title: '¿Quiere deducir su edad mediante una foto?',
-                text: "¡No podrás revertir tu decisión!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#00FF24',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si',
-                cancelButtonText: 'No'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.replace('./capture_image?canal=' + canal);
-                } else {
-                    Swal.fire({
-                        title: '¿Cuál es tu edad?',
-                        text: 'Debes indicar cual de los siguientes rangos de edad se asocia más con tu edad actual.',
-                        showCancelButton: true,
-                        confirmButtonColor: '#2563B9',
-                        cancelButtonColor: '#EBB241',
-                        confirmButtonText: 'Adulto',
-                        cancelButtonText: 'Niño'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            if (canal == "web") {
-                                window.location.replace('./' + document.getElementById('web_adult').innerText);
-                            } else if (canal == "telegram") {
-                                window.location.replace(document.getElementById('telegram_adult').innerText)
+            var url = document.getElementById('url').innerText;
+
+            if (url == '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error de conexión...',
+                    text: 'El servidor GPU no está disponible en este momento.'
+                });
+            } else {
+                Swal.fire({
+                    title: '¿Quiere deducir su edad mediante una foto?',
+                    text: "¡No podrás revertir tu decisión!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#00FF24',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si',
+                    cancelButtonText: 'No'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.replace('./capture_image?canal=' + canal);
+                    } else {
+                        Swal.fire({
+                            title: '¿Cuál es tu edad?',
+                            text: 'Debes indicar cual de los siguientes rangos de edad se asocia más con tu edad actual.',
+                            showCancelButton: true,
+                            confirmButtonColor: '#2563B9',
+                            cancelButtonColor: '#EBB241',
+                            confirmButtonText: 'Adulto',
+                            cancelButtonText: 'Niño'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                if (canal == "web") {
+                                    window.location.replace('./' + document.getElementById('web_adult').innerText);
+                                } else if (canal == "telegram") {
+                                    window.location.replace(document.getElementById('telegram_adult').innerText)
+                                }
+                            } else {
+                                if (canal == "web") {
+                                    window.location.replace('./' + document.getElementById('web_child').innerText);
+                                } else if (canal == "telegram") {
+                                    window.location.replace(document.getElementById('telegram_child').innerText)
+                                }
                             }
-                        } else {
-                            if (canal == "web") {
-                                window.location.replace('./' + document.getElementById('web_child').innerText);
-                            } else if (canal == "telegram") {
-                                window.location.replace(document.getElementById('telegram_child').innerText)
-                            }
-                        }
-                    });
-                }
-            });
+                        });
+                    }
+                });
+            }
         }
     </script>
 

@@ -291,6 +291,7 @@ def chatbot(request: Request):
         "chatbot.html", 
         {
             "request": request,
+            "server_gpu_url": SERVER_GPU_URL,
             "web_interface_adult": config["web_interface_adult"],
             "web_interface_child": config["web_interface_child"],
             "telegram_interface_adult": config["telegram_interface_adult"],
