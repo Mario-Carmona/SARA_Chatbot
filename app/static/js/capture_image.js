@@ -49,14 +49,15 @@ function getBase64(file) {
     var aux;
     reader.readAsDataURL(file);
     reader.onload = function() {
-        console.log(reader.result);
-        aux = reader.result;
+        return reader.result;
     };
     reader.onerror = function(error) {
         console.log('Error: ', error);
     };
 
-    return aux
+    console.log(reader)
+
+    return reader.result
 }
 
 
