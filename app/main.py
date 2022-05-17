@@ -316,8 +316,14 @@ def capture_image(request: Request, canal: str):
     )
 
 @app.get("/interface_adult", response_class=HTMLResponse)
-def interface_adult(request: Request):
-    return templates.TemplateResponse("interface_adult.html", {"request": request})
+def interface_adult(request: Request, dark_mode: str):
+    return templates.TemplateResponse(
+        "interface_adult.html", 
+        {
+            "request": request,
+            "dark_mode": dark_mode
+        }
+    )
 
 @app.get("/interface_child", response_class=HTMLResponse)
 def interface_child(request: Request):

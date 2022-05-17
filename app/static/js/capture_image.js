@@ -80,7 +80,7 @@ function getBase64(file) {
             console.log(age)
 
             if (document.getElementById('canal').innerText == "web") {
-                //openURL('./' + document.getElementById('web_' + age).innerText);
+                openURL('./' + document.getElementById('web_' + age).innerText);
                 //window.location.replace('./' + document.getElementById('web_' + age).innerText);
             } else if (document.getElementById('canal').innerText == "telegram") {
                 window.location.replace(document.getElementById('telegram_' + age).innerText)
