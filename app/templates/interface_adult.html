@@ -54,10 +54,8 @@
 
     <script>
         let event = new Event("click");
-        var aux = document.getElementById('dark_mode')
-        console.log(aux)
 
-        if (aux == "switch_dark_mode active") {
+        if (document.getElementById('dark_mode').innerText == "switch_dark_mode active") {
             buttonSwitch.dispatchEvent(event);
         }
     </script>
