@@ -21,8 +21,6 @@ window.addEventListener('resize', () => {
 
 let event = new Event("click");
 
-try {
-    if (document.getElementById('dark_mode').innerText == "switch_dark_mode active") {
-        buttonSwitch.dispatchEvent(event);
-    }
-} catch (e) {}
+if (document.getElementById('dark_mode').innerText == "switch_dark_mode active") {
+    buttonSwitch.dispatchEvent(event);
+}
