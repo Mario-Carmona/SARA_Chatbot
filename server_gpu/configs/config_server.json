@@ -3,7 +3,7 @@
 
 
     "host": "0.0.0.0",
-    "port": "5000",
+    "port": "5001",
     "controller_url": "https://sara-chatbot-tfg.herokuapp.com",
     "ngrok_path": "mcarmona/bin/ngrok",
     "ngrok_config_path": "server_gpu/ngrok.yml",
