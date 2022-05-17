@@ -80,6 +80,7 @@
                         var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
                         console.log(imgBase64)
+                        console.log(typeof imgBase64)
 
                         const Http = new XMLHttpRequest();
                         Http.open("POST", url, true);
