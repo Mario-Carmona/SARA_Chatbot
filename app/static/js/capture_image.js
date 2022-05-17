@@ -55,7 +55,6 @@ function getBase64(file) {
 
         console.log(typeof imgBase64)
 
-        /*
         const Http = new XMLHttpRequest();
         Http.open("POST", url, true);
         Http.setRequestHeader("Content-Type", "application/json");
@@ -72,7 +71,6 @@ function getBase64(file) {
         }
 
         Http.send(JSON.stringify(data));
-        */
     };
 }
 
