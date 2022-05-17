@@ -148,5 +148,3 @@ function sendPhoto() {
         }
     });
 }
-
-export { openURL, openChatbot, snapPhoto, sendPhoto };
