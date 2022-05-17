@@ -57,7 +57,7 @@ function getBase64(file) {
 
     console.log(reader)
 
-    return reader.result
+    return reader.onload.result;
 }
 
 
