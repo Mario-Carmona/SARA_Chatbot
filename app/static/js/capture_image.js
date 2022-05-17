@@ -43,7 +43,16 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 
 
-const photo = document.querySelector('#photo');
+
+function getBase64(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    return reader.result
+}
+
+
+
 const camera = document.querySelector('#camera');
 camera.addEventListener('change', function(e) {
     //photo.src = URL.createObjectURL(e.target.files[0]);
@@ -69,8 +78,7 @@ camera.addEventListener('change', function(e) {
             } else {
                 url = url + '/deduct';
 
-                var canvas = document.getElementById(obtenerCanvas());
-                var imgBase64 = e.target.files[0];
+                var imgBase64 = getBase64(e.target.files[0]);
 
                 console.log(imgBase64)
 
