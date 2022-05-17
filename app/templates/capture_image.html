@@ -101,81 +101,79 @@
         }
     </script>
 
+    <header class="header">
+        <nav class="nav__header">
+            <div class="container nav__container">
+                <div class="logo">
+                    <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
+                </div>
+                <div class="tools">
+                    <div class="show_links links">
+                        <a href="./" class="link">Inicio</a>
+                        <a href="#" class="link__active">Sobre nosotros</a>
+                    </div>
+                    <button class="switch_dark_mode" id="switch_dark_mode">
+                        <img src="/static/img/sun-solid.svg" class="icono icono_sun">
+                        <img src="/static/img/moon-solid.svg" class="icono icono_moon">
+                    </button>
+                    <button class="show_sidebar button_sidebar" id="button_sidebar">
+                        <img src="/static/img/bars-solid.svg" class="bars-solid">
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <section class="container__header__main__capture">
+            <div class="rest_device">
+                <div class="cont_video">
+                    <video id="video" class="video" playsinline autoplay></video>
+                </div>
+
+                <div class="capture_button">
+                    <div id="snap" class="enlace" onclick="snapPhoto()">
+                        <img src="/static/img/camera-solid.svg" class="icono message-solid">
+                        <div class="button">Capturar</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mobile">
+                <div class="capture_button_mobile">
+                    <input type="file" accept="image/*" capture="camera" id="camera" />
+                </div>
+            </div>
+
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar_content">
+                    <a href="./" class="link_lateral">Inicio</a>
+                    <a href="#" class="link_lateral__active">Sobre nosotros</a>
+                </div>
+            </div>
+        </section>
+    </header>
+
     <div class="rest_device">
-        <header class="header">
-            <nav class="nav__header">
-                <div class="container nav__container">
-                    <div class="logo">
-                        <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
-                    </div>
-                    <div class="tools">
-                        <div class="show_links links">
-                            <a href="./" class="link">Inicio</a>
-                            <a href="#" class="link__active">Sobre nosotros</a>
-                        </div>
-                        <button class="switch_dark_mode" id="switch_dark_mode">
-                            <img src="/static/img/sun-solid.svg" class="icono icono_sun">
-                            <img src="/static/img/moon-solid.svg" class="icono icono_moon">
-                        </button>
-                        <button class="show_sidebar button_sidebar" id="button_sidebar">
-                            <img src="/static/img/bars-solid.svg" class="bars-solid">
-                        </button>
-                    </div>
-                </div>
-            </nav>
+        <main>
+            <section id="visualizar" class="visualizar">
+                <div class="container__header__main__capture">
+                    <div>
+                        <section class="cont_video">
+                            <canvas id="canvasLaptop" class="canvasLaptop" width="830" height="624"></canvas>
+                            <canvas id="canvasTabletVertical" class="canvasTabletVertical" width="450" height="338"></canvas>
+                            <canvas id="canvasTabletHorizontal" class="canvasTabletHorizontal" width="547" height="411"></canvas>
+                            <canvas id="canvasMovil" class="canvasMovil" width="180" height="135"></canvas>
+                        </section>
 
-            <section class="container__header__main__capture">
-                <div class="rest_device">
-                    <div class="cont_video">
-                        <video id="video" class="video" playsinline autoplay></video>
-                    </div>
-
-                    <div class="capture_button">
-                        <div id="snap" class="enlace" onclick="snapPhoto()">
-                            <img src="/static/img/camera-solid.svg" class="icono message-solid">
-                            <div class="button">Capturar</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mobile">
-                    <div class="capture_button_mobile">
-                        <input type="file" accept="image/*" capture="camera" id="camera" />
-                    </div>
-                </div>
-
-                <div class="sidebar" id="sidebar">
-                    <div class="sidebar_content">
-                        <a href="./" class="link_lateral">Inicio</a>
-                        <a href="#" class="link_lateral__active">Sobre nosotros</a>
-                    </div>
-                </div>
-            </section>
-        </header>
-
-        <div class="rest_device">
-            <main>
-                <section id="visualizar" class="visualizar">
-                    <div class="container__header__main__capture">
-                        <div>
-                            <section class="cont_video">
-                                <canvas id="canvasLaptop" class="canvasLaptop" width="830" height="624"></canvas>
-                                <canvas id="canvasTabletVertical" class="canvasTabletVertical" width="450" height="338"></canvas>
-                                <canvas id="canvasTabletHorizontal" class="canvasTabletHorizontal" width="547" height="411"></canvas>
-                                <canvas id="canvasMovil" class="canvasMovil" width="180" height="135"></canvas>
-                            </section>
-
-                            <div id="send_button" class="send_button">
-                                <div id="send" class="enlace" onclick="sendPhoto()">
-                                    <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
-                                    <div class="button">Enviar</div>
-                                </div>
+                        <div id="send_button" class="send_button">
+                            <div id="send" class="enlace" onclick="sendPhoto()">
+                                <img src="/static/img/paper-plane-solid.svg" class="icono message-solid">
+                                <div class="button">Enviar</div>
                             </div>
                         </div>
                     </div>
-                </section>
-            </main>
-        </div>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script src="/static/plugins/sweetAlert2/sweetalert2.all.min.js"></script>
