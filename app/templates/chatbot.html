@@ -31,7 +31,7 @@
                 cancelButtonText: 'No'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.replace('./capture_image?canal=' + canal);
+                    window.open('./capture_image?canal=' + canal);
                 } else {
                     Swal.fire({
                         title: '¿Cuál es tu edad?',
