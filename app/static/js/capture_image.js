@@ -46,9 +46,12 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
 function getBase64(file) {
     var reader = new FileReader();
-    var aux;
     reader.readAsDataURL(file);
     reader.onload = function() {
+        var url = document.getElementById('url').innerText;
+
+        url = url + '/deduct';
+
         var imgBase64 = reader.result;
 
         console.log(imgBase64)
