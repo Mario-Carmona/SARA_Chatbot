@@ -605,12 +605,12 @@ body {
         display: inline-block;
     }
     .capture_button_mobile::before {
-        background-color: #5678EF;
-        color: white;
+        background: linear-gradient(180deg, var(--start_gradient_button) 0%, var(--finish_gradient_button) 100%);
+        box-shadow: var(--shadow) var(--color_shadow_claro);
+        border-radius: 6px;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 3px;
         content: 'Capturar';
         position: absolute;
         left: 0;
@@ -620,8 +620,7 @@ body {
     }
     .capture_button_mobile input[type="file"] {
         opacity: 0;
-        width: 200px;
-        height: 32px;
+        width: 30%;
         display: inline-block;
     }
 }
