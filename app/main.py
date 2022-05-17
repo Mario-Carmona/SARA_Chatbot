@@ -290,7 +290,8 @@ def chatbot(request: Request):
     return templates.TemplateResponse("chatbot.html", {"request": request})
 
 @app.get("/capture_image", response_class=HTMLResponse) 
-def capture_image(canal: str):
+def capture_image(request: Request, canal: str):
+    print(canal)
     return templates.TemplateResponse("capture_image.html", {"canal": canal, "server_gpu_url": SERVER_GPU_URL})
 
 @app.get("/interface_adult", response_class=HTMLResponse)
