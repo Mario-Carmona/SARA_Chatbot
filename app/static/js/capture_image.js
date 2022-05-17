@@ -49,15 +49,27 @@ function getBase64(file) {
     var aux;
     reader.readAsDataURL(file);
     reader.onload = function() {
-        return reader.result;
-    };
-    reader.onerror = function(error) {
-        console.log('Error: ', error);
-    };
+        var imgBase64 = reader.result;
 
-    console.log(reader)
+        console.log(imgBase64)
 
-    return reader.onload.result;
+        const Http = new XMLHttpRequest();
+        Http.open("POST", url, true);
+        Http.setRequestHeader("Content-Type", "application/json");
+
+        Http.onreadystatechange = function() {
+            var age = Http.responseText
+            console.log(age)
+
+            window.location.replace('./interface_' + age);
+        };
+
+        var data = {
+            imagen: imgBase64
+        }
+
+        Http.send(JSON.stringify(data));
+    };
 }
 
 
@@ -91,7 +103,6 @@ camera.addEventListener('change', function(e) {
 
                 console.log(imgBase64)
 
-                /*
                 const Http = new XMLHttpRequest();
                 Http.open("POST", url, true);
                 Http.setRequestHeader("Content-Type", "application/json");
@@ -108,7 +119,6 @@ camera.addEventListener('change', function(e) {
                 }
 
                 Http.send(JSON.stringify(data));
-                */
             }
         }
     });
