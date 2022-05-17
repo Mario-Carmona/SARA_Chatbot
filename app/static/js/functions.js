@@ -13,6 +13,7 @@ function openURL(url, canal = '') {
     window.open(url_completa, "_self");
 }
 
+
 function openChatbot(canal) {
     var url = document.getElementById('url').innerText;
 
@@ -63,6 +64,7 @@ function openChatbot(canal) {
         });
     }
 }
+
 
 function isVisible(element) {
     return element.offsetWidth > 0 || element.offsetHeight > 0;
