@@ -912,5 +912,10 @@ body.dark_mode .visualizar {
     height: 100%;
     z-index: 9999;
     background: url('/static/img/loading.gif') 50% 50% no-repeat;
-    opacity: 0;
+    opacity: .8;
+    display: none;
+}
+
+.loading.active {
+    display: block;
 }
