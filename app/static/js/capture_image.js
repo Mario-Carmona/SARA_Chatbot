@@ -72,6 +72,9 @@ function getBase64(file) {
         }
 
         Http.send(JSON.stringify(data));
+
+        var loading = document.getElementById('loading');
+        loading.fadeOut("slow");
     };
 }
 
