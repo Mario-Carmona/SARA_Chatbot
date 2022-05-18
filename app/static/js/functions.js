@@ -17,6 +17,8 @@ function openURL(url, canal = '') {
 function openChatbot(canal) {
     var url = document.getElementById('url').innerText;
 
+    console.log(url);
+
     const Http = new XMLHttpRequest();
     Http.open("GET", url);
 
