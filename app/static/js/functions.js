@@ -17,6 +17,7 @@ function openURL(url, canal = '') {
 function openChatbot(canal) {
     var url = document.getElementById('url').innerText;
 
+
     if (url == '') {
         Swal.fire({
             icon: 'error',
