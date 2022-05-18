@@ -17,18 +17,20 @@ function openURL(url, canal = '') {
 function openChatbot(canal) {
     var url = document.getElementById('url').innerText;
 
-    console.log(url);
-
     const Http = new XMLHttpRequest();
     Http.open("GET", url);
 
+    var response = "";
+
     Http.onreadystatechange = (e) => {
-        console.log(Http)
+        response = Http.responseText;
     };
 
     Http.send();
 
-    if (url == '') {
+    console.log(response);
+
+    if (response == 'Server GPU ON') {
         Swal.fire({
             icon: 'error',
             title: 'Error de conexión...',
