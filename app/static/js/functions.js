@@ -25,6 +25,8 @@ function openChatbot(canal) {
     Http.onreadystatechange = (e) => {
         var response = Http.responseText;
 
+        console.log(Http);
+
         console.log(response);
 
         if (response != 'Server GPU ON') {
