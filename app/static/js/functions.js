@@ -17,6 +17,14 @@ function openURL(url, canal = '') {
 function openChatbot(canal) {
     var url = document.getElementById('url').innerText;
 
+    const Http = new XMLHttpRequest();
+    Http.open("GET", url);
+
+    Http.onreadystatechange = (e) => {
+        console.log(Http)
+    };
+
+    Http.send();
 
     if (url == '') {
         Swal.fire({
