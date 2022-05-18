@@ -30,7 +30,7 @@ function openChatbot(canal) {
 
     console.log(response);
 
-    if (response == 'Server GPU ON') {
+    if (response != 'Server GPU ON') {
         Swal.fire({
             icon: 'error',
             title: 'Error de conexión...',
