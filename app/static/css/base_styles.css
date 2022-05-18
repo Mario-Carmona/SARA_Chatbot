@@ -181,6 +181,7 @@ body.dark_mode .card__descrip {
     text-decoration: none;
     font-weight: 300;
     padding: 1vh;
+    cursor: pointer;
 }
 
 
@@ -190,6 +191,7 @@ body.dark_mode .card__descrip {
     color: var(--gold1);
     text-decoration: none;
     font-weight: 700;
+    cursor: pointer;
 }
 
 
@@ -301,6 +303,7 @@ body.dark_mode .card__descrip {
     font-weight: 300;
     padding: 1vh 0 1vh 2vh;
     border-bottom: 1px solid black;
+    cursor: pointer;
 }
 
 
@@ -312,6 +315,7 @@ body.dark_mode .card__descrip {
     text-decoration: none;
     font-weight: 700;
     padding: 1vh 0 1vh 2vh;
+    cursor: pointer;
 }
 
 .oculto {
