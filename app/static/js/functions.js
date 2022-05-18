@@ -20,7 +20,7 @@ function openChatbot(canal) {
     const Http = new XMLHttpRequest();
     Http.open("GET", url);
 
-    const response = "";
+    var response = "";
 
     Http.onreadystatechange = (e) => {
         response = Http.responseText;
