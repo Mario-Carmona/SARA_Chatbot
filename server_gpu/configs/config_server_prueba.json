@@ -1,0 +1,36 @@
+{
+    "workdir": "/mnt/homeGPU/mcarmona/",
+
+
+    "host": "0.0.0.0",
+    "port": "5001",
+    "controller_url": "https://sara-chatbot-tfg.herokuapp.com",
+    "ngrok_path": "mcarmona/bin/ngrok",
+    "ngrok_config_path": "server_gpu/ngrok.yml",
+
+
+    "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
+
+
+    "model_conver_adult": "facebook/blenderbot-400M-distill",
+    "model_conver_adult_config": "facebook/blenderbot-400M-distill/config.json",
+    "model_conver_adult_tokenizer": "facebook/blenderbot-400M-distill",
+    "model_conver_adult_tokenizer_config": "facebook/blenderbot-400M-distill/tokenizer_config.json",
+
+    "model_conver_child": "result_finetuning/v1_child",
+    "model_conver_child_config": "result_finetuning/v1_child/config.json",
+    "model_conver_child_tokenizer": "result_finetuning/v1_child",
+    "model_conver_child_tokenizer_config": "result_finetuning/v1_child/tokenizer_config.json",
+
+
+    "tam_history": 500,
+
+
+    "do_sample": true,
+    "temperature": 1.0,
+    "top_p": 1.0,
+    "max_time": 3.0,
+    "max_length": 128,
+    "min_length": 0,
+    "use_cache": true
+}
