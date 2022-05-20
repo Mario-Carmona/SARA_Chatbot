@@ -67,6 +67,11 @@ parser.add_argument(
     help = "El formato del archivo debe ser \'config.json\'"
 )
 
+parser.add_argument(
+    "--local_rank", 
+    type = int
+)
+
 args = parser.parse_args()
 
 """
