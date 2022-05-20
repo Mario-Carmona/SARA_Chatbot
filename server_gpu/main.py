@@ -174,6 +174,11 @@ def adjust_history(history, max_length):
 
 def make_response_adult(entry: str, history: List[str]):
 
+    entry = entry.strip()
+
+    if entry[-1] != '.':
+        entry += '.'
+
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
 
     print(entry_EN)
@@ -200,11 +205,16 @@ def make_response_adult(entry: str, history: List[str]):
         pad_token_id=tokenizerConverAdult.eos_token_id
     )
 
-    historyTensor.append(response)
+    answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
+
+    answer_EN = answer_EN.strip()
+
+    if answer_EN[-1] != '.':
+        answer_EN += '.'
+
+    historyTensor.append(tokenizerConverAdult.encode(answer_EN, return_tensors='pt'))
 
     history = [tokenizerConverAdult.decode(i[0], skip_special_tokens=False) for i in historyTensor]
-
-    answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
 
     print(answer_EN)
 
