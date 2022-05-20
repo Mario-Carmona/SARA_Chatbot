@@ -67,12 +67,16 @@ parser.add_argument(
     help = "El formato del archivo debe ser \'config.json\'"
 )
 
+args = parser.parse_args()
+
+"""
 try:
     args = parser.parse_args()
     assert args.config_file.split('.')[-1] == "json"
 except:
     parser.print_help()
     sys.exit(0)
+"""
 
 BASE_PATH = Path(__file__).resolve().parent
 CONFIG_FILE = args.config_file
