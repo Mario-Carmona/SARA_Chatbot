@@ -198,7 +198,7 @@ def make_response_adult(entry: str, history: List[str]):
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
         top_p=server_args.top_p,
-        max_time=server_args.max_time,
+        #max_time=server_args.max_time,
         max_length=server_args.max_length,
         min_length=server_args.min_length,
         use_cache=server_args.use_cache,
