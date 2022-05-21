@@ -220,6 +220,8 @@ def make_response_adult(entry: str, history: List[str]):
 
     aux = translator.translate_text(entry, target_lang="EN-US")
 
+    print(aux)
+
     entry_EN = aux.text
 
     print(entry_EN)
