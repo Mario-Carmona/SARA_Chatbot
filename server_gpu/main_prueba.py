@@ -218,7 +218,7 @@ conversation = Conversation()
 
 def make_response_adult(entry: str, history: List[str]):
 
-    aux = translator.translate_text(entry, target_lang="EN")
+    aux = translator.translate_text(entry, source_lang="ES", target_lang="EN-US")
 
     print(aux)
 
@@ -301,7 +301,7 @@ def make_response_adult(entry: str, history: List[str]):
 
 
 
-    answer = translator.translate_text(answer_EN, target_lang="ES").text
+    answer = translator.translate_text(answer_EN, source_lang="EN", target_lang="ES").text
 
     print(answer)
 
