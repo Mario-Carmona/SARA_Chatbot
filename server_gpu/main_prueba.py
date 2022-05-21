@@ -171,13 +171,7 @@ translator = deepl.Translator(auth_key)
 
 
 
-ds_engine = deepspeed.init_inference(modelConverAdult,
-                                 mp_size=2,
-                                 replace_method='auto',
-                                 replace_with_kernel_inject=True)
 
-
-modelConverAdult = ds_engine.module
 
 
 
@@ -203,6 +197,15 @@ def adjust_history(history, max_length):
 
 def make_response_adult(entry: str, history: List[str]):
 
+    ds_engine = deepspeed.init_inference(modelConverAdult,
+                                 mp_size=2,
+                                 replace_method='auto',
+                                 replace_with_kernel_inject=True)
+
+
+    model = ds_engine.module
+
+
     entry = entry.strip()
 
     if entry[-1] != '.':
@@ -222,7 +225,7 @@ def make_response_adult(entry: str, history: List[str]):
 
     bot_input_ids = torch.cat(historyTensor, axis=-1)
 
-    response = modelConverAdult.generate(
+    response = model.generate(
         new_user_input_ids, 
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
