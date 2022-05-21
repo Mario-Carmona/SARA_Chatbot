@@ -231,7 +231,8 @@ def make_response_adult(entry: str, history: List[str]):
         max_length=server_args.max_length,
         min_length=server_args.min_length,
         use_cache=server_args.use_cache,
-        pad_token_id=tokenizerConverAdult.eos_token_id
+        pad_token_id=tokenizerConverAdult.eos_token_id,
+        synced_gpus=True
     )
 
     answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
@@ -427,26 +428,28 @@ def reconnect():
 
 if __name__ == "__main__":
 
-    port = eval(os.environ.get("PORT", server_args.port))
+    rank = torch.distributed.get_rank()
+    if rank == 0:
+        port = eval(os.environ.get("PORT", server_args.port))
 
-    pyngrok_config = conf.PyngrokConfig(
-        ngrok_path=server_args.ngrok_path,
-        config_path=server_args.ngrok_config_path
-    )
+        pyngrok_config = conf.PyngrokConfig(
+            ngrok_path=server_args.ngrok_path,
+            config_path=server_args.ngrok_config_path
+        )
 
-    global public_url
-    public_url = ngrok.connect(
-        port, 
-        pyngrok_config=pyngrok_config
-    ).public_url
-    # Convertir URL HTTP en HTTPS
-    if public_url.split(':')[0] == "http":
-        public_url = public_url.split(':')[0] + "s:" + public_url.split(':')[1]
+        global public_url
+        public_url = ngrok.connect(
+            port, 
+            pyngrok_config=pyngrok_config
+        ).public_url
+        # Convertir URL HTTP en HTTPS
+        if public_url.split(':')[0] == "http":
+            public_url = public_url.split(':')[0] + "s:" + public_url.split(':')[1]
 
-    print(bcolors.OK + "Public URL" + bcolors.RESET + ": " + public_url)
+        print(bcolors.OK + "Public URL" + bcolors.RESET + ": " + public_url)
 
-    send_public_URL()
+        send_public_URL()
 
-    # killall ngrok  → Para eliminar todas las sessiones de ngrok
+        # killall ngrok  → Para eliminar todas las sessiones de ngrok
 
-    uvicorn.run(app, port=port)
+        uvicorn.run(app, port=port)
