@@ -112,6 +112,8 @@ world_size = int(os.getenv("WORLD_SIZE", "1"))
 
 torch.cuda.set_device(local_rank)
 
+deepspeed.init_distributed()
+
 
 # Set seed before initializing model.
 
@@ -170,7 +172,7 @@ translator = deepl.Translator(auth_key)
 
 
 ds_engine = deepspeed.init_inference(modelConverAdult,
-                                 mp_size=2,
+                                 mp_size=1,
                                  replace_method='auto',
                                  replace_with_kernel_inject=True)
 
@@ -210,7 +212,7 @@ def make_response_adult(entry: str, history: List[str]):
 
     print(entry_EN)
 
-    new_user_input_ids = tokenizerConverAdult.encode(entry_EN, return_tensors='pt')
+    new_user_input_ids = tokenizerConverAdult.encode(entry_EN, return_tensors='pt').to(device=local_rank)
 
     historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
 
@@ -221,7 +223,7 @@ def make_response_adult(entry: str, history: List[str]):
     bot_input_ids = torch.cat(historyTensor, axis=-1)
 
     response = modelConverAdult.generate(
-        bot_input_ids, 
+        new_user_input_ids, 
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
         top_p=server_args.top_p,
