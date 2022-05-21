@@ -161,6 +161,16 @@ modelConverChild = BlenderbotForConditionalGeneration.from_pretrained(
     config=configConverChild
 )
 
+
+
+pipelineConver = ConversationalPipeline(
+    model = modelConverAdult,
+    tokenizer = tokenizerConverAdult,
+    framework = "pt",
+    device = local_rank
+)
+
+
 # ----------------------------------------------
 
 os.system("nvidia-smi")
@@ -171,13 +181,13 @@ translator = deepl.Translator(auth_key)
 
 
 
-ds_engine = deepspeed.init_inference(modelConverAdult,
-                                 mp_size=1,
-                                 replace_method='auto',
-                                 replace_with_kernel_inject=True)
+pipelineConver.model = deepspeed.init_inference(
+    pipelineConver.model,
+    mp_size=world_size,
+    replace_method='auto',
+    replace_with_kernel_inject=True
+)
 
-
-modelConverAdult = ds_engine.module
 
 
 
@@ -226,7 +236,7 @@ def make_response_adult(entry: str, history: List[str]):
     historyTensor = adjust_history(historyTensor, server_args.tam_history)
 
     bot_input_ids = torch.cat(historyTensor, axis=-1).to(device=local_rank)
-    """
+    
 
     history.append(entry_EN)
 
@@ -238,7 +248,7 @@ def make_response_adult(entry: str, history: List[str]):
 
 
     bot_input_ids = tokenizerConverAdult.encode(total_history, return_tensors='pt').to(device=local_rank)
-
+    
 
     print(bot_input_ids)
 
@@ -259,6 +269,31 @@ def make_response_adult(entry: str, history: List[str]):
     print(response)
 
     answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
+
+    """
+
+    conversation = Conversation(
+        text = entry_EN
+    ) if len(history) == 0 else Conversation(
+        text = entry_EN,
+        past_user_inputs = history[0::2],
+        generated_responses = history[1::2]
+    )
+
+
+    answer_EN = pipelineConver(
+        conversation,
+        do_sample=server_args.do_sample,
+        temperature=server_args.temperature,
+        top_p=server_args.top_p,
+        max_time=server_args.max_time,
+        max_length=server_args.max_length,
+        min_length=server_args.min_length,
+        use_cache=server_args.use_cache,
+        pad_token_id=tokenizerConverAdult.eos_token_id,
+        synced_gpus=True
+    )
+
 
     answer_EN = answer_EN.strip()
 
