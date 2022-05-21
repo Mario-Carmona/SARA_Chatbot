@@ -212,7 +212,7 @@ def adjust_history(history, max_length):
     return history
 
 
-global conversation
+
 conversation = Conversation()
 
 
@@ -270,6 +270,7 @@ def make_response_adult(entry: str, history: List[str]):
 
     """
 
+    global conversation
     conversation.add_user_input(entry_EN)
 
     print(conversation)
