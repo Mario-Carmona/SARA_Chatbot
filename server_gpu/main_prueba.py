@@ -294,6 +294,8 @@ def make_response_adult(entry: str, history: List[str]):
         synced_gpus=True
     )
 
+    print(answer_EN)
+
 
     answer_EN = answer_EN.strip()
 
