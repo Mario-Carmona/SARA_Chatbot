@@ -232,7 +232,6 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
 
     conversation.add_user_input(entry_EN)
 
-    print(conversation)
 
     output = pipelineConverAdult(
         conversation,
@@ -248,10 +247,6 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
     )
 
     print(output)
-
-    print(output.uuid)
-    print(str(output.uuid))
-    print(type(str(output.uuid)))
 
     if last_response:
         del dicc_conversation[str(output.uuid)]
