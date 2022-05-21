@@ -172,7 +172,7 @@ translator = deepl.Translator(auth_key)
 
 
 ds_engine = deepspeed.init_inference(modelConverAdult,
-                                 mp_size=1,
+                                 mp_size=2,
                                  replace_method='auto',
                                  replace_with_kernel_inject=True)
 
