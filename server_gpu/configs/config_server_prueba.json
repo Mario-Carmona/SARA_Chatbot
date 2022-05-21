@@ -26,11 +26,11 @@
     "tam_history": 500,
 
 
-    "do_sample": false,
-    "temperature": 0.1,
+    "do_sample": true,
+    "temperature": 1.0,
     "top_p": 1.0,
     "max_time": 3.0,
-    "max_length": 128,
+    "max_length": 500,
     "min_length": 1,
-    "use_cache": false
+    "use_cache": true
 }
