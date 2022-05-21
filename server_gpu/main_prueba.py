@@ -247,8 +247,8 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
 
     print(output)
 
-    print(output.keys)
-    print(type(output.conversation_id))
+    print(output.uuid)
+    print(type(output.uuid))
 
     if last_response:
         del dicc_conversation[output.conversation_id]
