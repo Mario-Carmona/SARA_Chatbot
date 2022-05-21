@@ -50,13 +50,12 @@ import io
 import deepspeed
 
 
-from uuid import UUID
 
 # -------------------------------------------------------------------------#
 
 class Entry(BaseModel):
     entry: str
-    conver_id: UUID
+    conver_id: str
     last_response: bool
 
 class EntryDeduct(BaseModel):
@@ -216,7 +215,7 @@ dicc_conversation = {}
 
 
 
-def make_response_adult(entry: str, conver_id: UUID, last_response: bool):
+def make_response_adult(entry: str, conver_id: str, last_response: bool):
 
     entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
@@ -251,12 +250,13 @@ def make_response_adult(entry: str, conver_id: UUID, last_response: bool):
     print(output)
 
     print(output.uuid)
-    print(type(output.uuid))
+    print(str(output.uuid))
+    print(type(str(output.uuid)))
 
     if last_response:
-        del dicc_conversation[output.uuid]
+        del dicc_conversation[str(output.uuid)]
     else:
-        dicc_conversation[output.uuid] = output
+        dicc_conversation[str(output.uuid)] = output
 
 
     answer_EN = output.generated_responses[-1]
@@ -277,7 +277,7 @@ def make_response_adult(entry: str, conver_id: UUID, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": output.uuid
+        "conver_id": str(output.uuid)
     }
 
     return response
@@ -287,7 +287,7 @@ def make_response_adult(entry: str, conver_id: UUID, last_response: bool):
 
 
 
-def make_response_child(entry: str, conver_id: UUID, last_response: bool):
+def make_response_child(entry: str, conver_id: str, last_response: bool):
 
     entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
@@ -322,9 +322,9 @@ def make_response_child(entry: str, conver_id: UUID, last_response: bool):
     print(output)
 
     if last_response:
-        del dicc_conversation[output.uuid]
+        del dicc_conversation[str(output.uuid)]
     else:
-        dicc_conversation[output.uuid] = output
+        dicc_conversation[str(output.uuid)] = output
 
 
     answer_EN = output.generated_responses[-1]
@@ -345,7 +345,7 @@ def make_response_child(entry: str, conver_id: UUID, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": output.uuid
+        "conver_id": str(output.uuid)
     }
 
     return response
