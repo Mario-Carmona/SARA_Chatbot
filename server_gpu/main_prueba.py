@@ -247,7 +247,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
 
     print(output)
 
-    print(output.conversation_id)
+    print(output.keys)
     print(type(output.conversation_id))
 
     if last_response:
