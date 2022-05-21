@@ -273,6 +273,9 @@ def make_response_adult(entry: str, history: List[str]):
     return response
 
 
+# deepspeed --num_gpus 1 main_prueba.py --config_file configs/config_server_prueba.json
+
+
 
 def make_response_child(entry: str, history: List[str]):
 
