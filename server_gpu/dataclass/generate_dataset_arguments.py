@@ -9,7 +9,7 @@ from dataclass.theme_dataset_arguments import ThemeDatasetArguments
 
 
 @dataclass
-class GenerateDatasetArguments(AttitudeDatasetArguments, JoinDatasetsArguments,
+class GenerateDatasetArguments(JoinDatasetsArguments,
                                SplitDatasetArguments, ThemeDatasetArguments):
     """
     Argumentos relacionados con la generación de datasets para el entrenamiento
@@ -18,7 +18,6 @@ class GenerateDatasetArguments(AttitudeDatasetArguments, JoinDatasetsArguments,
 
 
     def __post_init__(self):
-        AttitudeDatasetArguments.__post_init__(self)
         JoinDatasetsArguments.__post_init__(self)
         SplitDatasetArguments.__post_init__(self)
         ThemeDatasetArguments.__post_init__(self)
