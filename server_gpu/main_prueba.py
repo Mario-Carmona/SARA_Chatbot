@@ -232,7 +232,7 @@ def make_response_adult(entry: str, history: List[str]):
 
     history = adjust_history(history, server_args.tam_history)
 
-    total_history = "</s>".join(history) + "</s>"
+    total_history = "<s>" + "</s><s>".join(history)
 
     print(total_history)
 
