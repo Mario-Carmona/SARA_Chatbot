@@ -216,7 +216,7 @@ dicc_conversation = {}
 
 
 
-def make_response_adult(entry: str, conver_id: str, last_response: bool):
+def make_response_adult(entry: str, conver_id: UUID, last_response: bool):
 
     entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
@@ -287,7 +287,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
 
 
 
-def make_response_child(entry: str, conver_id: str, last_response: bool):
+def make_response_child(entry: str, conver_id: UUID, last_response: bool):
 
     entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
