@@ -235,6 +235,8 @@ def make_response_adult(entry: str, history: List[str]):
         synced_gpus=True
     )
 
+    print(tokenizerConverAdult.eos_token_id)
+
     answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
 
     answer_EN = answer_EN.strip()
