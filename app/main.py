@@ -65,10 +65,11 @@ def is_first_response(outputContexts):
 
 
 
-def generate_response(entry: str, edad: str, history=[]):
+def generate_response(entry: str, edad: str, conver_id: str="", last_response: bool=False):
     query_json = {
         "entry": entry,
-        "history": history
+        "conver_id": conver_id,
+        "last_response": last_response
     }
     headers = {'content-type': 'application/json'}
     output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
@@ -104,7 +105,7 @@ def make_first_response(request: Dict, edad: str):
             }
         }
 
-        outputContexts[elem]["parameters"]["history"] = output["history"]
+        outputContexts[elem]["parameters"]["conver_id"] = output["conver_id"]
 
         outputContexts[elem]["parameters"]["date_ini"] = date_ini
 
@@ -133,9 +134,9 @@ def make_rest_response(request: Dict):
 
     edad = outputContexts[elem]["parameters"]["edad"]
 
-    history = outputContexts[elem]["parameters"]["history"]
+    conver_id = outputContexts[elem]["parameters"]["conver_id"]
 
-    output = generate_response(entry, edad, history)
+    output = generate_response(entry, edad, conver_id)
 
     outputContexts[elem]["parameters"]["context"]["entry"]["ES"].append(output["entry"]["ES"])
     outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
@@ -143,7 +144,7 @@ def make_rest_response(request: Dict):
     outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["entry"]["EN"])
     outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["answer"]["EN"])
 
-    outputContexts[elem]["parameters"]["history"] = output["history"]
+    outputContexts[elem]["parameters"]["conver_id"] = output["conver_id"]
 
     answer = output["answer"]["ES"]
 
@@ -232,9 +233,9 @@ def make_response_goodbye(request: Dict):
 
     edad = outputContexts[elem]["parameters"]["edad"]
 
-    history = outputContexts[elem]["parameters"]["history"]
+    conver_id = outputContexts[elem]["parameters"]["conver_id"]
 
-    output = generate_response(entry, edad, history)
+    output = generate_response(entry, edad, conver_id, True)
 
     outputContexts[elem]["parameters"]["context"]["entry"]["ES"].append(output["entry"]["ES"])
     outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
@@ -242,7 +243,7 @@ def make_response_goodbye(request: Dict):
     outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["entry"]["EN"])
     outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["answer"]["EN"])
 
-    outputContexts[elem]["parameters"]["history"] = output["history"]
+    outputContexts[elem]["parameters"]["conver_id"] = output["conver_id"]
 
     answer = output["answer"]["ES"]
 

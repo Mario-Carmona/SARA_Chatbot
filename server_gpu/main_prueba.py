@@ -53,7 +53,8 @@ import deepspeed
 
 class Entry(BaseModel):
     entry: str
-    history: List[str]
+    conver_id: str
+    last_response: bool
 
 class EntryDeduct(BaseModel):
     imagen: str
@@ -163,9 +164,16 @@ modelConverChild = BlenderbotForConditionalGeneration.from_pretrained(
 
 
 
-pipelineConver = ConversationalPipeline(
+pipelineConverAdult = ConversationalPipeline(
     model = modelConverAdult,
     tokenizer = tokenizerConverAdult,
+    framework = "pt",
+    device = local_rank
+)
+
+pipelineConverChild = ConversationalPipeline(
+    model = modelConverChild,
+    tokenizer = tokenizerConverChild,
     framework = "pt",
     device = local_rank
 )
@@ -173,7 +181,7 @@ pipelineConver = ConversationalPipeline(
 
 # ----------------------------------------------
 
-os.system("nvidia-smi")
+
 
 auth_key = "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx"
 translator = deepl.Translator(auth_key)
@@ -181,8 +189,15 @@ translator = deepl.Translator(auth_key)
 
 
 
-pipelineConver.model = deepspeed.init_inference(
-    pipelineConver.model,
+pipelineConverAdult.model = deepspeed.init_inference(
+    pipelineConverAdult.model,
+    mp_size=world_size,
+    replace_method='auto',
+    replace_with_kernel_inject=True
+)
+
+pipelineConverChild.model = deepspeed.init_inference(
+    pipelineConverChild.model,
     mp_size=world_size,
     replace_method='auto',
     replace_with_kernel_inject=True
@@ -191,94 +206,33 @@ pipelineConver.model = deepspeed.init_inference(
 
 
 
+os.system("nvidia-smi")
+
+dicc_conversation = {}
 
 
 
 
+def make_response_adult(entry: str, conver_id: str, last_response: bool):
 
-def adjust_history(history, max_length):
-    historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
-
-    pos = len(historyTensor) - 1
-    num = 0
-    while num <= max_length and pos >= 0:
-        num += len(historyTensor[pos][0])
-
-        if num <= max_length:
-            pos -= 1
-
-    history = history[pos+1:]
-
-    return history
-
-
-
-conversation = Conversation()
-
-
-def make_response_adult(entry: str, history: List[str]):
-
-    aux = translator.translate_text(entry, source_lang="ES", target_lang="EN-US")
-
-    print(aux)
-
-    entry_EN = aux.text
+    entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
     print(entry_EN)
 
-    """
-    new_user_input_ids = tokenizerConverAdult.encode(entry_EN, return_tensors='pt')
 
-    historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
+    global dicc_conversation
 
-    historyTensor.append(new_user_input_ids)
-
-    historyTensor = adjust_history(historyTensor, server_args.tam_history)
-
-    bot_input_ids = torch.cat(historyTensor, axis=-1).to(device=local_rank)
-    
-
-    history.append(entry_EN)
-
-    history = adjust_history(history, server_args.tam_history)
-
-    total_history = "<s>" + "</s><s>".join(history)
-
-    print(total_history)
+    try:
+        conversation = dicc_conversation[conver_id]
+    except KeyError:
+        conversation = Conversation()
 
 
-    bot_input_ids = tokenizerConverAdult.encode(total_history, return_tensors='pt').to(device=local_rank)
-    
-
-    print(bot_input_ids)
-
-    response = modelConverAdult.generate(
-        bot_input_ids, 
-        do_sample=server_args.do_sample,
-        temperature=server_args.temperature,
-        top_p=server_args.top_p,
-        max_time=server_args.max_time,
-        max_length=server_args.max_length,
-        min_length=server_args.min_length,
-        use_cache=server_args.use_cache,
-        pad_token_id=tokenizerConverAdult.eos_token_id,
-        synced_gpus=True
-    )
-
-    print(tokenizerConverAdult.eos_token_id)
-    print(response)
-
-    answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
-
-    """
-    
-
-    global conversation
     conversation.add_user_input(entry_EN)
 
     print(conversation)
 
-    response = pipelineConver(
+    output = pipelineConverAdult(
         conversation,
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
@@ -291,15 +245,17 @@ def make_response_adult(entry: str, history: List[str]):
         synced_gpus=True
     )
 
-    print(response)
+    print(output)
 
-    answer_EN = response.generated_responses[-1]
+    if last_response:
+        del dicc_conversation[output.conversation_id]
+    else:
+        dicc_conversation[output.conversation_id] = output
+
+
+    answer_EN = output.generated_responses[-1]
 
     print(answer_EN)
-
-    conversation = response
-
-
 
 
     answer = translator.translate_text(answer_EN, source_lang="EN", target_lang="ES").text
@@ -315,7 +271,7 @@ def make_response_adult(entry: str, history: List[str]):
             "ES": answer, 
             "EN": answer_EN
         },
-        "history": history
+        "conver_id": output.conversation_id
     }
 
     return response
@@ -325,24 +281,27 @@ def make_response_adult(entry: str, history: List[str]):
 
 
 
-def make_response_child(entry: str, history: List[str]):
+def make_response_child(entry: str, conver_id: str, last_response: bool):
 
-    entry_EN = translator.translate_text(entry, target_lang="EN-US").text
+    entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
     print(entry_EN)
 
-    new_user_input_ids = tokenizerConverChild.encode(entry_EN, return_tensors='pt')
 
-    historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
+    global dicc_conversation
 
-    historyTensor.append(new_user_input_ids)
+    try:
+        conversation = dicc_conversation[conver_id]
+    except KeyError:
+        conversation = Conversation()
 
-    historyTensor = adjust_history(historyTensor, server_args.tam_history)
 
-    bot_input_ids = torch.cat(history, axis=-1)
+    conversation.add_user_input(entry_EN)
 
-    response = modelConverChild.generate(
-        bot_input_ids, 
+    print(conversation)
+
+    output = pipelineConverChild(
+        conversation,
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
         top_p=server_args.top_p,
@@ -350,18 +309,24 @@ def make_response_child(entry: str, history: List[str]):
         max_length=server_args.max_length,
         min_length=server_args.min_length,
         use_cache=server_args.use_cache,
-        pad_token_id=tokenizerConverChild.eos_token_id
+        pad_token_id=tokenizerConverAdult.eos_token_id,
+        synced_gpus=True
     )
 
-    historyTensor.append(response)
+    print(output)
 
-    history = [tokenizerConverAdult.decode(i[0], skip_special_tokens=False) for i in historyTensor]
+    if last_response:
+        del dicc_conversation[output.conversation_id]
+    else:
+        dicc_conversation[output.conversation_id] = output
 
-    answer_EN = tokenizerConverChild.decode(response[0], skip_special_tokens=True)
+
+    answer_EN = output.generated_responses[-1]
 
     print(answer_EN)
 
-    answer = translator.translate_text(answer_EN, target_lang="ES").text
+
+    answer = translator.translate_text(answer_EN, source_lang="EN", target_lang="ES").text
 
     print(answer)
 
@@ -374,10 +339,12 @@ def make_response_child(entry: str, history: List[str]):
             "ES": answer, 
             "EN": answer_EN
         },
-        "history": history
+        "conver_id": output.conversation_id
     }
 
     return response
+
+
 
 
 
@@ -414,7 +381,8 @@ def adult(request: Entry):
 
     response = make_response_adult(
         request.entry, 
-        request.history
+        request.conver_id,
+        request.last_response
     )
 
     return response
@@ -424,7 +392,8 @@ def child(request: Entry):
 
     response = make_response_child(
         request.entry, 
-        request.history
+        request.conver_id,
+        request.last_response
     )
 
     return response
