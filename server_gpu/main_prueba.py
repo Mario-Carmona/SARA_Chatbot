@@ -271,6 +271,7 @@ def make_response_adult(entry: str, history: List[str]):
     answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
 
     """
+    
 
     global conversation
     conversation.add_user_input(entry_EN)
