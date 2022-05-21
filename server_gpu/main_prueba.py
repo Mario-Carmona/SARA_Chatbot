@@ -213,16 +213,12 @@ def adjust_history(history, max_length):
 
 
 
+conversation = Conversation()
+
+
 def make_response_adult(entry: str, history: List[str]):
 
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
-
-
-    entry_EN = entry_EN.strip()
-
-    if entry_EN[-1] != '.':
-        entry_EN += '.'
-
 
     print(entry_EN)
 
@@ -272,16 +268,11 @@ def make_response_adult(entry: str, history: List[str]):
 
     """
 
-    conversation = Conversation(
-        text = entry_EN
-    ) if len(history) == 0 else Conversation(
-        text = entry_EN,
-        past_user_inputs = history[0::2],
-        generated_responses = history[1::2]
-    )
+    conversation.add_user_input(entry_EN)
 
+    print(conversation)
 
-    answer_EN = pipelineConver(
+    response = pipelineConver(
         conversation,
         do_sample=server_args.do_sample,
         temperature=server_args.temperature,
@@ -294,21 +285,14 @@ def make_response_adult(entry: str, history: List[str]):
         synced_gpus=True
     )
 
-    print(answer_EN)
-    print(answer_EN.past_user_inputs)
-    print(answer_EN.new_user_input)
+    print(response)
 
-    input("--->")
-
-
-    answer_EN = answer_EN.strip()
-
-    if answer_EN[-1] != '.':
-        answer_EN += '.'
+    answer_EN = response.generated_responses[-1]
 
     print(answer_EN)
 
-    history.append(answer_EN)
+    conversation = response
+
 
 
 
