@@ -22,5 +22,3 @@ class GenerateDatasetArguments(JoinDatasetsArguments,
         SplitDatasetArguments.__post_init__(self)
         ThemeDatasetArguments.__post_init__(self)
 
-        self.list_datasets.append(self.attitude_dataset_file)
-
