@@ -214,6 +214,7 @@ def make_response_adult(entry: str, history: List[str]):
 
     new_user_input_ids = tokenizerConverAdult.encode(entry_EN, return_tensors='pt').to(device=local_rank)
 
+    """
     historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
 
     historyTensor.append(new_user_input_ids)
@@ -221,6 +222,7 @@ def make_response_adult(entry: str, history: List[str]):
     historyTensor = adjust_history(historyTensor, server_args.tam_history)
 
     bot_input_ids = torch.cat(historyTensor, axis=-1)
+    """
 
     response = modelConverAdult.generate(
         new_user_input_ids, 
@@ -242,9 +244,12 @@ def make_response_adult(entry: str, history: List[str]):
     if answer_EN[-1] != '.':
         answer_EN += '.'
 
+    """
     historyTensor.append(tokenizerConverAdult.encode(answer_EN, return_tensors='pt'))
 
     history = [tokenizerConverAdult.decode(i[0], skip_special_tokens=False) for i in historyTensor]
+
+    """
 
     print(answer_EN)
 
