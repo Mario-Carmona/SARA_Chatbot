@@ -296,6 +296,7 @@ def make_response_adult(entry: str, history: List[str]):
 
     print(answer_EN)
     print(answer_EN.past_user_inputs)
+    print(answer_EN.text)
 
     input("--->")
 
