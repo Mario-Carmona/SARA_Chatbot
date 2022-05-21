@@ -222,6 +222,8 @@ def make_response_adult(entry: str, history: List[str]):
 
     bot_input_ids = torch.cat(historyTensor, axis=-1).to(device=local_rank)
 
+    print(bot_input_ids)
+
     response = modelConverAdult.generate(
         bot_input_ids, 
         do_sample=server_args.do_sample,
@@ -236,6 +238,7 @@ def make_response_adult(entry: str, history: List[str]):
     )
 
     print(tokenizerConverAdult.eos_token_id)
+    print(response)
 
     answer_EN = tokenizerConverAdult.decode(response[0], skip_special_tokens=True)
 
