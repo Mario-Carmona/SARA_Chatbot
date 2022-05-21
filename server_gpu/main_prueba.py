@@ -296,6 +296,8 @@ def make_response_adult(entry: str, history: List[str]):
 
     print(answer_EN)
 
+    input("--->")
+
 
     answer_EN = answer_EN.strip()
 
