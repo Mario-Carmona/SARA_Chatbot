@@ -212,7 +212,7 @@ def adjust_history(history, max_length):
     return history
 
 
-
+global conversation
 conversation = Conversation()
 
 
