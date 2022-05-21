@@ -66,7 +66,7 @@ def is_first_response(outputContexts):
 
 
 
-def generate_response(entry: str, edad: str, conver_id: UUID="", last_response: bool=False):
+def generate_response(entry: str, edad: str, conver_id: UUID=None, last_response: bool=False):
     query_json = {
         "entry": entry,
         "conver_id": conver_id,
