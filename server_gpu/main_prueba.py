@@ -187,12 +187,14 @@ modelConverAdult = ds_engine.module
 
 
 def adjust_history(history, max_length):
-    pos = len(history) - 1
+    historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
+
+    pos = len(historyTensor) - 1
     num = 0
     while num <= max_length and pos >= 0:
-        num += len(history[pos][0])
+        num += len(historyTensor[pos][0])
 
-        if num <= 500:
+        if num <= max_length:
             pos -= 1
 
     history = history[pos+1:]
@@ -203,15 +205,18 @@ def adjust_history(history, max_length):
 
 def make_response_adult(entry: str, history: List[str]):
 
-    entry = entry.strip()
-
-    if entry[-1] != '.':
-        entry += '.'
-
     entry_EN = translator.translate_text(entry, target_lang="EN-US").text
+
+
+    entry_EN = entry_EN.strip()
+
+    if entry_EN[-1] != '.':
+        entry_EN += '.'
+
 
     print(entry_EN)
 
+    """
     new_user_input_ids = tokenizerConverAdult.encode(entry_EN, return_tensors='pt')
 
     historyTensor = [tokenizerConverAdult.encode(i, return_tensors='pt') for i in history]
@@ -221,6 +226,19 @@ def make_response_adult(entry: str, history: List[str]):
     historyTensor = adjust_history(historyTensor, server_args.tam_history)
 
     bot_input_ids = torch.cat(historyTensor, axis=-1).to(device=local_rank)
+    """
+
+    history.append(entry_EN)
+
+    history = adjust_history(history, server_args.tam_history)
+
+    total_history = "</s>".join(history) + "</s>"
+
+    print(total_history)
+
+
+    bot_input_ids = tokenizerConverAdult.encode(total_history, return_tensors='pt').to(device=local_rank)
+
 
     print(bot_input_ids)
 
@@ -247,12 +265,11 @@ def make_response_adult(entry: str, history: List[str]):
     if answer_EN[-1] != '.':
         answer_EN += '.'
 
-    historyTensor.append(tokenizerConverAdult.encode(answer_EN, return_tensors='pt'))
-
-    history = [tokenizerConverAdult.decode(i[0], skip_special_tokens=False) for i in historyTensor]
-
-
     print(answer_EN)
+
+    history.append(answer_EN)
+
+
 
     answer = translator.translate_text(answer_EN, target_lang="ES").text
 
