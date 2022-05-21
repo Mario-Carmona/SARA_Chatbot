@@ -223,8 +223,6 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
     global dicc_conversation
 
     try:
-        print(conver_id)
-        print(type(conver_id))
         conversation = dicc_conversation[conver_id]
     except KeyError:
         conversation = Conversation()
@@ -248,6 +246,9 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
     )
 
     print(output)
+
+    print(output.conversation_id)
+    print(type(output.conversation_id))
 
     if last_response:
         del dicc_conversation[output.conversation_id]
