@@ -49,11 +49,14 @@ import io
 
 import deepspeed
 
+
+from uuid import UUID
+
 # -------------------------------------------------------------------------#
 
 class Entry(BaseModel):
     entry: str
-    conver_id: str
+    conver_id: UUID
     last_response: bool
 
 class EntryDeduct(BaseModel):
@@ -251,9 +254,9 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
     print(type(output.uuid))
 
     if last_response:
-        del dicc_conversation[output.conversation_id]
+        del dicc_conversation[output.uuid]
     else:
-        dicc_conversation[output.conversation_id] = output
+        dicc_conversation[output.uuid] = output
 
 
     answer_EN = output.generated_responses[-1]
@@ -274,7 +277,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": output.conversation_id
+        "conver_id": output.uuid
     }
 
     return response
@@ -319,9 +322,9 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
     print(output)
 
     if last_response:
-        del dicc_conversation[output.conversation_id]
+        del dicc_conversation[output.uuid]
     else:
-        dicc_conversation[output.conversation_id] = output
+        dicc_conversation[output.uuid] = output
 
 
     answer_EN = output.generated_responses[-1]
@@ -342,7 +345,7 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": output.conversation_id
+        "conver_id": output.uuid
     }
 
     return response
