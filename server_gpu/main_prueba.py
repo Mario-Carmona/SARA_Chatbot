@@ -218,7 +218,7 @@ conversation = Conversation()
 
 def make_response_adult(entry: str, history: List[str]):
 
-    aux = translator.translate_text(entry, target_lang="EN-US")
+    aux = translator.translate_text(entry, target_lang="EN")
 
     print(aux)
 
