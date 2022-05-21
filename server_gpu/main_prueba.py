@@ -251,6 +251,7 @@ def make_response_adult(entry: str, history: List[str]):
 
     """
 
+
     print(answer_EN)
 
     answer = translator.translate_text(answer_EN, target_lang="ES").text
