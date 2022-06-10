@@ -307,6 +307,7 @@ def summarization(groups_datasets):
         List[DataFrame]
     """
 
+
     print(bcolors.WARNING + "Realizando resumen del texto..." + bcolors.RESET)
 
     # Creación de la barra de progreso
