@@ -50,7 +50,7 @@ def login(args, driver):
 
     passwd.send_keys(Keys.ENTER)
     
-    time.sleep(3)
+    time.sleep(5)
 
 
 def scroll_down(driver, num_examples):
@@ -59,6 +59,12 @@ def scroll_down(driver, num_examples):
     links = driver.find_elements(by=By.XPATH, value='.//a[@class = "q-box qu-cursor--pointer qu-hover--textDecoration--underline Link___StyledBox-t2xg9c-0 KlcoI"]')
 
     pre_num_examples = 0
+
+    page.send_keys(Keys.PAGE_DOWN)
+    time.sleep(0.2)
+    page.send_keys(Keys.PAGE_DOWN)
+    time.sleep(0.2)
+
 
     num_answers = len([link for link in links if link.text != "No answer yet"])
 
@@ -125,12 +131,6 @@ def scroll_down_answers(driver, num_answers):
 
         # Eliminar titulo
         content = content[1:]
-
-        print("-----")
-        print(len(content))
-        print(num_answers)
-        print("-----")
-        input("--->")
         
         if len(content) < num_answers:
             page.send_keys(Keys.PAGE_DOWN)
@@ -141,22 +141,26 @@ def scroll_down_answers(driver, num_answers):
 
 def obtener_answers(driver):
     num_answers = driver.find_elements_by_xpath('//button[@class="q-click-wrapper ClickWrapper___StyledClickWrapperBox-zoqi4f-0 bIwtPb base___StyledClickWrapper-lx6eke-1 laIUvT   qu-active--bg--darken qu-active--textDecoration--none qu-borderRadius--pill qu-alignItems--center qu-justifyContent--center qu-whiteSpace--nowrap qu-userSelect--none qu-display--inline-flex qu-tapHighlight--white qu-textAlign--center qu-cursor--pointer qu-hover--bg--darken qu-hover--textDecoration--none"]')
-    num_answers = [i for i in num_answers if "Answer" in i.text][0]
-    num_answers = num_answers.text.split('\n')
+    if len(num_answers) != 0:
+        num_answers = [i for i in num_answers if "Answer" in i.text][0]
+        num_answers = num_answers.text.split('\n')
 
-    if len(num_answers) == 3:
-        num_answers = int(num_answers[-1])
+        if len(num_answers) == 3:
+            num_answers = int(num_answers[-1])
 
-        if num_answers != 1:
-            scroll_down_answers(driver, num_answers)
+            if num_answers != 1:
+                scroll_down_answers(driver, num_answers)
 
-        content = obtenerContent(driver, num_answers)
+            content = obtenerContent(driver, num_answers)
 
-        texts = [elem.text.replace("\n", " ") for elem in content if elem != None]
-        
-        return texts[0:1], texts[1:]
+            texts = [elem.text.replace("\n", " ") for elem in content if elem != None]
+            
+            return texts[0:1], texts[1:]
+        else:
+            return [], []
     else:
-        return [], []
+            return [], []
+        
 
 
 
@@ -213,15 +217,15 @@ def obtenerDataset(args, keywords_list):
 
     progress_bar = tqdm(range(len(keywords_list)))
 
-    for keyword in keywords_list:
-        group_datasets.append(obtenerDatasetTopic(args, driver, keyword))
+    for i, keyword in enumerate(keywords_list):
+        dataset = obtenerDatasetTopic(args, driver, keyword)
+
+        filename = '.'.join(args.output.split('.')[:-1])
+        save_csv(dataset, f"{filename}_{i}.csv")
+
         progress_bar.update(1)
 
     driver.close()
-
-    dataset = pd.concat(group_datasets)
-
-    return dataset
 
 
 
@@ -241,6 +245,4 @@ if __name__ == '__main__':
 
     keywords_list = obtenerURLs(args.topics)
 
-    dataset = obtenerDataset(args, keywords_list)
-
-    save_csv(dataset, args.output)
+    obtenerDataset(args, keywords_list)
