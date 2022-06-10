@@ -322,16 +322,18 @@ def summarization(groups_datasets):
         question = []
         answer = []
 
-        for i, j, k in zip(dataset.Question.to_list(), dataset.Subject.to_list(), dataset.Answer.to_list()):                
-            with torch.no_grad():
-                resumenes_question, resumenes_answer = generarResumenes(i, k)
+        for i, j, k in zip(dataset.Question.to_list(), dataset.Subject.to_list(), dataset.Answer.to_list()):  
+            if str(type(i)) == "<class 'str'>" and str(type(k)) == "<class 'str'>":              
+                with torch.no_grad():
+                    resumenes_question, resumenes_answer = generarResumenes(i, k)
 
-            resumenes_question = removeEmpty(resumenes_question)
-            resumenes_answer = removeEmpty(resumenes_answer)
+                resumenes_question = removeEmpty(resumenes_question)
+                resumenes_answer = removeEmpty(resumenes_answer)
 
-            question += resumenes_question
-            answer += resumenes_answer
-            subject += [j] * len(resumenes_question)
+                question += resumenes_question
+                answer += resumenes_answer
+                subject += [j] * len(resumenes_question)
+                
             progress_bar.update(1)
             
         topic = [dataset.Topic.to_list()[0]] * len(question)
