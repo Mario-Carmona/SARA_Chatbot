@@ -277,7 +277,9 @@ def generarResumenes(question, answer):
     # Eliminación de las frases repetidas
     resumenes_question = unique(tgt_text_question)
 
+
     ####################
+
 
     # Obtener los tokens del texto
     batch_answer = tokenizerSum(answer, padding="longest", return_tensors="pt")
