@@ -1,0 +1,47 @@
+{
+    "workdir": "/mnt/homeGPU/mcarmona",
+
+
+    "seed": 0,
+
+
+    "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
+
+    "model_genQuestion": "mrm8488/t5-base-finetuned-question-generation-ap",
+    "model_genQuestion_config": "mrm8488/t5-base-finetuned-question-generation-ap/config.json",
+    "model_genQuestion_tokenizer": "mrm8488/t5-base-finetuned-question-generation-ap",
+    "model_genQuestion_tokenizer_config": "mrm8488/t5-base-finetuned-question-generation-ap/tokenizer_config.json",
+
+    "model_summary": "google/pegasus-xsum",
+    "model_summary_config": "google/pegasus-xsum/config.json",
+    "model_summary_tokenizer": "google/pegasus-xsum",
+    "model_summary_tokenizer_config": "google/pegasus-xsum/tokenizer_config.json",
+
+    "model_simplify": "muss_en_wikilarge_mined",
+
+    "limit_summary": 1,
+    "max_length_summary": 128,
+    "max_length_question": 128,
+    "num_beams_summary": 1,
+    "num_beams_question": 1,
+    "initial_dataset_file": "server_gpu/datasets/v3/salida_v1.csv",
+    "translated": true,
+    "theme_result_dir": "server_gpu/datasets/v3",
+    "adult_dataset_file": "dataset_adult.csv",
+    "child_dataset_file": "dataset_child.csv",
+
+
+
+    "list_datasets": [
+        "server_gpu/datasets/v3/general_dataset.csv"
+    ],
+    "join_dataset_file": "server_gpu/datasets/v3/total_dataset.csv",
+    "remove_source_files": false,
+
+
+    "split_dataset_file": "",
+    "train_split": 0.8,
+    "split_result_dir": "server_gpu/datasets/v3",
+    "train_dataset_file": "train_resume.csv",
+    "valid_dataset_file": "validation_resume.csv"
+}
