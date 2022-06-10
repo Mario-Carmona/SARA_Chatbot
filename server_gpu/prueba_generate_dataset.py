@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
         train_dataset, valid_dataset = split_dataset(join_dataset, generate_args.train_split, generate_args.seed)
 
-        dir_path = os.path.join(generate_args.split_result_dir, f"split_{generate_args.train_split}" + cadena)
+        dir_path = os.path.join(generate_args.split_result_dir, f"split_{generate_args.train_split}{cadena}")
         if not os.path.exists(dir_path):
             os.mkdir(dir_path)
 
