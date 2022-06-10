@@ -268,8 +268,8 @@ def generarResumenes(question, answer):
     batch_question = tokenizerSum(question, padding="longest", return_tensors="pt")
 
     # El máximo del modelo de resumir es 512, sino da errores
-    if len(batch_question) > 500:
-        batch_question = batch_question[:500]
+    if len(batch_question) > 400:
+        batch_question = batch_question[:400]
     
     batch_question.to(device)
     translated_question = modelSum.generate(**batch_question, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
@@ -283,8 +283,8 @@ def generarResumenes(question, answer):
     # Obtener los tokens del texto
     batch_answer = tokenizerSum(answer, padding="longest", return_tensors="pt")
 
-    if len(batch_answer) > 500:
-        batch_answer = batch_answer[:500]
+    if len(batch_answer) > 400:
+        batch_answer = batch_answer[:400]
     
     batch_answer.to(device)
     translated_answer = modelSum.generate(**batch_answer, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
@@ -333,7 +333,7 @@ def summarization(groups_datasets):
                 question += resumenes_question
                 answer += resumenes_answer
                 subject += [j] * len(resumenes_question)
-                
+
             progress_bar.update(1)
             
         topic = [dataset.Topic.to_list()[0]] * len(question)
