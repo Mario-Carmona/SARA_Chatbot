@@ -269,12 +269,14 @@ def generarResumenes(question, answer):
     
     batch_question.to(device)
 
-    translated_question = modelSum.generate(**batch_question, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
-    tgt_text_question = tokenizerSum.batch_decode(translated_question, skip_special_tokens=True)
+    try:
+        translated_question = modelSum.generate(**batch_question, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+        tgt_text_question = tokenizerSum.batch_decode(translated_question, skip_special_tokens=True)
 
-    # Eliminación de las frases repetidas
-    resumenes_question = unique(tgt_text_question)
-
+        # Eliminación de las frases repetidas
+        resumenes_question = unique(tgt_text_question)
+    except RuntimeError:
+        resumenes_question = None
 
     ####################
 
@@ -284,11 +286,14 @@ def generarResumenes(question, answer):
     
     batch_answer.to(device)
 
-    translated_answer = modelSum.generate(**batch_answer, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
-    tgt_text_answer = tokenizerSum.batch_decode(translated_answer, skip_special_tokens=True)
+    try:
+        translated_answer = modelSum.generate(**batch_answer, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
+        tgt_text_answer = tokenizerSum.batch_decode(translated_answer, skip_special_tokens=True)
 
-    # Eliminación de las frases repetidas
-    resumenes_answer = unique(tgt_text_answer)
+        # Eliminación de las frases repetidas
+        resumenes_answer = unique(tgt_text_answer)
+    except RuntimeError:
+        resumenes_answer = None
 
     return resumenes_question, resumenes_answer
 
@@ -324,12 +329,13 @@ def summarization(groups_datasets):
                 with torch.no_grad():
                     resumenes_question, resumenes_answer = generarResumenes(i, k)
 
-                resumenes_question = removeEmpty(resumenes_question)
-                resumenes_answer = removeEmpty(resumenes_answer)
+                if resumenes_question != None and resumenes_answer != None:
+                    resumenes_question = removeEmpty(resumenes_question)
+                    resumenes_answer = removeEmpty(resumenes_answer)
 
-                question += resumenes_question
-                answer += resumenes_answer
-                subject += [j] * len(resumenes_question)
+                    question += resumenes_question
+                    answer += resumenes_answer
+                    subject += [j] * len(resumenes_question)
 
             progress_bar.update(1)
             
