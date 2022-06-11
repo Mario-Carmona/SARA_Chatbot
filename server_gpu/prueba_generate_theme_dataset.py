@@ -319,8 +319,8 @@ def summarization(groups_datasets):
                 with torch.no_grad():
                     resumenes_question, resumenes_answer = generarResumenes(i, k)
 
-                resumenes_question = removeEmpty(resumenes_question)
-                resumenes_answer = removeEmpty(resumenes_answer)
+                #resumenes_question = removeEmpty(resumenes_question)
+                #resumenes_answer = removeEmpty(resumenes_answer)
 
                 question += resumenes_question
                 answer += resumenes_answer
