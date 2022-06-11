@@ -107,7 +107,7 @@ modelSum = PegasusForConditionalGeneration.from_pretrained(
     generate_args.model_summary,
     from_tf=bool(".ckpt" in generate_args.model_summary),
     config=configSum
-).to(device)
+)
 
 # ---------------------------------------
 # ----- Modelo generate question
@@ -265,9 +265,7 @@ def generarResumenes(question, answer):
     """
 
     # Obtener los tokens del texto
-    batch_question = tokenizerSum(question, max_length=512, padding="longest", return_tensors="pt")
-    
-    batch_question.to(device)
+    batch_question = tokenizerSum(question, max_length=500, padding="longest", return_tensors="pt")
 
     try:
         translated_question = modelSum.generate(**batch_question, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
@@ -282,9 +280,7 @@ def generarResumenes(question, answer):
 
 
     # Obtener los tokens del texto
-    batch_answer = tokenizerSum(answer, max_length=512, padding="longest", return_tensors="pt")
-    
-    batch_answer.to(device)
+    batch_answer = tokenizerSum(answer, max_length=500, padding="longest", return_tensors="pt")
 
     try:
         translated_answer = modelSum.generate(**batch_answer, max_length=generate_args.max_length_summary, num_beams=generate_args.num_beams_summary, num_return_sequences=generate_args.num_beams_summary)
