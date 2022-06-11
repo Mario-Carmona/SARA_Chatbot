@@ -15,4 +15,4 @@ export HOME=/mnt/homeGPU/mcarmona
 
 pip install -r requirements.txt
 
-ulimit -Sn 10000
+ulimit -Sn 1000000000
