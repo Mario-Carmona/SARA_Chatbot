@@ -265,11 +265,7 @@ def generarResumenes(question, answer):
     """
 
     # Obtener los tokens del texto
-    batch_question = tokenizerSum(question, padding="longest", return_tensors="pt")
-
-    # El máximo del modelo de resumir es 512, sino da errores
-    if len(batch_question[0]) > 512:
-        batch_question[0] = batch_question[0][:512]
+    batch_question = tokenizerSum(question, max_length=512, padding="longest", return_tensors="pt")
     
     batch_question.to(device)
 
@@ -284,10 +280,7 @@ def generarResumenes(question, answer):
 
 
     # Obtener los tokens del texto
-    batch_answer = tokenizerSum(answer, padding="longest", return_tensors="pt")
-
-    if len(batch_answer[0]) > 512:
-        batch_answer[0] = batch_answer[0][:512]
+    batch_answer = tokenizerSum(answer, max_length=512, padding="longest", return_tensors="pt")
     
     batch_answer.to(device)
 
