@@ -428,14 +428,18 @@ def simplify(groups_datasets):
 
     print(bcolors.WARNING + "Realizando simplificación..." + bcolors.RESET)
 
-    progress_bar = tqdm(range(calculateElements(groups_datasets)))
+    #progress_bar = tqdm(range(calculateElements(groups_datasets)))
 
     new_groups_datasets = []
 
     for dataset in groups_datasets:
-        answer = []
-        question = []
+        #answer = []
+        #question = []
 
+        answer = simplify_sentences(dataset.Answer.to_list(), model_name=generate_args.model_simplify)
+        question = simplify_sentences(dataset.Question.to_list(), model_name=generate_args.model_simplify)
+
+        """
         for a, q in zip(dataset.Answer.to_list(), dataset.Question.to_list()):
             with torch.no_grad():
                 a_simplify, q_simplify = simplify_sentences([a, q], model_name=generate_args.model_simplify)
@@ -445,6 +449,8 @@ def simplify(groups_datasets):
                 question.append(q_simplify)
 
             progress_bar.update(1)
+
+        """
 
         if len(question) != 0:
             new_groups_datasets.append(pd.DataFrame({
