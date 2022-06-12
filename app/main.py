@@ -319,20 +319,38 @@ def make_rest_response(request: Dict):
 
 
 def make_response_talk(request: Dict, edad: TalkType):
+    """! Generar las respuestas del wekhook al intent Talk.
+    
+    @param request  Datos de la petición al webhook.
+    @param edad     Edad del usuario.
+
+    @return Datos de la respuesta del webhook.
+    """
+    
+    # Obtención del contexto de la petición
     outputContexts = request.get("queryResult").get("outputContexts")
 
+    # Generación de la respuesta según el orden de la respuesta dentro de la conversación
     if is_first_response(outputContexts):
+        # Si es la primera respuesta
         return make_first_response(request, str(edad).split('.')[-1])
     else:
+        # En caso contrario
         return make_rest_response(request)
 
 
-
-
-
 def generarContent(context):
+    """! Generar una cadena con todo el contenido de la conversación.
+    
+    @param context  Contexto con el contenido de la conversación.
+
+    @return Cadena con el contenido de la conversación.
+    """
+    
+    # Cadena que contendrá la conversación completa
     content = ""
 
+    # Formación de la conversación dentro de la cadena
     for entry_ES, answer_ES, entry_EN, answer_EN in zip(context["entry"]["ES"], context["answer"]["ES"], context["entry"]["EN"], context["answer"]["EN"]):
         content += f"\n[USER]: {entry_ES}\n"
         content += f"[USER (EN)]: {entry_EN}\n"
@@ -341,17 +359,31 @@ def generarContent(context):
     
     return content
 
+
 def save_conversation(context, edad, date_ini):
+    """! Guardar la conversación en la base de datos.
+    
+    @param context   Contexto con el contenido de la conversación.
+    @param edad      Edad del usuario.
+    @param date_ini  Fecha del inicio de la conversación
+    """
+    
+    # Obtención de la URL de la base de datos
     DATABASE_URL = os.environ['DATABASE_URL']
 
+    # Abrir conexión con la base de datos
     db = psycopg2.connect(DATABASE_URL, sslmode='require')
 
+    # Obtener cursor de la base de datos
     cur = db.cursor()
 
+    # Generar cadena con el contenido de la conversación
     content = generarContent(context)
 
+    # Obtención de la fecha de cierre de la conversación
     date_fin = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
+    # Inserción de la conversación dentro de la base de datos
     cur.execute(
         """INSERT INTO Conversations (edad, date_ini, date_fin, content) 
             VALUES (
@@ -369,27 +401,43 @@ def save_conversation(context, edad, date_ini):
         )
     )
 
+    # Indicación de los cambios realizados en la base de datos
     db.commit()
 
+    # Cierre del cursor
     cur.close()
+
+    # Cierre de la conexión de la base de datos
     db.close()
 
 
-
-
 def make_response_goodbye(request: Dict):
+    """! Generar las respuestas del wekhook al intent Goodbye.
+    
+    @param request  Datos de la petición al webhook.
+
+    @return Datos de la respuesta del webhook.
+    """
+    
+    # Obtención del contexto de la petición
     outputContexts = request.get("queryResult").get("outputContexts")
 
+    # Obtención de la frase de entrada
     entry = request.get("queryResult").get("queryText")
     
+    # Obtención del índice del contexto que contiene la información
     elem = obtenerElemContext(outputContexts)
 
+    # Obtención de la edad
     edad = outputContexts[elem]["parameters"]["edad"]
 
+    # Obtención del identificador de la conversación
     conver_id = outputContexts[elem]["parameters"]["conver_id"]
 
+    # Generación de la respuesta
     output = generate_response(entry, edad, conver_id, True)
 
+    # Creación del nuevo contexto de la respuesta a la petición
     outputContexts[elem]["parameters"]["context"]["entry"]["ES"].append(output["entry"]["ES"])
     outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
 
@@ -398,13 +446,16 @@ def make_response_goodbye(request: Dict):
 
     outputContexts[elem]["parameters"]["conver_id"] = output["conver_id"]
 
+    # Obtención de la respuesta generada
     answer = output["answer"]["ES"]
 
+    # Creación de la respuesta a la petición al webhook
     response = {
         "fulfillmentText": answer,
         "output_contexts": []
     }
 
+    # Salvar la conversación en la base de datos
     save_conversation(
         outputContexts[elem]["parameters"]["context"],
         outputContexts[elem]["parameters"]["edad"], 
@@ -414,131 +465,126 @@ def make_response_goodbye(request: Dict):
     return response
 
 
-
-
-
-
-
-
-
-
-app = FastAPI(version="1.0.0")
-
-app.mount("/static", StaticFiles(directory=(BASE_PATH + "/static")))
-templates = Jinja2Templates(directory=(BASE_PATH + "/templates"))
-
-
-@app.get("/", response_class=HTMLResponse) 
-def home(request: Request, dark_mode: str = ""):
-    return templates.TemplateResponse(
-        "home.html", 
-        {
-            "request": request,
-            "dark_mode": dark_mode
-        }
-    )
-
-@app.get("/chatbot", response_class=HTMLResponse)
-def chatbot(request: Request, dark_mode: str = ""):
-    return templates.TemplateResponse(
-        "chatbot.html", 
-        {
-            "request": request,
-            "dark_mode": dark_mode,
-            "server_gpu_url": SERVER_GPU_URL,
-            "web_interface_adult": config["web_interface_adult"],
-            "web_interface_child": config["web_interface_child"],
-            "telegram_interface_adult": config["telegram_interface_adult"],
-            "telegram_interface_child": config["telegram_interface_child"]
-        }
-    )
-
-@app.get("/capture_image", response_class=HTMLResponse) 
-def capture_image(request: Request, canal: str, dark_mode: str = ""):
-    return templates.TemplateResponse(
-        "capture_image.html", 
-        {
-            "request": request, 
-            "canal": canal,
-            "dark_mode": dark_mode,
-            "server_gpu_url": SERVER_GPU_URL,
-            "apartado_deduct": config["apartado_deduct"],
-            "web_interface_adult": config["web_interface_adult"],
-            "web_interface_child": config["web_interface_child"],
-            "telegram_interface_adult": config["telegram_interface_adult"],
-            "telegram_interface_child": config["telegram_interface_child"]
-        }
-    )
-
-@app.get("/interface_adult", response_class=HTMLResponse)
-def interface_adult(request: Request, dark_mode: str = ""):
-    return templates.TemplateResponse(
-        "interface_adult.html", 
-        {
-            "request": request,
-            "dark_mode": dark_mode
-        }
-    )
-
-@app.get("/interface_child", response_class=HTMLResponse)
-def interface_child(request: Request, dark_mode: str = ""):
-    return templates.TemplateResponse(
-        "interface_child.html", 
-        {
-            "request": request,
-            "dark_mode": dark_mode
-        }
-    )
-
-@app.get("/wakeup", response_class=PlainTextResponse)
-def wakeup():
-    return "Server ON"
-
-@app.post("/setURL", response_class=PlainTextResponse)
-def setURL(request: ServerURL):
-    global SERVER_GPU_URL
-    SERVER_GPU_URL = request.url
-    return "URL fijada correctamente"
-
-@app.post("/webhook_adult")
-async def webhook_adult( request: Request):
-    request_JSON = await request.json()
-
-    print(request_JSON)
-
-    intent = request_JSON["queryResult"]["intent"]["displayName"]
-
-    if intent == "Talk":
-        response = make_response_talk(request_JSON, TalkType.adult)
-    elif intent == "Goodbye":
-        # Implementar guardado del historial
-        response = make_response_goodbye(request_JSON)
-
-    print(response)
-
-    return response
-
-@app.post("/webhook_child")
-async def webhook_child( request: Request):
-    request_JSON = await request.json()
-
-    print(request_JSON)
-
-    intent = request_JSON["queryResult"]["intent"]["displayName"]
-
-    if intent == "Talk":
-        response = make_response_talk(request_JSON, TalkType.child)
-    elif intent == "Goodbye":
-        # Implementar guardado del historial
-        response = make_response_goodbye(request_JSON)
-
-    print(response)
-
-    return response
-
-
 def main():
     """! Entrada al programa principal."""
+
+    app = FastAPI(version="1.0.0")
+
+    app.mount("/static", StaticFiles(directory=(BASE_PATH + "/static")))
+    templates = Jinja2Templates(directory=(BASE_PATH + "/templates"))
+
+
+    @app.get("/", response_class=HTMLResponse) 
+    def home(request: Request, dark_mode: str = ""):
+        return templates.TemplateResponse(
+            "home.html", 
+            {
+                "request": request,
+                "dark_mode": dark_mode
+            }
+        )
+
+    @app.get("/chatbot", response_class=HTMLResponse)
+    def chatbot(request: Request, dark_mode: str = ""):
+        return templates.TemplateResponse(
+            "chatbot.html", 
+            {
+                "request": request,
+                "dark_mode": dark_mode,
+                "server_gpu_url": SERVER_GPU_URL,
+                "web_interface_adult": config["web_interface_adult"],
+                "web_interface_child": config["web_interface_child"],
+                "telegram_interface_adult": config["telegram_interface_adult"],
+                "telegram_interface_child": config["telegram_interface_child"]
+            }
+        )
+
+    @app.get("/capture_image", response_class=HTMLResponse) 
+    def capture_image(request: Request, canal: str, dark_mode: str = ""):
+        return templates.TemplateResponse(
+            "capture_image.html", 
+            {
+                "request": request, 
+                "canal": canal,
+                "dark_mode": dark_mode,
+                "server_gpu_url": SERVER_GPU_URL,
+                "apartado_deduct": config["apartado_deduct"],
+                "web_interface_adult": config["web_interface_adult"],
+                "web_interface_child": config["web_interface_child"],
+                "telegram_interface_adult": config["telegram_interface_adult"],
+                "telegram_interface_child": config["telegram_interface_child"]
+            }
+        )
+
+    @app.get("/interface_adult", response_class=HTMLResponse)
+    def interface_adult(request: Request, dark_mode: str = ""):
+        return templates.TemplateResponse(
+            "interface_adult.html", 
+            {
+                "request": request,
+                "dark_mode": dark_mode
+            }
+        )
+
+    @app.get("/interface_child", response_class=HTMLResponse)
+    def interface_child(request: Request, dark_mode: str = ""):
+        return templates.TemplateResponse(
+            "interface_child.html", 
+            {
+                "request": request,
+                "dark_mode": dark_mode
+            }
+        )
+
+    @app.get("/wakeup", response_class=PlainTextResponse)
+    def wakeup():
+        return "Server ON"
+
+    @app.post("/setURL", response_class=PlainTextResponse)
+    def setURL(request: ServerURL):
+        global SERVER_GPU_URL
+        SERVER_GPU_URL = request.url
+        return "URL fijada correctamente"
+
+    @app.post("/webhook_adult")
+    async def webhook_adult( request: Request):
+        request_JSON = await request.json()
+
+        print(request_JSON)
+
+        intent = request_JSON["queryResult"]["intent"]["displayName"]
+
+        if intent == "Talk":
+            response = make_response_talk(request_JSON, TalkType.adult)
+        elif intent == "Goodbye":
+            # Implementar guardado del historial
+            response = make_response_goodbye(request_JSON)
+
+        print(response)
+
+        return response
+
+    @app.post("/webhook_child")
+    async def webhook_child( request: Request):
+        request_JSON = await request.json()
+
+        print(request_JSON)
+
+        intent = request_JSON["queryResult"]["intent"]["displayName"]
+
+        if intent == "Talk":
+            response = make_response_talk(request_JSON, TalkType.child)
+        elif intent == "Goodbye":
+            # Implementar guardado del historial
+            response = make_response_goodbye(request_JSON)
+
+        print(response)
+
+        return response
+
+
+
+
 
     uvicorn.run(app, host=HOST, port=PORT)
 
