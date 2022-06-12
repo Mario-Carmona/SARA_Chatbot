@@ -185,34 +185,59 @@ def is_first_response(outputContexts):
 
 
 def generate_response(entry: str, edad: str, conver_id: str="", last_response: bool=False):
+    """! Generar respuesta.
+    
+    @param entry          Frase de entrada.
+    @param edad           Edad del usuario.
+    @param conver_id      Identificador de la conversación.
+    @param last_response  Indica si es la última repsuesta de la conversación.
+    
+    @return Respuesta generada en base a la frase de entrada.
+    """
+    
+    # Datos de la petición POST
     query_json = {
         "entry": entry,
         "conver_id": conver_id,
         "last_response": last_response
     }
+    # Cabecera de la petición POST
     headers = {'content-type': 'application/json'}
+    # Envío de la petición POST y recepción de la respuesta
     output = requests.post(SERVER_GPU_URL + "/" + edad, json=query_json, headers=headers)
+    # Decodificación de la respuesta recibida de la petición POST
     output = json.loads(output.content.decode('utf-8'))
 
     return output
 
 
-
-
-
-
 def make_first_response(request: Dict, edad: str):
+    """! Generar la primera respuesta del wekhook.
+    
+    @param request  Datos de la petición al webhook.
+    @param edad     Edad del usuario.
+
+    @return Datos de la primera respuesta del webhook.
+    """
+    
+    # Obtención del contexto de la petición
     outputContexts = request.get("queryResult").get("outputContexts")
 
+    # Si está disponible el servidor GPU
     if SERVER_GPU_URL != "":
+        # Obtención de la frase de entrada
         entry = request.get("queryResult").get("queryText")
 
+        # Obtención del índice del contexto que contiene la información
         elem = obtenerElemContext(outputContexts)
 
+        # Generación de la respuesta
         output = generate_response(entry, edad)
 
+        # Obtención de la fecha actual
         date_ini = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
+        # Creación del nuevo contexto de la respuesta a la petición
         outputContexts[elem]["parameters"]["context"] = {
             "entry": {
                 "ES": [output["entry"]["ES"]],
@@ -230,11 +255,14 @@ def make_first_response(request: Dict, edad: str):
 
         outputContexts[elem]["parameters"]["edad"] = edad
 
+        # Obtención de la respuesta generada
         answer = output["answer"]["ES"]
     else:
+        # Es caso contrario, se indica su no disponibilidad en la respuesta
         outputContexts = []
         answer = "Servidor GPU no disponible"
 
+    # Creación de la respuesta a la petición al webhook
     response = {
         "fulfillmentText": answer,
         "output_contexts": outputContexts
@@ -243,20 +271,33 @@ def make_first_response(request: Dict, edad: str):
     return response
 
 
-
 def make_rest_response(request: Dict):
+    """! Generar el resto de respuestas del wekhook.
+    
+    @param request  Datos de la petición al webhook.
+
+    @return Datos de la respuesta del webhook.
+    """
+    
+    # Obtención del contexto de la petición
     outputContexts = request.get("queryResult").get("outputContexts")
 
+    # Obtención de la frase de entrada
     entry = request.get("queryResult").get("queryText")
     
+    # Obtención del índice del contexto que contiene la información
     elem = obtenerElemContext(outputContexts)
 
+    # Obtención de la edad
     edad = outputContexts[elem]["parameters"]["edad"]
 
+    # Obtención del identificador de la conversación
     conver_id = outputContexts[elem]["parameters"]["conver_id"]
 
+    # Generación de la respuesta
     output = generate_response(entry, edad, conver_id)
 
+    # Creación del nuevo contexto de la respuesta a la petición
     outputContexts[elem]["parameters"]["context"]["entry"]["ES"].append(output["entry"]["ES"])
     outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
 
@@ -265,23 +306,16 @@ def make_rest_response(request: Dict):
 
     outputContexts[elem]["parameters"]["conver_id"] = output["conver_id"]
 
+    # Obtención de la respuesta generada
     answer = output["answer"]["ES"]
 
+    # Creación de la respuesta a la petición al webhook
     response = {
         "fulfillmentText": answer,
         "output_contexts": outputContexts
     }
     
     return response
-
-
-
-
-
-
-
-
-
 
 
 def make_response_talk(request: Dict, edad: TalkType):
