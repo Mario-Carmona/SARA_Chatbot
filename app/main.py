@@ -1,16 +1,93 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
+"""! @brief Script para la ejecución de la APP."""
+
+
+##
+# @mainpage Sara Chatbot Heroku APP
+#
+# @section description_main Descripción
+# Programas Python para la ejecución de la APP del sistema Sara Chatbot 
+# en la plataforma Heroku.
+#
+# @section notes_main Notes
+# - Add special project notes here that you want to communicate to the user.
+#
+# Copyright (c) 2022.  All rights reserved.
+
+
+##
+# @file main.py
+#
+# @brief Programa principal para la ejecución de la APP.
+#
+# @section description_main Descripción
+# Programa principal para la ejecución de la APP.
+#
+# @section libraries_main Librerías/Módulos
+# - Librería estándar time (https://docs.python.org/3/library/time.html)
+#   - Acceso a la función time.
+# - Librería estándar json (https://docs.python.org/3/library/json.html)
+#   - Acceso a la función load
+#   - Acceso a la función loads
+# - Librería estándar os (https://docs.python.org/3/library/os.html)
+#   - Acceso a la función environ
+# - Librería estándar pathlib (https://docs.python.org/3/library/pathlib.html)
+#   - Acceso a la función Path.
+# - Librería estándar typing (https://docs.python.org/3/library/typing.html)
+#   - Acceso al tipo Dict
+# - Librería requests 
+#   - Acceso a la función post
+# - Librería psycopg2 (https://pypi.org/project/psycopg2/)
+#   - Acceso a la función connect
+# - Librería datetime (https://docs.python.org/3/library/datetime.html)
+#   - Acceso a la función datetime
+# - Librería pytz (https://pypi.org/project/pytz/)
+#   - Acceso a la función timezone
+# - Librería estándar enum (https://docs.python.org/3/library/enum.html)
+#   - Acceso a la clase Enum
+# - Librería pydantic (https://pydantic-docs.helpmanual.io/)
+#   - Acceso a la clase BaseModel
+# - Librería fastapi (https://fastapi.tiangolo.com/)
+#   - Acceso a la función FastAPI
+#   - Acceso al dataclass Request
+#   - Acceso a la librería fastapi.responses
+#       - Acceso a la función HTMLResponse
+#       - Acceso a la función PlainTextResponse
+#   - Acceso a la librería fastapi.staticfiles
+#       - Acceso a la función StaticFiles
+#   - Acceso a la librería fastapi.templating
+#       - Acceso a la función Jinja2Templates
+# - Librería uvicorn (https://www.uvicorn.org/)
+#   - Acceso a la función run
+#
+# @section notes_doxygen_example Notes
+# - Comments are Doxygen compatible.
+#
+# @section todo_doxygen_example TODO
+# - None.
+#
+# @section author_doxygen_example Autor
+# - Created by Mario Carmona Segovia.
+#
+# Copyright (c) 2022.  All rights reserved.
+
+
+# Imports
+
 import json
 from time import time
 import os
 from pathlib import Path
 from typing import Dict
+import enum
+
 import requests
 import psycopg2
-from datetime import datetime
 import pytz
-import enum
+from datetime import datetime
 
 from pydantic import BaseModel
 
@@ -18,37 +95,69 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+
 import uvicorn
 
 
 
+# Enumerados
 
 class TalkType(enum.Enum):
+    """! Enumerado de los tipos de generadores de respuestas.
+    Define el enumerado utilizado para distinguir los distintos tipos de generadores de conversaciones.
+    """
+
     child = "child"
     adult = "adult"
 
 
 
+# Dataclass
+
+class ServerURL(BaseModel):
+    """! Dataclass para recibir URL.
+    Define la dataclass utilizada para recibir una URL.
+    """
+
+    url: str
 
 
+
+# Constantes globales
+## Ruta base del programa python.
 BASE_PATH = str(Path(__file__).resolve().parent)
 
+"""
+    Lectura del archivo de configuración
+"""
 with open(BASE_PATH + "/config.json") as file:
     config = json.load(file)
 
+## Host del servidor.
 HOST = os.environ.get("HOST", config["host"])
+## Puerto del servidor.
 PORT = eval(os.environ.get("PORT", config["port"]))
-global SERVER_GPU_URL
+## URL del servidor GPU.
 SERVER_GPU_URL = os.environ.get("SERVER_GPU_URL", config["server_gpu_url"])
-
+## Zona horaria de España.
 SPAIN = pytz.timezone('Europe/Madrid')
 
-class ServerURL(BaseModel):
-    url: str
+
+
+# Funciones
 
 def obtenerElemContext(outputContexts):
+    """! Obtener índice del contexto que contiene la información de la conversación.
+    
+    @param outputContexts  Lista de contextos recibidos.
+    
+    @return Índice del contexto a utilizar.
+    """
+    
+    # Obtención del índice del contexto buscado
     elem = [i for i, s in enumerate(outputContexts) if s["name"].__contains__("talk-followup")][0]
 
+    # Si el contexto buscado no tiene el campo de los parámetros, se le crea. Esto pasa cuando es el inicio de la conversación
     if(not "parameters" in outputContexts[elem].keys()):
         outputContexts[elem]["parameters"] = {}
 
@@ -56,13 +165,23 @@ def obtenerElemContext(outputContexts):
 
 
 def is_first_response(outputContexts):
+    """! Comprobar si se trata del contexto de la primera respuesta de la conversación.
+    
+    @param outputContexts  Lista de contextos recibidos.
+    
+    @return Afirmación o negación en cuanto a si es la primera respuesta.
+    """
+
+    # Obtención del índice del contexto que contiene la información
     elem = obtenerElemContext(outputContexts)
     
+    # Comprobamos si el campo de la edad está dentro de los parámetros del contexto obtenido
     if(not "edad" in outputContexts[elem].get("parameters").keys()):
+        # Si no se encuentra el campo de la edad se afirma que es la primera respuesta
         return True
     else:
+        # En caso contrario, se niega que es la primera respuesta
         return False
-
 
 
 def generate_response(entry: str, edad: str, conver_id: str="", last_response: bool=False):
@@ -274,13 +393,6 @@ app = FastAPI(version="1.0.0")
 app.mount("/static", StaticFiles(directory=(BASE_PATH + "/static")))
 templates = Jinja2Templates(directory=(BASE_PATH + "/templates"))
 
-@app.middleware("http")
-def add_process_time_header(request: Request, call_next):
-    start_time = time()
-    response = call_next(request)
-    process_time = time() - start_time
-    print(f"Tiempo del proceso: {process_time}")
-    return response
 
 @app.get("/", response_class=HTMLResponse) 
 def home(request: Request, dark_mode: str = ""):
@@ -391,6 +503,12 @@ async def webhook_child( request: Request):
     return response
 
 
+def main():
+    """! Entrada al programa principal."""
+
+    uvicorn.run(app, host=HOST, port=PORT)
+
+
 
 if __name__ == "__main__":
-    uvicorn.run(app, host=HOST, port=PORT)
+    main()
