@@ -468,14 +468,26 @@ def make_response_goodbye(request: Dict):
 def main():
     """! Entrada al programa principal."""
 
+    # Creación de la APP de FastAPI
     app = FastAPI(version="1.0.0")
 
+    # Montaje de los archivos de la carpeta static
     app.mount("/static", StaticFiles(directory=(BASE_PATH + "/static")))
+    
+    # Crear un objeto templates para el manejo de los HTML
     templates = Jinja2Templates(directory=(BASE_PATH + "/templates"))
 
-
+    # Ruta raíz
     @app.get("/", response_class=HTMLResponse) 
     def home(request: Request, dark_mode: str = ""):
+        """! Función asociada a la ruta raíz.
+    
+        @param request    Datos de la petición al webhook.
+        @param dark_mode  Estado del switch de cambio al modo oscuro
+
+        @return HTML asociado a la página principal.
+        """
+
         return templates.TemplateResponse(
             "home.html", 
             {
@@ -484,8 +496,17 @@ def main():
             }
         )
 
+    # Ruta a la actividad del chatbot
     @app.get("/chatbot", response_class=HTMLResponse)
     def chatbot(request: Request, dark_mode: str = ""):
+        """! Función asociada a la ruta raíz.
+    
+        @param request    Datos de la petición al webhook.
+        @param dark_mode  Estado del switch de cambio al modo oscuro
+
+        @return HTML asociado a la actividad del chatbot.
+        """
+
         return templates.TemplateResponse(
             "chatbot.html", 
             {
@@ -499,8 +520,18 @@ def main():
             }
         )
 
+    # Ruta a la sección de reconocimiento de la edad
     @app.get("/capture_image", response_class=HTMLResponse) 
     def capture_image(request: Request, canal: str, dark_mode: str = ""):
+        """! Función asociada a la sección de reconocimiento de la edad.
+    
+        @param request    Datos de la petición al webhook.
+        @param canal      Indicador sobre el canal donde se realiza la conversación (Web o Telegram)
+        @param dark_mode  Estado del switch de cambio al modo oscuro
+
+        @return HTML asociado a la sección de reconocimiento de la edad.
+        """
+        
         return templates.TemplateResponse(
             "capture_image.html", 
             {
@@ -516,8 +547,17 @@ def main():
             }
         )
 
+    # Ruta a la interfaz del chatbot para adultos
     @app.get("/interface_adult", response_class=HTMLResponse)
     def interface_adult(request: Request, dark_mode: str = ""):
+        """! Función asociada a la interfaz del chatbot para adultos.
+    
+        @param request    Datos de la petición al webhook.
+        @param dark_mode  Estado del switch de cambio al modo oscuro
+
+        @return HTML asociado a la interfaz del chatbot para adultos.
+        """
+        
         return templates.TemplateResponse(
             "interface_adult.html", 
             {
@@ -526,8 +566,17 @@ def main():
             }
         )
 
+    # Ruta a la interfaz del chatbot para niños
     @app.get("/interface_child", response_class=HTMLResponse)
     def interface_child(request: Request, dark_mode: str = ""):
+        """! Función asociada a la interfaz del chatbot para niños.
+    
+        @param request    Datos de la petición al webhook.
+        @param dark_mode  Estado del switch de cambio al modo oscuro
+
+        @return HTML asociado a la interfaz del chatbot para niños.
+        """
+        
         return templates.TemplateResponse(
             "interface_child.html", 
             {
@@ -536,46 +585,82 @@ def main():
             }
         )
 
+    # Ruta a la sección de reactivación del servidor
     @app.get("/wakeup", response_class=PlainTextResponse)
     def wakeup():
+        """! Función asociada a la sección de reactivación del servidor.
+
+        @return Mensaje indicando el estado activo del servidor.
+        """
+
         return "Server ON"
 
+    # Ruta a la sección de actualización de la URL del servidor GPU
     @app.post("/setURL", response_class=PlainTextResponse)
     def setURL(request: ServerURL):
+        """! Función asociada a la sección de actualización de la URL del servidor GPU.
+
+        @param request  URL del servidor GPU.
+
+        @return Mensaje indicando la actualización de la URL del servidor GPU.
+        """
+        
+        # Actualización de la URL del servidor GPU
         global SERVER_GPU_URL
         SERVER_GPU_URL = request.url
+
         return "URL fijada correctamente"
 
+    # Ruta a la sección de gestión de los mensajes al chatbot para adultos
     @app.post("/webhook_adult")
     async def webhook_adult( request: Request):
+        """! Función asociada a la sección de gestión de los mensajes al chatbot para adultos.
+    
+        @param request  Datos de la petición al webhook.
+
+        @return Respuesta a la petición al webhook.
+        """
+        
+        # Obtención de los datos de la petición en formato JSON
         request_JSON = await request.json()
 
         print(request_JSON)
 
+        # Obtención del intent que ha enviado a la petición
         intent = request_JSON["queryResult"]["intent"]["displayName"]
 
+        # Actuación del webhook dependiendo del intent que envió la petición
         if intent == "Talk":
             response = make_response_talk(request_JSON, TalkType.adult)
         elif intent == "Goodbye":
-            # Implementar guardado del historial
             response = make_response_goodbye(request_JSON)
 
         print(response)
 
         return response
 
+    # Ruta a la sección de gestión de los mensajes al chatbot para niños
     @app.post("/webhook_child")
     async def webhook_child( request: Request):
+        """! Función asociada a la sección de gestión de los mensajes al chatbot para niños.
+    
+        @param request  Datos de la petición al webhook.
+
+        @return Respuesta a la petición al webhook.
+        """
+
+        # Obtención de los datos de la petición en formato JSON
         request_JSON = await request.json()
 
         print(request_JSON)
 
+        # Obtención del intent que ha enviado a la petición
         intent = request_JSON["queryResult"]["intent"]["displayName"]
 
+        # Actuación del webhook dependiendo del intent que envió la petición
         if intent == "Talk":
             response = make_response_talk(request_JSON, TalkType.child)
         elif intent == "Goodbye":
-            # Implementar guardado del historial
             response = make_response_goodbye(request_JSON)
 
         print(response)
@@ -583,9 +668,7 @@ def main():
         return response
 
 
-
-
-
+    # Inicio del servidor de la APP
     uvicorn.run(app, host=HOST, port=PORT)
 
 
