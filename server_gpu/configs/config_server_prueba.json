@@ -12,10 +12,10 @@
     "auth_key_deepl": "663c05c5-179a-a54d-9dd4-85bc4edcd925:fx",
 
 
-    "model_conver_adult": "result_finetuning/v2_adult",
-    "model_conver_adult_config": "result_finetuning/v2_adult/config.json",
-    "model_conver_adult_tokenizer": "result_finetuning/v2_adult",
-    "model_conver_adult_tokenizer_config": "result_finetuning/v2_adult/tokenizer_config.json",
+    "model_conver_adult": "result_finetuning/v3_adult",
+    "model_conver_adult_config": "result_finetuning/v3_adult/config.json",
+    "model_conver_adult_tokenizer": "result_finetuning/v3_adult",
+    "model_conver_adult_tokenizer_config": "result_finetuning/v3_adult/tokenizer_config.json",
 
     "model_conver_child": "result_finetuning/v2_child",
     "model_conver_child_config": "result_finetuning/v2_child/config.json",
