@@ -5,31 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La noche europea de los investigadores</title>
+    <!-- Estilo de la página principal -->
     <link rel="stylesheet" href="/static/css/home_styles.css">
+    <!-- Fuentes de la página principal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Definición de las variables a usar en Javascript -->
     <p id="dark_mode" class="oculto">{{ dark_mode }}</p>
 
 
+    <!-- Cabecera de la página -->
     <header class="header">
         <nav class="nav__header">
             <div class="container nav__container">
+                <!-- Logo de la barra de navegación -->
                 <div class="logo">
                     <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
                 </div>
+                <!-- Utilidades de la barra de navegación -->
                 <div class="tools">
+                    <!-- Links de la barra de navegación -->
                     <div class="show_links links">
                         <a href="#servicios" class="link">Actividades</a>
                         <a href="#" class="link__active">Sobre nosotros</a>
                     </div>
+                    <!-- Switch para el cambio a modo oscuro -->
                     <button class="switch_dark_mode" id="switch_dark_mode">
                         <img src="/static/img/sun-solid.svg" class="icono icono_sun">
                         <img src="/static/img/moon-solid.svg" class="icono icono_moon">
                     </button>
+                    <!-- Botón para el despliegue de la barra de navegación lateral -->
                     <button class="show_sidebar button_sidebar" id="button_sidebar">
                         <img src="/static/img/bars-solid.svg" class="bars-solid">
                     </button>
@@ -37,14 +46,18 @@
             </div>
         </nav>
 
+        <!-- Contenido de la cabecera -->
         <section class="container header__main">
+            <!-- Texto de la cabecera -->
             <div class="header__texts">
                 <h1 class="header__title">Mujeres y hombres que hacen ciencia para ti</h1>
                 <p class="header__subtitle">Por décimo año consecutivo y al mismo tiempo que en otras 371 ciudades europeas, te invitamos a descubrir el lado más humano de la investigación a través de un contacto directo con los propios expertos y expertas. Es La Noche Europea de
                     l@s Investigador@s, que se celebra este año el 24 de septiembre. <br><br>En la edición de 2021 La Noche combina actividades presenciales y otras online. Encuentra en la web todas las actividades.</p>
                 <a href="#" class="class_to_action">Conocer más</a>
             </div>
+            <!-- Mockup de la cabecera -->
             <img src="/static/img/mockup_noche_inves.png" class="mockup">
+            <!-- Barra de navegación lateral -->
             <div class="sidebar" id="sidebar">
                 <div class="sidebar_content">
                     <a href="#servicios" class="link_lateral">Actividades</a>
@@ -55,22 +68,28 @@
     </header>
 
     <main>
+        <!-- Sección de actividades -->
         <section class="servicios" id="servicios">
             <div class="container">
+                <!-- Título de la sección -->
                 <h2 class="servicios__title">Actividades destacadas</h2>
                 <p class="servicios__subtitle">En esta sección se destacan las actividades disponibles en Granada para esta edicción de "La noche europea de los investigadores".</p>
 
+                <!-- Cartas con las actividades disponibles -->
                 <article class="container__cards">
+                    <!-- Carta de la actividad de chatbot -->
                     <div class="card">
                         <img src="/static/img/img_chatbot.jpg" class="card__img">
                         <div class="cards__text">
                             <h3 class="card__title">Sara Chatbot</h3>
                             <p class="card__descrip">Chatbot orientado a formentar el interés por la IA.</p>
+                            <!-- Botón de redirección a la actividad de chatbot -->
                             <div id="open_chatbot" class="card__button pointer">
                                 <a>Ir al chatbot</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Carta de próximamente -->
                     <div class="card">
                         <img src="/static/img/img_coming_soon.jpg" class="card__img">
                         <div class="cards__text">
@@ -83,6 +102,7 @@
         </section>
     </main>
 
+    <!-- Scripts de Javascript -->
     <script src="/static/js/functions.js"></script>
     <script src="/static/js/base.js"></script>
     <script src="/static/js/home.js"></script>

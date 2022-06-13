@@ -1,37 +1,70 @@
+/* Función para la obtención del estado del switch 
+
+    @return Estado del switch
+*/
 function obtain_status_dark_mode() {
     var buttonSwitch = document.querySelector('#switch_dark_mode');
     return buttonSwitch.classList.value;
 }
 
+
+/* Función para abrir una URL en el navegador 
+
+    @param url    URL que se quiere abrir
+    @param canal  Canal que se está usando para usar el chatbot (Web o Telegram)
+*/
 function openURL(url, canal = '') {
+    /* Variables que contendrá la URL completa */
     var url_completa = '';
+
+    /* Dependiendo de si se indica el canal o no, la URL se formará de forma distinta */
     if (canal == '') {
+        /* Si no se indica el canal la URL completa está compuesta de la URL y el parámetro que indica el estado del switch del modo oscuro */
         url_completa = url + '?dark_mode=' + obtain_status_dark_mode();
     } else {
+        /* Si no se indica el canal la URL completa está compuesta de la URL, el parámetro que indica el canal que se está usando, y el parámetro que indica el estado del switch del modo oscuro */
         url_completa = url + '?canal=' + canal + '&dark_mode=' + obtain_status_dark_mode();
     }
+
+    /* Apertura de la URL completa */
     window.open(url_completa, "_self");
 }
 
 
+/* Función para abrir el chatbot con cierto canal 
+
+    @param canal  Canal con el que se va a abrir el chatbot (Web o Telegram)
+*/
 function openChatbot(canal) {
+    /* Obtención de la URL del servidor GPU */
     var url = document.getElementById('url').innerText;
 
+    /* Inicialización de una petición HTTP */
     const Http = new XMLHttpRequest();
+
+    /* Apertura de una petición GET con dirección a la URL del servidor GPU */
     Http.open("GET", url);
 
+    /* Envío de la petición GET */
     Http.send();
 
+    /* Función para gestionar la respuesta a la petición */
     Http.onreadystatechange = (e) => {
+        /* Texto que se devuelve como respuesta a la petición */
         var response = Http.responseText;
 
+        /* Si el servidor GPU no está disponible */
         if (response != 'Server GPU ON') {
+            /* Se muestra una ventana emergente indicando que no está disponible el servidor GPU */
             Swal.fire({
                 icon: 'error',
                 title: 'Error de conexión...',
                 text: 'El servidor GPU no está disponible en este momento.'
             });
         } else {
+            /* En caso contrario */
+
+            /* Se muestra una ventana emergente que pregunta si se quiere deducir la edad a partir de una foto */
             Swal.fire({
                 title: '¿Quiere deducir su edad mediante una foto?',
                 text: "¡No podrás revertir tu decisión!",
@@ -42,9 +75,14 @@ function openChatbot(canal) {
                 confirmButtonText: 'Si',
                 cancelButtonText: 'No'
             }).then((result) => {
+                /* Si se confirma el permiso para deducir a través de una foto */
                 if (result.isConfirmed) {
+                    /* Se abre la sección de deducción de edad indicando el canal elegido */
                     openURL('./capture_image', canal);
                 } else {
+                    /* En caso contrario */
+
+                    /* Se muestra una ventana emergente que pregunta con que rango de edad se asocia el usuario */
                     Swal.fire({
                         title: '¿Cuál es tu edad?',
                         text: 'Debes indicar cual de los siguientes rangos de edad se asocia más con tu edad actual.',
@@ -54,16 +92,29 @@ function openChatbot(canal) {
                         confirmButtonText: 'Adulto',
                         cancelButtonText: 'Niño'
                     }).then((result) => {
+                        /* Si se indica Adulto */
                         if (result.isConfirmed) {
+                            /* Si el canal elegido es la Web */
                             if (canal == "web") {
+                                /* Se abre la URL hacia la interfaz web del chatbot para adultos */
                                 openURL('./' + document.getElementById('web_adult').innerText);
                             } else if (canal == "telegram") {
+                                /* Si el canal elegido es Telegram */
+
+                                /* Se abre la URL hacia el chatbot para adultos de Telegram */
                                 openURL(document.getElementById('telegram_adult').innerText);
                             }
                         } else {
+                            /* Si se indica Niño */
+
+                            /* Si el canal elegido es la Web */
                             if (canal == "web") {
+                                /* Se abre la URL hacia la interfaz web del chatbot para niños */
                                 openURL('./' + document.getElementById('web_child').innerText);
                             } else if (canal == "telegram") {
+                                /* Si el canal elegido es Telegram */
+
+                                /* Se abre la URL hacia el chatbot para niños de Telegram */
                                 openURL(document.getElementById('telegram_child').innerText);
                             }
                         }
