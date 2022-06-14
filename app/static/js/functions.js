@@ -39,7 +39,7 @@ function openChatbot(canal) {
     /* Obtención de la URL del servidor GPU */
     var url = document.getElementById('url').innerText;
 
-    /* Inicialización de una petición HTTP */
+    /* Inicialización de una petición HTTPS */
     const Http = new XMLHttpRequest();
 
     /* Apertura de una petición GET con dirección a la URL del servidor GPU */
@@ -126,16 +126,35 @@ function openChatbot(canal) {
 }
 
 
+/* Función para obtener la afirmación o negación de que el objeto se encuentra en estado visible 
+
+    @param element  Elemento de la página web a examinar
+
+    @return Afirmación o negación de que el objeto se encuentra en estado visible
+*/
 function isVisible(element) {
     return element.offsetWidth > 0 || element.offsetHeight > 0;
 }
 
+
+/* Función para obtener el canvas activo según el dispositivo que se esté usando
+
+    @return Canvas que es visible
+*/
 function obtenerCanvas() {
+    /* Canvas cuando el dispositivo es un portátil */
     var canvasLaptop = document.getElementById('canvasLaptop');
+
+    /* Canvas cuando el dispositivo es una tablet en orientación vertical */
     var canvasTabletVertical = document.getElementById('canvasTabletVertical');
+
+    /* Canvas cuando el dispositivo es una table en orientación horizontal */
     var canvasTabletHorizontal = document.getElementById('canvasTabletHorizontal');
+
+    /* Canvas cuando el dispositivo es un teléfono móvil */
     var canvasMovil = document.getElementById('canvasMovil');
 
+    /* Selección del canvas según la visibilidad de los distintos canvas */
     if (isVisible(canvasLaptop)) {
         return 'canvasLaptop';
     }
@@ -150,20 +169,37 @@ function obtenerCanvas() {
     }
 }
 
+
+/* Función para obtener una foto tomada con la cámara del dispositivo y mostrarla en el canvas */
 function snapPhoto() {
+    /* Obtención del canvas */
     var canvas = document.getElementById(obtenerCanvas());
+
+    /* Obtención de la zona de dibujado del canvas */
     var context = canvas.getContext('2d');
+
+    /* Obteción del elemento que captura la imagen */
     var video = document.getElementById('video');
+
+    /* Relación entre el ancho y la altura del canvas */
     var relacion = 1.33;
 
+    /* Cálculo del ancho del vídeo */
     var videoHeight = video.clientWidth / relacion;
+    /* Cálculo del punto del ancho de la pantalla donde comienza el elemento */
     var inicioHeight = (video.clientHeight - videoHeight) / 2;
+
+    /* Dibujado de la imagen captada en el canvas */
     context.drawImage(video, 0, inicioHeight, video.clientWidth, videoHeight);
 
+    /* Hacer visible el botón para enviar la imagen para su procesado */
     document.getElementById('send_button').style.display = 'block';
 }
 
+
+/* Función para obtener una foto tomada con la cámara del dispositivo y mostrarla en el canvas */
 function sendPhoto() {
+    /* Se muestra una ventana emergente que pregunta si se quiere enviar la foto tomada */
     Swal.fire({
         title: '¿Deseas enviar esta foto?',
         text: "¡No podrás revertir tu decisión!",
@@ -174,38 +210,58 @@ function sendPhoto() {
         confirmButtonText: 'Enviar',
         cancelButtonText: 'No enviar'
     }).then((result) => {
+        /* Si se da permiso para enviar la foto */
         if (result.isConfirmed) {
+            /* Obtención de la URL del servidor GPU */
             var url = document.getElementById('url').innerText;
 
+            /* Elaboración de la URL completa que se va a abrir */
             url_deduct = url + '/' + document.getElementById('deduct').innerText;
 
+            /* Obtención del canavas que contiene la imagen */
             var canvas = document.getElementById(obtenerCanvas());
+
+            /* Obtención de la imagen en formato base64 */
             var imgBase64 = canvas.toDataURL("image/jpeg", 1.0);
 
-            console.log(imgBase64)
-
+            /* Inicialización de una petición HTTPS */
             const Http = new XMLHttpRequest();
+
+            /* Apertura de una petición POST con dirección a la sección de deducción del servidor GPU */
             Http.open("POST", url_deduct, true);
+
+            /* Fijar la cabecera de la petición */
             Http.setRequestHeader("Content-Type", "application/json");
 
+            /* Función para gestionar la respuesta a la petición */
             Http.onreadystatechange = function() {
+                /* Obtención de la edad deducida */
                 var age = Http.responseText
-                console.log(age)
 
+                /* Si el canal elegido es la Web */
                 if (document.getElementById('canal').innerText == "web") {
+                    /* Se abre la URL hacia la interfaz web del chatbot */
                     openURL('./' + document.getElementById('web_' + age).innerText);
                 } else if (document.getElementById('canal').innerText == "telegram") {
+                    /* Si el canal elegido es Telegram */
+
+                    /* Se abre la URL hacia el chatbot de Telegram */
                     openURL(document.getElementById('telegram_' + age).innerText);
                 }
             };
 
+            /* Elaboración de los datos que se enviarán en la petición */
             var data = {
                 imagen: imgBase64
             }
 
+            /* Envío de la petición POST */
             Http.send(JSON.stringify(data));
 
+            /* Obtener el elemento que muestra la carga de la página */
             var loading = document.getElementById('loading');
+
+            /* Activación del movimiento del elemento de carga */
             loading.classList.toggle('active');
         }
     });

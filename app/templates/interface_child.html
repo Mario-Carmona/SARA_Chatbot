@@ -5,23 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>La noche europea de los investigadores</title>
+    <!-- Estilo de la interfaz de chatbot -->
     <link rel="stylesheet" href="/static/css/interface_styles.css">
+    <!-- Fuentes de la interfaz de chatbot -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <!-- Definición de las variables a usar en Javascript -->
+    <!--    Estado del switch de cambio a modo oscuro en la anterior ventana -->
     <p id="dark_mode" class="oculto">{{ dark_mode }}</p>
 
 
+    <!-- Cabecera de la página -->
     <header class="header">
         <nav class="nav__header">
             <div class="container nav__container">
+                <!-- Logo de la barra de navegación -->
                 <div class="logo">
                     <h2 class="logo__name">La noche europea de los investigadores <span class="siglas">(ERN)</span></h2>
                 </div>
+                <!-- Utilidades de la barra de navegación -->
                 <div class="tools">
+                    <!-- Links de la barra de navegación -->
                     <div class="show_links links">
                         <div id="link_inicio" class="link pointer">
                             <a>Inicio</a>
@@ -31,10 +39,12 @@
                         </div>
                         <a href="#" class="link__active">Sobre nosotros</a>
                     </div>
+                    <!-- Switch para el cambio a modo oscuro -->
                     <button class="switch_dark_mode" id="switch_dark_mode">
                         <img src="/static/img/sun-solid.svg" class="icono icono_sun">
                         <img src="/static/img/moon-solid.svg" class="icono icono_moon">
                     </button>
+                    <!-- Botón para el despliegue de la barra de navegación lateral -->
                     <button class="show_sidebar button_sidebar" id="button_sidebar">
                         <img src="/static/img/bars-solid.svg" class="bars-solid">
                     </button>
@@ -42,7 +52,9 @@
             </div>
         </nav>
         <div class="chat">
+            <!-- Interfaz del chatbot para niños -->
             <iframe class="chat_iframe" allow="microphone;" src="https://console.dialogflow.com/api-client/demo/embedded/07b6f139-6e98-4953-ab66-a7d3fcf56af8"> Your browser doesn't support iframes </iframe>
+            <!-- Barra de navegación lateral -->
             <div class="sidebar" id="sidebar">
                 <div class="sidebar_content">
                     <div id="link_inicio_lateral" class="link_lateral pointer">
@@ -57,7 +69,7 @@
         </div>
     </header>
 
-
+    <!-- Scripts de Javascript -->
     <script src="/static/js/functions.js"></script>
     <script src="/static/js/base.js"></script>
     <script src="/static/js/interface_child.js"></script>

@@ -29,6 +29,9 @@
     --header_height: 8vh;
 }
 
+
+/* Estilo aplicable a todos los elementos */
+
 * {
     margin: 0;
     padding: 0;
@@ -36,6 +39,9 @@
     font-size: 16px;
     transition: .3s ease all;
 }
+
+
+/* Estilo para todos los body de las distintas secciones del sistema */
 
 body {
     font-family: 'Fredoka', sans-serif;
@@ -314,9 +320,15 @@ body.dark_mode .card__descrip {
     padding: 1vh 0 1vh 2vh;
 }
 
+
+/* Estilo para ocultar elementos */
+
 .oculto {
     display: none;
 }
+
+
+/* Estilo para dar la apariencia de botones a los elementos que no lo son */
 
 .pointer {
     cursor: pointer;
