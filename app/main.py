@@ -63,12 +63,6 @@
 # - Librería uvicorn (https://www.uvicorn.org/)
 #   - Acceso a la función run
 #
-# @section notes_doxygen_example Notes
-# - Comments are Doxygen compatible.
-#
-# @section todo_doxygen_example TODO
-# - None.
-#
 # @section author_doxygen_example Autor
 # - Created by Mario Carmona Segovia.
 #

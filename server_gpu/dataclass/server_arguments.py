@@ -1,6 +1,36 @@
+"""! @brief Definición de argumentos de configuración relacionados con el servidor."""
+
+##
+# @file server_arguments.py
+#
+# @brief Definición de argumentos del servidor.
+#
+# @section description_main Descripción
+# Definición de argumentos de configuración relacionados con el servidor.
+#
+# @section libraries_main Librerías/Módulos
+# - Librería estándar dataclasses (https://docs.python.org/3/library/dataclasses.html)
+#   - Acceso a la función dataclass.
+#   - Acceso a la función field.
+# - Librería estándar os (https://docs.python.org/3/library/os.html)
+# - Librería dataclass.deepl_arguments
+#   - Acceso a la clase DeeplArguments
+# - Librería dataclass.generate_server_arguments
+#   - Acceso a la clase GenerateServerArguments
+# - Librería dataclass.project_arguments
+#   - Acceso a la clase ProyectArguments
+#
+# @section author_doxygen_example Autor
+# - Created by Mario Carmona Segovia.
+#
+# Copyright (c) 2022.  All rights reserved.
+
+
+# Imports
 
 import os
 from dataclasses import dataclass, field
+
 from dataclass.deepl_arguments import DeeplArguments
 from dataclass.generate_server_arguments import GenerateServerArguments
 from dataclass.project_arguments import ProyectArguments
@@ -9,8 +39,8 @@ from dataclass.project_arguments import ProyectArguments
 @dataclass
 class ServerArguments(ProyectArguments, DeeplArguments, 
                       GenerateServerArguments):
-    """
-    Argumentos relacionados con la configuración del servidor
+    """! Dataclass para definir los argumentos del servidor.
+    Define la dataclass utilizada para definir los argumentos de configuración relacionados con el servidor.
     """
 
     host: str = field(
@@ -38,49 +68,44 @@ class ServerArguments(ProyectArguments, DeeplArguments,
             "help": "Ruta al archivo de configuración de ngrok"
         }
     )
-    auth_key_deepl: str = field(
-        metadata={
-            "help": "Clave de autenticación para la API de DeepL"
-        }
-    )
     model_conver_adult: str = field(
         metadata={
-            "help": "Ruta a la carpeta del modelo"
+            "help": "Ruta a la carpeta del modelo para adultos"
         }
     )
     model_conver_adult_config: str = field(
         metadata={
-            "help": "Ruta al archivo de configuración del modelo"
+            "help": "Ruta al archivo de configuración del modelo para adultos"
         }
     )
     model_conver_adult_tokenizer: str = field(
         metadata={
-            "help": "Ruta a la carpeta del tokenizer del modelo"
+            "help": "Ruta a la carpeta del tokenizer del modelo para adultos"
         }
     )
     model_conver_adult_tokenizer_config: str = field(
         metadata={
-            "help": "Ruta al archivo de configuración del tokenizer del modelo"
+            "help": "Ruta al archivo de configuración del tokenizer del modelo para adultos"
         }
     )
     model_conver_child: str = field(
         metadata={
-            "help": "Ruta a la carpeta del modelo"
+            "help": "Ruta a la carpeta del modelo para niños"
         }
     )
     model_conver_child_config: str = field(
         metadata={
-            "help": "Ruta al archivo de configuración del modelo"
+            "help": "Ruta al archivo de configuración del modelo para niños"
         }
     )
     model_conver_child_tokenizer: str = field(
         metadata={
-            "help": "Ruta a la carpeta del tokenizer del modelo"
+            "help": "Ruta a la carpeta del tokenizer del modelo para niños"
         }
     )
     model_conver_child_tokenizer_config: str = field(
         metadata={
-            "help": "Ruta al archivo de configuración del tokenizer del modelo"
+            "help": "Ruta al archivo de configuración del tokenizer del modelo para niños"
         }
     )
     tam_history: int = field(
@@ -90,6 +115,12 @@ class ServerArguments(ProyectArguments, DeeplArguments,
     )
 
     def __post_init__(self):
+        """! Postprocesado de los argumentos.
+        
+        @param self  Instancia de la clase ServerArguments.
+        """
+
+        # Completar las rutas de todos los argumentos
         self.ngrok_path = os.path.join(self.workdir, self.ngrok_path)
         self.ngrok_config_path = os.path.join(self.workdir, self.ngrok_config_path)
 
@@ -103,6 +134,7 @@ class ServerArguments(ProyectArguments, DeeplArguments,
         self.model_conver_child_tokenizer = os.path.join(self.workdir, self.model_conver_child_tokenizer)
         self.model_conver_child_tokenizer_config = os.path.join(self.workdir, self.model_conver_child_tokenizer_config)
 
+        # Comprobaciones de los argumentos
         assert os.path.exists(self.ngrok_path), "`ngrok_path` debe ser un archivo existente."
 
         assert os.path.exists(self.ngrok_config_path), "`ngrok_config_path` debe ser un archivo existente."
