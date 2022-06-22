@@ -12,9 +12,6 @@
 # Programas Python para la ejecución de la APP del sistema Sara Chatbot 
 # en la plataforma Heroku.
 #
-# @section notes_main Notes
-# - Add special project notes here that you want to communicate to the user.
-#
 # Copyright (c) 2022.  All rights reserved.
 
 
@@ -27,8 +24,6 @@
 # Programa principal para la ejecución de la APP.
 #
 # @section libraries_main Librerías/Módulos
-# - Librería estándar time (https://docs.python.org/3/library/time.html)
-#   - Acceso a la función time.
 # - Librería estándar json (https://docs.python.org/3/library/json.html)
 #   - Acceso a la función load
 #   - Acceso a la función loads
@@ -71,25 +66,29 @@
 
 # Imports
 
+#   General
 import json
-from time import time
 import os
 from pathlib import Path
 from typing import Dict
 import enum
 
+#   Gestión peticiones
 import requests
-import psycopg2
+from pydantic import BaseModel
+
+#   Gestión del tiempo
 import pytz
 from datetime import datetime
 
-from pydantic import BaseModel
+#   Gestión base de datos
+import psycopg2
 
+#   Despliegue servidor
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-
 import uvicorn
 
 
@@ -493,7 +492,7 @@ def main():
     # Ruta a la actividad del chatbot
     @app.get("/chatbot", response_class=HTMLResponse)
     def chatbot(request: Request, dark_mode: str = ""):
-        """! Función asociada a la ruta raíz.
+        """! Función asociada a la actividad del chatbot.
     
         @param request    Datos de la petición al webhook.
         @param dark_mode  Estado del switch de cambio al modo oscuro

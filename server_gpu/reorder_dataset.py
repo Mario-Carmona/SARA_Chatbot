@@ -1,6 +1,35 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
+"""! @brief Script para la ordenación de un dataset."""
+
+
+##
+# @file reorder_dataset.py
+#
+# @brief Programa para la ordenación de un dataset.
+#
+# @section description_main Descripción
+# Programa para la ordenación de un dataset.
+#
+# @section libraries_main Librerías/Módulos
+# - Librería pandas (https://pandas.pydata.org/docs/)
+#   - Acceso a la función DataFrame
+#   - Acceso a la función read_csv
+# - Librería estándar argparse (https://docs.python.org/3/library/argparse.html)
+#   - Acceso a la función ArgumentParser
+# - Librería utils
+#   - Acceso a la función save_csv
+#
+# @section author_doxygen_example Autor
+# - Created by Mario Carmona Segovia.
+#
+# Copyright (c) 2022.  All rights reserved.
+
+
+# Imports
+
 import pandas as pd
 import argparse
 
@@ -9,12 +38,20 @@ from utils import save_csv
 
 
 def ordenar_dataset(archivo):
+    """! Ordenar un dataset.
+    
+    @param archivo  Nombre del archivo que contiene el dataset a ordenar
+    
+    @return Dataframe ordenado.
+    """
+
     # Lectura del dataset
     dataset = pd.read_csv(archivo)
 
     # Ordenar el dataset en base a la columna Topic
     dataset = dataset.sort_values(dataset.columns.values[0])
 
+    # Creación del nuevo dataset ordenado
     new_dataset = pd.DataFrame({})
     for column in dataset.columns.values:
         new_dataset[column] = dataset[column].to_list()
@@ -22,15 +59,28 @@ def ordenar_dataset(archivo):
     return new_dataset
 
 
-if __name__ == "__main__":
+def main():
+    """! Entrada al programa."""
 
+    # Analizador de argumentos
     parser = argparse.ArgumentParser()
+
+    # Añadir un argumento para el nombre del archivo que contiene el dataset
     parser.add_argument(
         'dataset_file', 
         type=str, 
-        help=''
+        help='El formato del archivo debe ser \'dataset.csv\''
     )
+
+    # Obtención de los argumentos
     args = parser.parse_args()
 
+    # Ordenación del dataset
     order_dataset = ordenar_dataset(args.dataset_file)
+
+    # Guardado del dataset ordenado en el mismo archivo que contenía el dataset original
     save_csv(order_dataset, args.dataset_file)
+
+
+if __name__ == "__main__":
+    main()

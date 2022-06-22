@@ -1,6 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+
+
+
+
+
+
+
+
+
+
 import argparse
 from pathlib import Path
 import sys
@@ -9,7 +19,6 @@ import os
 from utils import save_csv
 
 from prueba_generate_theme_dataset import generate_theme_dataset
-from extract_empathetic_dialogues import extract_dataset_sentiment, clean_trash_csv
 from join_datasets import join_datasets
 from split_dataset import split_dataset
 from generate_finetuning_dataset import obtain_finetuning_dataset
@@ -26,8 +35,7 @@ def save_dataset(dataset, archivo):
     save_csv(order_dataset, archivo)
 
 
-if __name__ == "__main__":
-
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
         'config_file', 
@@ -90,7 +98,9 @@ if __name__ == "__main__":
         train_s_t, validation_s_t = obtain_finetuning_dataset(train_dataset, valid_dataset)
 
         save_csv(train_s_t, os.path.join(dir_path, "train.csv"))
-        clean_trash_csv(os.path.join(dir_path, "train.csv"), 2)
 
         save_csv(validation_s_t, os.path.join(dir_path, "validation.csv"))
-        clean_trash_csv(os.path.join(dir_path, "validation.csv"), 2)
+
+
+if __name__ == "__main__":
+    main()
