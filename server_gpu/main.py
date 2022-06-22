@@ -164,7 +164,7 @@ parser = argparse.ArgumentParser()
 
 # Añadir un argumento para el archivo de configuración
 parser.add_argument(
-    "--config_file", 
+    "config_file", 
     type = str,
     help = "El formato del archivo debe ser \'config.json\'"
 )
