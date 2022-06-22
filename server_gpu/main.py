@@ -355,7 +355,6 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
     print(output)
 
     # Actualización del diccionario de conversaciones
-    global dicc_conversation
     if last_response:
         # Si es el final de la conversación se elimina la misma del diccionario
         del dicc_conversation[str(output.uuid)]
