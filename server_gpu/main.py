@@ -164,8 +164,14 @@ parser = argparse.ArgumentParser()
 
 # Añadir un argumento para el archivo de configuración
 parser.add_argument(
-    "config_file", 
+    "--config_file", 
     type = str,
+    help = "El formato del archivo debe ser \'config.json\'"
+)
+
+parser.add_argument(
+    "--local_rank", 
+    type = int,
     help = "El formato del archivo debe ser \'config.json\'"
 )
 
@@ -205,7 +211,7 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 
 # Obtener el identificador de proceso en la máquina local
-local_rank = int(os.getenv("LOCAL_RANK", "0"))
+local_rank = args.local_rank
 # Obtener el número de procesos que están trabajando en el script
 world_size = int(os.getenv("WORLD_SIZE", "1"))
 
