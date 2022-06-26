@@ -594,7 +594,7 @@ def main():
         """
 
         # Elección del rango de edad a devolver
-        if int(preds) <= 1:
+        if sum(list(proba[:preds+1])) >= sum(list(proba[preds+1:])):
             print("child")
             return "child"
         else:
