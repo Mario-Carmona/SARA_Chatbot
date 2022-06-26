@@ -593,6 +593,9 @@ def main():
         more than 70
         """
 
+        print(proba.tolist())
+        input("--->")
+
         # Elección del rango de edad a devolver
         if sum(list(proba[:preds+1])) >= sum(list(proba[preds+1:])):
             print("child")
