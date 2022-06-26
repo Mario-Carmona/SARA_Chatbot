@@ -575,6 +575,8 @@ def main():
         # Obtención de las probabilidades de cada clase predecida
         proba = output.logits.softmax(1)
 
+        print(proba)
+
         # Cálculo de la clase más probable
         preds = proba.argmax(1)
 
@@ -593,11 +595,11 @@ def main():
 
         # Elección del rango de edad a devolver
         if int(preds) <= 1:
-            return "child"
             print("child")
+            return "child"
         else:
-            return "adult"
             print("adult")
+            return "adult"
 
 
     # Ruta a la reconexión con el Controlador
