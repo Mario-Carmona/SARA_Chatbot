@@ -169,6 +169,7 @@ parser.add_argument(
     help = "El formato del archivo debe ser \'config.json\'"
 )
 
+# Añadir un argumento para el local_rank
 parser.add_argument(
     "--local_rank", 
     type = int,
@@ -223,15 +224,6 @@ deepspeed.init_distributed()
 
 # Fijar semilla del generador de números aleatorios
 set_seed(0)
-
-
-
-# Load pretrained model and tokenizer
-#
-# Distributed training:
-# The .from_pretrained methods guarantee that only one local process can concurrently
-# download model & vocab.
-
 
 
 # Carga de la configuración del modelo conversacional para adultos

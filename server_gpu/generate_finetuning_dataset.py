@@ -71,15 +71,23 @@ def obtain_finetuning_dataset(train_dataset, valid_dataset):
 
 
 def main():
+    """! Entrada al programa."""
+
+    # Constantes globales
+    ## Ruta base del programa python.
     BASE_PATH = Path(__file__).resolve().parent
 
+    # Analizador de argumentos
     parser = argparse.ArgumentParser()
 
+    # Añadir un argumento para el dataset de entrenamiento
     parser.add_argument(
         "train_dataset", 
         type = str,
         help = "El formato del archivo debe ser \'archivo.csv\'"
     )
+
+    # Añadir un argumento para el dataset de validación
     parser.add_argument(
         "valid_dataset", 
         type = str,
@@ -87,23 +95,35 @@ def main():
     )
 
     try:
+        # Obtención de los argumentos
         args = parser.parse_args()
+
+        # Comprobaciones de los argumentos
         assert args.input_dataset.split('.')[-1] == "csv"
         assert args.output_dataset.split('.')[-1] == "csv"
     except:
+        # Visualización de las ayudas de los argumentos en caso de error en la comprobación de los mismos
         parser.print_help()
+
+        # Finalización forzosa del programa
         sys.exit(0)
 
-
+    # Obtención del Dataframe de entrenamiento
     train_dataset = pd.read_csv(os.path.join(BASE_PATH,args.train_dataset))
+
+    # Obtención del Dataframe de validación
     valid_dataset = pd.read_csv(os.path.join(BASE_PATH,args.valid_dataset))
 
+    # Generación de los Dataframe con el formato de entrenamiento
     train_s_t, validation_s_t = obtain_finetuning_dataset(train_dataset, valid_dataset)
 
+    # Cálculo de la ruta de la carpeta que contiene los datasets para el entrenamiento
     dir = os.path.join(BASE_PATH,'/'.join(args.train_dataset.split('/')[:-1]))
 
+    # Guardado del Dataframe de entrenamiento con el formato de entrenamiento
     save_csv(train_s_t, os.path.join(dir,"train.csv"))
 
+    # Guardado del Dataframe de validación con el formato de entrenamiento
     save_csv(validation_s_t, os.path.join(dir,"validation.csv"))
 
 
