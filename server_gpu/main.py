@@ -594,8 +594,10 @@ def main():
         # Elección del rango de edad a devolver
         if int(preds) <= 1:
             return "child"
+            print("child")
         else:
             return "adult"
+            print("adult")
 
 
     # Ruta a la reconexión con el Controlador
