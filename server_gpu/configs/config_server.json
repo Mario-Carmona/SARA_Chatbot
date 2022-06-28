@@ -17,10 +17,10 @@
     "model_conver_adult_tokenizer": "result_finetuning/v3_adult",
     "model_conver_adult_tokenizer_config": "result_finetuning/v3_adult/tokenizer_config.json",
 
-    "model_conver_child": "result_finetuning/v2_child",
-    "model_conver_child_config": "result_finetuning/v2_child/config.json",
-    "model_conver_child_tokenizer": "result_finetuning/v2_child",
-    "model_conver_child_tokenizer_config": "result_finetuning/v2_child/tokenizer_config.json",
+    "model_conver_child": "result_finetuning/v3_child",
+    "model_conver_child_config": "result_finetuning/v3_child/config.json",
+    "model_conver_child_tokenizer": "result_finetuning/v3_child",
+    "model_conver_child_tokenizer_config": "result_finetuning/v3_child/tokenizer_config.json",
 
 
     "tam_history": 500,
