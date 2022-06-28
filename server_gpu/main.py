@@ -336,6 +336,8 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
     # Añadir a la conversación el texto de entrada traducido
     conversation.add_user_input(entry_EN)
 
+    sameIdent = False
+
     try:
         # Generación de la conversación de respuesta
         output = pipelineConverAdult(
@@ -365,6 +367,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
         answer_EN = output.generated_responses[-1]
     except RuntimeError:
         answer_EN = "I do not understand your question"
+        sameIdent = True
 
     print(answer_EN)
 
@@ -383,7 +386,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": conver_id
+        "conver_id": conver_id if sameIdent else str(output.uuid)
     }
 
     return response
@@ -416,6 +419,8 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
     # Añadir a la conversación el texto de entrada traducido
     conversation.add_user_input(entry_EN)
 
+    sameIdent = False
+
     try:
         # Generación de la conversación de respuesta
         output = pipelineConverChild(
@@ -445,6 +450,7 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
         answer_EN = output.generated_responses[-1]
     except RuntimeError:
         answer_EN = "I do not understand your question"
+        sameIdent = True
 
     print(answer_EN)
 
@@ -463,7 +469,7 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": conver_id
+        "conver_id": conver_id if sameIdent else str(output.uuid)
     }
 
     return response
