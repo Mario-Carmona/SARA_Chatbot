@@ -315,7 +315,7 @@ def obtener_answers(driver):
         
 
 def obtenerDatasetTopic(args, driver, topic):
-    """! Generar el dataset de un Topic.
+    """! Generar el conjunto de datos de un Topic.
     
     @param args    Argumentos del script
     @param driver  Entorno web
@@ -430,7 +430,7 @@ def main():
     # Añadir un argumento para el archivo que contiene la lista de Topics
     parser.add_argument("-t", "--topics", help="El formato del archivo debe ser \'topics.txt\'")
 
-    # Añadir un argumento para el archivo que contendrá el dataset resultante
+    # Añadir un argumento para el archivo que contendrá el conjunto de datos resultante
     parser.add_argument("-f", "--output", help="El formato del archivo debe ser \'dataset.csv\'")
 
     # Obtención de los argumentos

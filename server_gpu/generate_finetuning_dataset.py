@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-"""! @brief Script para la obtención de un dataset con el formato adecuado para realizar el finetuning."""
+"""! @brief Script para la obtención de un conjunto de datos con el formato adecuado para realizar el finetuning."""
 
 
 ##
 # @file generate_finetuning_dataset.py
 #
-# @brief Programa para la obtención de un dataset con el formato adecuado para realizar el finetuning.
+# @brief Programa para la obtención de un conjunto de datos con el formato adecuado para realizar el finetuning.
 #
 # @section description_main Descripción
-# Programa para la obtención de un dataset con el formato adecuado para realizar el finetuning.
+# Programa para la obtención de un conjunto de datos con el formato adecuado para realizar el finetuning.
 #
 # @section libraries_main Librerías/Módulos
 # - Librería pandas (https://pandas.pydata.org/docs/)
@@ -46,7 +46,7 @@ from utils import save_csv
 
 
 def obtain_finetuning_dataset(train_dataset, valid_dataset):
-    """! Obtener dataset con el formato para realizar el finetuning.
+    """! Obtener conjunto de datos con el formato para realizar el finetuning.
     
     @param train_dataset  Dataframe de entrenamiento
     @param valid_dataset  Dataframe de validación
@@ -80,14 +80,14 @@ def main():
     # Analizador de argumentos
     parser = argparse.ArgumentParser()
 
-    # Añadir un argumento para el dataset de entrenamiento
+    # Añadir un argumento para el conjunto de datos de entrenamiento
     parser.add_argument(
         "train_dataset", 
         type = str,
         help = "El formato del archivo debe ser \'archivo.csv\'"
     )
 
-    # Añadir un argumento para el dataset de validación
+    # Añadir un argumento para el conjunto de datos de validación
     parser.add_argument(
         "valid_dataset", 
         type = str,

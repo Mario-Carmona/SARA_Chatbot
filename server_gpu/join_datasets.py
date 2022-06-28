@@ -75,7 +75,7 @@ def join_datasets(list_datasets, remove_source_files):
     # Si se indica la eliminación de los archivos originales
     if remove_source_files:
         for dataset_path in list_datasets:
-            # Eliminación del dataset
+            # Eliminación del conjunto de datos
             os.remove(dataset_path)
     
     return result_dataset
@@ -127,7 +127,7 @@ def main():
     # Unión de los datasets
     join_dataset = join_datasets(join_args.list_datasets, join_args.remove_source_files)
 
-    # Guardado del dataset producto de la unión
+    # Guardado del conjunto de datos producto de la unión
     save_csv(join_dataset, join_args.join_dataset_file)
 
 

@@ -8,7 +8,7 @@
     "model_conver_tokenizer_config": "facebook/blenderbot-400M-distill/tokenizer_config.json",
 
 
-    "data_dir": "server_gpu/datasets/v2/split_0.8_child",
+    "data_dir": "server_gpu/datasets/v3/split_0.8_child",
     "train_dataset": "train.csv",
     "validation_dataset": "validation.csv",
     "task": "conversational",
@@ -20,7 +20,7 @@
 
     "seed": 0,
 
-    "output_dir": "result_finetuning/v2_child",
+    "output_dir": "result_finetuning/v3_child",
     "overwrite_output_dir": true,
     "resume_from_checkpoint": false,
 

@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-"""! @brief Script para la división de un dataset."""
+"""! @brief Script para la división de un conjunto de datos."""
 
 
 ##
 # @file split_dataset.py
 #
-# @brief Programa para la división de un dataset.
+# @brief Programa para la división de un conjunto de datos.
 #
 # @section description_main Descripción
-# Programa para la división de un dataset.
+# Programa para la división de un conjunto de datos.
 #
 # @section libraries_main Librerías/Módulos
 # - Librería pandas (https://pandas.pydata.org/docs/)
@@ -74,7 +74,7 @@ def obtenerTrainDataset(groups_datasets: List[DataFrame], train_split: float, se
 
     # Obtención de las particiones de entrenamiento de cada Dataframe, de esta 
     # forma el Dataframe de entrenamiento mantendrá la proporción de datos de 
-    # cada Topic que existe en el dataset original
+    # cada Topic que existe en el conjunto de datos original
     for dataset in groups_datasets:
         lista.append(dataset.sample(
             frac=train_split,

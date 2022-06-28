@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-"""! @brief Script para la obtención de un dataset para el entrenamiento de un modelo."""
+"""! @brief Script para la obtención de un conjunto de datos para el entrenamiento de un modelo."""
 
 
 ##
 # @file generate_dataset.py
 #
-# @brief Programa para la obtención de un dataset para el entrenamiento de un modelo.
+# @brief Programa para la obtención de un conjunto de datos para el entrenamiento de un modelo.
 #
 # @section description_main Descripción
-# Programa para la obtención de un dataset para el entrenamiento de un modelo.
+# Programa para la obtención de un conjunto de datos para el entrenamiento de un modelo.
 #
 # @section libraries_main Librerías/Módulos
 # - Librería pandas (https://pandas.pydata.org/docs/)
@@ -150,7 +150,7 @@ def main():
         # Lista de datasets a unir
         new_list_datasets = generate_args.list_datasets
 
-        # Añadir el dataset temático a la lista
+        # Añadir el conjunto de datos temático a la lista
         new_list_datasets.append(dataset_path)
 
         # Relalizar la unión de los datasets

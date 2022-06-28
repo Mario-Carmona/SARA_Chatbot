@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-"""! @brief Script para la ordenación de un dataset."""
+"""! @brief Script para la ordenación de un conjunto de datos."""
 
 
 ##
 # @file reorder_dataset.py
 #
-# @brief Programa para la ordenación de un dataset.
+# @brief Programa para la ordenación de un conjunto de datos.
 #
 # @section description_main Descripción
-# Programa para la ordenación de un dataset.
+# Programa para la ordenación de un conjunto de datos.
 #
 # @section libraries_main Librerías/Módulos
 # - Librería pandas (https://pandas.pydata.org/docs/)
@@ -38,20 +38,20 @@ from utils import save_csv
 
 
 def ordenar_dataset(archivo):
-    """! Ordenar un dataset.
+    """! Ordenar un conjunto de datos.
     
-    @param archivo  Nombre del archivo que contiene el dataset a ordenar
+    @param archivo  Nombre del archivo que contiene el conjunto de datos a ordenar
     
     @return Dataframe ordenado.
     """
 
-    # Lectura del dataset
+    # Lectura del conjunto de datos
     dataset = pd.read_csv(archivo)
 
-    # Ordenar el dataset en base a la columna Topic
+    # Ordenar el conjunto de datos en base a la columna Topic
     dataset = dataset.sort_values(dataset.columns.values[0])
 
-    # Creación del nuevo dataset ordenado
+    # Creación del nuevo conjunto de datos ordenado
     new_dataset = pd.DataFrame({})
     for column in dataset.columns.values:
         new_dataset[column] = dataset[column].to_list()
@@ -65,7 +65,7 @@ def main():
     # Analizador de argumentos
     parser = argparse.ArgumentParser()
 
-    # Añadir un argumento para el nombre del archivo que contiene el dataset
+    # Añadir un argumento para el nombre del archivo que contiene el conjunto de datos
     parser.add_argument(
         'dataset_file', 
         type=str, 
@@ -75,10 +75,10 @@ def main():
     # Obtención de los argumentos
     args = parser.parse_args()
 
-    # Ordenación del dataset
+    # Ordenación del conjunto de datos
     order_dataset = ordenar_dataset(args.dataset_file)
 
-    # Guardado del dataset ordenado en el mismo archivo que contenía el dataset original
+    # Guardado del conjunto de datos ordenado en el mismo archivo que contenía el conjunto de datos original
     save_csv(order_dataset, args.dataset_file)
 
 

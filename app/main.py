@@ -81,7 +81,7 @@ from pydantic import BaseModel
 import pytz
 from datetime import datetime
 
-#   Gestión base de datos
+#   Gestión del log
 import psycopg2
 
 #   Despliegue servidor
@@ -354,20 +354,20 @@ def generarContent(context):
 
 
 def save_conversation(context, edad, date_ini):
-    """! Guardar la conversación en la base de datos.
+    """! Guardar la conversación en el log.
     
     @param context   Contexto con el contenido de la conversación.
     @param edad      Edad del usuario.
     @param date_ini  Fecha del inicio de la conversación
     """
     
-    # Obtención de la URL de la base de datos
+    # Obtención de la URL del log
     DATABASE_URL = os.environ['DATABASE_URL']
 
-    # Abrir conexión con la base de datos
+    # Abrir conexión con el log
     db = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-    # Obtener cursor de la base de datos
+    # Obtener cursor del log
     cur = db.cursor()
 
     # Generar cadena con el contenido de la conversación
@@ -376,7 +376,7 @@ def save_conversation(context, edad, date_ini):
     # Obtención de la fecha de cierre de la conversación
     date_fin = datetime.now(SPAIN).strftime('%Y-%m-%d %H:%M:%S')
 
-    # Inserción de la conversación dentro de la base de datos
+    # Inserción de la conversación dentro del log
     cur.execute(
         """INSERT INTO Conversations (edad, date_ini, date_fin, content) 
             VALUES (
@@ -394,13 +394,13 @@ def save_conversation(context, edad, date_ini):
         )
     )
 
-    # Indicación de los cambios realizados en la base de datos
+    # Indicación de los cambios realizados en el log
     db.commit()
 
     # Cierre del cursor
     cur.close()
 
-    # Cierre de la conexión de la base de datos
+    # Cierre de la conexión del log
     db.close()
 
 
@@ -448,7 +448,7 @@ def make_response_goodbye(request: Dict):
         "output_contexts": []
     }
 
-    # Salvar la conversación en la base de datos
+    # Salvar la conversación en el log
     save_conversation(
         outputContexts[elem]["parameters"]["context"],
         outputContexts[elem]["parameters"]["edad"], 

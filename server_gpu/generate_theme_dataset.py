@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 
-"""! @brief Script para la división de un dataset."""
+"""! @brief Script para la división de un conjunto de datos."""
 
 
 ##
 # @file generate_theme_dataset.py
 #
-# @brief Programa para la división de un dataset.
+# @brief Programa para la división de un conjunto de datos.
 #
 # @section description_main Descripción
-# Programa para la división de un dataset.
+# Programa para la división de un conjunto de datos.
 #
 # @section libraries_main Librerías/Módulos
 # - Librería estándar os (https://docs.python.org/3/library/os.html)
@@ -258,7 +258,7 @@ def traducirES_EN(groups_datasets):
     # Lista que contendrá los datasets después de la traducción
     new_groups_datasets = []
 
-    # Traducción del contenido de cada dataset
+    # Traducción del contenido de cada conjunto de datos
     for dataset in groups_datasets:
         # Dataset que tendrá su contenido traducido
         new_dataset = {}
@@ -277,10 +277,10 @@ def traducirES_EN(groups_datasets):
                 # Actualización de la barra de progreso
                 progress_bar.update(1)
 
-            # Añadir contenido a la columna del dataset
+            # Añadir contenido a la columna del conjunto de datos
             new_dataset[column] = lista
 
-        # Guardado del dataset traducido
+        # Guardado del conjunto de datos traducido
         new_groups_datasets.append(DataFrame(new_dataset))
 
     print(bcolors.OK + "Terminada traducción" + bcolors.RESET)
@@ -344,7 +344,7 @@ def summarization(groups_datasets):
     # Lista que contendrá los datasets después de la obtención de los resúmenes
     new_groups_datasets = []
 
-    # Generación de los resúmenes del contenido de cada dataset
+    # Generación de los resúmenes del contenido de cada conjunto de datos
     for dataset in groups_datasets:
         # Lista que contiene el contenido de la columna Subject
         subject = []
@@ -376,7 +376,7 @@ def summarization(groups_datasets):
 
         # Si hay alguna pregunta en la lista
         if len(question) != 0:
-            # Creación del dataset tras la generación de resúmenes
+            # Creación del conjunto de datos tras la generación de resúmenes
             new_groups_datasets.append(DataFrame({
                 "Topic": topic,
                 "Subject": subject,
@@ -414,7 +414,7 @@ def simplify(groups_datasets):
 
         # Si hay alguna pregunta en la lista
         if len(question) != 0:
-            # Creación del dataset tras la simplificación
+            # Creación del conjunto de datos tras la simplificación
             new_groups_datasets.append(DataFrame({
                 "Topic": dataset.Topic.to_list(),
                 "Subject": dataset.Subject.to_list(),
@@ -439,15 +439,15 @@ def generate_theme_dataset(dataset):
     @return Dataframe para niños.
     """
 
-    # División del dataset en base al campo Topic
+    # División del conjunto de datos en base al campo Topic
     groups_datasets = split_by_topic(dataset)
 
-    # Si el contenido del dataset no estaba traducido
+    # Si el contenido del conjunto de datos no estaba traducido
     if not generate_args.translated:
         # Traducción de los datasets al Inglés
         groups_datasets = traducirES_EN(groups_datasets)
 
-        # Guardado del dataset traducido
+        # Guardado del conjunto de datos traducido
         save_dataset_EN(groups_datasets)
 
     # Generación de las distintas respuestas mediante el resumen de los
@@ -456,20 +456,20 @@ def generate_theme_dataset(dataset):
     # Generación de los datasets resumidos
     groups_datasets = summarization(groups_datasets)
 
-    # Creación del dataset para adultos
+    # Creación del conjunto de datos para adultos
     adult_dataset = pd.concat(groups_datasets)
 
     # Generación de los datasets simplificados
     groups_datasets = simplify(groups_datasets)
 
-    # Creación del dataset para niños
+    # Creación del conjunto de datos para niños
     child_dataset = pd.concat(groups_datasets)
 
     return adult_dataset, child_dataset
 
 
 def main():
-    # Lectura del dataset inicial
+    # Lectura del conjunto de datos inicial
     dataset = pd.read_csv(generate_args.initial_dataset_file)
 
     # Generación de los datasets temáticos
