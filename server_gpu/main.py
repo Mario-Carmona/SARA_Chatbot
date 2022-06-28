@@ -383,7 +383,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": str(output.uuid)
+        "conver_id": conver_id
     }
 
     return response
@@ -463,7 +463,7 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
             "ES": answer, 
             "EN": answer_EN
         },
-        "conver_id": str(output.uuid)
+        "conver_id": conver_id
     }
 
     return response
