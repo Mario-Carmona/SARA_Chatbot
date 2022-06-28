@@ -25,7 +25,7 @@ LANGUAGE PLPGSQL IMMUTABLE;
 CREATE TABLE Conversations (
     id BIGSERIAL,
     verified BOOL DEFAULT 'false',
-    edad age NOT NULL,
+    edad TEXT NOT NULL,
     date_ini TIMESTAMP NOT NULL,
     date_fin TIMESTAMP NOT NULL,
     duration TIME GENERATED ALWAYS AS (
