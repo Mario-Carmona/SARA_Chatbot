@@ -336,32 +336,35 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
     # Añadir a la conversación el texto de entrada traducido
     conversation.add_user_input(entry_EN)
 
-    # Generación de la conversación de respuesta
-    output = pipelineConverAdult(
-        conversation,
-        do_sample=server_args.do_sample,
-        temperature=server_args.temperature,
-        top_p=server_args.top_p,
-        max_time=server_args.max_time,
-        max_length=server_args.max_length,
-        min_length=server_args.min_length,
-        use_cache=server_args.use_cache,
-        pad_token_id=tokenizerConverAdult.eos_token_id,
-        synced_gpus=True
-    )
+    try:
+        # Generación de la conversación de respuesta
+        output = pipelineConverAdult(
+            conversation,
+            do_sample=server_args.do_sample,
+            temperature=server_args.temperature,
+            top_p=server_args.top_p,
+            max_time=server_args.max_time,
+            max_length=server_args.max_length,
+            min_length=server_args.min_length,
+            use_cache=server_args.use_cache,
+            pad_token_id=tokenizerConverAdult.eos_token_id,
+            synced_gpus=True
+        )
 
-    print(output)
+        print(output)
 
-    # Actualización del diccionario de conversaciones
-    if last_response:
-        # Si es el final de la conversación se elimina la misma del diccionario
-        del dicc_conversation[str(output.uuid)]
-    else:
-        # En caso contrario, se actualiza el campo que contiene a la conversación
-        dicc_conversation[str(output.uuid)] = output
+        # Actualización del diccionario de conversaciones
+        if last_response:
+            # Si es el final de la conversación se elimina la misma del diccionario
+            del dicc_conversation[str(output.uuid)]
+        else:
+            # En caso contrario, se actualiza el campo que contiene a la conversación
+            dicc_conversation[str(output.uuid)] = output
 
-    # Obtención del texto de respuesta 
-    answer_EN = output.generated_responses[-1]
+        # Obtención del texto de respuesta 
+        answer_EN = output.generated_responses[-1]
+    except RuntimeError:
+        answer_EN = "I do not understand your question"
 
     print(answer_EN)
 
@@ -413,32 +416,35 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
     # Añadir a la conversación el texto de entrada traducido
     conversation.add_user_input(entry_EN)
 
-    # Generación de la conversación de respuesta
-    output = pipelineConverChild(
-        conversation,
-        do_sample=server_args.do_sample,
-        temperature=server_args.temperature,
-        top_p=server_args.top_p,
-        max_time=server_args.max_time,
-        max_length=server_args.max_length,
-        min_length=server_args.min_length,
-        use_cache=server_args.use_cache,
-        pad_token_id=tokenizerConverAdult.eos_token_id,
-        synced_gpus=True
-    )
+    try:
+        # Generación de la conversación de respuesta
+        output = pipelineConverChild(
+            conversation,
+            do_sample=server_args.do_sample,
+            temperature=server_args.temperature,
+            top_p=server_args.top_p,
+            max_time=server_args.max_time,
+            max_length=server_args.max_length,
+            min_length=server_args.min_length,
+            use_cache=server_args.use_cache,
+            pad_token_id=tokenizerConverAdult.eos_token_id,
+            synced_gpus=True
+        )
 
-    print(output)
+        print(output)
 
-    # Actualización del diccionario de conversaciones
-    if last_response:
-        # Si es el final de la conversación se elimina la misma del diccionario
-        del dicc_conversation[str(output.uuid)]
-    else:
-        # En caso contrario, se actualiza el campo que contiene a la conversación
-        dicc_conversation[str(output.uuid)] = output
+        # Actualización del diccionario de conversaciones
+        if last_response:
+            # Si es el final de la conversación se elimina la misma del diccionario
+            del dicc_conversation[str(output.uuid)]
+        else:
+            # En caso contrario, se actualiza el campo que contiene a la conversación
+            dicc_conversation[str(output.uuid)] = output
 
-    # Obtención del texto de respuesta 
-    answer_EN = output.generated_responses[-1]
+        # Obtención del texto de respuesta 
+        answer_EN = output.generated_responses[-1]
+    except RuntimeError:
+        answer_EN = "I do not understand your question"
 
     print(answer_EN)
 
