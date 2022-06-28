@@ -1,7 +1,7 @@
 /*
 Creación de un tipo enumerado
 */
-CREATE TYPE age AS ENUM ('Niño', 'Adulto');
+CREATE TYPE age AS ENUM ('child', 'adult');
 
 
 /*

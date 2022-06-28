@@ -412,6 +412,7 @@ def make_response_goodbye(request: Dict):
     @return Datos de la respuesta del webhook.
     """
     
+    
     print("\nGoodbye\n")
 
     # Obtención del contexto de la petición
