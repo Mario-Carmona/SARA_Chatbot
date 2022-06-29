@@ -343,7 +343,12 @@ def generarContent(context):
     # Cadena que contendrá la conversación completa
     content = ""
 
-    print(zip(context["entry"]["ES"], context["answer"]["ES"], context["entry"]["EN"], context["answer"]["EN"]))
+    print(context["entry"]["ES"])
+    print(context["entry"]["EN"])
+    print(context["answer"]["ES"])
+    print(context["answer"]["EN"])
+
+    i = 0
 
     # Formación de la conversación dentro de la cadena
     for entry_ES, answer_ES, entry_EN, answer_EN in zip(context["entry"]["ES"], context["answer"]["ES"], context["entry"]["EN"], context["answer"]["EN"]):
@@ -351,6 +356,9 @@ def generarContent(context):
         content += f"[USER (EN)]: {entry_EN}\n"
         content += f"[BOT (EN)]: {answer_EN}\n"
         content += f"[BOT]: {answer_ES}\n"
+
+        i += 1
+        print(f"{i}\n")
     
     return content
 
