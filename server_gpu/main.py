@@ -358,7 +358,8 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
             print(output)
 
             #Se actualiza el campo que contiene a la conversación
-            del dicc_conversation[conver_id]
+            if conver_id != '':
+                del dicc_conversation[conver_id]
             dicc_conversation[str(output.uuid)] = output
 
             # Obtención del texto de respuesta 
@@ -444,7 +445,8 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
             print(output)
 
             #Se actualiza el campo que contiene a la conversación
-            del dicc_conversation[conver_id]
+            if conver_id != '':
+                del dicc_conversation[conver_id]
             dicc_conversation[str(output.uuid)] = output
 
             # Obtención del texto de respuesta 
