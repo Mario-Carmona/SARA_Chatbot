@@ -431,23 +431,10 @@ def make_response_goodbye(request: Dict):
     conver_id = outputContexts[elem]["parameters"]["conver_id"]
 
     # Generación de la respuesta
-    output = generate_response(entry, edad, conver_id, True)
-
-    # Creación del nuevo contexto de la respuesta a la petición
-    outputContexts[elem]["parameters"]["context"]["entry"]["ES"].append(output["entry"]["ES"])
-    outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
-
-    outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["entry"]["EN"])
-    outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["answer"]["EN"])
-
-    outputContexts[elem]["parameters"]["conver_id"] = output["conver_id"]
-
-    # Obtención de la respuesta generada
-    answer = output["answer"]["ES"]
+    generate_response(entry, edad, conver_id, True)
 
     # Creación de la respuesta a la petición al webhook
     response = {
-        "fulfillmentText": answer,
         "output_contexts": []
     }
 
