@@ -343,22 +343,12 @@ def generarContent(context):
     # Cadena que contendrá la conversación completa
     content = ""
 
-    print(context["entry"]["ES"])
-    print(context["entry"]["EN"])
-    print(context["answer"]["ES"])
-    print(context["answer"]["EN"])
-
-    i = 0
-
     # Formación de la conversación dentro de la cadena
     for entry_ES, answer_ES, entry_EN, answer_EN in zip(context["entry"]["ES"], context["answer"]["ES"], context["entry"]["EN"], context["answer"]["EN"]):
         content += f"\n[USER]: {entry_ES}\n"
         content += f"[USER (EN)]: {entry_EN}\n"
         content += f"[BOT (EN)]: {answer_EN}\n"
         content += f"[BOT]: {answer_ES}\n"
-
-        i += 1
-        print(f"{i}\n")
     
     return content
 
@@ -421,9 +411,6 @@ def make_response_goodbye(request: Dict):
 
     @return Datos de la respuesta del webhook.
     """
-    
-    
-    print("\nGoodbye\n")
 
     # Obtención del contexto de la petición
     outputContexts = request.get("queryResult").get("outputContexts")
@@ -447,10 +434,6 @@ def make_response_goodbye(request: Dict):
     response = {
         "output_contexts": []
     }
-
-    print("--------")
-    print(outputContexts[elem]["parameters"]["context"])
-    print("--------")
 
     # Salvar la conversación en el log
     save_conversation(
