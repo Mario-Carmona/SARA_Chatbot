@@ -358,6 +358,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
             print(output)
 
             #Se actualiza el campo que contiene a la conversación
+            del dicc_conversation[conver_id]
             dicc_conversation[str(output.uuid)] = output
 
             # Obtención del texto de respuesta 
@@ -387,7 +388,7 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
         }
     else:
         # Si es el final de la conversación se elimina la misma del diccionario
-        del dicc_conversation[str(output.uuid)]
+        del dicc_conversation[conver_id]
 
         response = None
 
@@ -404,75 +405,78 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
     @return Respuesta a la petición.
     """
 
-    # Tradución al ingles del texto de entrada
-    entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
+    if not last_response:
 
-    print(entry_EN)
+        # Tradución al ingles del texto de entrada
+        entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
+
+        print(entry_EN)
 
 
-    # Obtención de la conversación
-    try:
-        # En el caso de que exista se extrae del diccionario de conversaciones
-        conversation = dicc_conversation[conver_id]
-    except KeyError:
-        # En caso contrario, se genera la conversación
-        conversation = Conversation()
+        # Obtención de la conversación
+        try:
+            # En el caso de que exista se extrae del diccionario de conversaciones
+            conversation = dicc_conversation[conver_id]
+        except KeyError:
+            # En caso contrario, se genera la conversación
+            conversation = Conversation()
 
-    # Añadir a la conversación el texto de entrada traducido
-    conversation.add_user_input(entry_EN)
+        # Añadir a la conversación el texto de entrada traducido
+        conversation.add_user_input(entry_EN)
 
-    sameIdent = False
+        sameIdent = False
 
-    try:
-        # Generación de la conversación de respuesta
-        output = pipelineConverChild(
-            conversation,
-            do_sample=server_args.do_sample,
-            temperature=server_args.temperature,
-            top_p=server_args.top_p,
-            max_time=server_args.max_time,
-            max_length=server_args.max_length,
-            min_length=server_args.min_length,
-            use_cache=server_args.use_cache,
-            pad_token_id=tokenizerConverAdult.eos_token_id,
-            synced_gpus=True
-        )
+        try:
+            # Generación de la conversación de respuesta
+            output = pipelineConverChild(
+                conversation,
+                do_sample=server_args.do_sample,
+                temperature=server_args.temperature,
+                top_p=server_args.top_p,
+                max_time=server_args.max_time,
+                max_length=server_args.max_length,
+                min_length=server_args.min_length,
+                use_cache=server_args.use_cache,
+                pad_token_id=tokenizerConverAdult.eos_token_id,
+                synced_gpus=True
+            )
 
-        print(output)
+            print(output)
 
-        # Actualización del diccionario de conversaciones
-        if last_response:
-            # Si es el final de la conversación se elimina la misma del diccionario
-            del dicc_conversation[str(output.uuid)]
-        else:
-            # En caso contrario, se actualiza el campo que contiene a la conversación
+            #Se actualiza el campo que contiene a la conversación
+            del dicc_conversation[conver_id]
             dicc_conversation[str(output.uuid)] = output
 
-        # Obtención del texto de respuesta 
-        answer_EN = output.generated_responses[-1]
-    except RuntimeError:
-        answer_EN = "I do not understand your question"
-        sameIdent = True
+            # Obtención del texto de respuesta 
+            answer_EN = output.generated_responses[-1]
+        except RuntimeError:
+            answer_EN = "I do not understand your question"
+            sameIdent = True
 
-    print(answer_EN)
+        print(answer_EN)
 
-    # Traducción al español del texto de respuesta
-    answer = translator.translate_text(answer_EN, source_lang="EN", target_lang="ES").text
+        # Traducción al español del texto de respuesta
+        answer = translator.translate_text(answer_EN, source_lang="EN", target_lang="ES").text
 
-    print(answer)
+        print(answer)
 
-    # Creación de la respuesta a la petición
-    response = {
-        "entry": {
-            "ES": entry, 
-            "EN": entry_EN
-        },
-        "answer": {
-            "ES": answer, 
-            "EN": answer_EN
-        },
-        "conver_id": conver_id if sameIdent else str(output.uuid)
-    }
+        # Creación de la respuesta a la petición
+        response = {
+            "entry": {
+                "ES": entry, 
+                "EN": entry_EN
+            },
+            "answer": {
+                "ES": answer, 
+                "EN": answer_EN
+            },
+            "conver_id": conver_id if sameIdent else str(output.uuid)
+        }
+    else:
+        # Si es el final de la conversación se elimina la misma del diccionario
+        del dicc_conversation[conver_id]
+
+        response = None
 
     return response
 
