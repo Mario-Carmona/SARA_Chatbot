@@ -438,6 +438,10 @@ def make_response_goodbye(request: Dict):
         "output_contexts": []
     }
 
+    print("--------")
+    print(outputContexts[elem]["parameters"]["context"])
+    print("--------")
+
     # Salvar la conversación en el log
     save_conversation(
         outputContexts[elem]["parameters"]["context"],
