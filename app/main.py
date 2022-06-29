@@ -295,7 +295,7 @@ def make_rest_response(request: Dict):
     outputContexts[elem]["parameters"]["context"]["answer"]["ES"].append(output["answer"]["ES"])
 
     outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["entry"]["EN"])
-    outputContexts[elem]["parameters"]["context"]["entry"]["EN"].append(output["answer"]["EN"])
+    outputContexts[elem]["parameters"]["context"]["answer"]["EN"].append(output["answer"]["EN"])
 
     outputContexts[elem]["parameters"]["conver_id"] = output["conver_id"]
 
