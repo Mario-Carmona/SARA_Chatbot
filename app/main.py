@@ -343,6 +343,8 @@ def generarContent(context):
     # Cadena que contendrá la conversación completa
     content = ""
 
+    print(zip(context["entry"]["ES"], context["answer"]["ES"], context["entry"]["EN"], context["answer"]["EN"]))
+
     # Formación de la conversación dentro de la cadena
     for entry_ES, answer_ES, entry_EN, answer_EN in zip(context["entry"]["ES"], context["answer"]["ES"], context["entry"]["EN"], context["answer"]["EN"]):
         content += f"\n[USER]: {entry_ES}\n"
