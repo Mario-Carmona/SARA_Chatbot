@@ -24,24 +24,24 @@
     "max_length_question": 128,
     "num_beams_summary": 1,
     "num_beams_question": 1,
-    "initial_dataset_file": "server_gpu/datasets/v2/datasetV2_EN.csv",
+    "initial_dataset_file": "server_gpu/datasets/v3/salida_v1.csv",
     "translated": true,
-    "theme_result_dir": "server_gpu/datasets/v2",
+    "theme_result_dir": "server_gpu/datasets/v3",
     "adult_dataset_file": "dataset_adult.csv",
     "child_dataset_file": "dataset_child.csv",
 
 
 
     "list_datasets": [
-        "server_gpu/datasets/v2/general_dataset.csv"
+        "server_gpu/datasets/v3/general_dataset.csv"
     ],
-    "join_dataset_file": "server_gpu/datasets/v2/total_dataset.csv",
+    "join_dataset_file": "server_gpu/datasets/v3/total_dataset.csv",
     "remove_source_files": false,
 
 
     "split_dataset_file": "",
     "train_split": 0.8,
-    "split_result_dir": "server_gpu/datasets/v2",
+    "split_result_dir": "server_gpu/datasets/v3",
     "train_dataset_file": "train_resume.csv",
     "valid_dataset_file": "validation_resume.csv"
 }
