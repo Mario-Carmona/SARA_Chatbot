@@ -583,9 +583,9 @@ def main():
         img = Image.open(io.BytesIO(img_bytes))
 
         # Creación del modelo clasificador de imágenes
-        model = ViTForImageClassification.from_pretrained('/mnt/homeGPU/mcarmona/nateraw/vit-age-classifier')
+        model = ViTForImageClassification.from_pretrained(server_args.model_deduct_age)
         # Creación del extractor de características
-        transforms = ViTFeatureExtractor.from_pretrained('/mnt/homeGPU/mcarmona/nateraw/vit-age-classifier')
+        transforms = ViTFeatureExtractor.from_pretrained(server_args.model_deduct_age)
 
         # Extraer las características de la imagen
         inputs = transforms(img, return_tensors='pt')

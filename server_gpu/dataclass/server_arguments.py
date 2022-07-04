@@ -108,6 +108,11 @@ class ServerArguments(ProyectArguments, DeeplArguments,
             "help": "Ruta al archivo de configuración del tokenizer del modelo para niños"
         }
     )
+    model_deduct_age: str = field(
+        metadata={
+            "help": "Ruta a la carpeta del modelo para deducir la edad a partir de imágenes"
+        }
+    )
     tam_history: int = field(
         metadata={
             "help": "Número máximo de tokens que forman el historial de la conversación"
