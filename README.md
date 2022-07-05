@@ -6,7 +6,8 @@ Repositorio que contiene mi Trabajo Fin de Grado realizado en la UGR durante el 
 
 1. [Resumen](#resumen)
 1. [Requisitos](#requisitos)
-1. [Instalación servidor local](#instalación-servidor-local)
+1. [Instalación](#instalación)
+	1. [Instalación del servidor de la Vista y el Controlador](#instalación-del-servidor-de-la-vista-y-el-controlador)
 
 ## Resumen
 
@@ -20,16 +21,16 @@ Para la adaptación del chatbot a distintos perfiles de usuario se ha elaborado 
 
 Como el sistema se compone de dos servidores distintos, cada uno tendrá sus propios requisitos. Los requisitos de cada servidor se encuentran en archivos del tipo "requirements.txt", los cuales se utilizan para instalar todos los requisitos mediante pip.
 
-Los requisitos del servidor de la APP se pueden ver con el siguiente enlace $\rightarrow$ [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/app/requirements.txt)
+Los requisitos del servidor de la APP se pueden ver con el siguiente enlace [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/app/requirements.txt).
 
-- Usar como S.O. **Ubuntu** (Versión 20.04.3 ó superior) [<img src="./image_readme/logo_ubuntu.jpg" alt="Logo ubuntu" width="80" height="20"/>](https://ubuntu.com/download/desktop)
-- Instalar **Visual Studio Code** (Versión 1.64.2 ó superior) [<img src="./image_readme/logo_vscode.jpg" alt="Logo vscode" width="20" height="20"/>](https://code.visualstudio.com/download)
-- Instalar **npm** (Versión 6.14.4 ó superior) [<img src="./image_readme/logo_npm.png" alt="Logo npm" width="60" height="20"/>](https://www.npmjs.com/)
-- Instalar **express** (Versión 4.17.3 ó superior) [<img src="./image_readme/logo_express.jpg" alt="Logo express" width="80" height="20"/>](https://www.npmjs.com/package/express)
-- Instalar extensión **ngrok for VSCode** [<img src="./image_readme/logo_ngrok.png" alt="Logo ngrok" width="20" height="20"/>](https://marketplace.visualstudio.com/items?itemName=philnash.ngrok-for-vscode)
+Los requisitos del servidor GPU se pueden ver con el siguiente enlace [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/server_gpu/requirements.txt).
+
+Como sistema operativo se ha utilizado en todo momento Ubuntu ([![Ubuntu](https://img.shields.io/badge/Ubuntu-v20.04.3-orange.svg)]).
 
 
-## Instalación servidor local
+## Instalación
+
+### Instalación del servidor de la Vista y el Controlador
 
 Para instalar el servidor local son necesarios los siguientes pasos:
 
