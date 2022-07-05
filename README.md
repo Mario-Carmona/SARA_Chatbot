@@ -20,7 +20,7 @@ Para la adaptación del chatbot a distintos perfiles de usuario se ha elaborado 
 
 Como el sistema se compone de dos servidores distintos, cada uno tendrá sus propios requisitos. Los requisitos de cada servidor se encuentran en archivos del tipo "requirements.txt", los cuales se utilizan para instalar todos los requisitos mediante pip.
 
-Los requisitos del servidor de la APP se pueden ver con el siguiente enlace → [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/app/requirements.txt)
+Los requisitos del servidor de la APP se pueden ver con el siguiente enlace $\rightarrow$ [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/app/requirements.txt)
 
 - Usar como S.O. **Ubuntu** (Versión 20.04.3 ó superior) [<img src="./image_readme/logo_ubuntu.jpg" alt="Logo ubuntu" width="80" height="20"/>](https://ubuntu.com/download/desktop)
 - Instalar **Visual Studio Code** (Versión 1.64.2 ó superior) [<img src="./image_readme/logo_vscode.jpg" alt="Logo vscode" width="20" height="20"/>](https://code.visualstudio.com/download)
