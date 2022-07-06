@@ -8,6 +8,11 @@ Repositorio que contiene mi Trabajo Fin de Grado realizado en la UGR durante el 
 1. [Requisitos](#requisitos)
 1. [Instalación](#instalación)
 	1. [Instalación del servidor de la Vista y el Controlador](#instalación-del-servidor-de-la-vista-y-el-controlador)
+	1. [Instalación del servidor del Modelo](#Instalación-del-servidor-del-Modelo)
+1. [Inicio del sistema](#Inicio-del-sistema)
+1. [Generación de los conjuntos de datos de entrenamiento](#Generación-de-los-conjuntos-de-datos-de-entrenamiento)
+1. [Entrenamiento de los modelos](#Entrenamiento-de-los-modelos)
+1. [Contacto](#Contacto)
 
 ## Resumen
 
@@ -69,7 +74,7 @@ En primer lugar, se deberá generar un conjunto de datos inicial mediante la ext
     ./prueba_extract.py -u "<Correo de Quora>" -p "<Contraseña de Quora>" -n <Número de ejemplos por Topic> -t <Ruta al archivo con la lista de Topics> -f <Ruta al archivo de salida>
 ~~~
 
-Una vez finalizada la extracción del conjunto de datos inicial, procedemos a generar los conjuntos de datos de entrenamiento. Además del conjunto de datos extraído de Quora se pueden generar conjuntos de datos creados a mano, los cuales se concatenaran al conjunto de datos de Quora durante el pre procesado. Deberemos actualizar el archivo de configuración de generación de conjuntos de datos, \textit{config\_genDataset.json}, y posteriormente ejecutar el siguiente comando:
+Una vez finalizada la extracción del conjunto de datos inicial, procedemos a generar los conjuntos de datos de entrenamiento. Además del conjunto de datos extraído de Quora se pueden generar conjuntos de datos creados a mano, los cuales se concatenaran al conjunto de datos de Quora durante el pre procesado. Deberemos actualizar el archivo de configuración de generación de conjuntos de datos, _config\_genDataset.json_, y posteriormente ejecutar el siguiente comando:
 
 ~~~
     python generate_dataset.py configs/config_genDataset.json
@@ -78,34 +83,15 @@ Una vez finalizada la extracción del conjunto de datos inicial, procedemos a ge
 Tras las ejecución de este comando, obtendremos los conjuntos de datos de entrenamiento en la ruta que se ha indicado en el archivo de configuración.
 
 
+## Entrenamiento de los modelos
 
+Suponiendo que se han generado los conjuntos de datos de entrenamiento. Primeramente se deberá actualizar el archivo de configuración para el entrenamiento de cierto rango de edad, y posteriormente se ejecuta el siguiente comando:
 
+~~~
+    python fine_tuning.py configs/config_finetuning_child.json
+~~~
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+En el caso del anterior comando, tras su finalización se obtendrá un modelo conversacional entrenado para el rango de edad de niños.
 
 
 ## Contacto
