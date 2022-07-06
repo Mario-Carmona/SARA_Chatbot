@@ -96,6 +96,6 @@ En el caso del anterior comando, tras su finalización se obtendrá un modelo co
 
 ## Contacto
 
-El sitio web que se aloja en Heroku siempre se encuentra activo, pero el servidor GPU no se encuentra siempre activo dado que no son recursos privados, sino que se deben compartir con el resto de estudiantes. En caso de querer hacer uso del sistema para realizar pruebas con él o para poder evaluarlo, solamente debe contactar con el administrador del sistema a través del correo electrónico mcs2000carmona@correo.ugr.es. Al enviar el correo el administrador notificará el periodo de tiempo durante el cuál el sistema estará activado.
+El sitio web que se aloja en Heroku siempre se encuentra activo, pero el servidor GPU no se encuentra siempre activo dado que no son recursos privados, sino que se deben compartir con el resto de estudiantes. En caso de querer hacer uso del sistema para realizar pruebas con él o para poder evaluarlo, solamente debe contactar con el administrador del sistema a través del correo electrónico mcs2000carmona@correo.ugr.es. Al enviar el correo, el administrador notificará el periodo de tiempo durante el cuál el sistema estará activado.
 
 
