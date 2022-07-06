@@ -51,17 +51,31 @@ Estos modelos deberán ser descargados y movidos a la misma altura que la raíz 
 
 Finalmente se deberá ejecutar el script de shell llamado _setup.sh_. Los cinco primeros comandos de este script deben ser eliminados si no se utilizan los servidor GPU del Instituto DaSCI.
 
-### Inicio del sistema
+## Inicio del sistema
 
 El servidor que se ha desplegado en Heroku se estará ejecutando indefinidamente. Y en cuanto al servidor del Modelo para iniciar su ejecución se deberá ejecutar el siguiente comando a la altura de la carpeta _server\_gpu_:
 
 ~~~
-    deepspeed $--$num_gpus 1 main.py $--$config_file configs/config_server.json
+    deepspeed --num_gpus 1 main.py --config_file configs/config_server.json
 ~~~
 
 Tras la ejecución del comando y la finalización de la carga de todos los modelos que utiliza este servidor, el sistema estará disponible en su plenitud.
 
+## Generación de los conjuntos de datos de entrenamiento
 
+En primer lugar, se deberá generar un conjunto de datos inicial mediante la extracción de información de la página Quora. La extracción del conjunto de datos inicial se realiza mediante el siguiente comando:
+
+~~~
+    ./prueba_extract.py -u ``<Correo de Quora>'' -p ``<Contraseña de Quora>'' -n <Número de ejemplos por Topic> -t <Ruta al archivo con la lista de Topics> -f <Ruta al archivo de salida>
+~~~
+
+Una vez finalizada la extracción del conjunto de datos inicial, procedemos a generar los conjuntos de datos de entrenamiento. Además del conjunto de datos extraído de Quora se pueden generar conjuntos de datos creados a mano, los cuales se concatenaran al conjunto de datos de Quora durante el pre procesado. Deberemos actualizar el archivo de configuración de generación de conjuntos de datos, \textit{config\_genDataset.json}, y posteriormente ejecutar el siguiente comando:
+
+~~~
+    python generate_dataset.py configs/config_genDataset.json
+~~~
+
+Tras las ejecución de este comando, obtendremos los conjuntos de datos de entrenamiento en la ruta que se ha indicado en el archivo de configuración.
 
 
 
