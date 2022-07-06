@@ -43,14 +43,30 @@ Una vez tenemos actualizada la información del Workflow, al realizar un commit 
 Esta instalación se realizará en una máquina distinta con GPU, suponiendo que la máquina utilizada para la primera instalación no dispone de GPU. La instalación consistirá en clonar el repositorio en esta máquina con GPU. Adicionalmente se deben descargar los modelos utilizados para todas las funcionalidades del Modelo. Los modelos usados son los siguientes:
 
 - [facebook/blenderbot-400M-distill](https://huggingface.co/facebook/blenderbot-400M-distill/tree/main)
+- [mrm8488/t5-base-finetuned-question-generation-ap](https://huggingface.co/mrm8488/t5-base-finetuned-question-generation-ap/tree/main)
+- [google/pegasus-xsum](https://huggingface.co/google/pegasus-xsum/tree/main)
+- [nateraw/vit-age-classifier](https://huggingface.co/nateraw/vit-age-classifier/tree/main)
+
+Estos modelos deberán ser descargados y movidos a la misma altura que la raíz del repositorio de trabajo.
+
+Finalmente se deberá ejecutar el script de shell llamado _setup.sh_. Los cinco primeros comandos de este script deben ser eliminados si no se utilizan los servidor GPU del Instituto DaSCI.
+
+### Inicio del sistema
+
+El servidor que se ha desplegado en Heroku se estará ejecutando indefinidamente. Y en cuanto al servidor del Modelo para iniciar su ejecución se deberá ejecutar el siguiente comando a la altura de la carpeta _server\_gpu_:
+
+<pre>
+    deepspeed $--$num\_gpus 1 main.py $--$config\_file configs/config\_server.json
+<code>
+
+Tras la ejecución del comando y la finalización de la carga de todos los modelos que utiliza este servidor, el sistema estará disponible en su plenitud.
 
 
 
 
+<pre>
 
-
-
-
+<code>
 
 
 
