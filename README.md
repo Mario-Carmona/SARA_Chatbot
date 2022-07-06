@@ -66,7 +66,7 @@ Tras la ejecución del comando y la finalización de la carga de todos los model
 En primer lugar, se deberá generar un conjunto de datos inicial mediante la extracción de información de la página Quora. La extracción del conjunto de datos inicial se realiza mediante el siguiente comando:
 
 ~~~
-    ./prueba_extract.py -u ``<Correo de Quora>'' -p ``<Contraseña de Quora>'' -n <Número de ejemplos por Topic> -t <Ruta al archivo con la lista de Topics> -f <Ruta al archivo de salida>
+    ./prueba_extract.py -u "<Correo de Quora>" -p "<Contraseña de Quora>" -n <Número de ejemplos por Topic> -t <Ruta al archivo con la lista de Topics> -f <Ruta al archivo de salida>
 ~~~
 
 Una vez finalizada la extracción del conjunto de datos inicial, procedemos a generar los conjuntos de datos de entrenamiento. Además del conjunto de datos extraído de Quora se pueden generar conjuntos de datos creados a mano, los cuales se concatenaran al conjunto de datos de Quora durante el pre procesado. Deberemos actualizar el archivo de configuración de generación de conjuntos de datos, \textit{config\_genDataset.json}, y posteriormente ejecutar el siguiente comando:
