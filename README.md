@@ -64,10 +64,6 @@ Tras la ejecución del comando y la finalización de la carga de todos los model
 
 
 
-<pre>
-
-<code>
-
 
 
 
