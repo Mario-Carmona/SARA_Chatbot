@@ -96,7 +96,7 @@ En el caso del anterior comando, tras su finalización se obtendrá un modelo co
 
 ## Contacto
 
-
+En caso de querer hacer uso del sistema para realizar pruebas con él o para poder evaluarlo, solamente debe contactar con el administrado del sistema a través del correo electrónico [mcs2000carmona@correo.ugr.es](mcs2000carmona@correo.ugr.es).
 
 
 
