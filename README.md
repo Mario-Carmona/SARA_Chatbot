@@ -56,7 +56,7 @@ Finalmente se deberá ejecutar el script de shell llamado _setup.sh_. Los cinco 
 El servidor que se ha desplegado en Heroku se estará ejecutando indefinidamente. Y en cuanto al servidor del Modelo para iniciar su ejecución se deberá ejecutar el siguiente comando a la altura de la carpeta _server\_gpu_:
 
 <pre>
-    deepspeed $--$num\_gpus 1 main.py $--$config\_file configs/config\_server.json
+    deepspeed $--$num_gpus 1 main.py $--$config_file configs/config_server.json
 <code>
 
 Tras la ejecución del comando y la finalización de la carga de todos los modelos que utiliza este servidor, el sistema estará disponible en su plenitud.
