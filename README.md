@@ -25,7 +25,7 @@ Los requisitos del servidor de la APP se pueden ver con el siguiente enlace [![V
 
 Los requisitos del servidor GPU se pueden ver con el siguiente enlace [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/server_gpu/requirements.txt).
 
-Como sistema operativo se ha utilizado en todo momento Ubuntu ([![Ubuntu](https://img.shields.io/badge/Ubuntu-v20.04.3-orange.svg)]).
+Como sistema operativo se ha utilizado en todo momento Ubuntu (![Ubuntu](https://img.shields.io/badge/Ubuntu-v20.04.3-orange.svg)).
 
 
 ## Instalación
