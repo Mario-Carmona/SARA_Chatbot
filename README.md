@@ -23,15 +23,72 @@ Como el sistema se compone de dos servidores distintos, cada uno tendrá sus pro
 
 Los requisitos del servidor de la APP se pueden ver con el siguiente enlace [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/app/requirements.txt).
 
-Los requisitos del servidor GPU se pueden ver con el siguiente enlace [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20APP-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/server_gpu/requirements.txt).
+Los requisitos del servidor GPU se pueden ver con el siguiente enlace [![Ver requisitos](https://img.shields.io/badge/Ver-Requisitos%20Server%20GPU-inactive.svg)](https://github.com/Mario-Carmona/SARA_Chatbot/blob/main/server_gpu/requirements.txt).
 
 Como sistema operativo se ha utilizado en todo momento Ubuntu (![Ubuntu](https://img.shields.io/badge/Ubuntu-v20.04.3-orange.svg)).
 
 
 ## Instalación
 
+Para ambas instalaciones se deberá crear un repositorio propio que contenga el código de nuestro repositorio en Github
+
 ### Instalación del servidor de la Vista y el Controlador
 
-Para instalar el servidor local son necesarios los siguientes pasos:
+Una vez tenemos el repositorio debemos clonar el repositorio en nuestra máquina. Suponiendo que hemos creado una app en nuestra cuenta de Heroku, deberemos actualizar la información de nuestro Workflow para el servidor de la Vista y el Controlador con la información de nuestra cuenta y nuestra app; como son el email de nuestra cuenta de Heroku, el nombre de la app y la key de la API de nuestra cuenta.
 
-1. 
+Una vez tenemos actualizada la información del Workflow, al realizar un commit sobre el código de la carpeta app de nuestro nuevo repositorio, se realizará el despliegue de la app en la plataforma Heroku.
+
+### Instalación del servidor del Modelo
+
+Esta instalación se realizará en una máquina distinta con GPU, suponiendo que la máquina utilizada para la primera instalación no dispone de GPU. La instalación consistirá en clonar el repositorio en esta máquina con GPU. Adicionalmente se deben descargar los modelos utilizados para todas las funcionalidades del Modelo. Los modelos usados son los siguientes:
+
+- [facebook/blenderbot-400M-distill](https://huggingface.co/facebook/blenderbot-400M-distill/tree/main)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Contacto
+
+
+
+
+
+
+
+
+
