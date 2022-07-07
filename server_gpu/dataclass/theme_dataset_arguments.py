@@ -100,13 +100,7 @@ class ThemeDatasetArguments(ModelSumArguments, ModelSimplifyArguments,
         self.theme_result_dir = os.path.join(self.workdir, self.theme_result_dir)
 
         # Comprobaciones de los argumentos
-        assert self.limit_summary >= 0, "`limit_summary` debe ser un entero positivo."
-
-        assert self.max_length_question >= 0, "`max_length_question` debe ser un entero positivo."
-
         assert self.num_beams_summary >= 0, "`num_beams_summary` debe ser un entero positivo."
-
-        assert self.num_beams_question >= 0, "`num_beams_question` debe ser un entero positivo."
 
         assert os.path.exists(self.initial_dataset_file), "`initial_dataset_file` debe ser un archivo existente."
         assert self.initial_dataset_file.split('.')[-1] == 'csv', "`initial_dataset_file` debe ser un archivo CSV"
