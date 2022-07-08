@@ -323,10 +323,6 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
         # Tradución al ingles del texto de entrada
         entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
-        print(entry_EN)
-
-
-
         # Obtención de la conversación
         try:
             # En el caso de que exista se extrae del diccionario de conversaciones
@@ -355,8 +351,6 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
                 synced_gpus=True
             )
 
-            print(output)
-
             #Se actualiza el campo que contiene a la conversación
             if conver_id != '':
                 del dicc_conversation[conver_id]
@@ -368,12 +362,8 @@ def make_response_adult(entry: str, conver_id: str, last_response: bool):
             answer_EN = "I do not understand your question"
             sameIdent = True
 
-        print(answer_EN)
-
         # Traducción al español del texto de respuesta
         answer = translator.translate_text(answer_EN, source_lang="EN", target_lang="ES").text
-
-        print(answer)
 
         # Creación de la respuesta a la petición
         response = {
@@ -411,9 +401,6 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
         # Tradución al ingles del texto de entrada
         entry_EN = translator.translate_text(entry, source_lang="ES", target_lang="EN-US").text
 
-        print(entry_EN)
-
-
         # Obtención de la conversación
         try:
             # En el caso de que exista se extrae del diccionario de conversaciones
@@ -442,8 +429,6 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
                 synced_gpus=True
             )
 
-            print(output)
-
             #Se actualiza el campo que contiene a la conversación
             if conver_id != '':
                 del dicc_conversation[conver_id]
@@ -455,12 +440,8 @@ def make_response_child(entry: str, conver_id: str, last_response: bool):
             answer_EN = "I do not understand your question"
             sameIdent = True
 
-        print(answer_EN)
-
         # Traducción al español del texto de respuesta
         answer = translator.translate_text(answer_EN, source_lang="EN", target_lang="ES").text
-
-        print(answer)
 
         # Creación de la respuesta a la petición
         response = {

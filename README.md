@@ -58,6 +58,10 @@ Finalmente se deberá ejecutar el script de shell llamado _setup.sh_. Los cinco 
 
 ## Inicio del sistema
 
+Previamente, para poder iniciar el sistema se deberán descargar los modelos entrenados, lo cuales se encuentra en una [carpeta en Google Drive](https://drive.google.com/drive/folders/1jZz3FZ-VNf4JnqToJ7cFQXa-gLx9I1Fs?usp=sharing). Al descargarlos se deberá actualizar la configuración del servidor con las nuevas rutas de los modelos entrenados.
+
+Además, si se quiere ver como están hechos por dentro los chatbots de Dialogflow, contactar a través del correo mcs2000carmona@correo.ugr.es.
+
 El servidor que se ha desplegado en Heroku se estará ejecutando indefinidamente. Y en cuanto al servidor del Modelo para iniciar su ejecución se deberá ejecutar el siguiente comando a la altura de la carpeta _server\_gpu_:
 
 ~~~

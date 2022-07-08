@@ -604,8 +604,6 @@ def main():
         # Obtención de los datos de la petición en formato JSON
         request_JSON = await request.json()
 
-        print(request_JSON)
-
         # Obtención del intent que ha enviado a la petición
         intent = request_JSON["queryResult"]["intent"]["displayName"]
 
@@ -614,8 +612,6 @@ def main():
             response = make_response_talk(request_JSON, TalkType.adult)
         elif intent == "Goodbye":
             response = make_response_goodbye(request_JSON)
-
-        print(response)
 
         return response
 
@@ -632,8 +628,6 @@ def main():
         # Obtención de los datos de la petición en formato JSON
         request_JSON = await request.json()
 
-        print(request_JSON)
-
         # Obtención del intent que ha enviado a la petición
         intent = request_JSON["queryResult"]["intent"]["displayName"]
 
@@ -642,8 +636,6 @@ def main():
             response = make_response_talk(request_JSON, TalkType.child)
         elif intent == "Goodbye":
             response = make_response_goodbye(request_JSON)
-
-        print(response)
 
         return response
 
